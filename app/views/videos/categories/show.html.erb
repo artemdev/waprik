@@ -1,0 +1,19 @@
+<div class="b">
+	<%= link_to('Добавить видео', :controller => 'videos', :action => 'new', :category_id => @category.id)%>
+</div>
+
+<div class="title">
+	<%= @category.name %>
+</div>
+
+<% @category.videos.each do |video|%>
+	<div class="a">
+		<%= link_to("#{video.name}", {:controller => 'videos', :action => 'show', :id => video.id, :category_id => @category.id}) %>
+	</div>
+<% end %>
+
+<div class="foot">
+	<%= link_to("Все жанры", :controller => 'categories') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

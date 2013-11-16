@@ -1,0 +1,11 @@
+<%= form_for(:news, :url => {:action => 'create_news'}) do |f| %>
+
+	<%= render(:partial => 'form', :locals => {:f => f}) %>
+	
+	<div class="a">
+		Раздел <%= link_to(translate_type(@news.section), :action => 'list') %>
+	</div>
+
+	<%= submit_tag("Добавить") %>
+<% end %>
+

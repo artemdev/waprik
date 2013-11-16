@@ -1,0 +1,69 @@
+<% unless @video.name.nil?%>
+<div class="title">
+	<%= @video.name.blank? ? "Без названия" : @video.name %>
+</div>
+<% end %>
+
+<% unless @video.screen.url.nil?%>
+<div class="a">
+	<%= image_tag(@video.screen.preview.url) %>
+</div>
+<% end %>
+
+<% unless @video.description.empty? %>
+<div class="a">
+		<%= @video.description %>
+</div>
+<% end %>
+
+<% unless @video.categories.empty? %>
+<div class="a">
+		 Категории
+		<% @video.categories.each do |category| %>
+			<%= link_to(category.name, :action => 'category', :id => category.id) %>
+		<% end %>
+</div>
+<% end %>
+
+<% unless @video.collections.empty? %>
+<div class="title">
+	В подборках
+</div>
+
+<div class="a">
+		<% @video.collections.each do |collection| %>
+			<%= link_to(collection.name, :action => 'collection', :id => collection.id) %>
+		<% end %>
+</div>
+<% end %>
+
+<% unless @video.mp4_320.url.nil? && @video.mp4_176.url.nil? && @video.low_3gp.url.nil? %>
+<div class="title">
+	Скачать <%= @video.downloads %>
+</div>
+<% end %>
+
+<% unless @video.mp4_320.url.nil?%>
+<div class="b">
+	<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320"}) %>
+</div>
+<% end %>
+
+<% unless @video.mp4_176.url.nil?%>
+<div class="b">
+<%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %>
+</div>
+<% end %>
+
+<% unless @video.low_3gp.url.nil?%>
+<div class="b">
+	<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
+</div>
+<% end %>
+
+
+<div class="foot">
+	<%= link_to("Все жанры", :controller => 'videos') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

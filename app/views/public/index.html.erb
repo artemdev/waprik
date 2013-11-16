@@ -1,0 +1,31 @@
+<% unless @collections.empty? %>
+	<div class="title">
+		Классные подборки
+	</div>
+	<div class="a">
+		<%  @collections.each do |collection| %>
+			<%= link_to(collection.name, :action => 'collection', :collection_id => collection.id) %>
+		<% end %>
+	</div>
+<% end %>
+
+<div class="title">
+	Жанры
+</div>
+<div class="a">
+	<% @categories.each do |category| %>
+
+		<%= link_to(category.name, :action => 'list', :category_id => category.id) %>
+		<span class="small_text">
+			<%= category.videos.size %>
+		</span>
+		<% unless category == @categories.last %>
+			<hr /> 
+		<% end %>
+
+	<% end %>
+</div>
+
+<div class="foot">
+	<%= link_to("На главную", 'http://waprik.ru') %> <br />
+</div>

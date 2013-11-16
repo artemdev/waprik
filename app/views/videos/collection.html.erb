@@ -1,0 +1,21 @@
+<div class="title">
+	Подборка <%= @collection.name %> <% if @collection.hit? %> (хит) <% end %>
+</div>
+<div class="a">
+	<% unless @collection.videos.empty? %>
+		<% @collection.videos.each do |video| %>
+			<%= link_to(video.name.empty? ? "без названия" : video.name, {:action => 'show', :id => video.id, :category_id => params[:category_id]}) %>
+			<% unless video == @collection.videos.last %>
+				<hr />
+			<% end %>
+		<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+</div>
+
+<div class="foot">
+	<%= link_to("Все жанры", :action => 'index') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

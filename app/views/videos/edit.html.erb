@@ -1,0 +1,19 @@
+<div class="title">
+	Редактировать видео
+</div>
+
+<%= form_for(:video, :url => {:action => 'update', :id => @video.id}, :html => { :multipart => true }) do |f| %>
+ 
+	<%= render(:partial => 'video_form', :locals => {:f => f}) %>
+	
+	<div class="b">
+		<%= submit_tag("Обновить") %>
+	</div>
+
+<% end %>
+
+<div class="foot">
+	<%= link_to("Все жанры", :action => 'index') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

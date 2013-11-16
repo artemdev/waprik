@@ -1,0 +1,16 @@
+<div class="title">
+	<%= @collection.name %>
+</div>
+<div class="a">
+	<% unless @collection.videos.empty? %>
+	<% @collection.videos.each do |video| %>
+		<%= link_to(video.name, {:action => 'show', :id => video.id, :category_id => @category.id}) %>
+	<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+</div>
+<div class="foot">
+	<%= link_to("Видео", :action => 'index') %> <br />
+	<%= link_to("На главную", 'http://waprik.ru') %> <br />
+</div>

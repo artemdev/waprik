@@ -1,0 +1,13 @@
+<%= error_messages_for(@user) %>
+<% @title = "Edit Admin User" %>
+
+<%= form_for(:user, :url => {:action => 'update', :id => @user.id}) do |f| %>
+	<%= render(:partial => 'form', :locals => {:f => f}) %>
+	<%= submit_tag("Обновить") %>
+<% end %>
+
+<div class="foot">
+	<%= link_to("Админы", :controller => 'admin_users') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

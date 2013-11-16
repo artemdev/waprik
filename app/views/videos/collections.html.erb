@@ -1,0 +1,28 @@
+
+<div class="title">
+	Подборки видео
+</div>
+<div class="a">
+	<% unless @collections.empty? %>
+		<% @collections.each do |collection| %>
+			<%= link_to(collection.name, :action => 'collection', :id => collection.id) %>
+			<% if collection.hit? %> хит <% end %> <!-- проверяем хитовая ли подборка --> 
+			<span class="small_text">
+				<%= link_to("x", :action => 'remove_collection', :colleciton_id => collection.id) %>
+			</span> 
+			<% unless collection == @collections.last %>
+				<hr />
+			<% end %>
+		<% end %>
+	<% else %>
+		Подборок пока нет :(
+	<% end %>
+</div>
+<div class="b">
+	<%= link_to("Добавить подборку", :action => 'new_collection') %>
+</div>
+<div class="foot">
+	<%= link_to("Все жанры", :action => 'index') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

@@ -1,0 +1,48 @@
+<% unless @video.name.nil?%>
+<div class="title">
+	<%= @video.name %>
+</div>
+<% end %>
+
+<% unless @video.screen.url.nil?%>
+<div class="a">
+	<%= image_tag(@video.screen.preview.url) %>
+</div>
+<% end %>
+
+<% unless @video.description.empty? %>
+<div class="a">
+		<%= @video.description %> <hr />
+		Жанр: <%= link_to(@category.name, {:action => 'list', :category_id => @category.id })  %>
+</div>
+<% end %>
+
+
+<% unless @video.mp4_320.url.nil? && @video.mp4_176.url.nil? && @video.low_3gp.url.nil? %>
+<div class="title">
+	Скачать <%= @video.downloads %>
+</div>
+<% end %>
+
+<% unless @video.mp4_320.url.nil? %>
+<div class="b">
+	<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320"}) %>
+</div>
+<% end %>
+
+<% unless @video.mp4_176.url.nil?%>
+<div class="b">
+<%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %>
+</div>
+<% end %>
+
+<% unless @video.low_3gp.url.nil?%>
+<div class="b">
+	<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
+</div>
+<% end %>
+
+<div class="foot">
+	<%= link_to("Все видео", {:action => 'index'})  %> <br />
+	<%= link_to("На главную", 'http://waprik.ru')  %>
+</div>

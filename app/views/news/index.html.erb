@@ -1,0 +1,10 @@
+<div class="b">
+	<%= link_to("Добавить новость", :action => 'new') %>
+</div>
+
+<% @news.each do |news| %>
+	<div class="a">
+		<%= link_to(news.description, :action => 'show', :id => news.id) %> <br />
+		<span class="small_text">Тип <%= translate_type(news.section) %></span>
+	</div>
+<% end %>
