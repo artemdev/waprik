@@ -1,10 +1,25 @@
+<% unless @last_news == nil %>
 <div class="b">
-	<%= link_to("Добавить новость", :action => 'new') %>
+	<%= @last_news.description %>
 </div>
 
-<% @news.each do |news| %>
+<% unless @related_news == [] %>
+	<div class="title">
+		В этот день так же обновлены
+	</div>
 	<div class="a">
-		<%= link_to(news.description, :action => 'show', :id => news.id) %> <br />
-		<span class="small_text">Тип <%= translate_type(news.section) %></span>
+		<% @related_news.each do |item| %>
+			<%= link_to(translate_type(item.section), :action => 'show', :item_id => item.id) %>
+		<% end %>
 	</div>
 <% end %>
+<% else %>
+	<div class="b">
+		Пусто
+	</div>
+<% end %>
+<div class="foot">
+	<%= link_to("Все видео", :controller => 'videos') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>

@@ -2,6 +2,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+
+SECTIONS = ['music', 'video']
+
+  def translate_type( name ) 
+    case name
+      when "music"
+        name = "Музыка"
+      when "video"
+        name = "Видео"
+      when nil
+        name = "Не удалось определить тип новости"
+    end
+    return name
+  end
+
+  
   protected
 
   def confirm_logged_in

@@ -2,13 +2,17 @@ class Video < ActiveRecord::Base
   attr_accessible :name, :screen, :low_3gp, :mp4_176, :mp4_320, :description, :category_id, :collection, :artist
   attr_accessor :collection
 
+### Переменные для палингации ###
+
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :collections
 
   # validates_presence_of :name
   # validates_length_of :name, :maximum => 100
   # validates_presence_of :screen
-
+  # validates_presence_of :low_3gp
+  # validates_presence_of :mp4_176
+  # validates_presence_of :mp4_320
 
   mount_uploader :screen, ScreenUploader
   mount_uploader :low_3gp, VideosUploader

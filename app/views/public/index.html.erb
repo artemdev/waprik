@@ -1,10 +1,13 @@
+<div class="b">
+	<%= link_to("Новинки", {:controller => 'news', :section => 'video'}) %> <span class="small_text">(от <%= @last_news.created_at.to_s(:DayMonth) %>)</span>
+</div>
 <% unless @collections.empty? %>
 	<div class="title">
 		Классные подборки
 	</div>
 	<div class="a">
 		<%  @collections.each do |collection| %>
-			<%= link_to(collection.name, :action => 'collection', :collection_id => collection.id) %>
+			<%= link_to(collection.name, :action => 'collection', :collection_id => collection.id) %> <br />
 		<% end %>
 	</div>
 <% end %>
@@ -15,7 +18,7 @@
 <div class="a">
 	<% @categories.each do |category| %>
 
-		<%= link_to(category.name, :action => 'list', :category_id => category.id) %>
+		<%= link_to(category.name, :action => 'category', :id => category.id) %>
 		<span class="small_text">
 			<%= category.videos.size %>
 		</span>

@@ -6,15 +6,26 @@ class PublicController < ApplicationController
 
   layout 'mobile'
 
-	before_filter :find_category, :except => ['index']
+	 before_filter :find_category, :only => ['list']
 
   def index
   	@categories = Category.sorted
     @collections = Collection.top
+    @section = "video"
+    @last_news = News.sorted.where(:section => @section).last
   end
 
-  def list
-    @videos = Video.sorted.where(:category_id => @category.id)
+  def category
+    @category = Category.find(params[:id])
+      # Палингация
+      @first_page = 1
+      @current_page =  if params[:page].to_i > 0; params[:page].to_i; else @first_page; end
+      @limit = 5
+      @previous_page = @current_page - 1
+      @offset = if @current_page == @first_page; 0; else @previous_page * @limit; end;
+      @videos = Video.sorted.where(:category_id => @category.id).limit(@limit).offset(@offset)
+      @next_page = @current_page + 1
+      @last_page = @videos.size / @limit
   end
 
   def show

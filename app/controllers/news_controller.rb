@@ -2,16 +2,25 @@
 class NewsController < ApplicationController
 
 	layout 'mobile'
+  before_filter :confirm_logged_in
+  before_filter :find_news_section, :only => ['index', 'show']
 
-  def index
-  	@news = News.sorted
+  def index # Просмотр последних новостей
+    if @last_news = News.sorted.where(:section => @section).last
+      @related_news = @last_news.related_news
+    end
   end
 
-  def new
+  def show
+    @item = News.find(params[:item_id])
+  end
+
+  def new # Создание новости (Шаг 1)
   	@news = News.new(:section => params[:section])
+    @sections = ['@news.section']
   end
 
-  def create_news
+  def create_news # Создание новости (Шаг 2)
   	@news = News.new(params[:news])
   	if @news.save
   		flash[:notice] = "Новость добавлена"
@@ -21,15 +30,10 @@ class NewsController < ApplicationController
   	end
   end
 
-  def translate_type( name )
-    case name
-      when "music"
-        name = "Музыка"
-      when "video"
-        name = "Видео"
-      when nil
-        name = "Не удалось определить тип новости"
-    end
-    return name
+  private
+
+  def find_news_section
+    @section = params[:section]
   end
+
 end

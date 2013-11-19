@@ -113,8 +113,16 @@ class VideosController < ApplicationController
 ### РАБОТА С КАТЕГОРИЯМИ ВИДЕО ###
 
 	def category # Листинг видео из категории
-		@category = Category.find(params[:id])
-		@videos = @category.videos
+  	@category = Category.find(params[:id])
+  	# Палингация
+  	@first_page = 1
+		@current_page =  if params[:page].to_i > 0; params[:page].to_i; else @first_page; end
+  	@limit = 5
+  	@previous_page = @current_page - 1
+  	@offset = if @current_page == @first_page; 0; else @previous_page * @limit; end;
+  	@videos = @category.videos.limit(@limit).offset(@offset)
+		@next_page = @current_page + 1
+	  @last_page = @videos.size / @limit
 	end
 
 
