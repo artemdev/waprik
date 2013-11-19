@@ -1,6 +1,8 @@
-<div class="b">
-	<%= link_to("Новинки", {:controller => 'news', :section => 'video'}) %> <span class="small_text">(от <%= @last_news.created_at.to_s(:DayMonth) %>)</span>
-</div>
+<% unless @last_news == nil %>
+	<div class="b">
+		<%= link_to("Новинки", {:controller => 'news', :section => 'video'}) %> <span class="small_text">(от <%= @last_news.created_at.to_s(:DayMonth) %>)</span>
+	</div>
+<% end %>
 <% unless @collections.empty? %>
 	<div class="title">
 		Классные подборки
