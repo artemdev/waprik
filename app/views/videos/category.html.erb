@@ -38,25 +38,26 @@
 		</div>		
 <% end %>
 
-<div class="b">
-<!-- 	<% unless @first_page == @current_page || @first_page.to_i == 0 %> 
-		<%= link_to(@first_page.to_i, {:action => 'category', :page => @first_page}) %>, 
-	<% end %> -->
+	<div class="b">
+	<!-- 	<% unless @first_page == @current_page || @first_page.to_i == 0 %> 
+			<%= link_to(@first_page.to_i, {:action => 'category', :page => @first_page}) %>, 
+		<% end %> -->
 
-	<% unless @previous_page == @current_page || @previous_page.to_i == 0 %> 
-		<%= link_to(@previous_page.to_i, {:action => 'category', :page => @previous_page}) %>, 
-	<% end %>
+		<% unless @previous_page == @current_page || @previous_page.to_i == 0 %> 
+			<%= link_to(@previous_page.to_i, {:action => 'category', :page => @previous_page}) %>, 
+		<% end %>
 
-	<%= @current_page %>
+		<%= @current_page %>
 
-	<% unless @next_page == @current_page || @last_page == 0 %>
- 		, <%= link_to(@next_page, :action => 'category', :page => @next_page ) %>
-	<% end %>
+		<% unless @next_page == @current_page || @last_page == 0 %>
+	 		, <%= link_to(@next_page, :action => 'category', :page => @next_page ) %>
+		<% end %>
 
-	<% unless @last_page == @current_page || @last_page < @previous_page || @last_page < @current_page || @last_page < @next_page %>
-		 ... <%= link_to(@last_page, :action => 'category', :page => @last_page ) %>
-	<% end %>
-</div>
+		<% unless @last_page == @current_page || @last_page < @previous_page || @last_page < @current_page || @last_page < @next_page %>
+			 ... <%= link_to(@last_page, :action => 'category', :page => @last_page ) %>
+		<% end %>
+	</div>
+
 <div class="foot">
 	<%= link_to("Все жанры", :controller => 'videos') %> <br />
 	<%= link_to("Меню", :controller => 'access') %> <br />

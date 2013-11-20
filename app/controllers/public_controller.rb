@@ -33,6 +33,26 @@ class PublicController < ApplicationController
     @categories = @video.categories
   end
 
+  def download # Скачивание видео
+    @video = Video.find(params[:id])
+    version = params[:version]
+    case version
+      when '3gp'
+        @video.downloads += 1
+        @video.save
+        link = @video.low_3gp.url
+      when 'mp4_176'
+        @video.downloads += 1
+        @video.save
+        link = @video.mp4_176.url
+      when 'mp4_320'
+        @video.downloads += 1
+        @video.save
+        link = @video.mp4_320.url
+    end
+    redirect_to(link)
+  end
+
 ### КОЛЛЕКЦИИ ВИДЕО (ПОДБОРКИ) ###
 
   def collection

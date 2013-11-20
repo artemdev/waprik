@@ -24,7 +24,7 @@ class Video < ActiveRecord::Base
 
   scope :sorted, order("created_at DESC")
 
-  def add_collection (video)
+  def add_collection
     unless collection.empty?
       if Collection.where(:name => collection.downcase) != []
         coll = Collection.find_by_name(collection.downcase)
@@ -39,9 +39,9 @@ class Video < ActiveRecord::Base
       if @collection_exists
         
       else
-        video.collections << coll
+        self.collections << coll
       end
-      return video.collections
+      return self.collections
     end
   end
 

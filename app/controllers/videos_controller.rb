@@ -22,7 +22,7 @@ class VideosController < ApplicationController
 	def create # Добавление нового видео (шаг 2)
 		@video = Video.new(params[:video])
 		@category.videos << @video
-		@video.add_collection(@video)
+		@video.add_collection
 		# unless @collections.empty?
 		# 	@video.collections << @collection
 		# end
@@ -114,17 +114,16 @@ class VideosController < ApplicationController
 
 	def category # Листинг видео из категории
   	@category = Category.find(params[:id])
-  	# Палингация
-  	@first_page = 1
-		@current_page =  if params[:page].to_i > 0; params[:page].to_i; else @first_page; end
-  	@limit = 5
-  	@previous_page = @current_page - 1
-  	@offset = if @current_page == @first_page; 0; else @previous_page * @limit; end;
-  	@videos = @category.videos.limit(@limit).offset(@offset)
-		@next_page = @current_page + 1
-	  @last_page = @videos.size / @limit
-	end
-
+      # Палингация
+      @first_page = 1
+      @current_page =  if params[:page].to_i > 0; params[:page].to_i; else @first_page; end
+      @limit = 5
+      @previous_page = @current_page - 1
+      @offset = if @current_page == @first_page; 0; else @previous_page * @limit; end;
+      @videos = Video.sorted.where(:category_id => @category.id).limit(@limit).offset(@offset)
+      @next_page = @current_page + 1
+      @last_page = @videos.size / @limit
+  end
 
 	def new_category # Добавление новой категории (шаг 1)
 		@category = Category.new
