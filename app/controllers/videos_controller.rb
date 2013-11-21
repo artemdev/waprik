@@ -155,7 +155,11 @@ class VideosController < ApplicationController
 	end
 
 	def destroy_category # удаление категории
-		Category.find(params[:id]).destroy
+
+		@category = Category.find(params[:id])
+		if @category.destroy_videos
+			@category.destroy
+		end
 		flash[:notice] = "Жанр удален"
 		redirect_to(:action => 'index')
 	end
