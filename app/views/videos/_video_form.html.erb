@@ -43,7 +43,7 @@
 		<%= f.label(:low_3gp, "3GP") %> <br />
 		<%= f.file_field(:low_3gp) %> <br />
 	<% else %>
-	  <%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp"}) %> <%= link_to("x", {:action => 'delete_from_admin_panel', :version => "3gp", :id => @video.id})%>
+	  <%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %> <%= link_to("x", {:action => 'delete_from_admin_panel', :version => "3gp", :id => @video.id})%>
 	<% end %>
 </div>
 
@@ -52,7 +52,7 @@
 		<%= f.label(:mp4_176, "MP4 176") %> <br />
 		<%= f.file_field(:mp4_176) %> <br />
 	<% else %>
-	  <%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176"}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_176", :id => @video.id})%>
+	  <%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_176", :id => @video.id})%>
 	<% end %>
 </div>
 
@@ -61,6 +61,6 @@
 		<%= f.label(:mp4_320, "MP4 320") %> <br />
 		<%= f.file_field(:mp4_320) %> <br />
 	<% else %>
-	  <%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320"}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_320", :id => @video.id})%>
+	  <%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_320", :id => @video.id})%>
 	<% end %>
 </div>

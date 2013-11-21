@@ -24,7 +24,7 @@ class Video < ActiveRecord::Base
 
   scope :sorted, order("created_at DESC")
 
-  def add_collection
+  def add_collection # Добавить видео в коллекцию
     unless collection.empty?
       if Collection.where(:name => collection.downcase) != []
         coll = Collection.find_by_name(collection.downcase)

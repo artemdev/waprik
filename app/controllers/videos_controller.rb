@@ -68,7 +68,7 @@ class VideosController < ApplicationController
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@video = Video.find(params[:id])
 		if @video.update_attributes(params[:video])
-			@video.add_collection(@video)
+			@video.add_collection
 			flash[:notice] = "Видео обновлено"
 			redirect_to(:action => 'edit', :id => @video.id)
 		else
