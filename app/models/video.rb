@@ -31,7 +31,7 @@ class Video < ActiveRecord::Base
       else
         coll = Collection.create(:name => collection.downcase)      
       end
-      video.collections.each do |video_collection|
+      self.collections.each do |video_collection|
           if coll.name == video_collection.name
             @collection_exists = video_collection
           end
@@ -47,7 +47,7 @@ class Video < ActiveRecord::Base
 
   protected
 
-  def remember_id
+  def remember_id 
     @id = id
   end
 
