@@ -107,7 +107,7 @@ class VideosController < ApplicationController
 				@video.remove_mp4_320!
 				@video.save
 		end
-		redirect_to(:action => 'edit', :id => @video.id, :category_id => @category.id)
+		redirect_to(:action => 'edit', :id => @video.id)
 	end
 
 ### РАБОТА С КАТЕГОРИЯМИ ВИДЕО ###
