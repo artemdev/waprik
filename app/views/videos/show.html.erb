@@ -17,24 +17,24 @@
 <% end %>
 
 <% unless @video.categories.empty? %>
-<div class="a">
-		 Категории
-		<% @video.categories.each do |category| %>
-			<%= link_to(category.name, :action => 'category', :id => category.id) %>
-		<% end %>
-</div>
+	<div class="a">
+			 Жанр
+			<% @video.categories.each do |category| %>
+				<%= link_to(category.name, :action => 'category', :id => category.id) %>
+			<% end %>
+	</div>
 <% end %>
 
 <% unless @video.collections.empty? %>
-<div class="title">
-	В подборках
-</div>
+	<div class="title">
+		В подборках
+	</div>
 
-<div class="a">
-		<% @video.collections.each do |collection| %>
-			<%= link_to(collection.name, :action => 'collection', :id => collection.id) %>
-		<% end %>
-</div>
+	<div class="a">
+			<% @video.collections.each do |collection| %>
+				<%= link_to(collection.name, :action => 'collection', :id => collection.id) %>
+			<% end %>
+	</div>
 <% end %>
 
 <% unless @video.mp4_320.url.nil? && @video.mp4_176.url.nil? && @video.low_3gp.url.nil? %>
