@@ -4,7 +4,7 @@
 <div class="a">
 	<% unless @collection.videos.empty? %>
 	<% @collection.videos.each do |video| %>
-		<%= link_to(video.name, {:action => 'show', :id => video.id}) %> <br />
+		<%= link_to(video.name, {:action => 'show', :id => video.id, :category_id => @category.id}) %> <br />
 	<% end %>
 	<% else %>
 		Пусто

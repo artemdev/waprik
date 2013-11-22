@@ -6,7 +6,7 @@ class PublicController < ApplicationController
 
   layout 'mobile'
 
-	 before_filter :find_category, :only => ['list', 'show']
+	 before_filter :find_category, :only => ['list', 'show', 'collection']
 
   def index
   	@categories = Category.sorted
