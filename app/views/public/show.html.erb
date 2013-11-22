@@ -41,13 +41,13 @@
 		<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
 	</div>
 <% end %>
-<% unless @video.name.nil?%>
+<% unless @video.collections.empty?%>
 	<div class="title">
 		В подборках
 	</div>
 	<div class="a">
 		<% @video.collections.each do |collection| %>
-			<%= link_to(collection.name, :action =>'collection', :collection_id => collection.id ) %>
+			<%= link_to(collection.name, :action =>'collection', :collection_id => collection.id, :category_id => @category.id ) %>
 		<% end %>
 	</div>
 <% end %>
