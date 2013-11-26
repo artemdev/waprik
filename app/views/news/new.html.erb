@@ -1,7 +1,9 @@
-<%= form_for(:news, :url => {:action => 'create_news', :section => @news.section}) do |f| %>
+<%= form_for(:news, :url => {:action => 'create', :section => @news.section}) do |f| %>
 
 <div class="b">
 	<%= render(:partial => 'form', :locals => {:f => f}) %>
+
+	<%= f.select(:section, @sections << @news.section) %> 
 </div>
 
 	<%= submit_tag("Добавить") %>

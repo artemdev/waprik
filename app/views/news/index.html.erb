@@ -1,15 +1,18 @@
 <% unless @last_news == nil %>
 <div class="b">
-	<%= @last_news.description %>
+	<%= @last_news.description %> <br />
+	<span class="small_text">
+		от <%= @last_news.created_at.to_s(:DayMonth) %>
+	</span>
 </div>
 
 <% unless @related_news == [] %>
 	<div class="title">
-		В этот день так же обновлены
+		<%= @last_news.created_at.to_s(:DayMonth) %> так же обновлены
 	</div>
 	<div class="a">
 		<% @related_news.each do |item| %>
-			<%= link_to(translate_type(item.section), :action => 'show', :item_id => item.id) %>
+			<%= link_to(translate_type(item.section), :action => 'show', :id => item.id, :section => item.section) %>
 		<% end %>
 	</div>
 <% end %>

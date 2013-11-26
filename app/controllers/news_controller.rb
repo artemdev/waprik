@@ -6,21 +6,19 @@ class NewsController < ApplicationController
   before_filter :find_news_section, :only => ['index', 'show']
 
   def index # Просмотр последних новостей
-    if @last_news = News.sorted.where(:section => @section).last
-      @related_news = @last_news.related_news
-    end
+    @related_news = @last_news.related_news if @last_news = News.sorted.where(:section => @section).last
   end
 
-  def show
-    @item = News.find(params[:item_id])
+  def show # Показ
+     @related_news = @item.related_news if @item = News.find(params[:id])
   end
 
-  def new # Создание новости (Шаг 1)
+  def new # Создание (Шаг 1)
   	@news = News.new(:section => params[:section])
     @sections = ['@news.section']
   end
 
-  def create_news # Создание новости (Шаг 2)
+  def create # Создание (Шаг 2)
   	@news = News.new(params[:news])
   	if @news.save
   		flash[:notice] = "Новость добавлена"
@@ -28,6 +26,27 @@ class NewsController < ApplicationController
   	else
   		render('new')
   	end
+  end
+
+  def edit # Редактирование (Шаг 1)
+    @item = News.find(params[:id])
+    @sections = ['@news.section']
+  end
+
+  def update # Редактирование (Шаг 2)
+    @item = News.find(params[:id])
+    if @item.update_attributes(params[:item])
+      flash[:notice] = "Новость обновлена"
+      redirect_to(:action => 'show', :id => @item.id, :section => @item.section)
+    else
+      render('edit')
+    end
+  end
+
+  def destroy # Удаление
+    @item = News.find(params[:id]).destroy
+    flash[:notice] = "Новость \"#{@item.description}\" удалена"
+    redirect_to(:action => 'index')
   end
 
   private

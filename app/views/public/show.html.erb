@@ -13,7 +13,7 @@
 <% unless @video.description.empty? %>
 	<div class="a">
 			<%= @video.description %> <hr />
-			Жанр: <%= link_to(@category.name, {:action => 'list', :category_id => @category.id })  %>
+			Жанр: <%= link_to(@category.name, {:action => 'category', :id => @category.id })  %>
 	</div>
 <% end %>
 
