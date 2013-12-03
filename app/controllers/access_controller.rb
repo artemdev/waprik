@@ -1,9 +1,8 @@
 # encoding: utf-8
 class AccessController < ApplicationController
-
-	layout 'mobile'
-
-	before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout]
+  layout 'mobile'
+	
+  before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout]
 
 	def index
     redirect_to(:action => 'menu')

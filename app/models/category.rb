@@ -6,12 +6,14 @@ class Category < ActiveRecord::Base
 
  	scope :sorted, order("created_at ASC")
 
+ 	# Удаление видео из категории
  	def destroy_videos
  		self.videos.each {|video| video.destroy}
  		return true
  	end
 
-  def with_music? # проверка на наличие музыки в категории
+	# Есть ли музыка в категории ?
+  def with_music?
   	if self.music.empty?
   		return false
   	else

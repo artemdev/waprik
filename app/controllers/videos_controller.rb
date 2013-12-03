@@ -1,8 +1,7 @@
 # encoding: utf-8
 class VideosController < ApplicationController
-
 	layout 'mobile'
-
+	
 	before_filter :confirm_logged_in
 	before_filter :find_category, :only => ['new', 'create', 'new', 'delete']
 
@@ -11,18 +10,19 @@ class VideosController < ApplicationController
 		@collections = Collection.top
 	end
 
-### РАБОТА С ВИДЕО ###
+	### РАБОТА С ВИДЕО ###
 
-
-	def new # Добавление нового видео (шаг 1)
+ 	# Добавление нового видео (шаг 1)
+	def new
 		@video = Video.new(:category_id => @category.id)
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 	end
 
-	def create # Добавление нового видео (шаг 2)
+  # Добавление нового видео (шаг 2)
+	def create
 		@video = Video.new(params[:video])
 		@category.videos << @video
-		@video.add_collection
+		@video.add_to_collection
 		# unless @collections.empty?
 		# 	@video.collections << @collection
 		# end
@@ -34,11 +34,13 @@ class VideosController < ApplicationController
 		end
 	end
 
-	def show # Показ видео
+	# Показ видео
+	def show 
 		@video = Video.find(params[:id])
 	end
 
-	def download # Скачивание видео
+	# Скачивание видео
+	def download 
 		@video = Video.find(params[:id])
 		version = params[:version]
 		case version
@@ -58,17 +60,18 @@ class VideosController < ApplicationController
 		redirect_to(link)
 	end
 
-	
-	def edit # Редактирование видео (шаг 1)
+	# Редактирование видео (шаг 1)
+	def edit 
 		@video = Video.find(params[:id])
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 	end
 
-	def update # Редактирование видео (шаг 2)
+	# Редактирование видео (шаг 2)
+	def update 
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@video = Video.find(params[:id])
 		if @video.update_attributes(params[:video])
-			@video.add_collection
+			@video.add_to_collection
 			flash[:notice] = "Видео обновлено"
 			redirect_to(:action => 'edit', :id => @video.id)
 		else
@@ -76,7 +79,8 @@ class VideosController < ApplicationController
 		end
 	end
 
-	def delete # Удаление видео (полностью)
+	# Удаление видео (полностью)
+	def delete 
 		video = Video.find(params[:id])
 		video.remove_screen
 		video.remove_low_3gp
@@ -87,13 +91,15 @@ class VideosController < ApplicationController
 		redirect_to(:action => 'category', :id => @category.id)
 	end
 
-	def delete_screen # Удаление скриншота видео
+	# Удаление скриншота видео
+	def delete_screen 
 		@video = Video.find(params[:id])
 		@video.remove_screen!
 		redirect_to(:action => 'edit', :id => @video.id)
 	end
 
-	def delete_from_admin_panel # Удаление выбранного формата видео
+	# Удаление выбранного формата видео
+	def delete_from_admin_panel 
 		@video = Video.find(params[:id])
 		version = params[:version]
 		case version
@@ -112,7 +118,8 @@ class VideosController < ApplicationController
 
 ### РАБОТА С КАТЕГОРИЯМИ ВИДЕО ###
 
-	def category # Листинг видео из категории
+	# Листинг видео из категории
+	def category 
   	@category = Category.find(params[:id])
       # Палингация
       @first_page = 1
@@ -125,11 +132,13 @@ class VideosController < ApplicationController
       @last_page = @videos.size / @limit
   end
 
-	def new_category # Добавление новой категории (шаг 1)
+	# Добавление новой категории (шаг 1)
+	def new_category 
 		@category = Category.new
 	end
 
-	def create_category # Добавление новой категории (шаг 2)
+	# Добавление новой категории (шаг 2)
+	def create_category 
 		@category = Category.new(params[:category])
 		if @category.save
 			flash[:notice] = "Категория успешно создана"
@@ -139,11 +148,13 @@ class VideosController < ApplicationController
 		end
 	end
 
-	def edit_category # редактирование категории (шаг 1)
+	# редактирование категории (шаг 1)
+	def edit_category 
 		@category = Category.find(params[:id])
 	end
 
-	def update_category # редактирование категории (шаг 2)
+	# редактирование категории (шаг 2)
+	def update_category 
 		@category = Category.find(params[:id])
 		@category.update_attributes(params[:category])
 		if @category.save
@@ -154,8 +165,8 @@ class VideosController < ApplicationController
 		end
 	end
 
-	def destroy_category # удаление категории
-
+	# удаление категории
+	def destroy_category 
 		@category = Category.find(params[:id])
 		if @category.destroy_videos
 			@category.destroy
@@ -166,19 +177,23 @@ class VideosController < ApplicationController
 
 ### РАБОТА С КОЛЛЕКЦИЯМИ ВИДЕО ###
 
-	def collection # листинг видео из выбранной коллекции
+	# листинг видео из выбранной коллекции
+	def collection 
 		@collection = Collection.find(params[:id])
 	end
 
-	def collections # листинг всех коллекций
+	# листинг всех коллекций
+	def collections 
 		@collections = Collection.all
 	end
 
-	def new_collection # создаем новую коллекцию (шаг 1)
+	# создаем новую коллекцию (шаг 1)
+	def new_collection 
 		@collection = Collection.new
 	end
 
-	def create_collection # создаем новую коллекцию (шаг 2)
+	# создаем новую коллекцию (шаг 2)
+	def create_collection 
 		@collection = Collection.new(params[:collection])
 		if @collection.save
 			flash[:notice] = "Подборка успешно добавлена"
@@ -188,13 +203,15 @@ class VideosController < ApplicationController
 		end
 	end
 
-	def remove_collection # Удаление коллеции
+	# Удаление коллеции
+	def remove_collection 
 		Collection.find(params[:colleciton_id]).destroy
 		flash[:notice] = "Подборка успешно удалена"
 		redirect_to(:action => 'collections')
 	end
 
-	def remove_video_from_collection # удаление видео из коллекции
+	# удаление видео из коллекции
+	def remove_video_from_collection 
 		@video = Video.find(params[:id])
 		@video.collections.delete(Collection.find_by_id(params[:collection_id]))
 		unless @video.nil?
@@ -206,8 +223,9 @@ class VideosController < ApplicationController
 
 
 	private
-
-	def find_category # Определение категории по передаваемому значению category_id
+	
+	# Определение категории по передаваемому значению category_id
+	def find_category 
 		@category = Category.find(params[:category_id])
 	end
 

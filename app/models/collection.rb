@@ -4,10 +4,11 @@ class Collection < ActiveRecord::Base
   has_and_belongs_to_many :videos
   has_and_belongs_to_many :music, :join_table => "collections_music"
 
-  scope :top, where(:hit => 1).order("updated_at ASC")
-  scope :sorted, order("created_at ASC")
+  scope :top, where(:hit => 1).order("updated_at ASC")  # Находим хитовые видео
+  scope :sorted, order("created_at ASC") # Стандартная сортировка
 
-  def music_empty? # Есть ли музыка в коллекции ?
+  # Есть ли музыка в коллекции ?
+  def music_empty? 
   	if self.music == []
   		return true
   	else
@@ -15,7 +16,17 @@ class Collection < ActiveRecord::Base
   	end
   end
 
-  def hit? # Есть ли хиты в коллекции ?
+  # Есть ли видео в коллекции ?
+  def videos_empty? 
+    if self.videos == []
+      return true
+    else
+      return false
+    end
+  end
+
+  # Есть ли хиты в коллекции ?
+  def hit? 
   	if self.hit == true
   		return true
   	else
@@ -23,11 +34,4 @@ class Collection < ActiveRecord::Base
   	end
   end
 
-  def videos_empty? # Есть ли видео в коллекции ?
-  	if self.videos == []
-  		return true
-  	else
-  		return false
-  	end
-  end
 end
