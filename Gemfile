@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'mini_magick'
-gem 'carrierwave'
 gem 'thin'
 gem 'mysql2'
 gem 'bootstrap-sass', '2.1'
 gem 'jquery-rails'
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'carrierwave-video'
+gem 'streamio-ffmpeg'
 
 # Gems used only for assets and not required
 # in production environments by default.

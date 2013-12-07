@@ -3,7 +3,7 @@ class VideosController < ApplicationController
 	layout 'mobile'
 	
 	before_filter :confirm_logged_in
-	before_filter :find_category, :only => ['new', 'create', 'new', 'delete']
+	before_filter :find_category, :only => ['new', 'create', 'delete']
 
 	def index
 		@categories = Category.sorted
@@ -21,6 +21,7 @@ class VideosController < ApplicationController
   # Добавление нового видео (шаг 2)
 	def create
 		@video = Video.new(params[:video])
+		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@category.videos << @video
 		@video.add_to_collection
 		# unless @collections.empty?
@@ -30,7 +31,7 @@ class VideosController < ApplicationController
 			flash[:notice] = "Видео добавлено"
 			redirect_to(:action => 'category', :id => @category.id)
 		else
-			render('new')
+			render('new', :category_id => @category.id)
 		end
 	end
 
@@ -44,7 +45,7 @@ class VideosController < ApplicationController
 		@video = Video.find(params[:id])
 		version = params[:version]
 		case version
-			when '3gp'
+			when 'low_3gp'
 				@video.downloads += 1
 				@video.save
 				link = @video.low_3gp.url
@@ -103,7 +104,7 @@ class VideosController < ApplicationController
 		@video = Video.find(params[:id])
 		version = params[:version]
 		case version
-			when '3gp'
+			when 'low_3gp'
 				@video.remove_low_3gp!
 				@video.save
 			when 'mp4_176'

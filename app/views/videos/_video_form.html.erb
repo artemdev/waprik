@@ -38,18 +38,23 @@
 	<%= f.label(:category_id, "Категория") %> <br />
 	<%= f.select(:category_id, @categories) %>
 </div> 
+
+<div class="b">
+	<%= f.label(:source_video, "Оригинал") %> <br />
+	<%= f.file_field(:source_video) %>
+</div>
 <div class="b">
 	<% if @video.low_3gp.url.nil? %>
-		<%= f.label(:low_3gp, "3GP") %> <br />
+		<%= f.label(:low_3gp, "MP4 320") %> <br />
 		<%= f.file_field(:low_3gp) %> <br />
 	<% else %>
-	  <%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %> <%= link_to("x", {:action => 'delete_from_admin_panel', :version => "3gp", :id => @video.id})%>
+	  <%= link_to("3GP (среднее качество)", {:action => 'download', :version => "low_3gp", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "low_3gp", :id => @video.id})%>
 	<% end %>
 </div>
 
 <div class="b">
 	<% if @video.mp4_176.url.nil? %>
-		<%= f.label(:mp4_176, "MP4 176") %> <br />
+		<%= f.label(:mp4_176, "MP4 320") %> <br />
 		<%= f.file_field(:mp4_176) %> <br />
 	<% else %>
 	  <%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_176", :id => @video.id})%>

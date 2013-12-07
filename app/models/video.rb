@@ -1,5 +1,8 @@
+require 'rubygems'
+require 'streamio-ffmpeg'
 class Video < ActiveRecord::Base
-  attr_accessible :name, :screen, :low_3gp, :mp4_176, :mp4_320, :description, :category_id, :collection, :artist
+
+  attr_accessible :name, :screen, :mp4_320, :mp4_176, :low_3gp, :description, :category_id, :collection, :artist, :source_video
   attr_accessor :collection
 
   has_and_belongs_to_many :categories
@@ -16,7 +19,9 @@ class Video < ActiveRecord::Base
   mount_uploader :low_3gp, VideosUploader
   mount_uploader :mp4_176, VideosUploader
   mount_uploader :mp4_320, VideosUploader
+  mount_uploader :source_video, VideosUploader
 
+  after_create :convert_into_mp4_320
   before_destroy :remember_id
   after_destroy :remove_id_directory
 
@@ -49,6 +54,31 @@ class Video < ActiveRecord::Base
   end
 
   protected
+
+  # # Конвертирация исходного видео
+  def convert_into_mp4_320
+    unless :source_video != nil
+      original_video = FFMPEG::Movie.new("#{source_video.path}")
+      options_for_mp4_320 = { custom: "-ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y" }
+      options_for_mp4_176 = { custom: "-ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y" }
+      options_for_3gp     = { custom: "-ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y" }
+
+      system("mkdir #{Rails.root}/public/uploads/video/#{id}")
+      system("mkdir #{Rails.root}/public/uploads/video/#{id}/mp4_320")
+      system("mkdir #{Rails.root}/public/uploads/video/#{id}/mp4_176")
+      system("mkdir #{Rails.root}/public/uploads/video/#{id}/3gp")
+
+      path_mp4_320 = "#{Rails.root}/public/uploads/video/#{id}/mp4_320"
+      path_mp4_176 = "#{Rails.root}/public/uploads/video/#{id}/mp4_176"
+      path_3gp     = "#{Rails.root}/public/uploads/video/#{id}/3gp"
+
+      self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320)
+      self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176)
+      self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp)
+      
+      save
+    end
+  end
 
   # Удаление файлов
   def remember_id

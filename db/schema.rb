@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20131115062916) do
     t.string   "low_3gp"
     t.string   "mp4_176"
     t.string   "mp4_320"
+    t.integer  "size"
     t.string   "name"
     t.string   "artist"
     t.integer  "downloads",   :default => 0
