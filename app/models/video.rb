@@ -90,7 +90,7 @@ class Video < ActiveRecord::Base
       # FileUtils.mkdir_p "#{Rails.root}/public/uploads/video/#{id}/low_3gp"
 
       path_mp4_320 = "#{Rails.root}/public/uploads/video/#{id}/mp4_320"
-      # path_mp4_176 = "#{Rails.root}/public/uploads/video/#{id}/mp4_176"
+      path_mp4_176 = "#{Rails.root}/public/uploads/video/#{id}/mp4_176"
       # path_3gp     = "#{Rails.root}/public/uploads/video/#{id}/low_3gp"
 
 
