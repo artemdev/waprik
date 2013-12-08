@@ -65,18 +65,18 @@ class Video < ActiveRecord::Base
       # options_for_3gp     = { custom: "-s 320x240 -vcodec libx264 -profile:v baseline -level 3.0 -acodec libfaac -threads 0 -ab 32k -b 100k" }
       
       transcoder_options = { preserve_aspect_ratio: :width }
-      options_for_mp4_320 = {video_codec: "libx264", frame_rate: 10, resolution: "320x240", video_bitrate: 300,
+      options_for_mp4_320 = {video_codec: "libx264", frame_rate: 23.9, resolution: "320x240", video_bitrate: 300,
            aspect: 1.333333,
-           x264_preset: "#{Rails.root}/public/video_preset/treiler_320.mp4",
+           # x264_preset: "#{Rails.root}/public/video_preset/treiler_320.mp4",
+           audio_codec: "libfaac", audio_bitrate: 64, audio_sample_rate: 41000, audio_channels: 2,
+           threads: 0,
+           custom: ""}
+      options_for_mp4_176 = {video_codec: "libx264", frame_rate: 15, resolution: "176x144", video_bitrate: 150,
+           aspect: 1.333333,
+           # x264_preset: "#{Rails.root}/public/video_preset/treiler_320.mp4"
            audio_codec: "libfaac", audio_bitrate: 32, audio_sample_rate: 41000, audio_channels: 2,
            threads: 0,
-           custom: "-r 23.9"}
-      # options_for_mp4_176 = {video_codec: "libx264", frame_rate: 15, resolution: "176x144", video_bitrate: 150,
-      #      aspect: 1.333333,
-      #      x264_preset: "#{Rails.root}/public/video_preset/treiler_320.mp4"
-      #      audio_codec: "libfaac", audio_bitrate: 32, audio_sample_rate: 22050, audio_channels: 1,
-      #      threads: 2,
-      #      custom: ""}
+           custom: ""}
       # options_for_3gp = {video_codec: "libx264", frame_rate: 10, resolution: "320x240", video_bitrate: 300, video_bitrate_tolerance: 100,
       #      aspect: 1.333333, keyframe_interval: 90,
       #      x264_vprofile: "high", x264_preset: "slow",
@@ -99,7 +99,7 @@ class Video < ActiveRecord::Base
       # low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp)
 
       self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320, transcoder_options)
-      # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
+      self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
 
       save
