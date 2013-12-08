@@ -60,9 +60,9 @@ class Video < ActiveRecord::Base
   def convert
     unless self.source_video.blank? && self.mp4_320.blank? && self.mp4_176.blank? && self.low_3gp.blank?
       original_video = FFMPEG::Movie.new("#{source_video.path}")
-      options_for_mp4_320 = { custom: "-ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y" }
-      options_for_mp4_176 = { custom: "-ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y" }
-      options_for_3gp     = { custom: "-ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y" }
+      options_for_mp4_320 = { custom: "-s 320x240 -vcodec libx264 -profile:v baseline -level 3.0 -acodec libfaac -threads 0 -ab 64k -b 320k" }
+      options_for_mp4_176 = { custom: "-s 320x240 -vcodec libx264 -profile:v baseline -level 3.0 -acodec libfaac -threads 0 -ab 32k -b 150k" }
+      options_for_3gp     = { custom: "-s 320x240 -vcodec libx264 -profile:v baseline -level 3.0 -acodec libfaac -threads 0 -ab 32k -b 100k" }
 
       FileUtils.mkdir_p "#{Rails.root}/public/uploads/video/#{id}/mp4_320"
       FileUtils.mkdir_p "#{Rails.root}/public/uploads/video/#{id}/mp4_176"

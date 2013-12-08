@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131208165233) do
+ActiveRecord::Schema.define(:version => 20131115062916) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(:version => 20131208165233) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "source_video"
-    t.string   "status"
   end
 
   add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
