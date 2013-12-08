@@ -56,7 +56,7 @@ class Video < ActiveRecord::Base
 
   protected
 
-# Конвертация видео
+  # Конвертация видео
   def convert
     unless self.source_video.blank? && self.mp4_320.blank? && self.mp4_176.blank? && self.low_3gp.blank?
       original_video = FFMPEG::Movie.new("#{source_video.path}")
