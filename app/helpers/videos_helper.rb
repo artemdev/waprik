@@ -2,7 +2,7 @@ module VideosHelper
   MP4_320 = "mp4_320"
   MP4_176 = "mp4_176"
   LOW_3GP = "low_3gp"
-
+  SOURCE_VIDEO_PATH = "source_video_path"
   ASPECT_OPTIONS = { preserve_aspect_ratio: :width }
 
 	# Опции для конвертации видео
@@ -31,29 +31,29 @@ module VideosHelper
 		end
 	end
 
-	# Вырезаем звук c помощью (ffmpeg)
+	# Вырезание звука из видео
 	def cut_sound_for(version)
 		if version == MP4_320
-			@ffmpeg_video.transcode(@source_video.path, { custom: "-vn -acodec copy #{path_for(version)}/tmp_sound.wav" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.wav", { custom: "-vn -acodec copy" })
 		elsif version == MP4_176
-			@ffmpeg_video.transcode(@source_video.path, { custom: "-vn -acodec copy #{path_for(version)}/tmp_sound.wav" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.wav", { custom: "-vn -acodec copy" })
 		elsif version == LOW_3GP
-			@ffmpeg_video.transcode(@source_video.path, { custom: "-vn -acodec copy #{path_for(version)}/tmp_sound.wav" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.wav", { custom: "-vn -acodec copy" })
 		end
 	end
 
-	# Готовим видео без звука (ffmpeg)
+	# Подготовка видео без звука
 	def cut_video_for(version)
 		if version == MP4_320
-			@ffmpeg_video.transcode(@source_video.path, { custom: "-an -vcodec copy #{path_for(version)}/video.264" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_video.mp4", { custom: "-an -vcodec copy" })
 		elsif version == MP4_176
-			@ffmpeg_video.transcode(@source_video.path, { custom: "-an -vcodec copy #{path_for(version)}/video.264" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_video.mp4", { custom: "-an -vcodec copy" })
 		elsif version == LOW_3GP
-			@ffmpeg_video.transcode(@source_video.path, { custom: "-an -vcodec copy #{path_for(version)}/video.264" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_video.mp4", { custom: "-an -vcodec copy" })
 		end
 	end
 
-	# Конвертация звука (NeroAac)
+	# Конвертация звука
 	def convert_audio_for(version)
 		if version == MP4_320
 					system("ffmpeg -i input -f \"#{path_for(version)}/tmp_sound.wav\" - | neroAacEnc -ignorelength -if - -of \"#{path_for(version)}/sound.m4a\"")
@@ -76,28 +76,28 @@ module VideosHelper
 		end			
 	end
 
-	# Склеиваем звук и видео (MP4Box)
-	def merge_video_and_sound(version)
+	# Соединение видео и звука
+	def merge_video_and_sound_for(version)
 		if version == MP4_320
-					system("MP4Box.exe: -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/sound.m4a\" -new \"test_320.mp4\" -tmp \"temp\"")
+					system("MP4Box -fps 23.999 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"test_320.mp4\" -tmp \"temp\"")
 		elsif version == MP4_176
-					system("MP4Box.exe: -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/sound.m4a\" -new \"test_320.mp4\" -tmp \"temp\"")
+					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"test_320.mp4\" -tmp \"temp\"")
 		elsif version == LOW_3GP
-					system("MP4Box.exe: -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/sound.m4a\" -new \"test_320.mp4\" -tmp \"temp\"")
+					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"test_320.mp4\" -tmp \"temp\"")
 		end	
 	end
 
 	# Создание папок для видео
 	def create_folder_for(version)
-		if version == "mp4_320"
+		if version == MP4_320
 				dir = FileUtils.mkdir_p "#{Rails.root}/public/uploads/video/#{self.id}/mp4_320"
 				FileUtils.chmod 0755, dir[0]
 				return true
-		elsif version == "mp4_176"
+		elsif version == MP4_176
 				dir = FileUtils.mkdir_p "#{Rails.root}/public/uploads/video/#{self.id}/mp4_176"
 				FileUtils.chmod 0755, dir[0]
 				return true
-		elsif version == "low_3gp"
+		elsif version == LOW_3GP
 				dir = FileUtils.mkdir_p "#{Rails.root}/public/uploads/video/#{self.id}/low_3gp"
 				FileUtils.chmod 0755, dir[0]
 				return true
@@ -112,6 +112,8 @@ module VideosHelper
 				"#{Rails.root}/public/uploads/video/#{self.id}/mp4_176"
 		elsif version == LOW_3GP
 				"#{Rails.root}/public/uploads/video/#{self.id}/low_3gp"
+		elsif version == SOURCE_VIDEO_PATH
+				"#{Rails.root}/public/#{@source_video.url}"
 		end
 	end
 

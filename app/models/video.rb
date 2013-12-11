@@ -66,30 +66,31 @@ class Video < ActiveRecord::Base
 
       # Создание папок для готовых видео
       create_folder_for(MP4_320)
-      create_folder_for(MP4_176)
-      create_folder_for(LOW_3GP)
+      # create_folder_for(MP4_176)
+      # create_folder_for(LOW_3GP)
 
-      # Готовим звук без видео
+      # Вырезание звука из видео
       cut_sound_for(MP4_320)
-      cut_sound_for(MP4_176)
-      cut_sound_for(LOW_3GP)
+      # cut_sound_for(MP4_176)
+      # cut_sound_for(LOW_3GP)
 
-      # Готовим видео без звука
+      # Подготовка видео без звука
       cut_video_for(MP4_320)
-      cut_video_for(MP4_176)
-      cut_video_for(LOW_3GP)
+      # cut_video_for(MP4_176)
+      # cut_video_for(LOW_3GP)
 
-      # Готовим звук без видео
-      convert_audio_for(MP4_320)
-      convert_audio_for(MP4_176)
-      convert_audio_for(LOW_3GP)    
+      # Конвертация звука
+      # convert_audio_for(MP4_320)
+      # convert_audio_for(MP4_176)
+      # convert_audio_for(LOW_3GP)    
 
-      # # Конвертация видео
-      # convert_video_for(MP4_320)
+      # Конвертация видео
+      convert_video_for(MP4_320)
       # convert_video_for(MP4_176)
       # convert_video_for(LOW_3GP)
 
       # Соединение видео и звука
+      self.mp4_320 = merge_video_and_sound_for(MP4_320)
       # self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320, transcoder_options)
       # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
@@ -111,7 +112,7 @@ class Video < ActiveRecord::Base
 
   # Удаление файлов
   def remember_id
-    @id = id
+    @id = self.id
   end
 
   def remove_id_directory
