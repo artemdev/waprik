@@ -56,7 +56,7 @@ module VideosHelper
 	# Конвертация звука
 	def convert_audio_for(version)
 		if version == MP4_320
-					system("ffmpeg -i input -f \"#{path_for(version)}/tmp_sound.wav\" - | neroAacEnc -ignorelength -if - -of \"#{path_for(version)}/sound.m4a\"")
+					system("neroAacEnc -2pass -br 64000 -lc -if \"#{path_for(version)}/tmp_sound.wav\" -of \"#{path_for(version)}/sound.m4a\"")
 		elsif version == MP4_176
 					system("ffmpeg -i input -f \"#{path_for(version)}/tmp_sound.wav\" - | neroAacEnc -ignorelength -if - -of \"#{path_for(version)}/sound.m4a\"")
 		elsif version == LOW_3GP
@@ -79,7 +79,7 @@ module VideosHelper
 	# Соединение видео и звука
 	def merge_video_and_sound_for(version)
 		if version == MP4_320
-					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"#{path_for(version)}/test_320.mp4\"")
+					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/sound.m4a\" -new \"#{path_for(version)}/test_320.mp4\"")
 		elsif version == MP4_176
 					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"#{path_for(version)}/test_320.mp4\" -tmp \"#{path_for(version)}/temp\"")
 		elsif version == LOW_3GP
