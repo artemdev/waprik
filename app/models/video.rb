@@ -84,7 +84,7 @@ class Video < ActiveRecord::Base
       # convert_audio_for(MP4_176)
       # convert_audio_for(LOW_3GP)    
 
-
+      merge_video_and_sound_for(MP4_320)
       # convert_video_for(MP4_320)
       # convert_video_for(MP4_176)
       # convert_video_for(LOW_3GP)

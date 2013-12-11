@@ -34,11 +34,11 @@ module VideosHelper
 	# Вырезание звука из видео
 	def cut_sound_for(version)
 		if version == MP4_320
-			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.mp3", { custom: "-vn -acodec copy" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.wav", { custom: "-vn -acodec libfaac -ar 44100 -ac 2" })
 		elsif version == MP4_176
-			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.mp3", { custom: "-vn -acodec copy" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.wav", { custom: "-vn -acodec copy" })
 		elsif version == LOW_3GP
-			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.mp3", { custom: "-vn -acodec copy" })
+			@ffmpeg_video.transcode("#{path_for(version)}/tmp_sound.wav", { custom: "-vn -acodec copy" })
 		end
 	end
 
