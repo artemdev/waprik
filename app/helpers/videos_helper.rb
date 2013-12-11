@@ -9,7 +9,7 @@ module VideosHelper
 	def video_options_for(version)
 		if version == MP4_320
 			  options = {video_codec: "libx264", frame_rate: 23.9, resolution: "320x240", video_bitrate: 300,
-			       aspect: 1.333333,
+			       aspect: 1.777777,
 			       # x264_preset: "#{Rails.root}/public/video_preset/treiler_320.mp4",
 			       # audio_codec: "libfaac", audio_bitrate: 64, audio_sample_rate: 41000, audio_channels: 2,
 			       threads: 0,
@@ -79,11 +79,11 @@ module VideosHelper
 	# Соединение видео и звука
 	def merge_video_and_sound_for(version)
 		if version == MP4_320
-					system("MP4Box -fps 23.999 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"test_320.mp4\" -tmp \"temp\"")
+					system("MP4Box -fps 23.999 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"#{path_for(version)}/test_320.mp4\" -tmp \"#{path_for(version)}/temp\"")
 		elsif version == MP4_176
-					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"test_320.mp4\" -tmp \"temp\"")
+					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"#{path_for(version)}/test_320.mp4\" -tmp \"#{path_for(version)}/temp\"")
 		elsif version == LOW_3GP
-					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"test_320.mp4\" -tmp \"temp\"")
+					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"#{path_for(version)}/test_320.mp4\" -tmp \"#{path_for(version)}/temp\"")
 		end	
 	end
 
