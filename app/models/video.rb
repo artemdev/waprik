@@ -79,17 +79,17 @@ class Video < ActiveRecord::Base
       # cut_video_for(LOW_3GP)
 
       # Конвертация звука
-      converted_audio = convert_audio_for(MP4_320)
+      # converted_audio = convert_audio_for(MP4_320)
       # convert_audio_for(MP4_176)
       # convert_audio_for(LOW_3GP)    
 
       
-      converted_video = convert_video_for MP4_320
+      # converted_video = convert_video_for MP4_320
       # convert_video_for(MP4_176)
       # convert_video_for(LOW_3GP)
-      merge_video_and_sound_for(MP4_320, converted_audio, converted_video)
+      # merge_video_and_sound_for(MP4_320, @cuted_audio, @cuted_video)
       # Слеить видео и звук
-      self.mp4_320.store!(File.open(path_for "final_video"))
+      self.mp4_320.store!(merge_video_and_sound_for(MP4_320, @cuted_audio, @cuted_video))
       # self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320, transcoder_options)
       # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
