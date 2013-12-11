@@ -61,8 +61,7 @@ class Video < ActiveRecord::Base
   # Конвертация видео
   def convert
     unless self.source_video.blank? && self.mp4_320.blank? && self.mp4_176.blank? && self.low_3gp.blank?
-      @source_video = self.source_video
-      @ffmpeg_video = FFMPEG::Movie.new("#{@source_video.path}")
+      @ffmpeg_video = FFMPEG::Movie.new("#{self.source_video.path}")
 
       # Создание папок для готовых видео
       create_folder_for(MP4_320)
@@ -70,27 +69,27 @@ class Video < ActiveRecord::Base
       # create_folder_for(LOW_3GP)
 
       # Вырезание звука из видео
-      cut_sound_for(MP4_320)
+      @cuted_sound = cut_sound_for(MP4_320)
       # cut_sound_for(MP4_176)
       # cut_sound_for(LOW_3GP)
 
       # Подготовка видео без звука
-      cut_video_for(MP4_320)
+      @cuted_video = cut_video_for(MP4_320)
       # cut_video_for(MP4_176)
       # cut_video_for(LOW_3GP)
 
       # Конвертация звука
-      # convert_audio_for(MP4_320)
+      converted_audio = convert_audio_for(MP4_320)
       # convert_audio_for(MP4_176)
       # convert_audio_for(LOW_3GP)    
 
       
-      # convert_video_for(MP4_320)
+      converted_video = convert_video_for MP4_320
       # convert_video_for(MP4_176)
       # convert_video_for(LOW_3GP)
-
-      # Конвертация видео
-      self.mp4_320.store!(merge_video_and_sound_for(MP4_320))
+      merge_video_and_sound_for(MP4_320, converted_audio, converted_video)
+      # Слеить видео и звук
+      self.mp4_320.store!(File.open(path_for "final_video"))
       # self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320, transcoder_options)
       # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
