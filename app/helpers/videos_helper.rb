@@ -80,7 +80,6 @@ module VideosHelper
 	def merge_video_and_sound_for(version)
 		if version == MP4_320
 					system("ffmpeg -i \"#{path_for(version) + "/video_320.mp4"}\" -i \"#{path_for(version)}/temp_sound.wav\" \"#{path_for(version)}/320.mp4\"")
-					return "#{path_for(version)}/320.mp4"
 		elsif version == MP4_176
 					system("MP4Box -fps 15.000 -add \"#{path_for(version) + "/video_320.mp4"}\" -add \"#{path_for(version)}/tmp_sound.wav\" -new \"#{path_for(version)}/test_320.mp4\" -tmp \"#{path_for(version)}/temp\"")
 		elsif version == LOW_3GP
