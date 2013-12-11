@@ -80,7 +80,7 @@ class Video < ActiveRecord::Base
       # cut_video_for(LOW_3GP)
 
       # Конвертация звука
-      # convert_audio_for(MP4_320)
+      convert_audio_for(MP4_320)
       # convert_audio_for(MP4_176)
       # convert_audio_for(LOW_3GP)    
 

@@ -68,11 +68,11 @@ module VideosHelper
 	# Конвертация видео
 	def convert_video_for(version)
 		if version == MP4_320
-			output_video = @ffmpeg_video.transcode((path_for(version) + "/video_320.mp4"), video_options_for(version), ASPECT_OPTIONS)
+			@ffmpeg_video.transcode((path_for(version) + "/video_320.mp4"), video_options_for(version), ASPECT_OPTIONS)
 		elsif version == MP4_176
-			output_video = @ffmpeg_video.transcode((path_for(version) + "/video_176.mp4"), video_options_for(version), ASPECT_OPTIONS)
+			@ffmpeg_video.transcode((path_for(version) + "/video_176.mp4"), video_options_for(version), ASPECT_OPTIONS)
 		elsif version == LOW_3GP
-			output_video = @ffmpeg_video.transcode((path_for(version) + "/video_low.3gp"), video_options_for(version), ASPECT_OPTIONS)
+			@ffmpeg_video.transcode((path_for(version) + "/video_low.3gp"), video_options_for(version), ASPECT_OPTIONS)
 		end			
 	end
 
