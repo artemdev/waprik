@@ -11,7 +11,7 @@ module VideosHelper
 			  options = {video_codec: "libx264", frame_rate: 23.9, resolution: "320x240", video_bitrate: 300,
 			       aspect: 1.777777,
 			       # x264_preset: "#{Rails.root}/public/video_preset/treiler_320.mp4",
-			       # audio_codec: "libfaac", audio_bitrate: 64, audio_sample_rate: 41000, audio_channels: 2,
+			       audio_codec: "libfaac", audio_bitrate: 64, audio_sample_rate: 41000, audio_channels: 2,
 			       threads: 0,
 			       custom: ""}
 		elsif version == MP4_176
