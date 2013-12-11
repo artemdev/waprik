@@ -84,13 +84,13 @@ class Video < ActiveRecord::Base
       # convert_audio_for(MP4_176)
       # convert_audio_for(LOW_3GP)    
 
-
+      convert_video_for(MP4_320)
       # convert_video_for(MP4_320)
       # convert_video_for(MP4_176)
       # convert_video_for(LOW_3GP)
 
       # Конвертация видео
-      self.mp4_320.store!(convert_video_for(MP4_320))
+      self.mp4_320.store!(merge_video_and_sound_for(MP4_320))
       # self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320, transcoder_options)
       # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
