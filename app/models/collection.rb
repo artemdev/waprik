@@ -1,5 +1,5 @@
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :video_id, :hit
+  attr_accessible :name, :video_id, :hit, :with_videos, :with_music
 
   has_and_belongs_to_many :videos
   has_and_belongs_to_many :music, :join_table => "collections_music"

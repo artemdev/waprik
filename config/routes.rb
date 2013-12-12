@@ -10,7 +10,7 @@ Waprik::Application.routes.draw do
   match 'video/collection/:collection_id' => 'public#collection'
   match 'video' => 'public#index'
   match 'video/show/:id' => 'public#show'
-  
+  # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

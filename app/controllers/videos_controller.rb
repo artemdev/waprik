@@ -184,23 +184,37 @@ class VideosController < ApplicationController
 	end
 
 	# листинг всех коллекций
-	def collections 
-		@collections = Collection.all
+	def collections
+		@collections = Collection.where(with_videos: true)
 	end
 
-	# создаем новую коллекцию (шаг 1)
+	# создаем новую коллекцию 
 	def new_collection 
 		@collection = Collection.new
 	end
 
-	# создаем новую коллекцию (шаг 2)
-	def create_collection 
+	def create_collection # шаг 2
 		@collection = Collection.new(params[:collection])
 		if @collection.save
 			flash[:notice] = "Подборка успешно добавлена"
 			redirect_to(:action => 'collections')
 		else
 			render('new_collection')
+		end
+	end
+
+	# обновление коллекции
+	def edit_collection # шаг 1
+		@collection = Collection.find(params[:id])
+	end
+
+	def update_collection # шаг 1
+		@collection = Collection.update_attributes(params[:collection])
+		if @collection.save
+			flash[:notice] = "Подборка успешно обновлена"
+			redirect_to(:action => 'collections')
+		else
+			render('edit_collection')
 		end
 	end
 

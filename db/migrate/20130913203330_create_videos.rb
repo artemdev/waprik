@@ -11,6 +11,7 @@ class CreateVideos < ActiveRecord::Migration
      	t.string "name"
       t.string "artist"     
       t.integer "downloads", :default => 0
+      t.string "source_video"
       t.timestamps
     end
     add_index :videos, "category_id"

@@ -1,21 +1,17 @@
 <% unless @last_news == nil %>
-<div class="b">
-	<%= @last_news.description %> <br />
-	<span class="small_text">
-		от <%= @last_news.created_at.to_s(:DayMonth) %>
-	</span>
-</div>
-
-<% unless @related_news == [] %>
 	<div class="title">
-		<%= @last_news.created_at.to_s(:DayMonth) %> так же обновлены
+		Новинки <%= translate_type(@section) %> от <%= @last_news.created_at.to_s(:DayMonth) %>
 	</div>
-	<div class="a">
-		<% @related_news.each do |item| %>
-			<%= link_to(translate_type(item.section), :action => 'show', :id => item.id, :section => item.section) %>
+	<div class="b">
+		<%= @last_news.description %>
+		<% unless @related_news == [] %>
+			<hr />
+			Так же <%= @last_news.created_at.to_s(:DayMonth) %> обновлены 
+			<% @related_news.each do |item| %>
+				<%= link_to(translate_type(item.section), :action => 'show', :id => item.id, :section => item.section) %>
+			<% end %>
 		<% end %>
 	</div>
-<% end %>
 <% else %>
 	<div class="b">
 		Пусто

@@ -8,7 +8,7 @@ class News < ActiveRecord::Base
   def related_news 
   	related_news = []
   	News.all.each do |object|
-  		if object.created_at.to_s(:custom) == self.created_at.to_s(:custom) && object != self
+  		if object.created_at.to_s(:dmy) == self.created_at.to_s(:dmy) && object != self
   			related_news << object
   		end
   	end

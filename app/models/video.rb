@@ -3,7 +3,7 @@ include VideosHelper
 
 class Video < ActiveRecord::Base
 
-  attr_accessible :name, :screen, :description, :category_id, :collection, :artist, :source_video
+  attr_accessible :name, :screen, :description, :category_id, :collection, :artist, :source_video, :mp4_320, :mp4_176, :low_3gp
   attr_accessor :collection
 
 
@@ -22,7 +22,8 @@ class Video < ActiveRecord::Base
   mount_uploader :mp4_320, VideosUploader
   mount_uploader :source_video, VideosUploader
 
-  after_create :convert
+  # before_create :mark
+  # after_create :convert
   before_destroy :remember_id
   after_destroy :remove_id_directory
 
@@ -35,12 +36,14 @@ class Video < ActiveRecord::Base
       if Collection.where(:name => collection.downcase) != []
         coll = Collection.find_by_name(collection.downcase)
       else
-        coll = Collection.create(:name => collection.downcase)      
+        coll = Collection.create(:name => collection.downcase, :with_videos => true)
       end
       # Проверяем чтобы небыло одинаковых подборок к одному видео
-      self.collections.each do |video_collection|
-          if coll.name == video_collection.name
-            @collection_exists = video_collection
+      unless self.collections.empty?
+            self.collections.each do |video_collection|
+            if coll.name == video_collection.name
+              @collection_exists = video_collection
+            end
           end
       end
       # Если такой подборки у видео нет, сохраняем ее
@@ -54,8 +57,6 @@ class Video < ActiveRecord::Base
     return false
   end
 
-  
-
   protected
 
   # Конвертация видео
@@ -68,29 +69,18 @@ class Video < ActiveRecord::Base
       # create_folder_for(MP4_176)
       # create_folder_for(LOW_3GP)
 
-      # Вырезание звука из видео
-      @cuted_sound = cut_sound_for(MP4_320)
+      # Вырезание звука
+      # @cuted_sound = cut_sound_for(MP4_320)
       # cut_sound_for(MP4_176)
       # cut_sound_for(LOW_3GP)
 
-      # Подготовка видео без звука
-      @cuted_video = cut_video_for(MP4_320)
+      # Вырезание видео
+      # @cuted_video = cut_video_for(MP4_320)
       # cut_video_for(MP4_176)
       # cut_video_for(LOW_3GP)
 
-      # Конвертация звука
-      # converted_audio = convert_audio_for(MP4_320)
-      # convert_audio_for(MP4_176)
-      # convert_audio_for(LOW_3GP)    
-
-      
-      # converted_video = convert_video_for MP4_320
-      # convert_video_for(MP4_176)
-      # convert_video_for(LOW_3GP)
-      # merge_video_and_sound_for(MP4_320, @cuted_audio, @cuted_video)
-      # Слеить видео и звук
-      self.mp4_320.store!(merge_video_and_sound_for(MP4_320, @cuted_audio, @cuted_video))
-      # self.mp4_320 = original_video.transcode(Rails.root.join(path_mp4_320, "#{self.name}_320.mp4"), options_for_mp4_320, transcoder_options)
+      # Соеденить видео и звук
+      self.mp4_320.store!(cut_video_for(MP4_320))
       # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
 

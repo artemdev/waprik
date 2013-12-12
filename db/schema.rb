@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115062916) do
+ActiveRecord::Schema.define(:version => 20131212133533) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -46,9 +46,11 @@ ActiveRecord::Schema.define(:version => 20131115062916) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
-    t.boolean  "hit",        :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "hit",         :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "with_videos", :default => false
+    t.boolean  "with_music",  :default => false
   end
 
   create_table "collections_music", :id => false, :force => true do |t|
