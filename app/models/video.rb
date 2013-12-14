@@ -1,6 +1,5 @@
 # encoding: utf-8
 require 'streamio-ffmpeg'
-include VideosHelper
 
 class Video < ActiveRecord::Base
 
@@ -92,7 +91,7 @@ class Video < ActiveRecord::Base
       # self.mp4_176 = original_video.transcode(Rails.root.join(path_mp4_176, "#{self.name}_176.mp4"), options_for_mp4_176, transcoder_options)
       # self.low_3gp = original_video.transcode(Rails.root.join(path_3gp,     "#{self.name}.3gp"),     options_for_3gp, transcoder_options)
 
-      save
+      save!
       # FileUtils.rm_r(CarrierWave.clean_cached_files!)
     end
   end

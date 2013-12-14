@@ -1,4 +1,3 @@
-# encoding: utf-8
 module VideosHelper
   MP4_320 = "mp4_320"
   MP4_176 = "mp4_176"
@@ -46,7 +45,7 @@ module VideosHelper
 			if char == " "; char = "_"; end
 		end
 	# Возвращаем транслитированную "name"
-	return newname = name.to_s
+	return name.to_s
   end
 
 	# Переименование файлов
