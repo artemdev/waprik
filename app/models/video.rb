@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'streamio-ffmpeg'
 include VideosHelper
 
@@ -24,6 +25,8 @@ class Video < ActiveRecord::Base
 
   # before_create :mark
   # after_create :convert
+  # before_create :mark
+  # before_create :rename_file
   before_destroy :remember_id
   after_destroy :remove_id_directory
 
@@ -58,6 +61,11 @@ class Video < ActiveRecord::Base
   end
 
   protected
+
+  # Переименовываем сохраняемый файл
+  def rename_file
+     translit(self.source_video.filename)
+  end
 
   # Конвертация видео
   def convert

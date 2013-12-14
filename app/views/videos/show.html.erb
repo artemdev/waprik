@@ -38,26 +38,35 @@
 <% end %>
 
 <% unless @video.mp4_320.url.nil? && @video.mp4_176.url.nil? && @video.low_3gp.url.nil? %>
-<div class="title">
-	Скачать <%= @video.downloads %>
-</div>
+	<div class="title">
+		Скачать <%= @video.downloads %>
+	</div>
 <% end %>
 
 <% unless @video.mp4_320.url.nil?%>
-<div class="b">
-	<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %>
-</div>
+	<div class="b">
+		<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %>
+			<span class="small_text">
+			 		<%= number_to_human_size(@video.mp4_320.size) %>
+			</span>
+	</div>
 <% end %>
 
 <% unless @video.mp4_176.url.nil?%>
-<div class="b">
-<%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %>
-</div>
+	<div class="b">
+	<%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %>
+		<span class="small_text">
+		 		<%= number_to_human_size(@video.mp4_176.size) %>
+		</span>	
+	</div>
 <% end %>
 
 <% unless @video.low_3gp.url.nil?%>
 <div class="b">
 	<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
+		<span class="small_text">
+		 		<%= number_to_human_size(@video.low_3gp.size) %>
+		</span>	
 </div>
 <% end %>
 
