@@ -4,7 +4,7 @@
 
 <%= form_for(:category, :url => {:action => 'create_category'}) do |f| %>
 	<div class="a">
-	<%= render(:partial => 'category_form', :locals => {:f => f}) %>
+	<%= render(:partial => 'shared/category_form', :locals => {:f => f}) %>
 
 	<%= submit_tag("Создать") %>
 </div>

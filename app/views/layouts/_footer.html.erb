@@ -1,12 +1,9 @@
-<footer class="footer">
-	<small>
-		<%= link_to "waprik.ru", "http://waprik.ru" %>
-	</small>
-	<nav>
-		<ul>
-			<li><%= link_to "О нас", 	  '#' %></li>
-			<li><%= link_to "Контакты", '#' %></li>
-			<li><%= link_to "Мы Вконтакте", "http://vk.com/waprik" %></li>
-		</ul>
-	</nav>
-</footer>
+<div class="foot">
+	<%= link_to("Все видео", :controller => 'videos') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>
+
+<div class="b">
+	<%= debug(params) %>
+</div>

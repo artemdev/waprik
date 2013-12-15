@@ -4,7 +4,7 @@
 
 <%= form_for(:collection, :url => {:action => 'create_collection'}) do |f| %>
 	<div class="a">
-	<%= render(:partial => 'collection_form', :locals => {:f => f}) %>
+	<%= render(:partial => 'shared/collection_form', :locals => {:f => f}) %>
 
 	<%= submit_tag("Создать") %>
 </div>

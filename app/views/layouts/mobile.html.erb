@@ -15,6 +15,8 @@
 	<% end %>
 	
 	<%= yield %>
-	
+
+	<%= render('layouts/footer') unless params[:controller] == "public" %>
+
 </body>
 </html>

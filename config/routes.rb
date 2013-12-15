@@ -3,6 +3,7 @@ Waprik::Application.routes.draw do
   # root :to => "public#index"
   root :to => "public#index"
 
+  # match 'news' => 'public#news'
   match 'admin' => 'access#menu'
   match 'videos' => 'videos#index'
   match 'video/list' => 'public#list'

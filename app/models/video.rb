@@ -25,6 +25,7 @@ class Video < ActiveRecord::Base
   # after_create :convert
   # before_create :mark
   # before_create :rename_file
+  after_save :remove_chached_files
   before_destroy :remember_id
   after_destroy :remove_id_directory
 
@@ -104,6 +105,10 @@ class Video < ActiveRecord::Base
 
   # Конвертирация исходного видео
 
+  # Удаление cache файлов
+  def remove_chached_files
+    FileUtils.rm_r(CarrierWave.clean_cached_files!)
+  end
 
   # Удаление файлов
   def remember_id
