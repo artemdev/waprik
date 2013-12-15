@@ -7,7 +7,7 @@ module VideosHelper
   
   def translit(name)
 		# Беремя строку "name" и разбиваем ее на символы
-		name.each_char.to_a.each do |char|
+		name.each_char.to_a.collect do |char|
 			# Транслитируем найденные русские символы
 				char = "a" if char == "а"
 				char = "b" if char == "б"
