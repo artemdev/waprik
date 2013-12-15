@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'streamio-ffmpeg'
 
 class Video < ActiveRecord::Base
@@ -35,10 +34,10 @@ class Video < ActiveRecord::Base
   def add_to_collection 
     unless collection.empty?
       # Указанное имя подборки существует или его нужно создать ?
-      if Collection.where(:name => collection.downcase) != []
+      if Collection.where(name: collection.downcase, with_videos: true) != []
         coll = Collection.find_by_name(collection.downcase)
       else
-        coll = Collection.create(:name => collection.downcase, :with_videos => true)
+        coll = Collection.create(name: collection.downcase, :with_videos => true)
       end
       # Проверяем чтобы небыло одинаковых подборок к одному видео
       unless self.collections.empty?

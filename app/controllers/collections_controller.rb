@@ -5,6 +5,10 @@ class CollectionsController < ApplicationController
 	layout 'mobile'
 	before_filter :confirm_logged_in
 
+	def index
+		@collections = Collection.all
+	end
+
 ### ВИДЕО КОЛЛЕКЦИИ ###
 
 	def video # Показ видео колллекции

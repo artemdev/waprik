@@ -1,4 +1,3 @@
-
 <div class="title">
 	Подборки видео
 </div>
@@ -8,7 +7,8 @@
 			<%= link_to(collection.name, :action => 'collection', :id => collection.id) %>
 			<% if collection.hit? %> хит <% end %> <!-- проверяем хитовая ли подборка --> 
 			<span class="small_text">
-				<%= link_to("x", :action => 'remove_collection', :colleciton_id => collection.id) %>
+				<%= link_to("x", :action => 'remove_collection', :id => collection.id) %>
+				<%= link_to("р", :action => 'edit_collection', :id => collection.id) %>
 			</span> 
 			<% unless collection == @collections.last %>
 				<hr />

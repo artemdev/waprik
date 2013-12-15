@@ -2,11 +2,11 @@
 	Создать категорию
 </div>
 
-<%= form_for(:category, :url => {:action => 'create'}) do |f| %>
+<%= form_for(:collection, :url => {:action => 'update_collection', :id => @collection.id}) do |f| %>
 	<div class="a">
-	<%= render(:partial => 'form', :locals => {:f => f}) %>
+	<%= render(:partial => 'collection_form', :locals => {:f => f}) %>
 
-	<%= submit_tag("Создать") %>
+	<%= submit_tag("обновить") %>
 </div>
 <% end %>
 

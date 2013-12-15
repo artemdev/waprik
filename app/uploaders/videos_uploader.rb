@@ -10,8 +10,7 @@ class VideosUploader < CarrierWave::Uploader::Base
   after :store, :delete_tmp_dir
 
   def filename
-    @video = Video.find(model.id)
-     "#{translit(@video.name)}.#{file.extension}" if original_filename.present?
+     "#{translit(file.original_filename)}.#{file.extension}" if original_filename.present?
   end
 
   # store! nil's the cache_id after it finishes so we need to remember it for deletion
@@ -33,7 +32,7 @@ class VideosUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/video/#{model.id}/#{mounted_as}/"
+    "uploads/video/#{model.id}/"
   end
 
   def extension_white_list

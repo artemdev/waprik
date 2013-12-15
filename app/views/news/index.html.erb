@@ -17,6 +17,16 @@
 		Пусто
 	</div>
 <% end %>
+<% unless @video_suggestions.empty? %>
+	<div class="title">
+		Смотрите так же
+	</div>
+	<div class="a">
+		<% @video_suggestions.each do |suggestion| %>
+			<%= link_to(suggestion.name, controller: 'videos', action: 'collection', id: suggestion.id)  %>
+		<% end %>
+	</div>
+<% end %>
 <div class="foot">
 	<%= link_to("Все видео", :controller => 'videos') %> <br />
 	<%= link_to("Меню", :controller => 'access') %> <br />

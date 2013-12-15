@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
 	before_filter :confirm_logged_in
 
-### ВИДЕО КАТЕГОРИИ ###
+### ВИДЕО ###
 
 	def video # Показ видео категории
 	end
@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
 	def destroy_video_category # Удаление видео категории
 	end
 
-### МУЗЫКАЛЬНЫЕ КАТЕГОРИИ ###
+### МУЗЫКАЛЬНЫЕ  ###
 
 	def music # Показ музыкальной категории
 	end

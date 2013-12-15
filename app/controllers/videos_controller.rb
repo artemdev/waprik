@@ -12,21 +12,17 @@ class VideosController < ApplicationController
 
 	### РАБОТА С ВИДЕО ###
 
- 	# Добавление нового видео (шаг 1)
-	def new
+ 	# Добавление нового видео 
+	def new # шаг 1
 		@video = Video.new(:category_id => @category.id)
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 	end
 
-  # Добавление нового видео (шаг 2)
-	def create
+	def create # шаг 2
 		@video = Video.new(params[:video])
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@category.videos << @video
 		@video.add_to_collection
-		# unless @collections.empty?
-		# 	@video.collections << @collection
-		# end
 		if @video.save
 			flash[:notice] = "Видео добавлено"
 			redirect_to(:action => 'category', :id => @category.id)
@@ -209,8 +205,8 @@ class VideosController < ApplicationController
 	end
 
 	def update_collection # шаг 1
-		@collection = Collection.update_attributes(params[:collection])
-		if @collection.save
+		@collection = Collection.find(params[:id])
+		if @collection.update_attributes(params[:collection])
 			flash[:notice] = "Подборка успешно обновлена"
 			redirect_to(:action => 'collections')
 		else
@@ -220,7 +216,7 @@ class VideosController < ApplicationController
 
 	# Удаление коллеции
 	def remove_collection 
-		Collection.find(params[:colleciton_id]).destroy
+		Collection.find(params[:id]).destroy
 		flash[:notice] = "Подборка успешно удалена"
 		redirect_to(:action => 'collections')
 	end
