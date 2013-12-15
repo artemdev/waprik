@@ -1,3 +1,4 @@
+﻿# encoding: utf-8
 module VideosHelper
   MP4_320 = "mp4_320"
   MP4_176 = "mp4_176"
