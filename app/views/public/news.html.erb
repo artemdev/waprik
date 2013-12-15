@@ -1,0 +1,34 @@
+<% unless @last_news == nil %>
+	<div class="title">
+		Новинки <%= translate_type(@section) %> от <%= @last_news.created_at.to_s(:DayMonth) %>
+	</div>
+	<div class="b">
+		<%= @last_news.description %>
+		<% unless @related_news == [] %>
+			<hr />
+			Так же <%= @last_news.created_at.to_s(:DayMonth) %> обновлены 
+			<% @related_news.each do |item| %>
+				<%= link_to(translate_type(item.section), :action => 'show', :id => item.id, :section => item.section) %>
+			<% end %>
+		<% end %>
+	</div>
+<% else %>
+	<div class="b">
+		Пусто
+	</div>
+<% end %>
+<% unless @video_suggestions.empty? %>
+	<div class="title">
+		Смотрите так же
+	</div>
+	<div class="a">
+		<% @video_suggestions.each do |suggestion| %>
+			<%= link_to(suggestion.name, controller: 'videos', action: 'collection', id: suggestion.id)  %>
+		<% end %>
+	</div>
+<% end %>
+<div class="foot">
+	<%= link_to("Все видео", :controller => 'videos') %> <br />
+	<%= link_to("Меню", :controller => 'access') %> <br />
+	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
+</div>
