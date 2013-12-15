@@ -9,44 +9,42 @@ module VideosHelper
 		# Беремя строку "name" и разбиваем ее на символы
 		name.each_char.to_a.collect do |char|
 			# Транслитируем найденные русские символы
-			if char == "а"; char = "a"; end
-				if char == "б"; char = "b"; end
-				if char == "в"; char = "v"; end
-				if char == "г"; char = "g"; end 
-				if char == "д"; char = "d"; end 
-				if char == "е"; char = "e"; end 
-				if char == "ё"; char = "yo"; end 
-				if char == "ж"; char = "zh"; end 
-				if char == "з"; char = "z"; end
-				if char == "и"; char = "i"; end 
-				if char == "й"; char = "j"; end 
-				if char == "к"; char = "k"; end 
-				if char == "л"; char = "l"; end 
-				if char == "м"; char = "m"; end 
-				if char == "н"; char = "n"; end
-				if char == "о"; char = "o"; end
-				if char == "п"; char = "p"; end
-				if char == "р"; char = "r"; end 
-				if char == "с"; char = "c"; end 
-				if char == "т"; char = "t"; end
-				if char == "у"; char = "u"; end
-				if char == "х"; char = "h"; end
-				if char == "ф"; char = "f"; end
-				if char == "ц"; char = "c"; end
-				if char == "ч"; char = "ch"; end
-				if char == "ш"; char = "sh"; end
-				if char == "щ"; char = "w"; end
-				if char == "ъ"; char = "qq"; end
-				if char == "у"; char = "u"; end
-				if char == "ы"; char = "y"; end
-				if char == "ь"; char = "q"; end
-				if char == "э"; char = "eh"; end 
-				if char == "ю"; char = "yu"; end 
-				if char == "я"; char = "ya"; end
-				if char == " "; char = "_"; end
+				char = "а" if char = "a"
+				char = "б" if char = "b"
+				char = "в" if char = "v"
+				char = "г" if char = "g" 
+				char = "д" if  char = "d" 
+				char = "е" if char = "e"
+				char = "ё" if char = "yo"
+				char = "ж" if char = "zh"
+				char = "з" if char = "z"
+				char = "и" if char = "i"
+				char = "й" if char = "j" 
+				char = "к" if char = "k" 
+				char = "л" if char = "l" 
+				char = "м" if char = "m" 
+				char = "н" if char = "n"
+				char = "о" if char = "o"
+				char = "п" if char = "p"
+				char = "р" if char = "r"
+				char = "с" if char = "c"
+				char = "т" if char = "t"
+				char = "у" if char = "u"
+				char = "х" if char = "h"
+				char = "ф" if char = "f"
+				char = "ц" if char = "c"
+				char = "ч" if char = "ch"
+				char = "ш" if char = "sh"
+				char = "щ" if char = "w"
+				char = "ъ" if char = "qq"
+				char = "у" if char = "u"
+				char = "ы" if char = "y"
+				char = "ь" if char = "q"
+				char = "э" if char = "eh" 
+				char = "ю" if char = "yu"
+				char = "я" if char = "ya"
+				char = " " if char = "_"
 		end
-	# Возвращаем транслитированную "name"
-	return name
   end
 
 	# Переименование файлов
