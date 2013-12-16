@@ -1,6 +1,4 @@
-# РАБОТА С ОТКРЫТОЙ ДЛЯ ВСЕХ ЧАСТЬЮ САЙТА
-# Музыка /music
-# Видео /video
+# encoding: utf-8
 
 class PublicController < ApplicationController
 
@@ -9,7 +7,7 @@ class PublicController < ApplicationController
 	 before_filter :find_category, :only => ['list', 'show', 'collection']
    before_filter :find_news_section, :only => ['news']
 
-  def index
+  def videos
   	@categories = Category.sorted
     @collections = Collection.top
     @section = "video"

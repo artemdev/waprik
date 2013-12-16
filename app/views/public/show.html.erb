@@ -4,6 +4,12 @@
 	</div>
 <% end %>
 
+<% unless @video.downloads == 0%>
+	<div class="b">
+		Скачиваний <%= @video.downloads %>
+	</div>
+<% end %>
+
 <% unless @video.screen.url.nil?%>
 	<div class="a">
 		<%= image_tag(@video.screen.preview.url) %>
@@ -20,7 +26,7 @@
 
 <% unless @video.mp4_320.url.nil? && @video.mp4_176.url.nil? && @video.low_3gp.url.nil? %>
 	<div class="title">
-		Скачать (<%= @video.downloads %> чел.)
+		Скачать
 	</div>
 <% end %>
 
@@ -61,6 +67,6 @@
 	</div>
 <% end %>
 <div class="foot">
-	<%= link_to("Все видео", {:action => 'index'})  %> <br />
+	<%= link_to("Все видео", action: 'videos')  %> <br />
 	<%= link_to("На главную", 'http://waprik.ru')  %>
 </div>

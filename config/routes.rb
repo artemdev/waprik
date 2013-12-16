@@ -1,7 +1,7 @@
 Waprik::Application.routes.draw do
 
   # root :to => "public#index"
-  root :to => "public#index"
+  root :to => "public#videos"
 
   # match 'news' => 'public#news'
   match 'news/:section' => 'public#news'
@@ -10,8 +10,9 @@ Waprik::Application.routes.draw do
   match 'video/list' => 'public#list'
   match 'video/category/:id' => 'public#category'
   match 'video/collection/:collection_id' => 'public#collection'
-  match 'video' => 'public#index'
+  match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
+
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
