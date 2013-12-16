@@ -8,7 +8,7 @@
 			<hr />
 			Так же <%= @last_news.created_at.to_s(:DayMonth) %> обновлены 
 			<% @related_news.each do |item| %>
-				<%= link_to(translate_type(item.section), :action => 'show', :id => item.id, :section => item.section) %>
+				<%= link_to(translate_type(item.section), :action => 'news', :id => item.id, :section => item.section) %>
 			<% end %>
 		<% end %>
 	</div>
@@ -27,8 +27,3 @@
 		<% end %>
 	</div>
 <% end %>
-<div class="foot">
-	<%= link_to("Все видео", :controller => 'videos') %> <br />
-	<%= link_to("Меню", :controller => 'access') %> <br />
-	<%= link_to("Выход", :controller => 'access', :action => 'logout') %>
-</div>

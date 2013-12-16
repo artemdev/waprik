@@ -10,7 +10,8 @@ class VideosUploader < CarrierWave::Uploader::Base
   after :store, :delete_tmp_dir
 
   def filename
-     "#{model.id}_#{mounted_as}.#{file.extension}" if original_filename.present?
+     video = Video.find(model.id)
+     "#{Russian.translit(video.name[0..20])}_#{mounted_as}.#{file.extension}" if original_filename.present?
   end
 
   # store! nil's the cache_id after it finishes so we need to remember it for deletion

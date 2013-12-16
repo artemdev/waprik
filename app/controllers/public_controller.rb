@@ -7,7 +7,7 @@ class PublicController < ApplicationController
   layout 'mobile'
 
 	 before_filter :find_category, :only => ['list', 'show', 'collection']
-   before_filter :find_news_section, :only => ['index']
+   before_filter :find_news_section, :only => ['news']
 
   def index
   	@categories = Category.sorted
@@ -60,6 +60,7 @@ class PublicController < ApplicationController
     @video_suggestions = Collection.where(hit: true, with_videos: true).order("updated_at ASC").limit(5)
     @music_suggestions = Collection.where(hit: true, with_music: true).order("updated_at ASC")
   end
+
 ### КОЛЛЕКЦИИ ВИДЕО (ПОДБОРКИ) ###
 
   def collection

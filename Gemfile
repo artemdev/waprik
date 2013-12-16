@@ -9,7 +9,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-video'
 gem 'streamio-ffmpeg'
-
+gem 'russian', '~> 0.6.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -23,8 +23,6 @@ group :development, :test do
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'
   gem 'childprocess', '0.3.6'
-  gem 'spork', '0.9.2'
-
 end
 
 group :test do
