@@ -19,6 +19,7 @@ class VideosController < ApplicationController
 	end
 
 	def create # шаг 2
+		@video = Video.new(params[:video])
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@category.videos << @video
 		@video.add_to_collection
