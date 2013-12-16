@@ -4,13 +4,13 @@ class VideosUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-  # include VideosHelper
+  include VideosHelper
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
 
   def filename
-     "#{Russian.translit(model.name[0..20])}_#{mounted_as}.#{file.extension}" if original_filename.present?
+     "#{Russian.translit(model.name[0..20]).gsub(' ', '_')}_#{mounted_as}.#{file.extension}" if original_filename.present?
   end
 
   # store! nil's the cache_id after it finishes so we need to remember it for deletion

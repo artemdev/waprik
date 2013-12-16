@@ -6,48 +6,6 @@ module VideosHelper
 
   ASPECT_OPTIONS = { preserve_aspect_ratio: :width }
   
-  def translit(name)
-		# Беремя строку "name" и разбиваем ее на символы
-		name.each_char.to_a.collect do |char|
-			# Транслитируем найденные русские символы
-				char = "a" if char == "а"
-				char = "b" if char == "б"
-				char = "v" if char == "в"
-				char = "g" if char == "г" 
-				char = "d" if char == "д" 
-				char = "e" if char == "е"
-				char = "yo" if char == "ё"
-				char = "xh" if char == "ж"
-				char = "z" if char == "з"
-				char = "i" if char == "и"
-				char = "j" if char == "й" 
-				char = "k" if char == "к" 
-				char = "l" if char == "л" 
-				char = "m" if char == "м" 
-				char = "n" if char == "н"
-				char = "o" if char == "о"
-				char = "p" if char == "п"
-				char = "r" if char == "р"
-				char = "s" if char == "с"
-				char = "t" if char == "т"
-				char = "u" if char == "у"
-				char = "h" if char == "х"
-				char = "f" if char == "ф"
-				char = "c" if char == "ц"
-				char = "ch" if char == "ср"
-				char = "sh" if char == "ш"
-				char = "w" if char == "щ"
-				char = "qq" if char == "ъ"
-				char = "u" if char == "у"
-				char = "y" if char == "ы"
-				char = "q" if char == "ь"
-				char = "eh" if char == "э" 
-				char = "yu" if char == "ю"
-				char = "ya" if char == "я"
-				char = "_" if char == "_"
-		end
-  end
-
 	# Переименование файлов
   def remane(name)
   	name = translite(self.name)
