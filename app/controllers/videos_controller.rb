@@ -53,6 +53,10 @@ class VideosController < ApplicationController
 				@video.downloads += 1
 				@video.save
 				link = @video.mp4_320.url
+			when 'mp4_640'
+				@video.downloads += 1
+				@video.save
+				link = @video.mp4_640.url
 		end
 		redirect_to(link)
 	end
@@ -82,7 +86,8 @@ class VideosController < ApplicationController
 		video.remove_screen
 		video.remove_low_3gp
 		video.remove_mp4_176	
-		video.remove_mp4_320		
+		video.remove_mp4_320
+		video.remove_mp4_640
 		video.destroy
 		flash[:notice] = "Видео удалено"
 		redirect_to(:action => 'category', :id => @category.id)
@@ -108,6 +113,9 @@ class VideosController < ApplicationController
 				@video.save
 			when 'mp4_320'
 				@video.remove_mp4_320!
+				@video.save
+			when 'mp4_640'
+				@video.remove_mp4_640!
 				@video.save
 		end
 		redirect_to(:action => 'edit', :id => @video.id)

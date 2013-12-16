@@ -57,20 +57,6 @@
 		</div>
 	<% end %>
 
-	<% if @video.mp4_176.url.nil? %>
-		<div class="b">
-			<%= f.label(:mp4_176, "MP4 176") %> <br />
-			<%= f.file_field(:mp4_176) %>
-		</div>
-	<% else %>
-		<div class="b">
-		  <%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_176", :id => @video.id})%> <br />
-			 <span class="small_text">
-			 		<%= number_to_human_size(@video.mp4_176.size) %>
-			 </span>
-		</div>
-	<% end %>
-
 	<% if  @video.mp4_320.url.nil? %>
 		<div class="b">
 			<%= f.label(:mp4_320, "MP4_320") %> <br />
@@ -79,6 +65,20 @@
 	<% else %>
 		<div class="b">
 			<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_320", :id => @video.id})%> <br />
+			 <span class="small_text">
+			 		<%= number_to_human_size(@video.mp4_320.size) %>
+			 </span>
+		</div>
+	<% end %>
+
+	<% if  @video.mp4_640.url.nil? %>
+		<div class="b">
+			<%= f.label(:mp4_640, "MP4_640") %> <br />
+			<%= f.file_field(:mp4_640) %>
+		</div>
+	<% else %>
+		<div class="b">
+			<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_640", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_640", :id => @video.id})%> <br />
 			 <span class="small_text">
 			 		<%= number_to_human_size(@video.mp4_320.size) %>
 			 </span>

@@ -19,6 +19,7 @@ class Video < ActiveRecord::Base
   mount_uploader :low_3gp, VideosUploader
   mount_uploader :mp4_176, VideosUploader
   mount_uploader :mp4_320, VideosUploader
+  mount_uploader :mp4_640, VideosUploader
   mount_uploader :source_video, VideosUploader
 
   # before_create :mark
