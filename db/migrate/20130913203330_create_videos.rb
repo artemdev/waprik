@@ -5,7 +5,6 @@ class CreateVideos < ActiveRecord::Migration
     	t.string "description"
       t.string "screen"
     	t.string "low_3gp"
-    	t.string "mp4_176"
      	t.string "mp4_320"
       t.integer "size"
      	t.string "name"
