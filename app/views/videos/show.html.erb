@@ -37,9 +37,19 @@
 	</div>
 <% end %>
 
-<% unless @video.mp4_320.url.nil? && @video.mp4_176.url.nil? && @video.low_3gp.url.nil? %>
+
+<% unless @video.mp4_320.url.nil? && @video.mp4_640.url.nil? && @video.low_3gp.url.nil? %>
 	<div class="title">
 		Скачать <%= @video.downloads %>
+	</div>
+<% end %>
+
+<% unless @video.mp4_640.url.nil?%>
+	<div class="b">
+	<%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_640", :id => @video.id}) %>
+		<span class="small_text">
+		 		<%= number_to_human_size(@video.mp4_640.size) %>
+		</span>	
 	</div>
 <% end %>
 
@@ -49,15 +59,6 @@
 			<span class="small_text">
 			 		<%= number_to_human_size(@video.mp4_320.size) %>
 			</span>
-	</div>
-<% end %>
-
-<% unless @video.mp4_176.url.nil?%>
-	<div class="b">
-	<%= link_to("MP4 (среднее качество)", {:action => 'download', :version => "mp4_176", :id => @video.id}) %>
-		<span class="small_text">
-		 		<%= number_to_human_size(@video.mp4_176.size) %>
-		</span>	
 	</div>
 <% end %>
 
