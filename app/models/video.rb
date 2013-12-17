@@ -38,7 +38,7 @@ class Video < ActiveRecord::Base
       if Collection.where(name: collection.downcase, with_videos: true) != []
         coll = Collection.find_by_name(collection.downcase)
       else
-        coll = Collection.create(name: collection.downcase, :with_videos => true)
+        coll = Collection.create(name: collection.downcase, with_videos: true)
       end
       # Проверяем чтобы небыло одинаковых подборок к одному видео
       unless self.collections.empty?
