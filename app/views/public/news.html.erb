@@ -23,7 +23,7 @@
 	</div>
 	<div class="a">
 		<% @video_suggestions.each do |suggestion| %>
-			<%= link_to(suggestion.name, controller: 'public', action: 'collection', id: suggestion.id)  %>
+			<%= link_to(suggestion.name, action: 'collection', id: suggestion.id)  %>
 		<% end %>
 	</div>
 <% end %>
