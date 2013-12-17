@@ -3,7 +3,7 @@ class NewsController < ApplicationController
 
 	layout 'mobile'
   before_filter :confirm_logged_in
-  before_filter :find_news_section, :only => ['index', 'show']
+  before_filter :find_news_section, :only => ['index', 'show', 'new', 'list', 'destroy', 'create']
 
   def index # Просмотр последних новостей
     @related_news = @last_news.related_news if @last_news = News.sorted.where(:section => @section).last
@@ -17,15 +17,15 @@ class NewsController < ApplicationController
   end
 
   def new # Создание (Шаг 1)
-  	@news = News.new(:section => params[:section])
-    @sections = ['@news.section']
+  	@news = News.new(:section => @section)
+    @sections = [] 
   end
 
   def create # Создание (Шаг 2)
   	@news = News.new(params[:news])
   	if @news.save
   		flash[:notice] = "Новость добавлена"
-  		redirect_to(:action => "index")
+  		redirect_to(action: 'list', section: @section)
   	else
   		render('new')
   	end
@@ -36,7 +36,7 @@ class NewsController < ApplicationController
     @sections = ['@news.section']
   end
 
-  def update # Редактирование (Шаг 2)
+  def update # Редакт
     @item = News.find(params[:id])
     if @item.update_attributes(params[:item])
       flash[:notice] = "Новость обновлена"
@@ -46,10 +46,14 @@ class NewsController < ApplicationController
     end
   end
 
+  def list
+    @news = News.sorted.where(section: @section)
+  end
+
   def destroy # Удаление
     @item = News.find(params[:id]).destroy
     flash[:notice] = "Новость \"#{@item.description}\" удалена"
-    redirect_to(:action => 'index')
+    redirect_to(:action => 'list', section: @section)
   end
 
   private
