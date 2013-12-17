@@ -40,14 +40,14 @@ class PublicController < ApplicationController
         @video.downloads += 1
         @video.save
         link = @video.low_3gp.url
-      when 'mp4_176'
-        @video.downloads += 1
-        @video.save
-        link = @video.mp4_176.url
       when 'mp4_320'
         @video.downloads += 1
         @video.save
         link = @video.mp4_320.url
+      when 'mp4_640'
+        @video.downloads += 1
+        @video.save
+        link = @video.mp4_640.url
     end
     redirect_to(link)
   end
