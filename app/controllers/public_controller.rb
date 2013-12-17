@@ -4,7 +4,7 @@ class PublicController < ApplicationController
 
   layout 'mobile'
 
-	 before_filter :find_category, :only => ['list', 'show', 'collection']
+	 before_filter :find_category, :only => ['list', 'show']
    before_filter :find_news_section, :only => ['news']
 
   def videos
