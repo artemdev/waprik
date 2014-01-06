@@ -36,3 +36,9 @@
 <div class="foot">
 	<%= link_to("На главную", 'http://waprik.ru') %> <br />
 </div>
+
+<% if Rails.env.development? %>
+	development mode
+<% else %>
+	production mode
+<% end %>

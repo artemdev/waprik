@@ -1,0 +1,2 @@
+class SoulOperasController < ApplicationController
+end

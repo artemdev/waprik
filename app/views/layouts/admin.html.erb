@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title><%= @title || 'Admin Area' %></title>
+	  <%= stylesheet_link_tag "admin", :media => "all" %>
+		<%= render ('layouts/shim') %>
+	</head>
+	<body>
+		<div class="a">
+			<%= flash[:notice] %>
+			<%= yield %>
+		</div>
+
+	</body>
+</html>

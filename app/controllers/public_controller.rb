@@ -55,8 +55,8 @@ class PublicController < ApplicationController
 ### НОВОСТИ ###
   def news
     @related_news = @last_news.related_news if @last_news = News.sorted.where(:section => @section).last
-    @video_suggestions = Collection.where(hit: true, with_videos: true).order("updated_at ASC").limit(5)
-    @music_suggestions = Collection.where(hit: true, with_music: true).order("updated_at ASC")
+    @video_suggestions = Collection.where(hit: true, with_videos: true).order("updated_at ASC").offset(5)
+    @music_suggestions = Collection.where(hit: true, with_music: true).order("updated_at ASC").offset(5)
   end
 
 ### КОЛЛЕКЦИИ ВИДЕО (ПОДБОРКИ) ###
