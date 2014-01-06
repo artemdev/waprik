@@ -1,7 +1,4 @@
-# encoding: utf-8
 class CategoriesController < ApplicationController
-
-	layout 'mobile'
 
 	before_filter :confirm_logged_in
 

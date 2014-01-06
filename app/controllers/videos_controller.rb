@@ -1,6 +1,5 @@
-# encoding: utf-8
 class VideosController < ApplicationController
-	layout 'mobile'
+	layout 'admin'
 	
 	before_filter :confirm_logged_in
 	before_filter :find_category, :only => ['new', 'create', 'delete']
@@ -10,7 +9,7 @@ class VideosController < ApplicationController
 		@collections = Collection.top
 	end
 
-	### РАБОТА С ВИДЕО ###
+	### ВИДЕО ###
 
  	# Добавление нового видео 
 	def new # шаг 1
@@ -117,7 +116,7 @@ class VideosController < ApplicationController
 		redirect_to(:action => 'edit', :id => @video.id)
 	end
 
-### РАБОТА С КАТЕГОРИЯМИ ВИДЕО ###
+	### КАТЕГОРИИ ###
 
 	# Листинг видео из категории
 	def category 
@@ -176,7 +175,7 @@ class VideosController < ApplicationController
 		redirect_to(:action => 'index')
 	end
 
-### РАБОТА С КОЛЛЕКЦИЯМИ ВИДЕО ###
+	### КОЛЛЕКЦИИ ###
 
 	# листинг видео из выбранной коллекции
 	def collection 
