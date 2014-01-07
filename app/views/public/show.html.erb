@@ -62,7 +62,7 @@
 	<div class="b">
 		<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
 		<span class="small_text">
-		 		<%= number_to_human_size(@video.low_3gp.size) %>
+		 		<%= number_to_human_size(@video.low_3gp.size) %> <br />
 		 		Ширина: 176 пикселей
 		</span>		
 	</div>
