@@ -51,7 +51,7 @@
 	<div class="b">
 		<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %>
 		<span class="small_text">
-		 		<%= number_to_human_size(@video.mp4_320.size) %>
+		 		<%= number_to_human_size(@video.mp4_320.size) %> <br />
 				 		Ширина: 320 пикселей
 		</span>		
 	</div>
