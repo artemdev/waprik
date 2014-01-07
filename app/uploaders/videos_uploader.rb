@@ -4,7 +4,7 @@ class VideosUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-  include VideosHelper
+  # include VideosHelper
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
