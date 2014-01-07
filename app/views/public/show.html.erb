@@ -42,7 +42,7 @@
 		<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_640", :id => @video.id}) %>
 		<span class="small_text">
 		 		<%= number_to_human_size(@video.mp4_640.size) %> <br />
-		 		Ширина: 640 пикселей
+		 		Для смартфонов, планшетов
 		</span>		
 	</div>
 <% end %>
@@ -52,7 +52,7 @@
 		<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %>
 		<span class="small_text">
 		 		<%= number_to_human_size(@video.mp4_320.size) %> <br />
-				 		Ширина: 320 пикселей
+				 		Для телефонов, смартфонов
 		</span>		
 	</div>
 <% end %>
@@ -63,7 +63,7 @@
 		<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
 		<span class="small_text">
 		 		<%= number_to_human_size(@video.low_3gp.size) %> <br />
-		 		Ширина: 176 пикселей
+		 		Для телефонов
 		</span>		
 	</div>
 <% end %>
