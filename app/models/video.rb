@@ -2,7 +2,7 @@ require 'streamio-ffmpeg'
 
 class Video < ActiveRecord::Base
 
-  attr_accessible :name, :screen, :description, :category_id, :collection, :artist, :source_video, :mp4_320, :mp4_176, :low_3gp
+  attr_accessible :name, :screen, :description, :category_id, :collection, :artist, :source_video, :mp4_320, :mp4_176, :low_3gp, :mp4_320
   attr_accessor :collection
 
 
