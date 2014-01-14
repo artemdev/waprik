@@ -1,5 +1,11 @@
 Waprik::Application.routes.draw do
 
+  get "feedbacks/show"
+
+  get "feedbacks/new"
+
+  get "feedbacks/list"
+
   # root :to => "public#index"
   root :to => "public#videos"
 
