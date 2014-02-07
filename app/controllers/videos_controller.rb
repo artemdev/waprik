@@ -80,7 +80,6 @@ class VideosController < ApplicationController
 		video = Video.find(params[:id])
 		video.remove_screen
 		video.remove_low_3gp
-		video.remove_mp4_176	
 		video.remove_mp4_320
 		video.remove_mp4_640
 		video.destroy

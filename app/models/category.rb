@@ -6,6 +6,7 @@ class Category < ActiveRecord::Base
 
  	scope :sorted, order("created_at ASC")
 
+
  	# Удаление видео из категории
  	def destroy_videos
  		self.videos.each {|video| video.destroy}

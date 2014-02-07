@@ -1,6 +1,5 @@
-
 	<div class="a">
-		<%= @item.description %>
+		<%= @item.description.html_safe %>
 	</div>
 
 	<% unless @related_news == [] %>

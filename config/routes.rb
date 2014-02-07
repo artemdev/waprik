@@ -1,5 +1,11 @@
 Waprik::Application.routes.draw do
 
+  get "feedbacks/show"
+
+  get "feedbacks/new"
+
+  get "feedbacks/list"
+
   # root :to => "public#index"
   root :to => "public#videos"
 
@@ -13,6 +19,7 @@ Waprik::Application.routes.draw do
   match 'video/collection/:collection_id' => 'public#collection'
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
+  match 'news' => 'public#news'
 
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:

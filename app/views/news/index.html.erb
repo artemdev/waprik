@@ -3,7 +3,7 @@
 		Новинки <%= translate_type(@section) %> от <%= @last_news.created_at.to_s(:DayMonth) %>
 	</div>
 	<div class="b">
-		<%= @last_news.description %>
+		<%= @last_news.description.html_safe %>
 		<% unless @related_news == [] %>
 			<hr />
 			Так же <%= @last_news.created_at.to_s(:DayMonth) %> обновлены 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131227220409) do
+ActiveRecord::Schema.define(:version => 20140207094713) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -67,6 +67,18 @@ ActiveRecord::Schema.define(:version => 20131227220409) do
 
   add_index "collections_videos", ["video_id", "collection_id"], :name => "index_collections_videos_on_video_id_and_collection_id"
 
+  create_table "feedbacks", :force => true do |t|
+    t.string   "description"
+    t.string   "answer"
+    t.string   "type"
+    t.string   "sender"
+    t.boolean  "published"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "feedbacks", ["type"], :name => "index_feedbacks_on_type"
+
   create_table "music", :force => true do |t|
     t.boolean  "hit"
     t.integer  "downloads"
@@ -79,11 +91,11 @@ ActiveRecord::Schema.define(:version => 20131227220409) do
   end
 
   create_table "news", :force => true do |t|
-    t.string   "description"
+    t.string   "description", :limit => 1000
     t.string   "section"
     t.boolean  "visible"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "soul_operas", :force => true do |t|
