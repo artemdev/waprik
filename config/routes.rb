@@ -19,6 +19,7 @@ Waprik::Application.routes.draw do
   match 'video/collection/:collection_id' => 'public#collection'
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
+  match 'news' => 'public#news'
 
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:
