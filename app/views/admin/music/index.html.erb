@@ -1,0 +1,38 @@
+<div class="b">
+	<%= link_to('Добавить новость', :controller => 'news', :action => 'new', :section => "music") %>
+</div>
+<% unless @collections.empty? %>
+		<% @collections.each do |collection| %>
+			<% unless collection.videos_empty? %> <!-- проверяем есть ли видео в коллекции -->
+			<div class="title">
+				Подборки
+			</div>
+			<div class="b">
+					<%= link_to(collection.name, :action => 'collection', :id => collection.id) %> 
+					<br />
+			</div>
+			<% end %>
+		<% end %>
+<% end %>
+<div class="title">
+	Жанры
+</div>
+<% unless @categories.empty? %>
+	<% @categories.each do |category| %>
+		<% if category.with_music? %>
+		<div class="a">
+			<%= link_to("#{category.name}", {:action => 'category', :id => category.id}) %>
+
+			<span class="small_text">
+				(<%= category.videos.size %>)
+				<%= link_to("р", {:action => 'edit_category', :id => category.id}) %>
+				<%= link_to("x", :action => 'destroy_category', :id => category.id) %>
+			</span>
+		</div>
+		<% else %>
+		<div class="b">
+			Пусто :(
+		</div>
+		<% end %>
+	<% end %>
+<% end %>

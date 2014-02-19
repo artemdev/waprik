@@ -1,0 +1,11 @@
+<div class="title">
+	Создать категорию
+</div>
+
+<%= form_for(:category, :url => {:action => 'update_category', :id => @category.id}) do |f| %>
+	<div class="a">
+	<%= render(:partial => 'shared/category_form', :locals => {:f => f}) %>
+
+	<%= submit_tag("обновить") %>
+</div>
+<% end %>

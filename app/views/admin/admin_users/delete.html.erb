@@ -1,0 +1,4 @@
+<% @title = "Delete Admin User" %>
+
+Удалить пользователя <%= @user.username %> ? <br />
+<%= link_to('да', {:action => 'destroy', :id => @user.id}) %> | <%= link_to('нет', :action => 'list') %>

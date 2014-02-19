@@ -1,0 +1,18 @@
+<% @title = "Add video" %>
+
+<div class="title">
+	Добавить видео
+</div>
+
+<%= form_for(:video, :url => {:action => 'create', :category_id => @category.id}, :html => { :multipart => true }) do |f| %>
+ 
+	<%= render(:partial => 'shared/video_form', :locals => {:f => f}) %>
+
+	<div class="b">
+		<%= submit_tag("Создать") %>
+	</div>
+
+<% end %>
+<div class="b">
+	<%= debug(params) %>
+</div>

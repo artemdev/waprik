@@ -1,0 +1,15 @@
+<% provide(:title, "Сериалы для мобильного") %>
+
+<% unless @hits.empty? %>
+	<% @hits.each do |hit| %>
+		<%= link_to hit.name, {controller: "public#serials", action: "show", id: hit.id} %>
+	<% end %>
+<% end %>
+
+<% unless @categories.empty? %>
+	<% @categories.each do |category| %>
+		<% if category.with_serials? %>
+		<%= link_to hit.name, {controller: "public#serials", action: "category", id: category.id} %>
+		<% end %>
+	<% end %>
+<% end %>
