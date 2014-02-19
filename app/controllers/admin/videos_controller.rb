@@ -54,7 +54,7 @@ class Admin::VideosController < ApplicationController
 				@video.save
 				link = @video.mp4_640.url
 		end
-		redirect_to(link)
+		send_file(link)
 	end
 
 	# Редактирование видео (шаг 1)
