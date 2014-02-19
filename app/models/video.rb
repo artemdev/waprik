@@ -15,7 +15,7 @@ class Video < ActiveRecord::Base
   # validates_presence_of :mp4_176
   # validates_presence_of :mp4_320
 
-  mount_uploader :screen, ScreenUploader
+  mount_uploader :screen, CoverUploader
   mount_uploader :low_3gp, VideosUploader
   mount_uploader :mp4_320, VideosUploader
   mount_uploader :mp4_640, VideosUploader

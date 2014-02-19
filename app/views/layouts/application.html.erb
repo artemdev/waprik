@@ -3,6 +3,7 @@
 	<head>
 	  <title><%= @title || 'Admin Area' %></title>
 	  <%= stylesheet_link_tag "application", :media => "all" %>
+		<%= csrf_meta_tags %>
 		<%= render ('layouts/shim') %>
 	</head>
 	<body>

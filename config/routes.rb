@@ -1,12 +1,17 @@
 Waprik::Application.routes.draw do
+  # Admin resources
+  resources :videos, module: "admin"
+  resources :news, module: "admin"
+  resources :music, module: "admin"
+  resources :admin_users, module: "admin"
+  resources :feedbacks, module: "admin"
+  
+  # Public resources
+  resources :videos, module: "public"
+  resources :news, module: "public"
+  resources :music, module: "public"
+  resources :feedbacks, module: "public"
 
-  get "feedbacks/show"
-
-  get "feedbacks/new"
-
-  get "feedbacks/list"
-
-  # root :to => "public#index"
   root :to => "public#videos"
 
   # match 'news' => 'public#news'
@@ -20,6 +25,7 @@ Waprik::Application.routes.draw do
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
   match 'news' => 'public#news'
+  match 'serials' => 'public/serials#index'
 
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:

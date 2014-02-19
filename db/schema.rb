@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207094713) do
+ActiveRecord::Schema.define(:version => 20140219092059) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -24,10 +24,26 @@ ActiveRecord::Schema.define(:version => 20140207094713) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "attachments", :force => true do |t|
+    t.integer  "serial_id"
+    t.string   "mp4_640"
+    t.integer  "count_mp4_640"
+    t.string   "mp4_320"
+    t.integer  "count_mp4_320"
+    t.string   "low_3gp"
+    t.integer  "count_low_3gp"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "attachments", ["serial_id"], :name => "index_attachments_on_serial_id"
+
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.boolean  "with_videos"
+    t.boolean  "with_serials"
   end
 
   create_table "categories_music", :id => false, :force => true do |t|
@@ -36,6 +52,13 @@ ActiveRecord::Schema.define(:version => 20140207094713) do
   end
 
   add_index "categories_music", ["music_id", "category_id"], :name => "index_categories_music_on_music_id_and_category_id"
+
+  create_table "categories_serials", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "serial_id"
+  end
+
+  add_index "categories_serials", ["category_id", "serial_id"], :name => "index_categories_serials_on_category_id_and_serial_id"
 
   create_table "categories_videos", :id => false, :force => true do |t|
     t.integer "category_id"
@@ -98,6 +121,28 @@ ActiveRecord::Schema.define(:version => 20140207094713) do
     t.datetime "updated_at",                  :null => false
   end
 
+  create_table "serials", :force => true do |t|
+    t.string   "description"
+    t.string   "season"
+    t.boolean  "updating"
+    t.string   "name"
+    t.string   "cover"
+    t.boolean  "hit"
+    t.string   "year"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "series", :force => true do |t|
+    t.integer  "serial_id"
+    t.string   "name"
+    t.string   "relise_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "series", ["serial_id"], :name => "index_series_on_serial_id"
+
   create_table "soul_operas", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -109,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20140207094713) do
     t.string   "screen"
     t.string   "low_3gp"
     t.string   "mp4_320"
+    t.integer  "size"
     t.string   "name"
     t.string   "artist"
     t.integer  "downloads",    :default => 0
