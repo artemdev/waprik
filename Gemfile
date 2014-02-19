@@ -19,9 +19,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :production, :staging do
-  gem 'rails_12factor'
-end
+# group :production, :staging do
+#   gem 'rails_12factor'
+# end
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
