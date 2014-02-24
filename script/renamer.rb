@@ -7,7 +7,7 @@
 
 		if id == 1
 			new_name = "test.jpg"
-			File.rename File.absolute_path(pic), new_name
+			File.rename (File.join(root_folder, pic)), new_name
 		end
 	end
 
