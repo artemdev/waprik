@@ -2,12 +2,24 @@
 	Dir.chdir root_folder
 
 	Dir.glob("**/*.jpg").each do |pic|
-		basename = File.basename(pic, ".jpg")
 		id = File.dirname(pic).split('/').first
-
-		if id == 1
-			new_name = "test.jpg"
-			File.rename (File.join(root_folder, pic)), new_name
+		case id
+			when id == 2
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 3
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 4
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 5
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 6
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 7
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 8
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			when id == 9
+				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
 		end
 	end
 
@@ -34,7 +46,7 @@
 	# 	@count += 1
 	# end
 	# end
-# 1 /uploads/videos/1/cover/snapshot20131216200936.jpg 
+
 # 2 /uploads/videos/2/cover/snapshot20131216201047.jpg 
 # 3 /uploads/videos/3/cover/snapshot20131216201110.jpg 
 # 4 /uploads/videos/4/cover/snapshot20131216201217.jpg 
@@ -43,16 +55,7 @@
 # 7 /uploads/videos/7/cover/snapshot20131216201452.jpg 
 # 8 /uploads/videos/8/cover/snapshot20131216201525.jpg 
 # 9 /uploads/videos/9/cover/snapshot20131216201548.jpg 
-# 10 /uploads/videos/10/cover/snapshot20140108113704.jpg 
-# 11 /uploads/videos/11/cover/snapshot20140108113838.jpg 
-# 12 /uploads/videos/12/cover/snapshot20140108113901.jpg 
-# 13 /uploads/videos/13/cover/snapshot20140108113953.jpg 
-# 14 /uploads/videos/14/cover/snapshot20140108114135.jpg 
-# 15 /uploads/videos/15/cover/snapshot20140108114215.jpg 
-# 16 /uploads/videos/16/cover/snapshot20140108114253.jpg 
-# 17 /uploads/videos/17/cover/snapshot20140108114335.jpg 
-# 18 /uploads/videos/18/cover/snapshot20140108235948.jpg 
-# 19 /uploads/videos/19/cover/snapshot20140109000308.jpg 
+
 # 20 /uploads/videos/20/cover/snapshot20140109000504.jpg 
 # 21 /uploads/videos/21/cover/snapshot20140109000536.jpg 
 # 22 /uploads/videos/22/cover/snapshot20140109004305.jpg 
