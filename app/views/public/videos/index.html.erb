@@ -1,0 +1,44 @@
+<% @title = "Бесплатное видео для мобильных" %>
+
+<% unless @last_news == nil %>
+	<div class="b">
+		<%= link_to("Новинки", {:action => 'news', :section => 'video'}) %> <span class="small_text">(от <%= @last_news.created_at.to_s(:DayMonth) %>)</span>
+	</div>
+<% end %>
+<% unless @collections.empty? %>
+	<div class="title">
+		Классные подборки
+	</div>
+	<div class="a">
+		<%  @collections.each do |collection| %>
+			<%= link_to(collection.name, { controller: 'public/videos', :action => 'collection', :collection_id => collection.id })  %> <br />
+		<% end %>
+	</div>
+<% end %>
+
+<div class="title">
+	Жанры
+</div>
+<div class="a">
+	<% @categories.each do |category| %>
+
+		<%= link_to(category.name, :action => 'category', :id => category.id) %>
+		<span class="small_text">
+			<%= category.videos.size %>
+		</span>
+		<% unless category == @categories.last %>
+			<hr /> 
+		<% end %>
+
+	<% end %>
+</div>
+
+<div class="foot">
+	<%= link_to("На главную", 'http://waprik.ru') %> <br />
+</div>
+
+<% if Rails.env.development? %>
+	development mode
+<% else %>
+	production mode
+<% end %>
