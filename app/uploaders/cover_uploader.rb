@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class CoverUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
@@ -14,6 +12,10 @@ class CoverUploader < CarrierWave::Uploader::Base
     @cache_id_was = cache_id
   end
   
+  def filename
+     "#{mounted_as}.#{file.extension}" if original_filename.present?
+  end
+
   def delete_tmp_dir(new_file)
     # make sure we don't delete other things accidentally by checking the name pattern
     if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
@@ -28,7 +30,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/video/#{model.id}/#{mounted_as}/"
+    "uploads/#{model.class.to_s.pluralize.downcase}/#{model.id}/cover/"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -52,7 +54,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :mini do
-     process :resize_to_fill => [80, 80]
+     process :resize_to_fill => [50, 70]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

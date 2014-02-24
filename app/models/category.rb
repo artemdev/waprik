@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_and_belongs_to_many :videos
   has_and_belongs_to_many :music, :join_table => "categories_music"
   has_and_belongs_to_many :serials
+  has_and_belongs_to_many :news
 
  	scope :sorted, order("created_at ASC")
   scope :with_serials, where(with_serials: true)
@@ -21,6 +22,15 @@ class Category < ActiveRecord::Base
   	else
   		return true
   	end
+  end
+
+  # Есть ли новости в категории ?
+  def with_news?
+    if self.news.empty?
+      return false
+    else
+      return true
+    end
   end
 
   # Есть ли сериалы в категории ?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219092059) do
+ActiveRecord::Schema.define(:version => 20140222111756) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20140219092059) do
   end
 
   create_table "attachments", :force => true do |t|
-    t.integer  "serial_id"
+    t.integer  "series_id"
     t.string   "mp4_640"
     t.integer  "count_mp4_640"
     t.string   "mp4_320"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20140219092059) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "attachments", ["serial_id"], :name => "index_attachments_on_serial_id"
+  add_index "attachments", ["series_id"], :name => "index_attachments_on_series_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(:version => 20140219092059) do
   end
 
   add_index "categories_music", ["music_id", "category_id"], :name => "index_categories_music_on_music_id_and_category_id"
+
+  create_table "categories_news", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "news_id"
+  end
+
+  add_index "categories_news", ["news_id", "category_id"], :name => "index_categories_news_on_news_id_and_category_id"
 
   create_table "categories_serials", :id => false, :force => true do |t|
     t.integer "category_id"
@@ -119,26 +126,34 @@ ActiveRecord::Schema.define(:version => 20140219092059) do
     t.boolean  "visible"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "title"
   end
 
   create_table "serials", :force => true do |t|
     t.string   "description"
     t.string   "season"
-    t.boolean  "updating"
+    t.boolean  "updating",    :default => true
     t.string   "name"
     t.string   "cover"
     t.boolean  "hit"
     t.string   "year"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "series", :force => true do |t|
     t.integer  "serial_id"
     t.string   "name"
-    t.string   "relise_date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "release_date"
+    t.integer  "number"
+    t.string   "mp4_640"
+    t.integer  "dl_mp4_640",   :default => 0
+    t.string   "mp4_320"
+    t.integer  "dl_mp4_320",   :default => 0
+    t.string   "low_3gp"
+    t.integer  "dl_low_3gp",   :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "series", ["serial_id"], :name => "index_series_on_serial_id"

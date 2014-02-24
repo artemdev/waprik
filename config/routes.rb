@@ -1,32 +1,58 @@
 Waprik::Application.routes.draw do
-  # Admin resources
-  resources :videos, module: "admin"
-  resources :news, module: "admin"
-  resources :music, module: "admin"
-  resources :admin_users, module: "admin"
-  resources :feedbacks, module: "admin"
-  
-  # Public resources
-  resources :videos, module: "public"
-  resources :news, module: "public"
-  resources :music, module: "public"
-  resources :feedbacks, module: "public"
+  ### Admin resources ###
+  namespace :admin do
+    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories
+  end
 
-  root :to => "public#videos"
+  #### Public resources ###
+  scope module: 'public' do
+    resources :videos, :serials, :news, :music, :feedbacks
+  end
+  
+  # resources :videos, module: "admin"
+  # resources :news, module: "admin"
+  # resources :music, module: "admin"
+  # resources :admin_users, module: "admin"
+  # resources :feedbacks, module: "admin"
+  # resources :serials, module: "admin" 
+  # resources :series, module: "admin" 
+  # resources :categories, module: "admin"  
+
+  # ???
+  match 'admin/access/:action' => 'admin/access'
+  match 'login' => 'admin/access#login'
+  match 'admin/news' => 'admin/news#index'
+  match 'admin/news/new' => 'admin/news#new'
+  match 'admin/news/new' => 'admin/news#new'
+  match 'admin/logout' => 'admin/access#logout'
+
+  resources :admin do 
+    resources :access, :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories
+  end
+
+  # resources :videos, module: "public"
+  # resources :serials, module: "public"
+  # resources :news, module: "public"
+  # resources :music, module: "public"
+  # resources :feedbacks, module: "public"
+
+  root :to => "public/serials#index"
+  ### admin ###
+  match 'admin' => 'admin/access#menu'
+
+  ### public ###
 
   # match 'news' => 'public#news'
   # match 'news/:section' => 'public#news'
   match 'news/new' => 'news#new'
-  match 'admin' => 'access#menu'
+
   match 'videos' => 'videos#index'
   match 'video/list' => 'public#list'
   match 'video/category/:id' => 'public#category'
   match 'video/collection/:collection_id' => 'public#collection'
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
-  match 'news' => 'public#news'
   match 'serials' => 'public/serials#index'
-
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

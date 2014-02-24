@@ -1,11 +1,10 @@
-<%= form_for(:news, :url => {:action => 'create', :section => @news.section}) do |f| %>
+<%= form_for(:news, :url => {:action => 'create'}) do |f| %>
 
 <div class="b">
 	<%= render(:partial => 'shared/news_form', :locals => {:f => f}) %>
 
-	<%= f.select(:section, @sections << @news.section) %> 
-</div>
-
+	Категория: <%= @category.name %> <br />
 	<%= submit_tag("Добавить") %>
+</div>
 <% end %>
 

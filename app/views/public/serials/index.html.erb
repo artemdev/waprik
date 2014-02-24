@@ -1,15 +1,28 @@
 <% provide(:title, "Сериалы для мобильного") %>
 
 <% unless @hits.empty? %>
-	<% @hits.each do |hit| %>
-		<%= link_to hit.name, {controller: "public#serials", action: "show", id: hit.id} %>
-	<% end %>
+	<div class="title">
+		Популярное сейчас
+	</div>
+		<% @hits.each do |hit| %>
+		<div class="b">
+			<%= image_tag hit.cover.mini.url unless hit.cover.mini.url.nil?%>
+			<%= link_to hit.name, serial_path(hit) %>
+		</div>
+		<% end %>
+			<%= will_paginate @hits, class: "flickr_pagination", previous_label: "<< туда", next_label: "сюда >>", style: 'font-style: none;' %>
 <% end %>
 
 <% unless @categories.empty? %>
-	<% @categories.each do |category| %>
-		<% if category.with_serials? %>
-		<%= link_to hit.name, {controller: "public#serials", action: "category", id: category.id} %>
+	<div class="title">
+		Жанры
+	</div>
+	<div class="a">
+		<% @categories.each do |category| %>
+			<% if category.with_serials? %>
+			<%= link_to hit.name, {controller: "public#serials", action: "category", id: category.id} %>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
+<%= will_paginate @categories %>
 <% end %>

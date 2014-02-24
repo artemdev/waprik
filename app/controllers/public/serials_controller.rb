@@ -2,7 +2,7 @@ class Public::SerialsController < ApplicationController
 	layout 'public'
 
 	def index
-		@hits = Serial.hits.latest
+		@hits = Serial.hits.latest.paginate(page: params[:page], per_page: 5)
 		@categories = Category.with_serials
 	end
 
@@ -11,6 +11,7 @@ class Public::SerialsController < ApplicationController
 	end
 
 	def show
+		@serial = Serial.find(params[:id])
 	end
 
 	def edit

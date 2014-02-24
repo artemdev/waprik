@@ -1,5 +1,10 @@
 <% provide(:title, "Добавить сериал") %>
 
-<!-- Добавление инфо -->
+<%= error_messages_for(@serial) %>
 
-<!-- Добавление серий -->
+<%= form_for(@serial, url: admin_serials_path, html: {multipart: true}) do |f| %>
+	
+	<%= render(partial: 'admin/shared/serial', locals: {:f => f}) %>
+
+	<%= f.submit("Добавить") %>
+<% end %>

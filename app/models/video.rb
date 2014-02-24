@@ -61,11 +61,6 @@ class Video < ActiveRecord::Base
 
   protected
 
-  # Переименовываем сохраняемый файл
-  def rename_file
-     translit(self.source_video.filename)
-  end
-
   # Конвертация видео
   def convert
     unless self.source_video.blank? && self.mp4_320.blank? && self.mp4_176.blank? && self.low_3gp.blank?

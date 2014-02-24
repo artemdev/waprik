@@ -17,4 +17,21 @@ module ApplicationHelper
 		render(:partial => 'shared/error_messages', :locals => {:object => object})
 	end
 
+  # Сериалы
+  def status_for serial
+    if serial.updating?
+     "серии обновляются"
+    else
+     "сезон закончен"
+    end
+  end
+
+  def count_downloads_for serial
+    serial.series.each do |series|
+      series.attachments.each do |attach|
+        @downloads = attach.count_mp4_320 + attach.count_mp4_640 + attach.count_low_3gp
+      end
+    end
+    return @downloads.to_i
+  end
 end

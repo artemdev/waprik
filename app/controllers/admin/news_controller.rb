@@ -1,29 +1,27 @@
 class Admin::NewsController < ApplicationController
-	layout 'mobile'
+	layout 'admin'
   before_filter :confirm_logged_in
-  before_filter :find_news_section, :only => ['index', 'show', 'new', 'list', 'destroy', 'create']
+  before_filter :find_category, :only => ['new','create']
 
   def index # Просмотр последних новостей
-    @related_news = @last_news.related_news if @last_news = News.sorted.where(:section => @section).last
-    @video_suggestions = Collection.where(hit: true, with_videos: true).order("updated_at ASC").limit(5)
-    @music_suggestions = Collection.where(hit: true, with_music: true).order("updated_at ASC")
+    @categories = Category.all
   end
 
 
-  def show # Показ
+  def show
      @related_news = @item.related_news if @item = News.find(params[:id])
   end
 
-  def new # Создание (Шаг 1)
-  	@news = News.new(:section => @section)
-    @sections = [] 
+  def new
+  	@news = News.new
   end
 
-  def create # Создание (Шаг 2)
+  def create
   	@news = News.new(params[:news])
+    @news.categories << @category
   	if @news.save
   		flash[:notice] = "Новость добавлена"
-  		redirect_to(action: 'list', section: @section)
+  		redirect_to(action: 'list')
   	else
   		render('new')
   	end
@@ -45,7 +43,7 @@ class Admin::NewsController < ApplicationController
   end
 
   def list
-    @news = News.sorted.where(section: @section)
+    @news = News.sorted
   end
 
   def destroy # Удаление
@@ -57,6 +55,6 @@ class Admin::NewsController < ApplicationController
   private
 
   def find_news_section
-    @section = params[:section]
+    @category = params[:category_id]
   end
 end
