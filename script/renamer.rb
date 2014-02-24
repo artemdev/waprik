@@ -3,22 +3,21 @@
 
 	Dir.glob("**/*.jpg").each do |pic|
 		id = File.dirname(pic).split('/').first
-		case id
-			when id == 2
+			if id == 2
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 3
+			elsif id == 3
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 4
+			elsif id == 4
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 5
+			elsif id == 5
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 6
+			elsif id == 6
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 7
+			elsif id == 7
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 8
+			elsif id == 8
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			when id == 9
+			elsif id == 9
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
 		end
 	end
