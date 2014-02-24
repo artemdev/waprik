@@ -1,0 +1,29 @@
+<% provide(:title, @serial.name) %>
+
+<div class="title">
+	<%= @serial.name %>
+</div>
+
+<div class="b">
+	Скачиваний <%= count_downloads_for @serial %> <br />
+	Статус: <%= status_for @serial %>
+</div>
+
+<div class="a">
+	<%= image_tag @serial.cover.preview.url unless @serial.cover.url.nil? %>
+</div>
+
+<div class="a">
+	<%= @serial.description %>
+</div>
+<% @serial.series.each do |series| %>
+	<div class="title">
+		<%= series.number %> (<%= series.relise_date %>)
+	</div>
+	<div class="a">
+		<%= link_to series.attachments.low_3gp.url, "3GP (среднее качество)" unless series.attachments.low_3gp.url.nil? %>
+		<%= link_to series.attachments.mp4_320.url, "MP4 320 (хорошее качество)" unless series.attachments.mp4_320.url.nil? %>
+		<%= link_to series.attachments.mp4_640.url, "MP4 640 (отличное качество)" unless series.attachments.mp4_640.url.nil? %>
+	</div>
+<% end %>
+</div>
