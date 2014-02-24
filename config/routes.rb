@@ -36,7 +36,7 @@ Waprik::Application.routes.draw do
   # resources :music, module: "public"
   # resources :feedbacks, module: "public"
 
-  root :to => "public/serials#index"
+  root :to => "public/videos#index"
   ### admin ###
   match 'admin' => 'admin/access#menu'
 
@@ -48,8 +48,8 @@ Waprik::Application.routes.draw do
 
   match 'videos' => 'videos#index'
   match 'video/list' => 'public#list'
-  match 'video/category/:id' => 'public#category'
-  match 'video/collection/:collection_id' => 'public#collection'
+  match 'videos/category/:id' => 'public/videos#category'
+  match 'videos/collection/:collection_id' => 'public/videos#collection'
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
   match 'serials' => 'public/serials#index'
