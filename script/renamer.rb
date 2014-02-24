@@ -5,20 +5,20 @@
 		id = File.dirname(pic).split('/').first
 			if id == 2
 				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 3
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 4
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 5
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 6
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 7
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 8
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
-			elsif id == 9
-				File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 3
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 4
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 5
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 6
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 7
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 8
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
+			# elsif id == 9
+			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
 		end
 	end
 
