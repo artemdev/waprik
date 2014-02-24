@@ -4,7 +4,7 @@
 	Dir.glob("**/*.jpg").each do |pic|
 		id = File.dirname(pic).split('/').first
 			if id == "2"
-				File.rename (File.join(root_folder, id, "cover/cover.jpg")), "snapshot20131216200936.jpg"
+				File.rename (File.join(root_folder, File.dirname(pic), "cover.jpg"), "snapshot20131216200936.jpg"
 			# elsif id == 3
 			# 	File.rename File.join(root_path, id, "cover/cover.jpg"), "snapshot20131216200936.jpg"
 			# elsif id == 4
