@@ -1,4 +1,4 @@
-	root_folder = File.join("/home/artem/waprik", "public", "uploads", "video")
+	root_folder = File.join("/home/artem/waprik", "public", "uploads", "videos")
 	Dir.chdir root_folder
 
 	Dir.glob("**/*.jpg").each do |pic|
