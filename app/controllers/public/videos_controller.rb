@@ -65,6 +65,10 @@ class Public::VideosController < ApplicationController
     redirect_to('http://waprik.ru')
   end
 
+  def test
+    @videos = Video.all
+  end
+
   private
 
   def find_category

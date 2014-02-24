@@ -48,6 +48,7 @@ Waprik::Application.routes.draw do
 
   match 'videos' => 'videos#index'
   match 'video/list' => 'public#list'
+  match 'test' => 'public/videos#test'
   match 'videos/category/:id' => 'public/videos#category'
   match 'videos/collection/:collection_id' => 'public/videos#collection'
   match 'video' => 'public#videos'
