@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222111756) do
+ActiveRecord::Schema.define(:version => 20140225101415) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(:version => 20140222111756) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.boolean  "with_videos"
-    t.boolean  "with_serials"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "for_videos",  :default => false
+    t.boolean  "for_serials", :default => false
+    t.boolean  "for_news"
+    t.boolean  "for_music"
   end
 
   create_table "categories_music", :id => false, :force => true do |t|

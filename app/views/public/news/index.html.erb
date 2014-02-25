@@ -1,8 +1,7 @@
-<% provide(:title, "#{@news.title}") %>
+<% provide(:title, "Новости") %>
 
 <% @news.each do |news| %>
 	<div class="b">
-		<%= news.title %> <hr />
-		<%= news.description %>
+		<%= news.description.html_safe %>
 	</div>
 <% end %>

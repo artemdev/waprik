@@ -4,5 +4,6 @@ class IncreaseDescriptionLimitInNews < ActiveRecord::Migration
   end
 
   def down
+  	change_column :news, :description, :string
   end
 end

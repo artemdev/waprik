@@ -1,16 +1,26 @@
-# encoding: utf-8
 module ApplicationHelper
 
-  def translate_type( name ) 
-    case name
-      when "music"
-        name = "музыка"
-      when "video"
-        name = "видео"
-      when nil
-        name = "не удалось определить тип новости"
+  def news_sections item
+    type = []
+
+    item.categories.each do |category|
+      case type
+        when category.with_music?
+          type << "музыка"
+        when category.with_videos?
+          type << "видео"
+        when category.with_videos?
+          type << "сериалы"
+        when category.with_videos?
+          type << "видео"
+      end
     end
-    return name
+
+    if !type.join(', ').empty?
+     return type.join(', ')
+    else
+      return "Тип новости не определен"
+    end
   end
 
 	def error_messages_for(object)

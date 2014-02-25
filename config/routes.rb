@@ -1,12 +1,12 @@
 Waprik::Application.routes.draw do
   ### Admin resources ###
   namespace :admin do
-    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories
+    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections
   end
 
   #### Public resources ###
   scope module: 'public' do
-    resources :videos, :serials, :news, :music, :feedbacks
+    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories
   end
   
   # resources :videos, module: "admin"
@@ -23,12 +23,8 @@ Waprik::Application.routes.draw do
   match 'login' => 'admin/access#login'
   match 'admin/news' => 'admin/news#index'
   match 'admin/news/new' => 'admin/news#new'
-  match 'admin/news/new' => 'admin/news#new'
   match 'admin/logout' => 'admin/access#logout'
-
-  resources :admin do 
-    resources :access, :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories
-  end
+  match 'admin' => 'admin/access#menu'
 
   # resources :videos, module: "public"
   # resources :serials, module: "public"
@@ -38,7 +34,6 @@ Waprik::Application.routes.draw do
 
   root :to => "public/videos#index"
   ### admin ###
-  match 'admin' => 'admin/access#menu'
 
   ### public ###
 

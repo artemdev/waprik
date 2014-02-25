@@ -1,38 +1,36 @@
 class Admin::NewsController < ApplicationController
 	layout 'admin'
   before_filter :confirm_logged_in
-  before_filter :find_category, :only => ['new','create']
 
-  def index # Просмотр последних новостей
-    @categories = Category.all
+  def index
+    @news = News.all
   end
 
-
   def show
-     @related_news = @item.related_news if @item = News.find(params[:id])
+     @related_news = @item.related_news if @news = News.find(params[:id])
   end
 
   def new
   	@news = News.new
+    @categories = Category.for_news
   end
 
   def create
   	@news = News.new(params[:news])
-    @news.categories << @category
   	if @news.save
   		flash[:notice] = "Новость добавлена"
-  		redirect_to(action: 'list')
+  		redirect_to(action: 'index')
   	else
   		render('new')
   	end
   end
 
-  def edit # Редактирование (Шаг 1)
+  def edit
     @item = News.find(params[:id])
     @sections = ['@news.section']
   end
 
-  def update # Редакт
+  def update
     @item = News.find(params[:id])
     if @item.update_attributes(params[:item])
       flash[:notice] = "Новость обновлена"
@@ -42,19 +40,10 @@ class Admin::NewsController < ApplicationController
     end
   end
 
-  def list
-    @news = News.sorted
-  end
-
-  def destroy # Удаление
+  def destroy
     @item = News.find(params[:id]).destroy
     flash[:notice] = "Новость \"#{@item.description}\" удалена"
     redirect_to(:action => 'list', section: @section)
   end
 
-  private
-
-  def find_news_section
-    @category = params[:category_id]
-  end
 end

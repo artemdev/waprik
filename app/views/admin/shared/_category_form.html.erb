@@ -1,0 +1,14 @@
+<%= error_messages_for(@category) %>
+
+<%= f.label(:name, "Название") %> <br />
+<%= f.text_field(:name) %> <br />
+
+<%= f.check_box(:with_videos) %>
+<%= f.label(:for_videos, "для видео") %> <br/>
+
+<%= f.check_box(:with_serials) %>
+<%= f.label(:for_serials, "для сериалов") %> <br/>
+
+<%= f.check_box(:with_news) %>
+<%= f.label(:for_news, "для новостей") %> <br/>
+

@@ -4,5 +4,6 @@ class ChangeColumnInSerials < ActiveRecord::Migration
   end
 
   def down
+  	change_column :serials, :updating, :boolean, default: 0
   end
 end
