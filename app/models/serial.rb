@@ -3,7 +3,7 @@ class Serial < ActiveRecord::Base
 
   mount_uploader :cover, CoverUploader
 
-  validates_presence_of :name, message: '^ Нужно название сериала' 
+  validates_presence_of :name, message: '^ Нужно указать название сериала' 
   validates_presence_of :cover, message: '^ Нужно добавить ковер' 
   validates_presence_of :description, message: '^ Нужно описать сериал' 
   validates_presence_of :season, message: '^ Нужно указать сезон' 

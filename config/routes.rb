@@ -1,4 +1,5 @@
 Waprik::Application.routes.draw do
+
   ### Admin resources ###
   namespace :admin do
     resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections

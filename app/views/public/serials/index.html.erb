@@ -10,7 +10,6 @@
 			<%= link_to hit.name, serial_path(hit) %>
 		</div>
 		<% end %>
-			<%= will_paginate @hits, class: "flickr_pagination", previous_label: "<< туда", next_label: "сюда >>", style: 'font-style: none;' %>
 <% end %>
 
 <% unless @categories.empty? %>

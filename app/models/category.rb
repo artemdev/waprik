@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
- 	attr_accessible :name, :video_id, :with_serials, :with_news, :with_videos, :with_music
+ 	attr_accessible :name, :video_id, :for_serials, :for_news, :for_videos, :for_music
 
   has_and_belongs_to_many :videos
   has_and_belongs_to_many :music, :join_table => "categories_music"

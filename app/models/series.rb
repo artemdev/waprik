@@ -1,6 +1,7 @@
 class Series < ActiveRecord::Base
-  attr_accessible :name, :release_date, :number, :low_3gp, :mp4_320, :mp4_640
-  
+  attr_accessible :name, :release_date, :number, :low_3gp, :mp4_320, :mp4_640, :serial_id, :ftp_mp4_320, :ftp_mp4_640, :ftp_low_3gp
+  attr_accessor :ftp_mp4_320, :ftp_mp4_640, :ftp_low_3gp
+
   belongs_to :serial
 
   mount_uploader :low_3gp, SerialsUploader

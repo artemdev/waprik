@@ -18,12 +18,20 @@
 </div>
 <% @serial.series.each do |series| %>
 	<div class="title">
-		<%= series.number %> (<%= series.relise_date %>)
+		<%= series.number %> серия
 	</div>
 	<div class="a">
-		<%= link_to series.attachments.low_3gp.url, "3GP (среднее качество)" unless series.attachments.low_3gp.url.nil? %>
-		<%= link_to series.attachments.mp4_320.url, "MP4 320 (хорошее качество)" unless series.attachments.mp4_320.url.nil? %>
-		<%= link_to series.attachments.mp4_640.url, "MP4 640 (отличное качество)" unless series.attachments.mp4_640.url.nil? %>
+		<% unless series.low_3gp.url.nil? %>
+			<%= link_to  "3GP (среднее качество)", series.low_3gp.url unless series.low_3gp.url.nil? %> <%= number_to_human_size(series.low_3gp.size) %> <hr />
+		<% end %>
+
+		<% unless series.mp4_320.url.nil? %>
+			<%= link_to "MP4 320 (хорошее качество)", series.mp4_320.url unless series.mp4_320.url.nil? %> <%= number_to_human_size(series.mp4_320.size) %>  <hr />
+		<% end %>
+			
+		<% unless series.mp4_640.url.nil? %>
+			<%= link_to "MP4 640 (отличное качество)", series.mp4_640.url %> <%= number_to_human_size(series.mp4_640.size) %> 
+		<% end %>
 	</div>
 <% end %>
 </div>
