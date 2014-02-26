@@ -1,5 +1,5 @@
 class Public::SerialsController < ApplicationController
-	layout 'public'
+	layout 'mobile'
 
 	def index
 		@hits = Serial.hits.latest.paginate(page: params[:page], per_page: 5)
