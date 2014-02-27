@@ -38,27 +38,8 @@
 		</div>	
 <% end %>
 
-<% unless @current_page.to_i == 1 && @next_page.to_i.nil? && @previous_page.to_i == 0 %>
-	<div class="b">
-	<!-- 	<% unless @first_page == @current_page || @first_page.to_i == 0 %> 
-			<%= link_to(@first_page.to_i, {:action => 'category', :page => @first_page}) %>, 
-		<% end %> -->
+<%= will_paginate (@videos)%>
 
-		<% unless @previous_page == @current_page || @previous_page.to_i == 0 %> 
-			<%= link_to(@previous_page.to_i, {:action => 'category', :page => @previous_page}) %>, 
-		<% end %>
-
-		<%= @current_page %>
-
-		<% unless @next_page == @current_page || @last_page == 0 %>
-	 		, <%= link_to(@next_page, :action => 'category', :page => @next_page ) %>
-		<% end %>
-
-		<% unless @last_page == @current_page || @last_page < @previous_page || @last_page < @current_page || @last_page < @next_page %>
-			 ... <%= link_to(@last_page, :action => 'category', :page => @last_page ) %>
-		<% end %>
-	</div>
-<% end %>
 <div class="foot">
 	<%= link_to("Видео", videos_path) %> <br />
 	<%= link_to("На главную", 'http://waprik.ru') %> <br />

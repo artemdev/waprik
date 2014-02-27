@@ -5,6 +5,8 @@ class Admin::VideosController < ApplicationController
 	before_filter :confirm_logged_in
 	before_filter :find_category, :only => ['new', 'create', 'delete']
 
+	FTP_PATH = "public/ftp/video/"
+
 	def index
 		@categories = Category.sorted
 		@collections = Collection.top
@@ -61,12 +63,16 @@ class Admin::VideosController < ApplicationController
 	def edit 
 		@video = Video.find(params[:id])
 		@categories = Category.all.collect {|i| [i.name, i.id]}
+  	@files = Dir.glob(FTP_PATH + "*")
 	end
 
 	# Редактирование видео (шаг 2)
 	def update 
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@video = Video.find(params[:id])
+ 		@series.low_3gp = File.open(params[:video][:ftp_low_3gp]) unless params[:video][:ftp_low_3gp].nil? || params[:video][:ftp_low_3gp].empty?
+  	@series.mp4_320 = File.open(params[:video][:ftp_mp4_320]) unless params[:video][:ftp_mp4_320].nil? || params[:video][:ftp_mp4_320].empty?
+ 		@series.mp4_640 = File.open(params[:video][:ftp_mp4_640]) unless params[:video][:ftp_mp4_640].nil? || params[:video][:ftp_mp4_640].empty?
 		if @video.update_attributes(params[:video])
 			@video.add_to_collection
 			flash[:notice] = "Видео обновлено"

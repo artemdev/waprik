@@ -1,7 +1,9 @@
 class Admin::SeriesController < ApplicationController
 
 	before_filter :confirm_logged_in
-	FTP_PATH = "public/ftp/serials/"	
+
+	FTP_PATH = "public/ftp/serials/"
+
 	def new 
 		@serial = Serial.find(params[:id])
 		@series = Series.new
@@ -26,10 +28,15 @@ class Admin::SeriesController < ApplicationController
 
   def update
   	@series = Series.find(params[:id])
- 		@series.low_3gp = File.open(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
-  	@series.mp4_320 = File.open(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
- 		@series.mp4_640 = File.open(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
+  	
+		@series.low_3gp = File.open(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
+		@series.mp4_320 = File.open(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
+		@series.mp4_640 = File.open(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
+ 	
   	if @series.update_attributes(params[:series])
+  		File.delete(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
+			File.delete(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
+			File.delete(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
   		flash[:success] = "Серия успешно обновлена"
   		redirect_to action: 'edit', id: @series.serial.id
   	else
