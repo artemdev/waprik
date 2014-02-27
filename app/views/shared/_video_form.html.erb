@@ -42,7 +42,7 @@
 	<% if @video.low_3gp.url.nil? %>
 		<div class="b">
 			<%= f.label(:low_3gp, "3GP") %> <br />
-			<%= f.file_field(:low_3gp) %>
+			<%= f.select :ftp_low_3gp, @files.map {|f| File.absolute_path(f)}, { include_blank: true }%> <br>
 		</div>
 	<% else %>
 		<div class="b">
@@ -56,7 +56,7 @@
 	<% if  @video.mp4_320.url.nil? %>
 		<div class="b">
 			<%= f.label(:mp4_320, "MP4_320") %> <br />
-			<%= f.file_field(:mp4_320) %>
+			<%= f.select :ftp_mp4_320, @files.map {|f| File.absolute_path(f)}, { include_blank: true }%> <br>
 		</div>
 	<% else %>
 		<div class="b">
@@ -70,7 +70,7 @@
 	<% if  @video.mp4_640.url.nil? %>
 		<div class="b">
 			<%= f.label(:mp4_640, "MP4_640") %> <br />
-			<%= f.file_field(:mp4_640) %>
+			<%= f.select :ftp_mp4_640, @files.map {|f| File.absolute_path(f)}, { include_blank: true }%> <br>
 		</div>
 	<% else %>
 		<div class="b">

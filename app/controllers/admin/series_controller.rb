@@ -6,14 +6,24 @@ class Admin::SeriesController < ApplicationController
 
 	def new 
 		@serial = Serial.find(params[:id])
-		@series = Series.new
+		@series = @serial.series.build
+  	@files = Dir.glob(FTP_PATH + "*")
 	end
 
 	def create
 		@serial = Serial.find(params[:serial_id])
 		@series = Series.new(params[:series])
+
 		@series.serial = @serial
+
+		@series.low_3gp = File.open(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
+		@series.mp4_320 = File.open(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
+		@series.mp4_640 = File.open(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
+
 		if @series.save
+			File.delete(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
+			File.delete(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
+			File.delete(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
 			flash[:success] = "Сериал успешно добавлен"
 			redirect_to edit_admin_serial_path(@serial.id)
 		else
@@ -28,7 +38,7 @@ class Admin::SeriesController < ApplicationController
 
   def update
   	@series = Series.find(params[:id])
-  	
+
 		@series.low_3gp = File.open(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
 		@series.mp4_320 = File.open(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
 		@series.mp4_640 = File.open(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
