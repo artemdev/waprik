@@ -92,7 +92,7 @@ class Admin::VideosController < ApplicationController
 			
 			@video.add_to_collection
 			flash[:notice] = "Видео обновлено"
-			redirect_to(:action => 'edit', :id => @video.id)
+			redirect_to(action: 'edit', id: @video.id)
 		else
 			render('edit')
 		end
