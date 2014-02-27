@@ -13,7 +13,7 @@ class Public::VideosController < ApplicationController
 
   def category
     @category = Category.find(params[:id])
-    @videos = @category.videos.paginate(page: params[:page], per_page: 10)
+    @videos = @category.videos.paginate(page: params[:page], per_page: 5)
   end
 
   def show
