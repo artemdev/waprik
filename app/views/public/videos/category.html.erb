@@ -38,7 +38,7 @@
 		</div>	
 <% end %>
 
-<%= will_paginate (@videos)%>
+<%= will_paginate @videos, class: "flickr_pagination", previous_label: "<< туда", next_label: "сюда >>", style: 'font-style: none;'  %>%>
 
 <div class="foot">
 	<%= link_to("Видео", videos_path) %> <br />
