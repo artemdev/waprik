@@ -18,7 +18,7 @@ class Admin::VideosController < ApplicationController
 	def new # шаг 1
 		@video = Video.new(:category_id => @category.id)
 		@categories = Category.all.collect {|i| [i.name, i.id]}
-  	@files = Dir.glob(FTP_PATH + "*")
+  	@files = Dir.glob(FTP_PATH + "*").sort
 	end
 
 	def create # шаг 2
