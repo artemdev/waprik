@@ -1,10 +1,5 @@
 <% @title = "Бесплатное видео для мобильных" %>
 
-<% unless @last_news == nil %>
-	<div class="b">
-		<%= link_to("Новинки", news_path(@last_news)) %> <span class="small_text">(от <%= @last_news.created_at.to_s(:DayMonth) %>)</span>
-	</div>
-<% end %>
 <% unless @collections.empty? %>
 	<div class="title">
 		Классные подборки
@@ -38,7 +33,7 @@
 </div>
 
 <% if Rails.env.development? %>
-	d
+	development
 <% else %>
-	p
+	<img src="http://c.waplog.net/334067.cnt" alt="waplog">
 <% end %>

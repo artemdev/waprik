@@ -1,7 +1,6 @@
 <div class="b">
 	<%= link_to('Добавить новость', :controller => 'news', :action => 'new', :section => "video") %> <br />
 	<%= link_to('Создать жанр', :action => 'new_category') %>
-
 </div>
 <% unless @collections.empty? %>
 		<% @collections.each do |collection| %>
@@ -16,18 +15,19 @@
 			<% end %>
 		<% end %>
 <% end %>
-<div class="title">
-	Жанры
-</div>
+
 <% unless @categories.empty? %>
+	<div class="title">
+		Жанры
+	</div>
 	<% @categories.each do |category| %>
 	<div class="a">
-		<%= link_to("#{category.name}", {:action => 'category', :id => category.id}) %>
+		<%= link_to category.name, {controller: "admin/categories", action: "show", id: category.id, content_type: "videos" } %>
 
 		<span class="small_text">
 			(<%= category.videos.size %>)
 			<%= link_to("р", {:action => 'edit_category', :id => category.id}) %>
-			<%= link_to("x", :action => 'destroy_category', :id => category.id) %>
+			<%= link_to "x", admin_category_path(category), method: :delete %>
 		</span>
 	</div>
 	<% end %>
@@ -39,9 +39,3 @@
 	</div>
 
 <% end %>
-
-
-<div class="b">
-	<%= link_to("Видео подборки", :action => 'collections') %> <br />
-	<%= link_to("Видео новости", controller: 'news', action: 'list', section: 'video') %>
-</div>

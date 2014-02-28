@@ -8,7 +8,7 @@
 	</div>
 	<div class="a">
 		<% @video_categories.each do |category| %>
-			<%= link_to category.name, admin_category_path(category) %>
+			<%= link_to category.name, {controller: 'admin/categories', action: 'show', id: category.id, content_type: 'videos'} %>
 			<%= link_to "ред", edit_admin_category_path(category) %>
 			<%= link_to "x", admin_category_path(category), method: :delete %><br/>
 		<% end %>
@@ -21,7 +21,7 @@
 	</div>
 	<div class="a">
 		<% @serials_categories.each do |category| %>
-			<%= link_to category.name, admin_category_path(category) %>
+			<%= link_to category.name, {controller: 'admin/categories', action: 'show', id: category.id, content_type: 'serials'}  %>
 			<%= link_to "ред", edit_admin_category_path(category) %>
 			<%= link_to "x", admin_category_path(category), method: :delete %><br/>
 		<% end %>
@@ -34,7 +34,7 @@
 	</div>
 	<div class="a">
 		<% @news_categories.each do |category| %>
-			<%= link_to category.name, admin_category_path(category) %>
+			<%= link_to category.name, {controller: 'admin/categories', action: 'show', id: category.id, content_type: 'news'}  %>
 			<%= link_to "ред", edit_admin_category_path(category) %>
 			<%= link_to "x", admin_category_path(category), method: :delete %> <br/>
 		<% end %>

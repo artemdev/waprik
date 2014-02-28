@@ -34,8 +34,9 @@ Waprik::Application.routes.draw do
   # resources :feedbacks, module: "public"
 
   root :to => "public/videos#index"
-  ### admin ###
-
+  ### categories ###
+  match 'admin/categories/:id/:content_type' => 'admin/categories#show'
+  match 'categories/:id/:content_type' => 'public/categories#show'
   ### public ###
 
   # match 'news' => 'public#news'

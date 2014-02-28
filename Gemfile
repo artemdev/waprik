@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'thin'
 gem 'mysql2'
-gem 'bootstrap-sass', '2.1'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'carrierwave'
@@ -11,6 +10,10 @@ gem 'carrierwave-video'
 gem 'streamio-ffmpeg'
 gem 'russian', '~> 0.6.0'
 gem 'will_paginate', '~> 3.0'
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+gem 'therubyracer', :platforms => :ruby
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,7 +22,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 	gem 'execjs'
-	gem 'therubyracer', :platforms => :ruby
 end
 
 # group :production, :staging do

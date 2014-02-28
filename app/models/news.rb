@@ -7,7 +7,7 @@ class News < ActiveRecord::Base
   scope :sorted, order("updated_at ASC")
   scope :latest, order("created_at DESC") 
 
-  has_and_belongs_to_many :categories, foreign_key: :news_id
+  has_and_belongs_to_many :categories
   
   validates_presence_of :title, message: "^ Нужно указать заглавие к новости"
   validates_presence_of :description, message: "^Новость не может быть пустой"

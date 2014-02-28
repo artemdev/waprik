@@ -1,4 +1,4 @@
-require 'streamio-ffmpeg'
+# require 'streamio-ffmpeg'
 
 class Video < ActiveRecord::Base
 
@@ -29,8 +29,10 @@ class Video < ActiveRecord::Base
   before_destroy :remember_id
   after_destroy :remove_id_directory
 
-  scope :sorted, order("created_at DESC")
-
+  scope :sorted, order("updated_at DESC")
+  scope :latest, order("created_at DESC")
+  scope :today, lambda { WHERE("created_at BETWEEN '#{DateTime.now.beginning_of_day}' AND '#{DateTime.now.end_of_day}'")  }
+  
   # Добавление видео в коллекцию
   def add_to_collection 
     unless collection.empty?

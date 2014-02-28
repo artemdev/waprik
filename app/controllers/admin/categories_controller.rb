@@ -1,13 +1,24 @@
 class Admin::CategoriesController < ApplicationController
-	layout 'admin'
+	layout 'mobile'
 
 	before_filter :confirm_logged_in
 
 	def index
-		@video_categories = Category.for_videos
+		@video_categories = Category.for_videos.paginate(page: params[:page], per_page: 10)
 		@music_categories = Category.for_music
 		@serials_categories = Category.for_serials
 		@news_categories = Category.for_news
+	end
+
+	def show
+		@category = Category.find(params[:id])
+		if params[:content_type] == "videos"
+			@content = @category.videos.latest.paginate(page: params[:page], per_page: 5)
+		elsif params[:content_type] == "serials"
+			@content = @category.serials.latest.paginate(page: params[:page], per_page: 5)
+		elsif params[:content_type] == "news"
+			@content = @category.news.latest.paginate(page: params[:page], per_page: 5)
+		end
 	end
 
 	def new
@@ -24,9 +35,6 @@ class Admin::CategoriesController < ApplicationController
 		end
 	end
 
-	def show
-		@category = Category.find(params[:id])
-	end
 
 	def edit
 		@category = Category.find(params[:id])
@@ -44,7 +52,8 @@ class Admin::CategoriesController < ApplicationController
 
 	def destroy
 		Category.find(params[:id]).destroy
-		redirect_to admin_categories_path
+		flash[:notice] = "Жанр успешно удален"
+		redirect_to :back
 	end
 
 end

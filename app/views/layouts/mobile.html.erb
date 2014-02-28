@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 
 <head>
-  <title> <%= @title || 'waprik.ru' %></title>
+  <title> <%= yield(:title) %></title>
   <meta http-equiv="Content-Type" content="application/vnd.wap.xhtml+xml; charset=UTF-8">
   <%= stylesheet_link_tag "mobile", :media => "all" %>
   <%= csrf_meta_tags %>
@@ -17,5 +17,13 @@
 	
 	<%= yield %>
 
+	<div class="foot">
+		<% unless @footer_links.nil? %>
+			<% @footer_links.each do |link| %>
+				<%= link.html_safe %>
+			<% end %>
+		<% end %>
+		<a href="http://waprik.ru">На главную</a>
+	</div>
 </body>
 </html>

@@ -24,15 +24,19 @@ class Admin::SerialsController < ApplicationController
 
 	def show
 		@serial = Serial.find(params[:id])
+		@categories = Category.for_serials
 	end
 
 	def edit
 		@serial = Serial.find(params[:id])
+		@categories = Category.for_serials
 		1.times { @serial.series.build }
 	end
 
 	def update
 		@serial = Serial.find(params[:id])
+		@category = Category.find_by_name(params[:serial][:category])
+		@serial.categories << @category
 		if @serial.update_attributes(params[:serial])
 			flash[:success] = "Сериал успешно обновлен"
 			redirect_to edit_admin_serial_path(@serial.id)

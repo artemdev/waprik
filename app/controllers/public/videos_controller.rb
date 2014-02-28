@@ -9,6 +9,7 @@ class Public::VideosController < ApplicationController
     @collections = Collection.top
     @section = "video"
     @last_news = News.sorted.where(:section => @section).last
+    @today_videos = Video.today
   end
 
   def category

@@ -1,6 +1,6 @@
 class Admin::VideosController < ApplicationController
 	
-	layout 'admin'
+	layout 'mobile'
 	
 	before_filter :confirm_logged_in
 	before_filter :find_category, :only => ['new', 'create', 'delete']
@@ -12,16 +12,13 @@ class Admin::VideosController < ApplicationController
 		@collections = Collection.top
 	end
 
-	### ВИДЕО ###
-
- 	# Добавление нового видео 
-	def new # шаг 1
+	def new
 		@video = Video.new(:category_id => @category.id)
 		@categories = Category.all.collect {|i| [i.name, i.id]}
   	@files = Dir.glob(FTP_PATH + "*").sort
 	end
 
-	def create # шаг 2
+	def create
 		@video = Video.new(params[:video])
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@category.videos << @video
@@ -43,12 +40,10 @@ class Admin::VideosController < ApplicationController
 		end
 	end
 
-	# Показ видео
 	def show 
 		@video = Video.find(params[:id])
 	end
 
-	# Скачивание видео
 	def download 
 		@video = Video.find(params[:id])
 		version = params[:version]
@@ -69,14 +64,12 @@ class Admin::VideosController < ApplicationController
 		send_file(link)
 	end
 
-	# Редактирование видео (шаг 1)
 	def edit 
 		@video = Video.find(params[:id])
 		@categories = Category.all.collect {|i| [i.name, i.id]}
   	@files = Dir.glob(FTP_PATH + "*")
 	end
 
-	# Редактирование видео (шаг 2)
 	def update 
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@video = Video.find(params[:id])
@@ -98,7 +91,6 @@ class Admin::VideosController < ApplicationController
 		end
 	end
 
-	# Удаление видео (полностью)
 	def delete 
 		video = Video.find(params[:id])
 		video.remove_screen
@@ -110,14 +102,12 @@ class Admin::VideosController < ApplicationController
 		redirect_to(:action => 'category', :id => @category.id)
 	end
 
-	# Удаление скриншота видео
 	def delete_screen 
 		@video = Video.find(params[:id])
 		@video.remove_screen!
 		redirect_to(:action => 'edit', :id => @video.id)
 	end
 
-	# Удаление выбранного формата видео
 	def delete_from_admin_panel 
 		@video = Video.find(params[:id])
 		version = params[:version]
@@ -136,65 +126,6 @@ class Admin::VideosController < ApplicationController
 				@video.save
 		end
 		redirect_to(:action => 'edit', :id => @video.id)
-	end
-
-	### КАТЕГОРИИ ###
-
-	# Листинг видео из категории
-	def category 
-  	@category = Category.find(params[:id])
-      # Палингация
-      @first_page = 1
-      @current_page =  if params[:page].to_i > 0; params[:page].to_i; else @first_page; end
-      @limit = 5
-      @previous_page = @current_page - 1
-      @offset = if @current_page == @first_page; 0; else @previous_page * @limit; end;
-      @videos = Video.sorted.where(:category_id => @category.id).limit(@limit).offset(@offset)
-      @next_page = @current_page + 1
-      @last_page = @videos.size / @limit
-  end
-
-	# Добавление новой категории (шаг 1)
-	def new_category 
-		@category = Category.new
-	end
-
-	# Добавление новой категории (шаг 2)
-	def create_category 
-		@category = Category.new(params[:category])
-		if @category.save
-			flash[:notice] = "Категория успешно создана"
-			redirect_to(:action => 'index')
-		else
-			render('new_category')
-		end
-	end
-
-	# редактирование категории (шаг 1)
-	def edit_category 
-		@category = Category.find(params[:id])
-	end
-
-	# редактирование категории (шаг 2)
-	def update_category 
-		@category = Category.find(params[:id])
-		@category.update_attributes(params[:category])
-		if @category.save
-			flash[:notice] = "Категория успешно создана"
-			redirect_to(:action => 'index')
-		else
-			render('new')
-		end
-	end
-
-	# удаление категории
-	def destroy_category 
-		@category = Category.find(params[:id])
-		if @category.destroy_videos
-			@category.destroy
-		end
-		flash[:notice] = "Жанр удален"
-		redirect_to(:action => 'index')
 	end
 
 	### КОЛЛЕКЦИИ ###

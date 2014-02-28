@@ -1,6 +1,6 @@
 class Serial < ActiveRecord::Base
-  attr_accessible :cover, :description, :season, :updating, :name, :hit, :year, :series_attributes
-
+  attr_accessible :cover, :description, :season, :updating, :name, :hit, :year, :series_attributes, :category
+  attr_accessor :category
   mount_uploader :cover, CoverUploader
 
   validates_presence_of :name, message: '^ Нужно указать название сериала' 

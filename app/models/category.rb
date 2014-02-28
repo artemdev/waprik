@@ -13,6 +13,8 @@ class Category < ActiveRecord::Base
   scope :for_videos, where(for_videos: true)
 
   validates_presence_of :name, message: "нужно заполнить название категории"
+  
+  before_destroy { videos.clear }
 
  	# Удаление видео из категории
  	def destroy_videos
