@@ -78,4 +78,4 @@
 	</div>
 <% end %>
 
-<% @footer_links = ["#{link_to 'Все сериалы', serials_path} <br/>", "#{link_to "В категорию #{@video.category.last.name}", category_path(@video.category.last)} <br/>"] %>
+<% @footer_links = ["#{link_to 'Все видео', videos_path} <br/>", "#{link_to "В категорию #{@video.category.last.name}", category_path(@video.category.last)} <br/>"] %>
