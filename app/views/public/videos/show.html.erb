@@ -77,7 +77,5 @@
 		<% end %>
 	</div>
 <% end %>
-<div class="foot">
-	<%= link_to("Видео", videos_path) %> <br />
-	<%= link_to("На главную", 'http://waprik.ru') %> <br />
-</div>
+
+<% @footer_links = ["#{link_to 'Все сериалы', serials_path} <br/>", "#{link_to "В категорию #{@video.category.last.name}", category_path(@video.category.last)} <br/>"] %>
