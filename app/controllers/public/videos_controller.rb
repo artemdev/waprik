@@ -14,7 +14,7 @@ class Public::VideosController < ApplicationController
 
   def category
     @category = Category.find(params[:id])
-    @videos = @category.videos.sorted.paginate(page: params[:page], per_page: 5)
+    @videos = @category.videos.latest.paginate(page: params[:page], per_page: 5)
   end
 
   def show
