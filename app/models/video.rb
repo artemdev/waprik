@@ -31,8 +31,8 @@ class Video < ActiveRecord::Base
 
   scope :sorted, order("updated_at DESC")
   scope :latest, order("created_at DESC")
-  scope :today, lambda { WHERE("created_at BETWEEN '#{DateTime.now.beginning_of_day}' AND '#{DateTime.now.end_of_day}'")  }
-  
+  scope :today, where('DATE(created_at) = ?', Date.today)
+
   # Добавление видео в коллекцию
   def add_to_collection 
     unless collection.empty?
