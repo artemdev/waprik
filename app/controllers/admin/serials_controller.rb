@@ -10,6 +10,7 @@ class Admin::SerialsController < ApplicationController
 	def new
 		@serial = Serial.new
 		1.times { @serial.series.build }
+		@categories = Category.for_serials
 	end
 
 	def create
