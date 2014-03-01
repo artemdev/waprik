@@ -5,7 +5,7 @@ class Public::VideosController < ApplicationController
 	before_filter :find_category, :only => ['list', 'show']
 
   def index
-  	@categories = Category.sorted
+  	@categories = Category.for_videos.sorted
     @collections = Collection.top
     @section = "video"
     @last_news = News.sorted.where(:section => @section).last
