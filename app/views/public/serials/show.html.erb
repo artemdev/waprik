@@ -18,7 +18,7 @@
 	<% unless @serial.categories.empty? %>
 		<hr />
 		Жанры
-		<% @serial.categories.each do |category| %>
+		<% @serial.categories.uniq.each do |category| %>
 			<%= link_to category.name, category_path(category) %>
 		<% end %>	
 	<% end %>

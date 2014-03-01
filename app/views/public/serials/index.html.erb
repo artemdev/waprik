@@ -33,7 +33,7 @@
 	</div>
 	<div class="a">
 		<% @categories.each do |category| %>
-			<%= link_to category.name, {controller: "categories", action: "show", id: category.id, content_type: "serials"} %> <span class="small_text"><%= category.serials.count %></span> <br />
+			<%= link_to category.name, {controller: "categories", action: "show", id: category.id, content_type: "serials"} %> <span class="small_text"><%= category.serials.uniq.count %></span> <br />
 		<% end %>
 	</div>
 	
