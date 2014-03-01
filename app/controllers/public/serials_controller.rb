@@ -12,6 +12,7 @@ class Public::SerialsController < ApplicationController
 
 	def show
 		@serial = Serial.find(params[:id])
+		@series = @serial.series.latest
 	end
 
 	def edit
