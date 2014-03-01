@@ -15,6 +15,26 @@ class Public::SerialsController < ApplicationController
 		@series = @serial.series.latest
 	end
 
+  def download
+    @series = Series.find(params[:id])
+    version = params[:version]
+    case version
+      when 'low_3gp'
+        @series.dl_low_3gp += 1
+        @series.save
+        link = @series.low_3gp.url
+      when 'mp4_320'
+        @series.dl_mp4_320 += 1
+        @series.save
+        link = @series.mp4_320.url
+      when 'mp4_640'
+        @series.dl_mp4_640 += 1
+        @series.save
+        link = @series.mp4_640.url
+    end
+    redirect_to(link)
+  end
+
 	def edit
 	end
 
