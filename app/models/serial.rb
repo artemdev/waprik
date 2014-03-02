@@ -7,7 +7,7 @@ class Serial < ActiveRecord::Base
   validates_presence_of :cover, message: '^ Нужно добавить ковер' 
   validates_presence_of :description, message: '^ Нужно описать сериал' 
   validates_presence_of :season, message: '^ Нужно указать сезон' 
-  validates_presence_of :year, message: '^ Нужно указать год(ы) выхода сериала' 
+  validates_presence_of :years, message: '^ Нужно указать год(ы) выхода сериала' 
  
 
   has_and_belongs_to_many :categories
