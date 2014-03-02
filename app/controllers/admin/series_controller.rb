@@ -33,7 +33,7 @@ class Admin::SeriesController < ApplicationController
 
   def edit
   	@serial = Serial.find(params[:id])
-  	@files = Dir.glob(FTP_PATH + "*")
+  	@files = Dir.glob(FTP_PATH + "*").sort
   end	
 
   def update

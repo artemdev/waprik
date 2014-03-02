@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225101415) do
+ActiveRecord::Schema.define(:version => 20140302162537) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -133,12 +133,12 @@ ActiveRecord::Schema.define(:version => 20140225101415) do
 
   create_table "serials", :force => true do |t|
     t.string   "description"
-    t.string   "season"
+    t.integer  "season"
     t.boolean  "updating",    :default => true
     t.string   "name"
     t.string   "cover"
     t.boolean  "hit"
-    t.string   "year"
+    t.string   "years"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
