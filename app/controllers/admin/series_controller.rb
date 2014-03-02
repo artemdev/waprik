@@ -7,7 +7,7 @@ class Admin::SeriesController < ApplicationController
 	def new 
 		@serial = Serial.find(params[:id])
 		@series = @serial.series.build
-  	@files = Dir.glob(FTP_PATH + "*")
+  	@files = Dir.glob(FTP_PATH + "*").sort
 	end
 
 	def create
