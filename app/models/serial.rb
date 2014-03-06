@@ -1,5 +1,5 @@
 class Serial < ActiveRecord::Base
-  attr_accessible :cover, :description, :season, :updating, :name, :hit, :year, :series_attributes, :category
+  attr_accessible :cover, :description, :season, :updating, :name, :hit, :years, :series_attributes, :category
   attr_accessor :category
   mount_uploader :cover, CoverUploader
 

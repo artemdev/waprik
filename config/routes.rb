@@ -2,38 +2,22 @@ Waprik::Application.routes.draw do
 
   ### Admin resources ###
   namespace :admin do
-    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections
+    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :access
   end
 
   #### Public resources ###
   scope module: 'public' do
     resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories
   end
-  
-  # resources :videos, module: "admin"
-  # resources :news, module: "admin"
-  # resources :music, module: "admin"
-  # resources :admin_users, module: "admin"
-  # resources :feedbacks, module: "admin"
-  # resources :serials, module: "admin" 
-  # resources :series, module: "admin" 
-  # resources :categories, module: "admin"  
 
   # ???
-  match 'admin/access/:action' => 'admin/access'
+  root :to => "public/videos#index"
+
   match 'login' => 'admin/access#login'
-  match 'admin/news' => 'admin/news#index'
-  match 'admin/news/new' => 'admin/news#new'
-  match 'admin/logout' => 'admin/access#logout'
+  match 'logout' => 'admin/access#logout'
   match 'admin' => 'admin/access#menu'
 
-  # resources :videos, module: "public"
-  # resources :serials, module: "public"
-  # resources :news, module: "public"
-  # resources :music, module: "public"
-  # resources :feedbacks, module: "public"
 
-  root :to => "public/videos#index"
   ### categories ###
   match 'admin/categories/:id/:content_type' => 'admin/categories#show'
   match 'categories/:id/:content_type' => 'public/categories#show'
@@ -51,6 +35,7 @@ Waprik::Application.routes.draw do
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
   match 'serials' => 'public/serials#index'
+
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
