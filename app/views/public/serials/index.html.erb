@@ -4,20 +4,21 @@
 	<div class="title">
 		Популярное сейчас
 	</div>
-		<% @series.each do |series| %>
-		
+		<% @hits.each do |hit| %>
 			<div class="a">
 				<table>
 					<tr>
 						<td>
-							<%= image_tag series.serial.cover.mini.url unless series.serial.cover.mini.url.nil?%>
+							<%= image_tag hit.cover.mini.url unless hit.cover.mini.url.nil?%>
 						</td>
 						<td valign="top">
-							<%= link_to series.serial.name, serial_path(series.serial) %>
+							<%= link_to hit.name, serial_path(hit) %>
 							<span class="small_text">
+								<% unless hit.series.last.nil? %>
 									<br />
-									Добавлена <%= series.number %> серия<br />
-									Обновлен: <%=  time_ago_in_words(series.created_at) %> назад<br />
+									Добавлена <%= hit.series.last.number %> серия<br />
+									Обновлен: <%=  time_ago_in_words(hit.series.last.created_at) %> назад<br />
+								<% end %>
 							</span>
 						</td>
 					</tr>
