@@ -11,4 +11,5 @@ class Series < ActiveRecord::Base
   validates_presence_of :number, message: '^ Нужно указать номер серии'
 
   scope :latest, order("number DESC")
+  scope :fresh, order("created_at DESC")
 end
