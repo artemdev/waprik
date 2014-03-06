@@ -21,6 +21,7 @@ class Admin::SeriesController < ApplicationController
 		@series.mp4_640 = File.open(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
 
 		if @series.save
+			@serial.save
 			File.delete(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
 			File.delete(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
 			File.delete(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
