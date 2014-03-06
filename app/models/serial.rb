@@ -16,6 +16,6 @@ class Serial < ActiveRecord::Base
   accepts_nested_attributes_for :series
 
   scope :hits, where(hit: true)
-  scope :latest, order(series: "updated_at DESC")
+  scope :latest, order(series: "created_at DESC")
 
 end
