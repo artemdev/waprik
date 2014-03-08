@@ -2,7 +2,7 @@ Waprik::Application.routes.draw do
 
   ### Admin resources ###
   namespace :admin do
-    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :access
+    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections
   end
 
   #### Public resources ###
@@ -16,7 +16,7 @@ Waprik::Application.routes.draw do
   match 'login' => 'admin/access#login'
   match 'logout' => 'admin/access#logout'
   match 'admin' => 'admin/access#menu'
-
+  match 'admin/access/attempt_login' => 'admin/access#attempt_login'
 
   ### categories ###
   match 'admin/categories/:id/:content_type' => 'admin/categories#show'
