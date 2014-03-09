@@ -43,7 +43,7 @@ class CoverUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :preview do
-     process :resize_to_fill => [200, 10000]
+     process :resize_to_fill => [200, 0]
   end
 
   version :mini do
