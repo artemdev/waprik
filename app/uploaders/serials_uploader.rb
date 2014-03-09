@@ -7,21 +7,10 @@ class SerialsUploader < CarrierWave::Uploader::Base
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
+  after :remove, :delete_empty_upstream_dirs
 
   def filename
      "#{Russian.translit(model.serial.name[0..20]).gsub(' ', '_').delete(',')}_#{mounted_as}.#{file.extension}" if original_filename.present?
-  end
-
-  # store! nil's the cache_id after it finishes so we need to remember it for deletion
-  def remember_cache_id(new_file)
-    @cache_id_was = cache_id
-  end
-  
-  def delete_tmp_dir(new_file)
-    # make sure we don't delete other things accidentally by checking the name pattern
-    if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
-      FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
-    end
   end
 
   # Choose what kind of storage to use for this uploader:
@@ -31,7 +20,11 @@ class SerialsUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/serials/#{model.serial.id}/#{model.number}/"
+    "#{base_store_dir}/serials/#{model.serial.id}/#{model.number}/"
+  end
+
+  def base_store_dir
+    "uploads"
   end
 
   def extension_white_list
@@ -68,4 +61,25 @@ class SerialsUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  # store! nil's the cache_id after it finishes so we need to remember it for deletion
+  def remember_cache_id(new_file)
+    @cache_id_was = cache_id
+  end
+  
+  def delete_tmp_dir(new_file)
+    # make sure we don't delete other things accidentally by checking the name pattern
+    if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
+      FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
+    end
+  end
+
+  def delete_empty_upstream_dirs
+    path = ::File.expand_path(store_dir, root)
+    Dir.delete(path) # fails if path not empty dir
+
+    path = ::File.expand_path(base_store_dir, root)
+    Dir.delete(path) # fails if path not empty dir
+  rescue SystemCallError
+    true # nothing, the dir is not empty
+  end
 end
