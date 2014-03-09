@@ -47,7 +47,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :mini do
-     process :resize_to_fill => [50, 80]
+     process :resize_to_fill => [60, 80]
   end
 
 
