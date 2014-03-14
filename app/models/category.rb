@@ -6,11 +6,14 @@ class Category < ActiveRecord::Base
   has_and_belongs_to_many :serials
   has_and_belongs_to_many :news
 
+  belongs_to :categorable, polymorphic: true
+
  	scope :sorted, order("created_at ASC")
   scope :for_serials, where(for_serials: true)
   scope :for_news, where(for_news: true)
   scope :for_music, where(for_music: true)
   scope :for_videos, where(for_videos: true)
+  scope :for_pictures, where(for_pictures: true)
 
   validates_presence_of :name, message: "нужно заполнить название категории"
   

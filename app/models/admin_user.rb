@@ -4,6 +4,8 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :username, :first_name, :last_name, :email, :password
   attr_accessor :password
 
+  has_many :pictures, foreign_key: "author_id"
+  
   # only on create, so other attributes of this user can be changed
   # validates_presence_of :username
   # validates_length_of :username, :maximum => 100

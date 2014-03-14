@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140302162537) do
+ActiveRecord::Schema.define(:version => 20140314075813) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -40,12 +40,15 @@ ActiveRecord::Schema.define(:version => 20140302162537) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "for_videos",  :default => false
-    t.boolean  "for_serials", :default => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "for_videos",       :default => false
+    t.boolean  "for_serials",      :default => false
     t.boolean  "for_news"
     t.boolean  "for_music"
+    t.integer  "categorable_id"
+    t.string   "categorable_type"
+    t.boolean  "for_pictures"
   end
 
   create_table "categories_music", :id => false, :force => true do |t|
@@ -130,6 +133,18 @@ ActiveRecord::Schema.define(:version => 20140302162537) do
     t.datetime "updated_at",                  :null => false
     t.string   "title"
   end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.integer  "downloads",   :default => 0
+    t.string   "description"
+    t.integer  "author_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.boolean  "erotic"
+  end
+
+  add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
 
   create_table "serials", :force => true do |t|
     t.string   "description"

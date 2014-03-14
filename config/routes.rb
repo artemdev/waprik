@@ -2,12 +2,12 @@ Waprik::Application.routes.draw do
 
   ### Admin resources ###
   namespace :admin do
-    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections
+    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
   end
 
   #### Public resources ###
   scope module: 'public' do
-    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories
+    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures
   end
 
   # ???
@@ -35,7 +35,7 @@ Waprik::Application.routes.draw do
   match 'video' => 'public#videos'
   match 'video/show/:id' => 'public#show'
   match 'serials' => 'public/serials#index'
-
+  match 'pictures/download/:id' => 'public/pictures#download'
   # match '/videos/collection' => 'videos#collection'  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -89,5 +89,6 @@ Waprik::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
+
   match ':controller(/:action(/:id))(.:format)'
 end
