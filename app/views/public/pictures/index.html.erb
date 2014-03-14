@@ -13,7 +13,7 @@
 		<hr>
 		<% end %>
 	<% end %>
-	<% unless @pictures.size <= 7 %>
+	<% unless @pictures.size >= 7 %>
 		<hr />
 	<% end %>
 	<%= will_paginate(@pictures, next_label: "", previous_label: "") %>
