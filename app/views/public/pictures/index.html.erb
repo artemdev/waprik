@@ -7,7 +7,7 @@
 	<% @pictures.each do |picture| %>
 		<%= time_ago_in_words(picture.created_at) %> назад <br />
 		<%= image_tag(picture.image.preview.url)%> <br />
-		<%= link_to "скачать (#{picture.downloads.count})", {action: 'download', id: picture.id} %> <%= number_to_human_size(picture.image.size) %>
+		<%= link_to "скачать (#{picture.downloads.size.count})", {action: 'download', id: picture.id} %> <%= number_to_human_size(picture.image.size) %>
 
 		<% unless picture == @pictures.last %>
 		<hr>
