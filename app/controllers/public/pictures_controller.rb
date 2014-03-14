@@ -2,7 +2,7 @@ class Public::PicturesController < ApplicationController
 	layout 'mobile'
 
 	def index
-		@pictures = Picture.erotic.latest.paginate(page: params[:page], per_page: 10)
+		@pictures = Picture.erotic.latest.paginate(page: params[:page], per_page: 7)
 	end
 
   def download 
