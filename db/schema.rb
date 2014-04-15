@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140314075813) do
+ActiveRecord::Schema.define(:version => 20140415083926) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -113,6 +113,135 @@ ActiveRecord::Schema.define(:version => 20140314075813) do
   end
 
   add_index "feedbacks", ["type"], :name => "index_feedbacks_on_type"
+
+  create_table "films", :force => true do |t|
+    t.integer "item_id",                           :null => false
+    t.string  "title",              :limit => 100, :null => false
+    t.integer "user_id",                           :null => false
+    t.boolean "is_favourite",                      :null => false
+    t.text    "about",                             :null => false
+    t.integer "duration_hours",     :limit => 1,   :null => false
+    t.integer "duration_minutes",   :limit => 1,   :null => false
+    t.integer "duration_seconds",   :limit => 1,   :null => false
+    t.integer "time",                              :null => false
+    t.integer "downloads",                         :null => false
+    t.string  "world_estimate",     :limit => 10,  :null => false
+    t.string  "cis_estimate",       :limit => 10,  :null => false
+    t.integer "last_download_time",                :null => false
+    t.string  "prepare_status",     :limit => 100, :null => false
+    t.string  "file_name",                         :null => false
+    t.integer "month",              :limit => 1,   :null => false
+    t.integer "year",               :limit => 2,   :null => false
+    t.integer "quality_id",                        :null => false
+    t.integer "translation_id",                    :null => false
+    t.integer "count_likes",                       :null => false
+    t.integer "count_comments",                    :null => false
+    t.integer "news_time",                         :null => false
+  end
+
+  add_index "films", ["count_comments"], :name => "count_comments"
+  add_index "films", ["count_likes"], :name => "count_likes"
+  add_index "films", ["downloads"], :name => "downloads"
+  add_index "films", ["is_favourite"], :name => "is_favourite"
+  add_index "films", ["item_id"], :name => "item_id"
+  add_index "films", ["last_download_time"], :name => "last_download_time"
+  add_index "films", ["month"], :name => "month"
+  add_index "films", ["news_time"], :name => "news_time"
+  add_index "films", ["quality_id"], :name => "quality_id"
+  add_index "films", ["time"], :name => "time"
+  add_index "films", ["title"], :name => "title"
+  add_index "films", ["translation_id"], :name => "translation_id"
+  add_index "films", ["user_id"], :name => "user_id"
+  add_index "films", ["year"], :name => "year"
+
+  create_table "films_actors", :force => true do |t|
+    t.string "name", :limit => 100, :null => false
+  end
+
+  create_table "films_actors_through", :id => false, :force => true do |t|
+    t.integer "film_id",  :null => false
+    t.integer "actor_id", :null => false
+  end
+
+  add_index "films_actors_through", ["film_id", "actor_id"], :name => "film_id", :unique => true
+
+  create_table "films_directors", :force => true do |t|
+    t.string "name", :limit => 100, :null => false
+  end
+
+  create_table "films_directors_through", :id => false, :force => true do |t|
+    t.integer "film_id",     :null => false
+    t.integer "director_id", :null => false
+  end
+
+  add_index "films_directors_through", ["film_id", "director_id"], :name => "film_id", :unique => true
+
+  create_table "films_files", :force => true do |t|
+    t.integer "film_id",                 :null => false
+    t.integer "format_id",               :null => false
+    t.string  "title",     :limit => 50, :null => false
+    t.string  "real_name",               :null => false
+    t.integer "size",                    :null => false
+    t.string  "ext",       :limit => 10, :null => false
+    t.integer "position",  :limit => 2,  :null => false
+  end
+
+  add_index "films_files", ["ext"], :name => "ext"
+  add_index "films_files", ["film_id"], :name => "film_id"
+  add_index "films_files", ["format_id"], :name => "format_id"
+  add_index "films_files", ["position"], :name => "position"
+  add_index "films_files", ["size"], :name => "size"
+
+  create_table "films_formats", :force => true do |t|
+    t.string "title",       :limit => 100,  :null => false
+    t.string "description", :limit => 100,  :null => false
+    t.string "ffparams",    :limit => 1000, :null => false
+    t.string "ext",         :limit => 10,   :null => false
+  end
+
+  create_table "films_genres", :force => true do |t|
+    t.string "title", :limit => 100, :null => false
+  end
+
+  create_table "films_genres_through", :id => false, :force => true do |t|
+    t.integer "film_id",  :null => false
+    t.integer "genre_id", :null => false
+  end
+
+  add_index "films_genres_through", ["film_id", "genre_id"], :name => "film_id", :unique => true
+
+  create_table "films_parts", :force => true do |t|
+    t.integer "num",       :null => false
+    t.integer "file_id",   :null => false
+    t.integer "film_id",   :null => false
+    t.integer "format_id", :null => false
+    t.string  "real_name", :null => false
+    t.integer "duration",  :null => false
+    t.integer "size",      :null => false
+    t.integer "downloads", :null => false
+  end
+
+  add_index "films_parts", ["downloads"], :name => "downloads"
+  add_index "films_parts", ["file_id"], :name => "file_id"
+  add_index "films_parts", ["film_id"], :name => "film_id"
+  add_index "films_parts", ["format_id"], :name => "format_id"
+  add_index "films_parts", ["num"], :name => "num"
+
+  create_table "films_qualities", :force => true do |t|
+    t.string  "title",    :limit => 50, :null => false
+    t.integer "position",               :null => false
+  end
+
+  create_table "films_trailers", :force => true do |t|
+    t.integer "film_id",                :null => false
+    t.string  "filename", :limit => 50, :null => false
+    t.integer "filesize",               :null => false
+  end
+
+  create_table "films_translations", :force => true do |t|
+    t.string  "title",    :limit => 50, :null => false
+    t.integer "position",               :null => false
+  end
 
   create_table "music", :force => true do |t|
     t.boolean  "hit"

@@ -7,10 +7,9 @@ Waprik::Application.routes.draw do
 
   #### Public resources ###
   scope module: 'public' do
-    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures
+    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :films
   end
 
-  # ???
   root :to => "public/videos#index"
 
   match 'login' => 'admin/access#login'
