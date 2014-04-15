@@ -1,0 +1,8 @@
+class CreateFilmDirectors < ActiveRecord::Migration
+  def change
+    create_table :films_directors do |t|
+    	t.string :name
+      t.timestamps
+    end
+  end
+end
