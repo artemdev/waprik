@@ -1,5 +1,7 @@
 class FilmDirectorThrough < ActiveRecord::Base
   self.table_name = "films_directors_through"
 
-  # attr_accessible :title, :body
+  belongs_to :film
+  belongs_to :director, class_name: "FilmDirector"
+
 end

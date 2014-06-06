@@ -1,5 +1,6 @@
 class Admin::NewsController < ApplicationController
 	layout 'mobile'
+  
   before_filter :confirm_logged_in
 
   def index

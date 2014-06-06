@@ -1,26 +1,25 @@
 class Admin::AccessController < ApplicationController
-layout 'admin'
+  layout 'admin'
 	
   before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout]
 
 	def index
-    redirect_to(:action => 'menu')
+    redirect_to(action: 'menu')
 	end
 
   def login
-  	redirect_to(:action => 'menu') if session[:user_id] != nil
+  	redirect_to(action: 'menu') if cookies[:remember_token]
   end
 
   def attempt_login
   	authorized_user = AdminUser.authenticate(params[:username], params[:password])
   	if authorized_user
-  		session[:user_id] = authorized_user.id
-   		session[:username] = authorized_user.username
+  		cookies.permanent[:remember_token] = authorized_user.remember_token
   		flash[:notice] = "Успех!"
-  		redirect_to(:action => 'menu')
+  		redirect_to(action: 'menu')
   	else
   		flash[:notice] = "Неверный логин или пароль :("
-  		redirect_to(:action => 'login')
+  		redirect_to(action: 'login')
   	end
   end
 
@@ -28,9 +27,8 @@ layout 'admin'
   end
 
   def logout
-  	session[:user_id] = nil
-   	session[:username] = nil
+  	cookies.delete(:remember_token)
   	flash[:notice] = "Выход спешен :)"
-		redirect_to(:action => 'login')
+		redirect_to(action: 'login')
   end
 end

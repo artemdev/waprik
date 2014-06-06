@@ -1,13 +1,18 @@
 Waprik::Application.routes.draw do
 
-  ### Admin resources ###
+  # Admin resources
   namespace :admin do
     resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
-  end
 
-  #### Public resources ###
+    resources :films do
+      get 'destroy_director', on: :member
+      get 'destroy_actor', on: :member
+    end
+    resources :film_files
+  end
+  # Public resources
   scope module: 'public' do
-    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :films
+    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :films, :film_genres, :film_files, :film_actors, :film_directors
   end
 
   root :to => "public/videos#index"
