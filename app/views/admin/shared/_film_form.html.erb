@@ -1,0 +1,41 @@
+<%= f.label :title, "Название" %> <br />
+<%= f.text_field :title %> <br />
+
+<%= f.label :year, "Год" %>	<br />
+<%= f.text_field :year %> <br />
+
+<%= f.label :cover, "Обложка" %>	<br />
+<%= f.file_field :cover %> <br />
+
+<%= f.check_box :is_favourite %>	
+<%= f.label :is_favourite, "избранный" %> <br />
+
+<%= f.label :about, "Описание" %> <br />
+<%= f.text_area :about %> <br />
+
+<%= f.label :selected_genre, "Жанры" %> <br />
+<%= f.select :selected_genres, @genres.map {|genre| genre.title}, {}, multiple: true %> <br />
+
+<% unless @actors.empty? && @film.new_record? %>
+	<% @actors.each do |actor| %>
+		<%= actor.name %> <%= link_to "x", {action: 'destroy_actor', film_id: @film.id, actor_id: actor.id} %> <br />
+	<% end %>
+<% end %>
+
+<%= f.label :new_actors, "Знаменитые актеры" %> <br />
+<%= f.text_area :new_actors %> <br />
+
+<% unless @directors.empty? && @film.new_record? %>
+	<% @directors.each do |director| %>
+		<%= director.name %> <%= link_to "x", {action: 'destroy_director', film_id: @film.id, director_id: director.id} %> <br />
+	<% end %>
+<% end %>
+
+<%= f.label :new_directors, "Режисеры" %> <br />
+<%= f.text_area :new_directors %> <br />
+
+<%= f.label :world_estimate, "Мировая оценка" %> <br />
+<%= f.text_field :world_estimate %> <br />
+
+<%= f.label :world_estimate, "Оценка снг" %> <br />
+<%= f.text_field :cis_estimate %> <br />

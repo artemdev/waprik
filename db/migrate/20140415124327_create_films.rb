@@ -1,0 +1,40 @@
+class CreateFilms < ActiveRecord::Migration
+  def change
+  	create_table :films do |t|
+		  	t.integer "item_id"
+		    t.string  "title"
+		    t.integer "user_id"
+		    t.boolean "is_favourite"
+		    t.text    "about"
+		    t.integer "duration_hours"
+		    t.integer "duration_minutes"
+		    t.integer "duration_seconds"
+		    t.integer "time"
+		    t.integer "downloads"
+		    t.string  "world_estimate"
+		    t.string  "cis_estimate"
+		    t.integer "last_download_time"
+		    t.string  "prepare_status"
+		    t.string  "file_name"
+		    t.integer "month"
+		    t.integer "year"
+		    t.integer "quality_id"
+		    t.integer "translation_id"
+		    t.integer "count_likes"
+		    t.integer "count_comments"
+		    t.integer "news_time"
+      	t.timestamps
+  	end
+			  add_index "films", "downloads"
+			  add_index "films", "is_favourite"
+			  add_index "films", "last_download_time"
+			  add_index "films", "month"
+			  add_index "films", "news_time"
+			  add_index "films", "quality_id"
+			  add_index "films", "time"
+			  add_index "films", "title"
+			  add_index "films", "translation_id"
+			  add_index "films", "user_id"
+			  add_index "films", "year"
+  end
+end

@@ -1,0 +1,10 @@
+<% provide(:title, "Добавить файлы") %>
+
+<%= form_for(:film_file, url: {action: 'create', film_id: @film.id}, method: :post, multipart: true) do |f| %>
+	
+	<%= f.select :format_title, @formats.map {|f| f.title} %> <br>
+	<%= f.select :new_file, @files.map {|f| File.absolute_path(f)}, { include_blank: true } %> <br>
+
+
+	<%= f.submit "Добавить" %>
+<% end %>

@@ -10,7 +10,7 @@ class FilmFile < ActiveRecord::Base
   self.table_name = "films_files"
 	attr_accessible :new_file, :format_title, :file
 
-	FTP_PATH = "public/"
+	FTP_PATH = "public/tmp/"
 	FTP_TMP_PATH = "public/output.mp4"
  	MP4_640 = "mp4_640"
   MP4_320 = "mp4_320"
@@ -24,14 +24,13 @@ class FilmFile < ActiveRecord::Base
   
 	validates :real_name, presence: true
 
-
 	def video_options_for(version)
 		if version == MP4_640
 			  options = {
-			  		video_codec: "libx264", frame_rate: 23.9, resolution: "640x480", video_bitrate: 350,
+			  		video_codec: "libx264", frame_rate: 23.9, resolution: "640x320", video_bitrate: 350,
 			       aspect: 1.777777,
 			       x264_vprofile: "baseline",
-			       audio_codec: "libfaac", audio_bitrate: 64, audio_sample_rate: 44100, audio_channels: 2,
+			       audio_codec: "libfaac", audio_bitrate: 95, audio_sample_rate: 44100, audio_channels: 2,
 			       threads: 2,
 			       custom: "-filter:a aresample=44100"}
 		elsif version == MP4_320
@@ -53,24 +52,42 @@ class FilmFile < ActiveRecord::Base
 
 
 	# Конвертация видео
-  def convert_to_mp4_640 file
-		transcoder_options = { preserve_aspect_ratio: :width }
-		@video = FFMPEG::Movie.new(file)
-		@output_video_path = Rails.root.join(FTP_PATH, "640.mp4")
-		@video.transcode(@output_video_path, video_options_for(MP4_640), transcoder_options)
-		self.real_name = File.open(@output_video_path)
-		@output_video_path
+  def convert_to_mp4_640 file_path
+		video = FFMPEG::Movie.new(file_path)
+		file_basename = File.basename(file_path, ".mp4")
+		output_video_path = Rails.root.join(FTP_PATH, "#{file_basename}_640.mp4")
+		movie = video.transcode(output_video_path, video_options_for(MP4_640), ASPECT_OPTIONS)
+		self.real_name = File.open(output_video_path)
+		self.size = movie.size
+		self.format = FilmFormat.find(8) # MP4 640 (хорошее качество)
+		save!
+		FileUtils.rm(output_video_path)
   end
 
-  def convert_to_mp4_320 file
-		transcoder_options = { preserve_aspect_ratio: :width }
-		@video = FFMPEG::Movie.new(file)
-		@output_video_path = Rails.root.join(FTP_PATH, "320.mp4")
-		@video.transcode(@output_video_path, video_options_for(MP4_320), transcoder_options)
-		self.real_name = File.open(@output_video_path)
-		@output_video_path
+  def convert_to_mp4_320 file_path
+		file_basename = File.basename(file_path)
+		video = FFMPEG::Movie.new(file_path)
+		output_video_path = Rails.root.join(FTP_PATH, "#{file_basename}_320.mp4")
+		movie = video.transcode(output_video_path, video_options_for(MP4_320), ASPECT_OPTIONS)
+		self.real_name = File.open(output_video_path)
+		self.size = movie.size
+		self.format = FilmFormat.find(7) # MP4 320 (хорошее качество)
+		save!
+		FileUtils.rm(output_video_path)
   end
-  
+
+  def convert_to_3gp file_path
+		file_basename = File.basename(file_path)
+		video = FFMPEG::Movie.new(file_path)
+		output_video_path = Rails.root.join(FTP_PATH, "#{file_basename}.3gp")
+		movie = video.transcode(output_video_path, video_options_for(LOW_3GP), ASPECT_OPTIONS)
+		self.real_name = File.open(output_video_path)
+		self.size = movie.size
+		self.format = FilmFormat.find(1) # 3GP (среднее качество)
+		save!
+		FileUtils.rm(output_video_path)
+  end 
+
   private
 
 	# def make_ffmpeg_movie_from file_path

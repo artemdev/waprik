@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140605142402) do
+ActiveRecord::Schema.define(:version => 20140605210634) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20140605142402) do
     t.integer "duration_minutes",   :limit => 1
     t.integer "duration_seconds",   :limit => 1
     t.integer "time"
-    t.integer "downloads",                         :default => 0
+    t.integer "downloads"
     t.string  "world_estimate",     :limit => 10
     t.string  "cis_estimate",       :limit => 10
     t.integer "last_download_time"
@@ -152,11 +152,13 @@ ActiveRecord::Schema.define(:version => 20140605142402) do
     t.integer "year",               :limit => 2
     t.integer "quality_id"
     t.integer "translation_id"
+    t.integer "count_likes"
+    t.integer "count_comments"
     t.integer "news_time"
-    t.integer "count_comments",                    :default => 0
-    t.integer "count_likes",                       :default => 0
   end
 
+  add_index "films", ["count_comments"], :name => "count_comments"
+  add_index "films", ["count_likes"], :name => "count_likes"
   add_index "films", ["downloads"], :name => "downloads"
   add_index "films", ["is_favourite"], :name => "is_favourite"
   add_index "films", ["item_id"], :name => "item_id"
@@ -200,11 +202,9 @@ ActiveRecord::Schema.define(:version => 20140605142402) do
     t.integer "size"
     t.string  "ext",       :limit => 10
     t.integer "position",  :limit => 2
-    t.string  "file"
   end
 
   add_index "films_files", ["ext"], :name => "ext"
-  add_index "films_files", ["file"], :name => "index_films_files_on_file"
   add_index "films_files", ["film_id"], :name => "film_id"
   add_index "films_files", ["format_id"], :name => "format_id"
   add_index "films_files", ["position"], :name => "position"

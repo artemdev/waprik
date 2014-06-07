@@ -1,0 +1,11 @@
+<% @title = "Фильмы для мобильного" %>
+
+<div class="a">
+	<% @genres.each do |genre| %>
+		<%= link_to genre.title, film_genre_path(genre) %>
+		<span class="small-text">
+			<%= genre.films.size %>
+		</span>
+		<br />
+	<% end %>
+</div>
