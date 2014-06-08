@@ -5,8 +5,7 @@ class Public::FilmFilesController < ApplicationController
 		if @file = FilmFile.find(params[:id])
 		@file.film.downloads += 1
 		@file.film.save(validate: false)
-		link = @file.real_name.url
-		redirect_to @file.film
+		send_file(@file.real_name.url)
 		else
 			flash[:error] = "Файл не найден"
 			redirect_to :back 
