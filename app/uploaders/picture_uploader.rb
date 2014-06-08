@@ -21,7 +21,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   def base_store_dir
-    "uploads"
+    "public/uploads"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
