@@ -20,7 +20,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{base_store_dir}/#{model.class.to_s.pluralize.downcase}/#{model.id}/cover/"
+    "#{base_store_dir}/films/#{model.film.id}/cover/"
   end
 
   def base_store_dir
