@@ -1,0 +1,19 @@
+<% provide(:title, "Новинки фильмов") %>
+
+
+<% if @films.any? %>
+	<div class="a">
+		<% @films.each do |film| %>
+			<%= link_to film.title, film_path(film) %>
+			<% unless film == @films.last %>
+			<hr >
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= will_paginate @films, class: "b" %>
+<% else %>
+	<div class="a">
+		Пусто
+	</div>
+<% end %>

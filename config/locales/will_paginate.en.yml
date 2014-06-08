@@ -1,0 +1,5 @@
+ru:
+  will_paginate:
+    page_gap: "..."
+    previous_label: ""
+    next_label: ""
