@@ -17,3 +17,6 @@
 /config/database.yml
 /config/environment.rb
 /db/schema.rb
+/.bash_history
+/.gem
+/.ssh
