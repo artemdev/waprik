@@ -33,7 +33,6 @@ Waprik::Application.routes.draw do
   # match 'news' => 'public#news'
   # match 'news/:section' => 'public#news'
   match 'news/new' => 'news#new'
-
   match 'videos' => 'videos#index'
   match 'video/list' => 'public#list'
   match 'test' => 'public/videos#test'
