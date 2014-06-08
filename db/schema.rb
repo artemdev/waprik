@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140605210634) do
+ActiveRecord::Schema.define(:version => 20140608132808) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20140605210634) do
     t.integer "count_likes"
     t.integer "count_comments"
     t.integer "news_time"
+    t.string  "cover"
   end
 
   add_index "films", ["count_comments"], :name => "count_comments"

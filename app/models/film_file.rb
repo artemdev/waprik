@@ -61,6 +61,8 @@ class FilmFile < ActiveRecord::Base
 		self.size = movie.size
 		self.format = FilmFormat.find(8) # MP4 640 (хорошее качество)
 		save!
+		# разрезать фильм на части
+	 	# удалить временный файл
 		FileUtils.rm(output_video_path)
   end
 
