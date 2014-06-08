@@ -9,7 +9,7 @@ gem 'carrierwave'
 gem 'carrierwave-video'
 gem 'streamio-ffmpeg'
 gem 'russian', '~> 0.6.0'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate'
 gem "less-rails"
 gem 'therubyracer', :platforms => :ruby
 gem 'sidekiq'

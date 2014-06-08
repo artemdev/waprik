@@ -21,7 +21,6 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  self.table_name = "films"
   attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year
 	attr_accessor :new_actors, :new_directors, :selected_genres
 
@@ -40,10 +39,12 @@ class Film < ActiveRecord::Base
   has_many :files, class_name: "FilmFile", dependent: :destroy
   # translation
   belongs_to :translation, class_name: "FilmTranslation"
-  # translation
+  # quality
   belongs_to :quality, class_name: "FilmQuality"
 
   # validates :title, :about, :year, presence: true
+
+  scope :latest, order("news_time DESC")
 
   def add_actors(actors)
   	separated_actors = actors.split("\n")

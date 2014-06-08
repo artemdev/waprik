@@ -8,4 +8,8 @@ class Public::FilmsController < ApplicationController
 		@film = Film.find(params[:id])
 	end
 
+	def news
+		@films = Film.latest.limit(100).paginate(page: params[:page], per_page: 10)
+	end
+
 end

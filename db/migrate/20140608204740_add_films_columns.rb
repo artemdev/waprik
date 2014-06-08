@@ -38,7 +38,7 @@ class AddFilmsColumns < ActiveRecord::Migration
 	  add_index "films", "translation_id"
 	  add_index "films", "user_id"
 	  add_index "films", "year"
-
+      # add_index "films", "created_at"
 	  # films_actors
 		create_table :films_actors do |t|
     	t.string :name
