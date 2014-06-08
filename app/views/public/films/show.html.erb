@@ -7,7 +7,7 @@
 </div>
 
 <div class="a">
-	<%= image_tag @film.cover.preview.url || "" %>
+	<%= image_tag @film.cover.preview.url || "#{Rails.root.join("public/uploads/films", "#{@film.id}/cover.jpg")}" %>
 </div>
 
 <div class="b">
