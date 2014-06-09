@@ -21,7 +21,8 @@ class FilmFile < ActiveRecord::Base
 
 	belongs_to :film
 	belongs_to :format, class_name: "FilmFormat"
-  
+  has_many :film_parts
+
 	validates :real_name, presence: true
 
 	def video_options_for(version)

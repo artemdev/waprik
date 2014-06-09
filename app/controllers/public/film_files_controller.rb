@@ -3,8 +3,12 @@ class Public::FilmFilesController < ApplicationController
 
 	def show
 		@file = FilmFile.find(params[:id])
+	end
+
+	def download
+		@file = FilmFile.find(params[:film_file_id])
 		@file.film.downloads += 1
 		@file.film.save
-		redirect_to(@file.real_name.url)
+		send_file(@file.real_name.path)
 	end
 end

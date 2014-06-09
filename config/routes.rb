@@ -7,7 +7,9 @@ Waprik::Application.routes.draw do
       get 'destroy_director', on: :member
       get 'destroy_actor', on: :member
     end
-    resources :film_files
+    resources :film_files do
+      get 'download', on: :member
+    end
   end
   # Public resources
   scope module: 'public' do
