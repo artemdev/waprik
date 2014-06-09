@@ -35,7 +35,7 @@
 </div>
 <div class="b">
 	<% @film.files.sort_by!(&:size).each do |file| %>
-		<%= link_to file.format.title, send_file(file.real_name.url)%>
+		<%= link_to file.format.title, file.real_name.url %>
 		<%= number_to_human_size(file.size) %> <br />
 		<span class="small-text">
 			<%= file.format.description %>
