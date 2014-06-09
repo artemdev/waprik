@@ -1,7 +1,7 @@
 class Public::FilmFilesController < ApplicationController
 	layout 'mobile'
 
-	def show
+	def download
 		if @file = FilmFile.find(params[:id])
 			@file.film.downloads += 1
 			@file.film.save

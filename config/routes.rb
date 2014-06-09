@@ -12,7 +12,10 @@ Waprik::Application.routes.draw do
   end
   # Public resources
   scope module: 'public' do
-    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_files, :film_actors, :film_directors
+    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors
+    resources :film_files do
+      get 'download'
+    end
     resources :films do
       get "news", on: :collection
     end
