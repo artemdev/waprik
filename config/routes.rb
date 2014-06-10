@@ -12,13 +12,16 @@ Waprik::Application.routes.draw do
     end
   end
   # Public resources
-  scope module: 'public' do
-    resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors
-    resources :film_files do
-      get 'download'
-    end
-    resources :films do
-      get "news", on: :collection
+  constraints subdomain: 'm' do
+    scope module: 'public' do
+      resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors
+      resources :film_files do
+        get 'download'
+        get 'part'
+      end
+      resources :films do
+        get "news", on: :collection
+      end
     end
   end
 

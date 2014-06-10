@@ -3,6 +3,7 @@ class Public::FilmFilesController < ApplicationController
 
 	def show
 		@file = FilmFile.find(params[:id])
+		@parts = @file.film_parts
 	end
 
 	def download
@@ -11,4 +12,12 @@ class Public::FilmFilesController < ApplicationController
 		@file.film.save
 		send_file(@file.real_name.path)
 	end
+
+	def part
+		part = FilmPart.find(params[:film_file_id])
+		part.film.downloads += 1
+		part.film.save
+		send_file(part.real_name.path)
+	end
+
 end

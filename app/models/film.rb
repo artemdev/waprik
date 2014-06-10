@@ -37,6 +37,7 @@ class Film < ActiveRecord::Base
   has_many :directors, through: :films_directors_through
   # files
   has_many :files, class_name: "FilmFile", dependent: :destroy
+  has_many :file_parts, class_name: "FilmPart", dependent: :destroy
   # translation
   belongs_to :translation, class_name: "FilmTranslation"
   # quality

@@ -8,7 +8,7 @@
 # integer "position"
 class FilmFile < ActiveRecord::Base
   self.table_name = "films_files"
-	attr_accessible :new_file, :format_title, :file
+	attr_accessible :new_file, :format_title
 
 	FTP_PATH = "public/tmp/"
 	FTP_TMP_PATH = "public/output.mp4"
@@ -21,7 +21,7 @@ class FilmFile < ActiveRecord::Base
 
 	belongs_to :film
 	belongs_to :format, class_name: "FilmFormat"
-  has_many :film_parts
+  has_many :film_parts, foreign_key: 'file_id'
 
 	validates :real_name, presence: true
 

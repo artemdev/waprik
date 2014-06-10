@@ -13,6 +13,7 @@ gem 'will_paginate'
 gem "less-rails"
 gem 'therubyracer', :platforms => :ruby
 gem 'sidekiq'
+gem 'kinopoisk_parser'
 
 # Gems used only for assets and not required
 # in production environments by default.

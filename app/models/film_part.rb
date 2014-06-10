@@ -9,7 +9,9 @@
 class FilmPart < ActiveRecord::Base
   self.table_name = "films_parts"
 
-  attr_accessible :real_name
-  belongs_to :film_file, foreign_key: 'file_id'
+	mount_uploader :real_name, FilmPartUploader
 
+  belongs_to :film_file, foreign_key: 'file_id'
+	belongs_to :film
+	
 end
