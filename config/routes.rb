@@ -12,7 +12,6 @@ Waprik::Application.routes.draw do
     end
   end
   # Public resources
-  constraints subdomain: 'm' do
     scope module: 'public' do
       resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors
       resources :film_files do
@@ -23,7 +22,6 @@ Waprik::Application.routes.draw do
         get "news", on: :collection
       end
     end
-  end
 
   root :to => "public/videos#index"
 
