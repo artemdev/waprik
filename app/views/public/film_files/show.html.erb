@@ -1,0 +1,16 @@
+<% provide(:title, @file.film.title) %>
+
+<div class="b">
+	<%= link_to "Скачать", film_file_download_path(@file) %>
+	<%= number_to_human_size(@file.size) %>
+</div>
+
+<div class="title">
+		Скачать частями
+</div>
+
+<div class="a">
+	<% @parts.each do |part|  %>
+		<%= link_to "Скачать", film_file_part_path(part.id) %> <%= number_to_human_size(part.size) %> <br />
+	<% end %>
+</div>
