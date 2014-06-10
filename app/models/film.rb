@@ -42,7 +42,8 @@ class Film < ActiveRecord::Base
   belongs_to :translation, class_name: "FilmTranslation"
   # quality
   belongs_to :quality, class_name: "FilmQuality"
-
+  # trailers
+  has_one :trailer, class_name: "FilmTrailer"
   # validates :title, :about, :year, presence: true
 
   scope :latest, order("news_time DESC")

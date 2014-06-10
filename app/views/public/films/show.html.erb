@@ -40,9 +40,12 @@
 		<span class="small-text">
 			<%= file.format.description %>
 		</span>
-		<% unless file == @film.files.last %>
-			<hr />
-		<% end %>
+		<hr />
+	<% end %>
+	<% if @film.trailer.filesize > 0 %>
+		<%= link_to "Скачать трейлер", film_treiler_path(@film.trailer) %> <%= number_to_human_size(@film.trailer.filesize) %>
+	<% else %>
+		Трейлера нет
 	<% end %>
 </div>
 
