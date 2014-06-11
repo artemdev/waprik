@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
     t.integer  "count_likes"
     t.integer  "count_comments"
     t.integer  "created_at"
-    t.datetime "updated_at"
     t.string   "cover"
+    t.datetime "updated_at"
   end
 
   add_index "films", ["count_comments"], :name => "count_comments"
@@ -160,12 +160,8 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
   add_index "films_actors_through", ["film_id", "actor_id"], :name => "film_id", :unique => true
 
   create_table "films_directors", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", :limit => 100
   end
-
-  add_index "films_directors", ["name"], :name => "index_films_directors_on_name"
 
   create_table "films_directors_through", :id => false, :force => true do |t|
     t.integer  "film_id"
@@ -183,7 +179,7 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
     t.string   "real_name"
     t.integer  "size"
     t.string   "ext",        :limit => 10
-    t.integer  "position",   :limit => 2
+    t.integer  "position",   :limit => 2,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

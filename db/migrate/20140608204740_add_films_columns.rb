@@ -26,17 +26,17 @@ class AddFilmsColumns < ActiveRecord::Migration
 	    t.integer "news_time"
 		end
 
-	  add_index "films", "downloads"
-	  add_index "films", "is_favourite"
-	  add_index "films", "last_download_time"
-	  add_index "films", "month"
-	  add_index "films", "news_time"
-	  add_index "films", "quality_id"
-	  add_index "films", "time"
-	  add_index "films", "title"
-	  add_index "films", "translation_id"
-	  add_index "films", "user_id"
-	  add_index "films", "year"
+	  # add_index "films", "downloads"
+	  # add_index "films", "is_favourite"
+	  # add_index "films", "last_download_time"
+	  # add_index "films", "month"
+	  # add_index "films", "news_time"
+	  # add_index "films", "quality_id"
+	  # add_index "films", "time"
+	  # add_index "films", "title"
+	  # add_index "films", "translation_id"
+	  # add_index "films", "user_id"
+	  # add_index "films", "year"
       # add_index "films", "created_at"
 
 	# films_actors
@@ -45,7 +45,7 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_actors, :name	  
+    # add_index :films_actors, :name	  
 
     # films_qualities
     create_table :films_qualities do |t|
@@ -53,7 +53,7 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_qualities, :title	 
+    # add_index :films_qualities, :title	 
         
     # films_parts
 		create_table :films_parts do |t|
@@ -68,11 +68,11 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_parts, :film_id
-    add_index :films_parts, :file_id
-    add_index :films_parts, :format_id
-    add_index :films_parts, :downloads
-    add_index :films_parts, :num
+    # add_index :films_parts, :film_id
+    # add_index :films_parts, :file_id
+    # add_index :films_parts, :format_id
+    # add_index :films_parts, :downloads
+    # add_index :films_parts, :num
 
     #films_trailers
 	create_table :films_trailers do |t|
@@ -81,9 +81,9 @@ class AddFilmsColumns < ActiveRecord::Migration
         t.string :filesize
       # t.timestamps
     end
-    add_index :films_trailers, :film_id
-    add_index :films_trailers, :filename
-    add_index :films_trailers, :filesize
+    # add_index :films_trailers, :film_id
+    # add_index :films_trailers, :filename
+    # add_index :films_trailers, :filesize
 
     # films_actors_through
  	create_table :films_actors_through do |t|
@@ -91,8 +91,8 @@ class AddFilmsColumns < ActiveRecord::Migration
     	t.integer :actor_id
       # t.timestamps
     end
-    add_index :films_actors_through, :film_id
-    add_index :films_actors_through, :actor_id
+    # add_index :films_actors_through, :film_id
+    # add_index :films_actors_through, :actor_id
 
     # films_formats
   	create_table :films_formats do |t|
@@ -101,9 +101,9 @@ class AddFilmsColumns < ActiveRecord::Migration
     	t.string :description
       # t.timestamps
     end
-    add_index :films_formats, :ext
-    add_index :films_formats, :title 
-    add_index :films_formats, :description
+    # add_index :films_formats, :ext
+    # add_index :films_formats, :title 
+    # add_index :films_formats, :description
 
     # films_translations
  	create_table :films_translations do |t|
@@ -111,7 +111,7 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_translations, :title
+    # add_index :films_translations, :title
 
     # films_genres_through   
  	create_table :films_genres_through do |t|
@@ -120,8 +120,8 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_genres_through, :film_id
-    add_index :films_genres_through, :genre_id  
+    # add_index :films_genres_through, :film_id
+    # add_index :films_genres_through, :genre_id  
 
 		# films_genres
   	create_table :films_genres do |t|
@@ -129,7 +129,7 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_genres, :title
+    # add_index :films_genres, :title
 
     # films_directors
     create_table :films_directors do |t|
@@ -146,8 +146,8 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_directors_through, :film_id
-    add_index :films_directors_through, :director_id
+    # add_index :films_directors_through, :film_id
+    # add_index :films_directors_through, :director_id
 
     # films_files
     create_table :films_files do |t|
@@ -160,12 +160,12 @@ class AddFilmsColumns < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :films_files, :film_id
-    add_index :films_files, :format_id
-    add_index :films_files, :ext
-    add_index :films_files, :size
-    add_index :films_files, :title
-    add_index :films_files, :real_name
+    # add_index :films_files, :film_id
+    # add_index :films_files, :format_id
+    # add_index :films_files, :ext
+    # add_index :films_files, :size
+    # add_index :films_files, :title
+    # add_index :films_files, :real_name
 
   end
 end

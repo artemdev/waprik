@@ -7,7 +7,11 @@
 </div>
 
 <div class="a">
-<%= image_tag @film.cover.url %>
+	<% if @film.cover.url.nil?  %>
+			<img src="http://waprik.org/uploads/films/<%= @film.id %>/cover/orig.jpg" alt="cover">
+	<% else %>
+			<%= image_tag @film.cover.url %>
+	<% end %>
 </div>
 
 <div class="b">

@@ -20,7 +20,7 @@ class SetNullTrueInFilms < ActiveRecord::Migration
 	  	change_column_null(:films, :year, true)
 	  	change_column_null(:films, :quality_id, true)
 	  	change_column_null(:films, :translation_id, true)
-	  	change_column_null(:films, :created_at, true)
+	  	change_column_null(:films, :news_time, true)
 	    change_column_null(:films, :count_likes, true)
 	    change_column_null(:films, :count_comments, true)
 	  	# films_actors
@@ -40,7 +40,6 @@ class SetNullTrueInFilms < ActiveRecord::Migration
 	   	change_column_null(:films_files, :real_name, true)   	
 	   	change_column_null(:films_files, :size, true)   	
 	   	change_column_null(:films_files, :ext, true) 
-	   	change_column_null(:films_files, :position, true)  
 	   	# films_genres	
 	   	change_column_null(:films_genres, :title, true)
 	   	# films_genres_through
