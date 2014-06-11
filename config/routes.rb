@@ -6,6 +6,8 @@ Waprik::Application.routes.draw do
     resources :films do
       get 'destroy_director', on: :member
       get 'destroy_actor', on: :member
+      get 'find', on: :collection
+      get 'list', on: :collection
     end
     resources :film_files do
       get 'download', on: :member

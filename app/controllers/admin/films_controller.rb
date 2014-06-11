@@ -1,3 +1,4 @@
+require 'open-uri'
 class Admin::FilmsController < ApplicationController
 	layout 'admin'
 	
@@ -29,20 +30,49 @@ class Admin::FilmsController < ApplicationController
 		end
 	end
 
+
+	def find
+	end
+
+	def list
+		s = Kinopoisk::Search.new(params[:keyword])
+		@movies = s.movies
+	end
+
 	def new
+		@movie = Kinopoisk::Movie.new(params[:movie_title])
 		@film = Film.new
+		# title
+		if @movie.title && !@movie.title_en.empty? && !@movie.title_en.nil?
+			@film.title = "#{@movie.title} / #{@movie.title_en}"
+		elsif @movie.title
+			@film.title = @movie.title
+		end
+		# info
+		@film.about = @movie.description if @movie.description 
+		@film.year = @movie.year if @movie.year 
+		@film.cover = @movie.poster_big if @movie.poster_big
+		@film.world_estimate = @movie.imdb_rating if @movie.imdb_rating
+		@film.cis_estimate = @movie.rating if @movie.rating 
+		@film.selected_genres = @movie.genres.join("\n") if @movie.genres
+		@film.new_actors = @movie.actors.join("\n") if @movie.actors && !@movie.actors.empty?
+		@film.new_directors = @movie.directors.join("\n") if @movie.directors && !@movie.directors.empty?
+		@film.duration_hours = @movie.length.divmod(60).first
+		@film.duration_minutes = @movie.length.divmod(60).last
 		@genres = FilmGenre.all
 		@directors = @film.directors
 		@actors = @film.actors
 	end
 
 	def create
+		@movie = Kinopoisk::Movie.new(params[:movie_title]) # for cover
 		@film = Film.new(params[:film])
 		@directors = @film.directors
 		@genres = FilmGenre.all
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
+		@film.remote_cover_url = @movie.poster
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)

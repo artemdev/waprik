@@ -7,7 +7,7 @@
 </div>
 
 <div class="a">
-		<img src="http://waprik.org/uploads/films/<%= @film.id %>/cover/orig.jpg" alt="cover">
+<%= image_tag @film.cover.url %>
 </div>
 
 <div class="b">
@@ -26,8 +26,7 @@
 		<%= link_to genre.title, film_genre_path(genre) %>
 	<% end %>
 	<br />
-	Качество <%= @film.quality.title %> <br />
-	Перевод <%= @film.translation.title %><br />
+
 </div>
 
 <div class="title">
@@ -42,7 +41,7 @@
 		</span>
 		<hr />
 	<% end %>
-	<% if @film.trailer.filesize > 0 %>
+	<% if @film.trailer && @film.trailer.filesize > 0 %>
 		<%= link_to "Скачать трейлер", film_treiler_path(@film.trailer) %> <%= number_to_human_size(@film.trailer.filesize) %>
 	<% else %>
 		Трейлера нет

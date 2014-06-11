@@ -21,7 +21,7 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year
+  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes
 	attr_accessor :new_actors, :new_directors, :selected_genres
 
   mount_uploader :cover, CoverUploader
@@ -46,7 +46,7 @@ class Film < ActiveRecord::Base
   has_one :trailer, class_name: "FilmTrailer"
   # validates :title, :about, :year, presence: true
 
-  scope :latest, order("news_time DESC")
+  scope :latest, order("created_at DESC")
 
   def add_actors(actors)
   	separated_actors = actors.split("\n")
@@ -77,6 +77,7 @@ class Film < ActiveRecord::Base
   end
 
   def add_genres(genres)
+    genres = genres.split("\n") if genres.instance_of?(String)
     genres.map do |genre|
       unless genre.empty?
         if found_genre = FilmGenre.find_by_title(genre)
