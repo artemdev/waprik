@@ -1,0 +1,15 @@
+<div class="b">
+	<%= form_tag(:action => 'attempt_login') do %>
+		<%= label_tag(:username, "Имя пользователя") %> <br />
+		<%= text_field_tag(:username) %> <br />
+
+		<%= label_tag(:password, "Пароль") %> <br />
+		<%= password_field_tag(:password) %> <br />
+
+		<%= submit_tag("Войти") %>
+	<% end %>
+</div>
+
+<div class="foot">
+	<%= link_to("waprik.ru", 'http://waprik.ru') %>
+</div>

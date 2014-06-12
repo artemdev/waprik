@@ -1,0 +1,9 @@
+<% provide(:title, "Фильм с кинопоиска") %>
+
+<div class="a">
+	<% if @movies.to_a.any? %>
+		<% @movies.each do |movie| %>
+			<%= link_to movie.title, new_admin_film_path(movie_title: movie.title) %>
+		<% end %>
+	<% end %>
+</div>

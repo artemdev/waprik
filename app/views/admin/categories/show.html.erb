@@ -1,0 +1,39 @@
+<div class="b">
+	<%= link_to("Добавить видео", {:action => 'new', :category_id => @category.id}) %> <br />
+</div>
+
+<div class="title">
+	<%= @category.name %> <%= @content.size %>
+</div>
+
+<% unless @content.empty? %>
+	<% @videos.each do |video| %>
+		<div class="a">		
+		<table>
+			<tr>
+				<td>
+					<%= image_tag(video.screen.mini.url) %>
+				</td>
+				<td valign="top">
+					<%= link_to(video.name.empty? ? "без названия" : video.name, {:action => 'edit', :id => video.id, :category_id => @category.id})%>
+						<%= link_to("х", {:action => 'delete', :id => video.id, :category_id => @category.id}) %> <br />
+					<span class="small_text">
+						<% unless video.description.empty? %>
+							<%= truncate(video.description, :length => 60) %> <br />
+						<% end %>
+						<% unless video.collections.empty? %>
+						В подборках <% video.collections.collect do |collection| %>
+													<%= link_to(collection.name, :action => 'collection', :id => collection.id, :category_id => @category.id) %>
+										 		<% end %>
+						<% end %>
+					</span>
+				</td>
+			</tr>
+		</table>
+		</div>
+	<% end %>
+	<% else %>
+		<div class="a">
+			пусто :(
+		</div>		
+<% end %>

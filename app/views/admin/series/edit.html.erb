@@ -1,0 +1,14 @@
+<%= link_to "К сериалу #{@serial.name}", edit_admin_serial_path(@serial.id) %> <br />
+
+<% @serial.series.each do |series| %>
+	<%= form_for(series, url: admin_series_path(series), html: {multipart: true}) do |f| %>
+		<%= error_messages_for(series) %>
+
+		<%= render(partial: 'admin/shared/series', locals: {:f => f, :series => series}) %>
+
+		<%= f.submit("Обновить") %>
+		<%= link_to "удалить серию", {controller: 'series', action: 'delete', id: series.id}  %>
+	<% end %>
+<% end %>
+
+<%= link_to "К сериалу #{@serial.name}", edit_admin_serial_path(@serial.id) %>

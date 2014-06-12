@@ -1,0 +1,42 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+
+<head>
+  <title> <%= yield(:title) %></title>
+  <meta http-equiv="Content-Type" content="application/vnd.wap.xhtml+xml; charset=UTF-8">
+  <%= stylesheet_link_tag "mobile", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<% if !flash[:notice].nil? %>
+		<div class="a">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+	
+	<div class="a">
+		Идет работа над разделом. Некоторые фильмы могут быть временно недоступны
+	</div>
+
+	<div class="title">
+		<%= yield(:title) %>
+	</div>	
+
+	<%= yield %>
+
+	<div class="foot">
+		<% unless @footer_links.nil? %>
+			<% @footer_links.each do |link| %>
+				<%= link.html_safe %>
+			<% end %>
+		<% end %>
+		<a href="http://waprik.ru">На главную</a>
+	</div>
+</body>
+</html>
+
+<% if Rails.env.development? %>
+	development
+<% end %>

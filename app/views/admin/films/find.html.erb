@@ -1,0 +1,10 @@
+<% provide(:title, "Найти фильм") %>
+
+<div class="a">
+	<%= form_tag list_admin_films_path, method: :get do %>
+		<%= label_tag :keyword, "Фильм" %>
+		<%= text_field_tag :keyword %>
+
+		<%= submit_tag "Продолжить" %>
+	<% end %>
+</div>

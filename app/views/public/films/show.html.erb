@@ -1,0 +1,69 @@
+<% provide(:title, @film.title) %>
+
+<div class="a">
+	Скачиваний <%= @film.downloads %> <br />
+	Мировая оценка <%= @film.cis_estimate %> <br />
+	Оценка СНГ <%= @film.world_estimate %> <br />
+</div>
+
+<div class="a">
+	<% if @film.cover.url.nil?  %>
+			<img src="http://waprik.org/uploads/films/<%= @film.id %>/cover/orig.jpg" alt="cover">
+	<% else %>
+			<%= image_tag @film.cover.url %>
+	<% end %>
+</div>
+
+<div class="b">
+	<%= @film.about %>
+</div>
+
+<div class="a">
+	Год выпуска <%= @film.year %><br />
+	Время
+	<%= @film.duration_hours %> час
+	<%= @film.duration_minutes %> мин
+	<%= @film.duration_seconds %> сек
+	<br />
+	Жанр
+	<% @film.genres.each do |genre| %>
+		<%= link_to genre.title, film_genre_path(genre) %>
+	<% end %>
+	<br />
+
+</div>
+
+<div class="title">
+	Скачать
+</div>
+<div class="b">
+	<% @film.files.sort_by!(&:size).each do |file| %>
+		<%= link_to file.format.title, film_file_path(file) %>
+		<%= number_to_human_size(file.size) %> <br />
+		<span class="small-text">
+			<%= file.format.description %>
+		</span>
+		<hr />
+	<% end %>
+	<% if @film.trailer && @film.trailer.filesize > 0 %>
+		<%= link_to "Скачать трейлер", film_treiler_path(@film.trailer) %> <%= number_to_human_size(@film.trailer.filesize) %>
+	<% else %>
+		Трейлера нет
+	<% end %>
+</div>
+
+<div class="title">
+	Знаменитые актеры
+</div>
+<div class="b">
+	Знаменитые актеры: 
+	<% @film.actors.each do |actor| %>
+		<%= link_to actor.name, film_actor_path(actor) %>
+	<% end %>
+	<hr />
+	Режисеры 
+	<% @film.directors.each do |director| %>
+		<%= link_to director.name, film_director_path(director) %>
+	<% end %>
+
+</div>

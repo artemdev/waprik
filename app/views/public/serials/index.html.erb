@@ -1,0 +1,40 @@
+<% provide(:title, "Сериалы для мобильного") %>
+
+<% unless @hits.empty? %>
+	<div class="title">
+		Популярное сейчас
+	</div>
+		<% @hits.each do |hit| %>
+			<div class="a">
+				<table>
+					<tr>
+						<td>
+							<%= image_tag hit.cover.mini.url unless hit.cover.mini.url.nil?%>
+						</td>
+						<td valign="top">
+							<%= link_to hit.name, serial_path(hit) %>
+							<span class="small_text">
+								<% unless hit.series.last.nil? %>
+									<br />
+									Добавлена <%= hit.series.last.number %> серия<br />
+									Обновлен: <%=  time_ago_in_words(hit.series.last.created_at) %> назад<br />
+								<% end %>
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		<% end %>
+<% end %>
+
+<% unless @categories.empty? %>
+	<div class="title">
+		Жанры
+	</div>
+	<div class="a">
+		<% @categories.each do |category| %>
+			<%= link_to category.name, {controller: "categories", action: "show", id: category.id, content_type: "serials"} %> <span class="small_text"><%= category.serials.uniq.count %></span> <br />
+		<% end %>
+	</div>
+	
+<% end %>

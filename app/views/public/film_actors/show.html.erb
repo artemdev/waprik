@@ -1,0 +1,14 @@
+<% provide(:title, @actor.name) %>
+
+<% if @films.any? %>
+	<div class="a">
+		<% @films.each do |film| %>
+			<%= link_to film.title, film_path(film) %> <br />
+		<% end %>
+	</div>
+	<%= will_paginate @films, previous_label: "", next_label: "", class: "b" %>
+<% else %>
+	<div class="a">
+		Пусто
+	</div>
+<% end %>

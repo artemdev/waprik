@@ -1,0 +1,20 @@
+<div class="a">
+	<%= link_to "Добавить новость", action: 'new' %>
+</div>
+
+<% @news.each do |news| %>
+	<% unless news.description.nil? %>
+		<div class="title">
+			<%= news.title %>
+		</div>
+		<div class="a">
+			<%= link_to news.description, admin_news_path(news.id) %> <br />
+			<% unless news.categories.empty? %>
+				Разделы:
+				<% news.categories.each do |cat| %>
+					<%= link_to cat.name, admin_category_path(cat.id) %>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>

@@ -1,0 +1,82 @@
+<%= error_messages_for(@video) %>
+
+<div class="b">
+	<%= f.label(:name, "Название") %> <br />
+	<%= f.text_field(:name) %> <hr />
+	<%= f.label(:artist, "Исполнитель") %> <span class="small_text">(для клипов)</span><br />
+	<%= f.text_field(:artist) %>
+</div>
+
+<div class="b">
+	<%= f.label :screen, "Screen:" %><br />
+	<% if @video.screen? %>
+	  <%= image_tag(@video.screen.preview.url)  %> <span class="small_text"><%= link_to("x", :action => 'delete_screen', :id => @video.id) %></span><br />
+	<% else %>
+	  <%= f.file_field(:screen) %> <br />
+	<% end %>
+</div>
+
+
+<div class="b">
+	<%= f.label(:description, "Описание") %> <br />
+	<%= f.text_area(:description, :size => "50x10") %>
+</div>
+
+<div class="b">
+	<%= f.label(:collection, "Подборка") %> <br />
+	<%= f.text_area(:collection, :size => "20x1") %> <br />
+
+		<% @video.collections.collect do |collection| %>
+			<%= link_to(collection.name, :action => 'collection', :id => collection.id) %>
+			<span class="small_text"><%= link_to("x", :action => 'remove_video_from_collection', :id => @video.id, :collection_id => collection.id) %></span> <br />
+		<% end %>
+</div>
+
+
+
+<div class="b">
+	<%= f.label(:category_id, "Категория") %> <br />
+	<%= f.select(:category_id, @categories) %>
+</div> 
+
+	<% if @video.low_3gp.url.nil? %>
+		<div class="b">
+			<%= f.label(:low_3gp, "3GP") %> <br />
+			<%= f.select :ftp_low_3gp, @files.map {|f| File.absolute_path(f)}, { include_blank: true }%> <br>
+		</div>
+	<% else %>
+		<div class="b">
+			 <%= link_to("3GP (среднее качество)", {:action => 'download', :version => "low_3gp", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "low_3gp", :id => @video.id})%> <br />
+			 <span class="small_text">
+			 		<%= number_to_human_size(@video.low_3gp.size) %>
+			 </span>
+		</div>
+	<% end %>
+
+	<% if  @video.mp4_320.url.nil? %>
+		<div class="b">
+			<%= f.label(:mp4_320, "MP4_320") %> <br />
+			<%= f.select :ftp_mp4_320, @files.map {|f| File.absolute_path(f)}, { include_blank: true }%> <br>
+		</div>
+	<% else %>
+		<div class="b">
+			<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_320", :id => @video.id})%> <br />
+			 <span class="small_text">
+			 		<%= number_to_human_size(@video.mp4_320.size) %>
+			 </span>
+		</div>
+	<% end %>
+
+	<% if  @video.mp4_640.url.nil? %>
+		<div class="b">
+			<%= f.label(:mp4_640, "MP4_640") %> <br />
+			<%= f.select :ftp_mp4_640, @files.map {|f| File.absolute_path(f)}, { include_blank: true }%> <br>
+		</div>
+	<% else %>
+		<div class="b">
+			<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_640", :id => @video.id}) %> <%=link_to("x", {:action => 'delete_from_admin_panel', :version => "mp4_640", :id => @video.id})%> <br />
+			 <span class="small_text">
+			 		<%= number_to_human_size(@video.mp4_640.size) %>
+			 </span>
+		</div>
+	<% end %>

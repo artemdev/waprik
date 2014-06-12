@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module Admin::FilmFilesHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/admin/film_files_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-audio_options_for">#audio_options_for</a>
+    
+    <li><a href="#method-i-create_folder_for">#create_folder_for</a>
+    
+    <li><a href="#method-i-cut_sound_for">#cut_sound_for</a>
+    
+    <li><a href="#method-i-cut_video_for">#cut_video_for</a>
+    
+    <li><a href="#method-i-mark">#mark</a>
+    
+    <li><a href="#method-i-merge_video_and_sound_for">#merge_video_and_sound_for</a>
+    
+    <li><a href="#method-i-path_for">#path_for</a>
+    
+    <li><a href="#method-i-remane">#remane</a>
+    
+    <li><a href="#method-i-video_options_for">#video_options_for</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Admin.html">Admin</a>
+  
+    <li><a href="../Admin/AccessController.html">Admin::AccessController</a>
+  
+    <li><a href="../Admin/AccessHelper.html">Admin::AccessHelper</a>
+  
+    <li><a href="../Admin/AdminUsersController.html">Admin::AdminUsersController</a>
+  
+    <li><a href="../Admin/AdminUsersHelper.html">Admin::AdminUsersHelper</a>
+  
+    <li><a href="../Admin/CategoriesController.html">Admin::CategoriesController</a>
+  
+    <li><a href="../Admin/CategoriesHelper.html">Admin::CategoriesHelper</a>
+  
+    <li><a href="../Admin/CollectionsController.html">Admin::CollectionsController</a>
+  
+    <li><a href="../Admin/CollectionsHelper.html">Admin::CollectionsHelper</a>
+  
+    <li><a href="../Admin/FeedbacksController.html">Admin::FeedbacksController</a>
+  
+    <li><a href="../Admin/FeedbacksHelper.html">Admin::FeedbacksHelper</a>
+  
+    <li><a href="../Admin/FilmFilesController.html">Admin::FilmFilesController</a>
+  
+    <li><a href="../Admin/FilmFilesHelper.html">Admin::FilmFilesHelper</a>
+  
+    <li><a href="../Admin/FilmGenresController.html">Admin::FilmGenresController</a>
+  
+    <li><a href="../Admin/FilmGenresHelper.html">Admin::FilmGenresHelper</a>
+  
+    <li><a href="../Admin/FilmsController.html">Admin::FilmsController</a>
+  
+    <li><a href="../Admin/FilmsHelper.html">Admin::FilmsHelper</a>
+  
+    <li><a href="../Admin/MusicController.html">Admin::MusicController</a>
+  
+    <li><a href="../Admin/MusicHelper.html">Admin::MusicHelper</a>
+  
+    <li><a href="../Admin/NewsController.html">Admin::NewsController</a>
+  
+    <li><a href="../Admin/NewsHelper.html">Admin::NewsHelper</a>
+  
+    <li><a href="../Admin/PicturesController.html">Admin::PicturesController</a>
+  
+    <li><a href="../Admin/PicturesHelper.html">Admin::PicturesHelper</a>
+  
+    <li><a href="../Admin/SerialsController.html">Admin::SerialsController</a>
+  
+    <li><a href="../Admin/SerialsHelper.html">Admin::SerialsHelper</a>
+  
+    <li><a href="../Admin/SeriesController.html">Admin::SeriesController</a>
+  
+    <li><a href="../Admin/SeriesHelper.html">Admin::SeriesHelper</a>
+  
+    <li><a href="../Admin/VideosController.html">Admin::VideosController</a>
+  
+    <li><a href="../Admin/VideosHelper.html">Admin::VideosHelper</a>
+  
+    <li><a href="../Public.html">Public</a>
+  
+    <li><a href="../Public/CategoriesController.html">Public::CategoriesController</a>
+  
+    <li><a href="../Public/CategoriesHelper.html">Public::CategoriesHelper</a>
+  
+    <li><a href="../Public/FeedbacksController.html">Public::FeedbacksController</a>
+  
+    <li><a href="../Public/FeedbacksHelper.html">Public::FeedbacksHelper</a>
+  
+    <li><a href="../Public/FilmActorsController.html">Public::FilmActorsController</a>
+  
+    <li><a href="../Public/FilmActorsHelper.html">Public::FilmActorsHelper</a>
+  
+    <li><a href="../Public/FilmDirectorsController.html">Public::FilmDirectorsController</a>
+  
+    <li><a href="../Public/FilmDirectorsHelper.html">Public::FilmDirectorsHelper</a>
+  
+    <li><a href="../Public/FilmFilesController.html">Public::FilmFilesController</a>
+  
+    <li><a href="../Public/FilmFilesHelper.html">Public::FilmFilesHelper</a>
+  
+    <li><a href="../Public/FilmGenresController.html">Public::FilmGenresController</a>
+  
+    <li><a href="../Public/FilmGenresHelper.html">Public::FilmGenresHelper</a>
+  
+    <li><a href="../Public/FilmTreilerHelper.html">Public::FilmTreilerHelper</a>
+  
+    <li><a href="../Public/FilmTreilersController.html">Public::FilmTreilersController</a>
+  
+    <li><a href="../Public/FilmsController.html">Public::FilmsController</a>
+  
+    <li><a href="../Public/FilmsHelper.html">Public::FilmsHelper</a>
+  
+    <li><a href="../Public/MusicController.html">Public::MusicController</a>
+  
+    <li><a href="../Public/MusicHelper.html">Public::MusicHelper</a>
+  
+    <li><a href="../Public/NewsController.html">Public::NewsController</a>
+  
+    <li><a href="../Public/NewsHelper.html">Public::NewsHelper</a>
+  
+    <li><a href="../Public/PicturesController.html">Public::PicturesController</a>
+  
+    <li><a href="../Public/PicturesHelper.html">Public::PicturesHelper</a>
+  
+    <li><a href="../Public/SerialsController.html">Public::SerialsController</a>
+  
+    <li><a href="../Public/SerialsHelper.html">Public::SerialsHelper</a>
+  
+    <li><a href="../Public/VideosController.html">Public::VideosController</a>
+  
+    <li><a href="../Public/VideosHelper.html">Public::VideosHelper</a>
+  
+    <li><a href="../AdminUser.html">AdminUser</a>
+  
+    <li><a href="../ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="../ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="../Category.html">Category</a>
+  
+    <li><a href="../Collection.html">Collection</a>
+  
+    <li><a href="../CoverUploader.html">CoverUploader</a>
+  
+    <li><a href="../FFMPEGWorker.html">FFMPEGWorker</a>
+  
+    <li><a href="../Feedback.html">Feedback</a>
+  
+    <li><a href="../Film.html">Film</a>
+  
+    <li><a href="../FilmActor.html">FilmActor</a>
+  
+    <li><a href="../FilmActorThrough.html">FilmActorThrough</a>
+  
+    <li><a href="../FilmDirector.html">FilmDirector</a>
+  
+    <li><a href="../FilmDirectorThrough.html">FilmDirectorThrough</a>
+  
+    <li><a href="../FilmFile.html">FilmFile</a>
+  
+    <li><a href="../FilmFileUploader.html">FilmFileUploader</a>
+  
+    <li><a href="../FilmFormat.html">FilmFormat</a>
+  
+    <li><a href="../FilmGenre.html">FilmGenre</a>
+  
+    <li><a href="../FilmGenreThrough.html">FilmGenreThrough</a>
+  
+    <li><a href="../FilmPart.html">FilmPart</a>
+  
+    <li><a href="../FilmPartUploader.html">FilmPartUploader</a>
+  
+    <li><a href="../FilmQuality.html">FilmQuality</a>
+  
+    <li><a href="../FilmTrailer.html">FilmTrailer</a>
+  
+    <li><a href="../FilmTranslation.html">FilmTranslation</a>
+  
+    <li><a href="../FilmTreilerUploader.html">FilmTreilerUploader</a>
+  
+    <li><a href="../Music.html">Music</a>
+  
+    <li><a href="../News.html">News</a>
+  
+    <li><a href="../Picture.html">Picture</a>
+  
+    <li><a href="../PictureUploader.html">PictureUploader</a>
+  
+    <li><a href="../Serial.html">Serial</a>
+  
+    <li><a href="../SerialsUploader.html">SerialsUploader</a>
+  
+    <li><a href="../Series.html">Series</a>
+  
+    <li><a href="../Video.html">Video</a>
+  
+    <li><a href="../VideosUploader.html">VideosUploader</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Admin::FilmFilesHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="ASPECT_OPTIONS">ASPECT_OPTIONS
+        
+        <dd class="description">
+        
+      
+        <dt id="LOW_3GP">LOW_3GP
+        
+        <dd class="description">
+        
+      
+        <dt id="MP4_176">MP4_176
+        
+        <dd class="description">
+        
+      
+        <dt id="MP4_320">MP4_320
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-audio_options_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">audio_options_for</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Опции для конвертации аудио</p>
+          
+
+          
+          <div class="method-source-code" id="audio_options_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">audio_options_for</span>(<span class="ruby-identifier">version</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                  <span class="ruby-identifier">options</span> = {
+                                         <span class="ruby-identifier">audio_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;libfaac&quot;</span>, <span class="ruby-identifier">audio_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">64</span>, <span class="ruby-identifier">audio_sample_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">41000</span>, <span class="ruby-identifier">audio_channels</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,
+                       <span class="ruby-identifier">threads</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+                       <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-vn&quot;</span>}
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                  <span class="ruby-identifier">options</span> = {
+                                         <span class="ruby-identifier">audio_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;libfaac&quot;</span>, <span class="ruby-identifier">audio_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">32</span>, <span class="ruby-identifier">audio_sample_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">41000</span>, <span class="ruby-identifier">audio_channels</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,
+                       <span class="ruby-identifier">threads</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+                       <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>}
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                  <span class="ruby-identifier">options</span> = {
+                                         <span class="ruby-identifier">audio_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;libfaac&quot;</span>, <span class="ruby-identifier">audio_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">32</span>, <span class="ruby-identifier">audio_sample_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">41000</span>, <span class="ruby-identifier">audio_channels</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,
+                       <span class="ruby-identifier">threads</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+                       <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-vn&quot;</span>}
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- audio_options_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- audio_options_for-method -->
+
+    
+      <div id="method-i-create_folder_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_folder_for</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Создание папок</p>
+          
+
+          
+          <div class="method-source-code" id="create_folder_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_folder_for</span>(<span class="ruby-identifier">version</span>)
+        <span class="ruby-identifier">dir</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}/tmp&quot;</span>
+        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-value">0755</span>, <span class="ruby-identifier">dir</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                        <span class="ruby-identifier">dir</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}&quot;</span>
+                        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-value">0755</span>, <span class="ruby-identifier">dir</span>[<span class="ruby-value">0</span>]
+                        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                        <span class="ruby-identifier">dir</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}&quot;</span>
+                        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-value">0755</span>, <span class="ruby-identifier">dir</span>[<span class="ruby-value">0</span>]
+                        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                        <span class="ruby-identifier">dir</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}&quot;</span>
+                        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-value">0755</span>, <span class="ruby-identifier">dir</span>[<span class="ruby-value">0</span>]
+                        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_folder_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_folder_for-method -->
+
+    
+      <div id="method-i-cut_sound_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cut_sound_for</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Вырезать звук</p>
+          
+
+          
+          <div class="method-source-code" id="cut_sound_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cut_sound_for</span>(<span class="ruby-identifier">version</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                <span class="ruby-ivar">@ffmpeg_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/sound_320.wav&quot;</span>, <span class="ruby-identifier">audio_options_for</span>(<span class="ruby-constant">MP4_320</span>)) { <span class="ruby-operator">|</span><span class="ruby-identifier">progress</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">progress</span> }
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                <span class="ruby-ivar">@ffmpeg_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/cuted_sound_176.wav&quot;</span>, { <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-vn -acodec copy&quot;</span> })
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                <span class="ruby-ivar">@ffmpeg_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/cuted_sound_3gp.wav&quot;</span>, { <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-vn -acodec copy&quot;</span> })
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cut_sound_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cut_sound_for-method -->
+
+    
+      <div id="method-i-cut_video_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cut_video_for</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Вырезать видео</p>
+          
+
+          
+          <div class="method-source-code" id="cut_video_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cut_video_for</span>(<span class="ruby-identifier">version</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                <span class="ruby-ivar">@ffmpeg_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/video_320.mp4&quot;</span>, <span class="ruby-identifier">video_options_for</span>(<span class="ruby-constant">MP4_320</span>), <span class="ruby-constant">ASPECT_OPTIONS</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">progress</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">progress</span> }
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                <span class="ruby-comment"># @ffmpeg_video.transcode(&quot;#{path_for(version)}/cuted_video_176.mp4&quot;, { custom: &quot;-an -vcodec copy&quot; }) { |progress| puts progress }</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                <span class="ruby-comment"># @ffmpeg_video.transcode(&quot;#{path_for(version)}/cuted_video_3gp.mp4&quot;, { custom: &quot;-an -vcodec copy&quot; }) { |progress| puts progress }</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cut_video_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cut_video_for-method -->
+
+    
+      <div id="method-i-mark" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mark</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Добавление видео сайта вначале</p>
+          
+
+          
+          <div class="method-source-code" id="mark-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mark</span>
+      <span class="ruby-ivar">@ffmpeg_video</span> = <span class="ruby-constant">FFMPEG</span><span class="ruby-operator">::</span><span class="ruby-constant">Movie</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{self.source_video.path}&quot;</span>)
+      <span class="ruby-ivar">@ffmpeg_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/video_320.mp4&quot;</span>, {<span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;concat -i #{@marker}  -c copy &quot;</span>})
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mark-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mark-method -->
+
+    
+      <div id="method-i-merge_video_and_sound_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">merge_video_and_sound_for</span><span
+            class="method-args">(version, sound, video)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Видео + звук</p>
+          
+
+          
+          <div class="method-source-code" id="merge_video_and_sound_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_video_and_sound_for</span>(<span class="ruby-identifier">version</span>, <span class="ruby-identifier">sound</span>, <span class="ruby-identifier">video</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                <span class="ruby-ivar">@cuted_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/final.mp4&quot;</span>, {<span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;-itsoffset 00:00:00 -i #{@cuted_sound.path}&quot;</span>}) { <span class="ruby-operator">|</span><span class="ruby-identifier">progress</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">progress</span> }
+                <span class="ruby-comment"># video.transcode(path_for(version) + &quot;/320.mp4&quot;, { custom: &quot;-i #{sound.path}&quot; } ) { |progress| puts progress }</span>
+                <span class="ruby-comment"># system(&quot;ffmpeg -i \&quot;#{path_for(version)}/video_320.mp4\&quot; -itsoffset 00:00:01 -i \&quot;#{path_for(version)}/sound_320.wav\&quot;  \&quot;#{path_for(version)}/final.mp4\&quot;&quot;) { |progress| puts progress }</span>
+                <span class="ruby-comment"># system(&quot;MP4Box -fps 23.976 -add \&quot;#{path_for(version)}/video_320.mp4\&quot; -add \&quot;#{path_for(version)}/sound_320.m4a\&quot; -new \&quot;#{path_for(version)}/final.mp4\&quot; -tmp \&quot;tmp\&quot; &quot;)</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;MP4Box -fps 15.000 -add \&quot;#{path_for(version) + &quot;/video_320.mp4&quot;}\&quot; -add \&quot;#{path_for(version)}/sound_176.wav\&quot; -new \&quot;#{path_for(version)}/test_320.mp4\&quot; -tmp \&quot;#{path_for(version)}/temp\&quot;&quot;</span>)
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;MP4Box -fps 15.000 -add \&quot;#{path_for(version) + &quot;/video_320.mp4&quot;}\&quot; -add \&quot;#{path_for(version)}/sound_3gp.wav\&quot; -new \&quot;#{path_for(version)}/test_320.mp4\&quot; -tmp \&quot;#{path_for(version)}/temp\&quot;&quot;</span>)
+        <span class="ruby-keyword">end</span>   
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- merge_video_and_sound_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- merge_video_and_sound_for-method -->
+
+    
+      <div id="method-i-path_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">path_for</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Пути к видео папкам</p>
+          
+
+          
+          <div class="method-source-code" id="path_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">path_for</span>(<span class="ruby-identifier">version</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                        <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}&quot;</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                        <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}&quot;</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                        <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}&quot;</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;final_video&quot;</span>
+                        <span class="ruby-node">&quot;#{Rails.root}/public/uploads/video/#{self.id}/final.mp4&quot;</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- path_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- path_for-method -->
+
+    
+      <div id="method-i-remane" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remane</span><span
+            class="method-args">(name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Переименование файлов</p>
+          
+
+          
+          <div class="method-source-code" id="remane-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remane</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">translite</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>)
+      <span class="ruby-ivar">@ffmpeg_video</span>.<span class="ruby-identifier">transcode</span>(<span class="ruby-node">&quot;#{path_for(version)}/video_320.mp4&quot;</span>, {<span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;concat -i #{@marker}  -c copy &quot;</span>})
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remane-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remane-method -->
+
+    
+      <div id="method-i-video_options_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">video_options_for</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Опции для конвертации видео</p>
+          
+
+          
+          <div class="method-source-code" id="video_options_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/admin/film_files_helper.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">video_options_for</span>(<span class="ruby-identifier">version</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_320</span>
+                  <span class="ruby-identifier">options</span> = {<span class="ruby-identifier">video_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;libx264&quot;</span>, <span class="ruby-identifier">frame_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">23.9</span>, <span class="ruby-identifier">resolution</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;320x240&quot;</span>, <span class="ruby-identifier">video_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">300</span>,
+                       <span class="ruby-identifier">aspect</span><span class="ruby-operator">:</span> <span class="ruby-value">1.777777</span>,
+                       <span class="ruby-comment"># x264_preset: &quot;#{Rails.root}/public/video_preset/treiler_320.mp4&quot;,</span>
+                       <span class="ruby-identifier">x264_vprofile</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;baseline&quot;</span>,
+                       <span class="ruby-identifier">audio_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;copy&quot;</span>, <span class="ruby-identifier">audio_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">64</span>, <span class="ruby-identifier">audio_sample_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">41000</span>, <span class="ruby-identifier">audio_channels</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,
+                       <span class="ruby-identifier">threads</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+                       <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-filter:a aresample=44100&quot;</span>}
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MP4_176</span>
+                  <span class="ruby-identifier">options</span> = {<span class="ruby-identifier">video_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;libx264&quot;</span>, <span class="ruby-identifier">frame_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">15</span>, <span class="ruby-identifier">resolution</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;176x144&quot;</span>, <span class="ruby-identifier">video_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">150</span>,
+                       <span class="ruby-identifier">aspect</span><span class="ruby-operator">:</span> <span class="ruby-value">1.333333</span>,
+                       <span class="ruby-comment"># x264_preset: &quot;#{Rails.root}/public/video_preset/treiler_320.mp4&quot;</span>
+                       <span class="ruby-comment"># audio_codec: &quot;libfaac&quot;, audio_bitrate: 32, audio_sample_rate: 41000, audio_channels: 2,</span>
+                       <span class="ruby-identifier">threads</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+                       <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-an&quot;</span>}
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-constant">LOW_3GP</span>
+                  <span class="ruby-identifier">options</span> = {<span class="ruby-identifier">video_codec</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;libx264&quot;</span>, <span class="ruby-identifier">frame_rate</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>, <span class="ruby-identifier">resolution</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;320x240&quot;</span>, <span class="ruby-identifier">video_bitrate</span><span class="ruby-operator">:</span> <span class="ruby-value">300</span>, <span class="ruby-identifier">video_bitrate_tolerance</span><span class="ruby-operator">:</span> <span class="ruby-value">100</span>,
+                       <span class="ruby-identifier">aspect</span><span class="ruby-operator">:</span> <span class="ruby-value">1.333333</span>,
+                       <span class="ruby-identifier">x264_vprofile</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;high&quot;</span>, <span class="ruby-identifier">x264_preset</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;slow&quot;</span>,
+                       <span class="ruby-comment"># audio_codec: &quot;libfaac&quot;, audio_bitrate: 32, audio_sample_rate: 22050, audio_channels: 1,</span>
+                       <span class="ruby-identifier">threads</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,
+                       <span class="ruby-identifier">custom</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-filter:a aresample=44100&quot;</span>}
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- video_options_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- video_options_for-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

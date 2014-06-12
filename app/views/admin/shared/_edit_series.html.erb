@@ -1,0 +1,21 @@
+<%= f.label :number, "номер серии" %> <br>
+<%= f.text_field :number %> <br>
+
+<%= f.label :name, "название серии" %> <br>
+<%= f.text_field :name %> <br>
+
+<%= f.label :release_date, "официальная дата выхода" %> <br>
+<%= f.text_field :release_date %> <br>
+
+<% if series.low_3gp.url.nil? %>
+	<%= f.label :low_3gp, "3GP" %> <br>
+	<%= f.file_field :low_3gp %> <br>
+<% else %>
+	<%= link_to "3GP", series.low_3gp.url %> <%= number_to_human_size(series.low_3gp.size) %> <%= link_to "x",  action: 'delete_series_file', id: series.id, version: 'low_3gp' %><br />
+<% end %>
+
+<%= f.label :mp4_320, "MP4 320" %> <br>
+<%= f.file_field :mp4_320 %> <br>
+
+<%= f.label :mp4_640, "MP4 640" %> <br>
+<%= f.file_field :mp4_640 %> <br>

@@ -1,0 +1,18 @@
+<% provide(:title, "Фильмы для мобильного") %>
+
+<div class="sixteen columns'">
+	<div class="content-add">
+		<%= link_to "Добавить фильм", new_admin_film_path %>
+	</div>
+</div>
+
+	<% @films.each do |film| %>
+		<div class="group content-film">
+			<%= link_to film.title, admin_film_path(film) %> <%= link_to "р", edit_admin_film_path(film) %> <%= link_to "x", admin_film_path(film), method: :delete %> <br />
+			<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %> <br />
+			<%= link_to(film.files.last.real_name, film.files.last.real_name.url) if film.files.last %> <br />
+			<%= film.files.last.format.description if film.files.last && film.files.last.format %> <br />
+			<br />
+		</div>
+	<% end %>
+	<%= will_paginate @films, class: "pagination", previous_label: "", next_label: "" %>

@@ -1,0 +1,23 @@
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<%= link_to "waprik.ru", admin_path, id: "logo" %>
+			<nav>
+				<ul class="nav pull-right">
+					<li><%= link_to "Меню" , 	 admin_path %></li>
+					<li><%= link_to "Видео", 	 videos_path %></li>
+					<li><%= link_to "Выход", 	 :controller => 'access', :action => 'logout' %></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+<!--
+INTERESTING STYLES
+<ul class="breadcrumb">
+  <li><a href="#">Главная</a> <span class="divider">/</span></li>
+  <li><a href="#">Библиотека</a> <span class="divider">/</span></li>
+  <li class="active">Данные</li>
+</ul>
+-->

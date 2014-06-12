@@ -11,6 +11,7 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
+<<<<<<< HEAD
 ./log/*.log
 ./public
 ./config/database.yml
@@ -19,4 +20,14 @@
 /.gem
 /.ssh
 ./tmp
+=======
+/log/*.log
+/public
+/config/database.yml
+/db/schema.rb
+/.bash_history
+/.gem
+/.ssh
+/tmp
+>>>>>>> 0b39101f699479a2a432792a20c463a6f9ab761e
 .powenv

@@ -1,0 +1,15 @@
+<div class="a">
+	<%= @item.description.html_safe %>
+</div>
+
+<% unless @related_news == [] %>
+	<div class="title">
+		<%= @news.created_at.to_s(:DayMonth) %> так же обновлены
+	</div>
+	
+	<div class="a">
+		<% @related_news.each do |item| %>
+			<%= link_to(news_sections(item), :action => 'show', :id => item.id, :section => item.section) %>
+		<% end %>
+	</div>
+<% end %>

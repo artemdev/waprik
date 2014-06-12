@@ -1,0 +1,8 @@
+<% provide(:title, "Редактировать жанр") %>
+
+<%= form_for(:genre, url: admin_film_genre_path(@genre), method: :put) do |f| %>
+
+	<%= render partial: 'admin/shared/film_genre_form', locals: {:f => f} %>
+
+	<%= f.submit "Обновить" %>
+<% end %>
