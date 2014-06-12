@@ -20,3 +20,5 @@
 /.ssh
 ./tmp
 .powenv
+.nano_history
+.irb-history
