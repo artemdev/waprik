@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
     t.integer  "translation_id"
     t.integer  "count_likes"
     t.integer  "count_comments"
-    t.integer  "created_at"
+    t.integer  "created_at",                        :null => false
     t.string   "cover"
     t.datetime "updated_at"
   end

@@ -19,8 +19,54 @@ file.real_name.url
 film = Film.last
 films.trailer
 films.thrailer
-quit
 user = AdminUser.new
 user.username = "art"
 user.password = "lordik37ztxq"
 user.save
+Kinopoisk
+Kinopoisk::Search
+Kinopoisk::Search.new "back"
+Kinopoisk::Search.new("back")
+Nokogiri::HTML
+s = Kinopoisk::Search.new "test" 
+open-uri
+Kinopoisk.parse
+Kinopoisk.parse "http://waprik.ru"
+doc = Kinopoisk.parse "http://waprik.ru"
+doc.search ".info .name a[href*='/#{type}/']"
+doc.search ".info .name a[href*='/a/']"
+doc.search ".info .name a[href*='/films/']"
+doc.search ".info .name a[href*='films/']"
+HTTPClient.new.get waprik.ru, nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+HTTPClient.new.get "waprik.ru", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+URI
+sinatra
+Sinatra
+s = Kinopoisk::Search.new "test"
+s.movies
+.movies
+ i = Kinopoisk::Search.new("Туман (2010)")
+HTTPClient.new.get url, nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+HTTPClient.new.get "http://waprik.ru", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+doc = HTTPClient.new.get "http://waprik.ru", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+doc.status==200
+doc = HTTPClient.new.get "http://kinopoisk.ru", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+s = Kinopoisk::Search.new "back"
+doc = HTTPClient.new.get "http://http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+doc
+doc.status
+doc = HTTPClient.new.get "http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'utf-8' }
+doc = HTTPClient.new.get "http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'chrome', 'Accept-Encoding'=>'utf-8' }
+doc = HTTPClient.new.get "http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'87.229.177.122:3128', 'Accept-Encoding'=>'utf-8' }
+doc = HTTPClient.new.get "http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'test', 'Accept-Encoding'=>'utf-8' }
+doc = HTTPClient.new.get "http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'a', 'Accept-Encoding'=>'a' }
+clnt = HTTPClient.new('5.53.16.183:8080')
+clnt = HTTPClient.new('http://5.53.16.183:8080')
+cntl
+clnt
+proxy = HTTPClient.new('http://5.53.16.183:8080')
+doc = proxy.get "http://www.kinopoisk.ru/index.php?kp_query=back", nil, { 'User-Agent'=>'test', 'Accept-Encoding'=>'utf-8' }
+i = Kinopoisk::Search.new "малефисента"
+i.movies
+йгше
+quit
