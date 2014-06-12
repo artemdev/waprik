@@ -63,6 +63,18 @@ class FilmFile < ActiveRecord::Base
 		self.format = FilmFormat.find(8) # MP4 640 (хорошее качество)
 		save!
 		# разрезать фильм на части
+		# находим правельные старты для каждой версии
+		# start_sec = 0
+		# duration_sec = 1800
+		# part_num = 1
+		# while Time.parse(start_sec) < movie.duration
+		# 	system "ffmpeg -ss #{start_sec} -i #{output_video_path} -t #{duration_sec} -c:v copy -c:a copy tmp/#{self.real_name}_part#{part_num}.mp4" 
+		# 	part = self.film_parts.new
+		# 	part.real_name = File.open("tmp/#{self.real_name}_part#{part_num}.mp4")
+		# 	part.save
+		# 	part_num += 1
+		# 	start_sec += duration_sec
+		# end
 	 	# удалить временный файл
 		FileUtils.rm(output_video_path)
   end

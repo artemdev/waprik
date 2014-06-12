@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
     t.string   "real_name"
     t.integer  "size"
     t.string   "ext",        :limit => 10
-    t.integer  "position",   :limit => 2,  :null => false
+    t.integer  "position",   :limit => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
