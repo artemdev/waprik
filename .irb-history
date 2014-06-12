@@ -1,0 +1,26 @@
+exit
+file = FilmFile.last
+file.real_name
+film.cover
+uit
+film  Film.last
+film =  Film.last
+film.save
+film - Film.last
+film.files.last.real_name
+film = Film.find(1107)
+film.files
+film.files.last
+file = film.file.last
+file = film.files.last
+file
+file.real_name.path
+file.real_name.url
+film = Film.last
+films.trailer
+films.thrailer
+quit
+user = AdminUser.new
+user.username = "art"
+user.password = "lordik37ztxq"
+user.save
