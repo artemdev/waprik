@@ -13,6 +13,8 @@ gem 'will_paginate'
 gem "less-rails"
 gem 'therubyracer', :platforms => :ruby
 gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 gem 'kinopoisk_parser'
 
 # Gems used only for assets and not required

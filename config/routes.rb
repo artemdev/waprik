@@ -1,4 +1,8 @@
+require 'sidekiq/web'
 Waprik::Application.routes.draw do
+  # sidekiq
+  mount Sidekiq::Web, at: '/tasks'
+
   # Admin resources
   namespace :admin do
     resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
