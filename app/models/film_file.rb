@@ -28,25 +28,22 @@ class FilmFile < ActiveRecord::Base
 		if version == MP4_640
 			  options = {
 			  		video_codec: "libx264", frame_rate: 23.9, resolution: "640x320", video_bitrate: 350,
-			       aspect: 1.777777,
 			       x264_vprofile: "baseline",
 			       audio_codec: "libfaac", audio_bitrate: 95, audio_sample_rate: 44100, audio_channels: 2,
 			       threads: 2,
-			       custom: "-filter:a aresample=44100"}
+			       custom: "-filter:a aresample=44100 -vf scale=640:-1"}
 		elsif version == MP4_320
 			  options = {video_codec: "libx264", frame_rate: 15, resolution: "320x240", video_bitrate: 200,
-			       aspect: 1.777777,
-			       x264_vprofile: " baseline",
+			       x264_vprofile: "baseline",
 			       audio_codec: "libfaac", audio_bitrate: 32, audio_sample_rate: 44100, audio_channels: 2,
 			       threads: 2,
-			       custom: "-filter:a aresample=44100"}
+			       custom: "-filter:a aresample=44100 -vf scale=320:-1"}
 		elsif version == LOW_3GP
 			  options = {video_codec: "libx264", frame_rate: 15, resolution: "176x144", video_bitrate: 120,
-			       aspect: 1.777777,
-			       x264_vprofile: " baseline",
+			       x264_vprofile: "baseline",
 			       audio_codec: "libfaac", audio_bitrate: 32, audio_sample_rate: 44100, audio_channels: 1,
 			       threads: 2,
-			       custom: "-filter:a aresample=44100"}
+			       custom: "-filter:a aresample=44100 -vf scale=176:-1"}
 		end
 	end
 
@@ -105,11 +102,6 @@ class FilmFile < ActiveRecord::Base
 		FileUtils.rm_rf(tmp_folder)
   end 
 
-  private
-
-  def store_file path
-
-  end
 	# def make_ffmpeg_movie_from file_path
 	# 	@ffmpeg_video = FFMPEG::Movie.new(file_path)
 	# 	sound = cut_sound_for(MP4_320)
