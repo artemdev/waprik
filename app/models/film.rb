@@ -64,7 +64,7 @@ class Film < ActiveRecord::Base
   def add_directors(directors)
     separated_directors = directors.split("\n")
     separated_directors.each do |director|
-      directror.strip!
+      director.strip!
       if new_director = FilmDirector.find_by_name(director)
         self.directors << new_director
       else
