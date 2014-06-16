@@ -1827,3 +1827,795 @@ Transcoding of /home/waprik/public/ftp/films/Ma1efisenta.2014.D.CAMRip.1400MB.av
 Transcoding of /home/waprik/public/ftp/films/Gran.Budushego.2014.D.CAMRip.1400MB.nnm-club.avi to /home/waprik/public/uploads/tmp/1234/Gran.Budushego.2014.D.CAMRip.1400MB.nnm-club.avi_640.mp4 succeeded
 
 2014-06-15T12:57:29Z 15383 TID-bn6c8 FFMPEGWorker JID-4a2484a3541316c57ea7d538 INFO: done: 2909.687 sec
+2014-06-16T09:36:03Z 15383 TID-2ixw0 INFO: Shutting down
+2014-06-16T09:36:05Z 15383 TID-7b624 INFO: Shutting down 25 quiet workers
+2014-06-16T09:37:40Z 348 TID-833tc INFO: Running in ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
+2014-06-16T09:37:40Z 348 TID-833tc INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2014-06-16T09:37:40Z 348 TID-833tc INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2014-06-16T09:37:40Z 348 TID-hubdo INFO: Booting Sidekiq 3.1.3 with redis options {}
+2014-06-16T11:31:22Z 13006 TID-9tm3c INFO: Running in ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
+2014-06-16T11:31:22Z 13006 TID-9tm3c INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2014-06-16T11:31:22Z 13006 TID-9tm3c INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2014-06-16T11:31:22Z 13006 TID-9tm3c INFO: Starting processing, hit Ctrl-C to stop
+2014-06-16T11:31:22Z 13006 TID-w8t60 INFO: Booting Sidekiq 3.1.3 with redis options {}
+2014-06-16T11:31:31Z 13006 TID-9tm3c INFO: Shutting down
+2014-06-16T11:31:32Z 13006 TID-wb7rs INFO: Shutting down 25 quiet workers
+2014-06-16T11:31:40Z 13059 TID-48kk8 INFO: Running in ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
+2014-06-16T11:31:40Z 13059 TID-48kk8 INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2014-06-16T11:31:40Z 13059 TID-48kk8 INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2014-06-16T11:31:41Z 13059 TID-ezy2k INFO: Booting Sidekiq 3.1.3 with redis options {}
+2014-06-16T11:38:27Z 13059 TID-djs3c FFMPEGWorker JID-884024964f5539ba34aa920d INFO: start
+Running transcoding...
+ffmpeg -y -i /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi -vcodec libx264 -acodec libfaac -r 15 -s 176x74 -b:v 120k -vprofile baseline -b:a 32k -ar 44100 -ac 1 -threads 2 -filter:a aresample=44100 -vf scale=176:-1 -aspect 2.3783783783783785 /home/waprik/public/uploads/tmp/1235/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp
+
+Transcoding of /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi to /home/waprik/public/uploads/tmp/1235/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp succeeded
+
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1235/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 00:55:40.95, start: 0.023220, bitrate: 156 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 120 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1235/part1.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 120 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18000 fps=0.0 q=-1.0 Lsize=   22787kB time=00:20:00.00 bitrate= 155.6kbits/s    
+video:17630kB audio:4687kB subtitle:0 global headers:0kB muxing overhead 2.105183%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1235/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 00:55:40.95, start: 0.023220, bitrate: 156 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 120 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1235/part2.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 120 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18021 fps=0.0 q=-1.0 Lsize=   22782kB time=00:20:00.01 bitrate= 155.5kbits/s    
+video:17619kB audio:4693kB subtitle:0 global headers:0kB muxing overhead 2.108153%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1235/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 00:55:40.95, start: 0.023220, bitrate: 156 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 120 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1235/part3.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 120 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=14200 fps=0.0 q=-1.0 Lsize=   18227kB time=00:15:40.97 bitrate= 158.7kbits/s    
+video:14157kB audio:3699kB subtitle:0 global headers:0kB muxing overhead 2.078043%
+2014-06-16T11:42:58Z 13059 TID-djs3c FFMPEGWorker JID-884024964f5539ba34aa920d INFO: done: 270.919 sec
+2014-06-16T13:34:05Z 24090 TID-5o6xc INFO: Running in ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
+2014-06-16T13:34:05Z 24090 TID-5o6xc INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2014-06-16T13:34:05Z 24090 TID-5o6xc INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2014-06-16T13:34:05Z 24090 TID-s6pzg INFO: Booting Sidekiq 3.1.3 with redis options {}
+2014-06-16T13:35:08Z 24090 TID-id62g FFMPEGWorker JID-2fca4284531e7ff3174bcf01 INFO: start
+Running transcoding...
+ffmpeg -y -i /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi -vcodec libx264 -acodec libfaac -r 15 -s 176x74 -b:v 120k -vprofile baseline -b:a 32k -ar 44100 -ac 1 -threads 2 -filter:a aresample=44100 -vf scale=176:-1 -aspect 2.3783783783783785 /home/waprik/public/uploads/tmp/1236/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp
+
+2014-06-16T13:39:25Z 24090 TID-5o6xc INFO: Shutting down
+2014-06-16T13:39:27Z 24090 TID-s8y9g INFO: Shutting down 24 quiet workers
+2014-06-16T13:39:27Z 24090 TID-s8y9g INFO: Pausing up to 8 seconds to allow workers to finish...
+2014-06-16T13:39:35Z 24090 TID-s8y9g WARN: Terminating 1 busy worker threads
+2014-06-16T13:39:35Z 24090 TID-s8y9g WARN: Work still in progress [#<struct Sidekiq::BasicFetch::UnitOfWork queue="queue:default", message="{\"retry\":true,\"queue\":\"default\",\"class\":\"FFMPEGWorker\",\"args\":[\"1236\",\"/home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi\"],\"jid\":\"2fca4284531e7ff3174bcf01\",\"enqueued_at\":1402925708.0353887}">]
+2014-06-16T13:39:35Z 24090 TID-s8y9g INFO: Pushed 1 messages back to Redis
+2014-06-16T13:39:35Z 24090 TID-id62g FFMPEGWorker JID-2fca4284531e7ff3174bcf01 INFO: fail: 267.481 sec
+2014-06-16T14:00:49Z 26945 TID-787bw INFO: Running in ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
+2014-06-16T14:00:49Z 26945 TID-787bw INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2014-06-16T14:00:49Z 26945 TID-787bw INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2014-06-16T14:00:49Z 26945 TID-tnej0 INFO: Booting Sidekiq 3.1.3 with redis options {}
+2014-06-16T14:00:49Z 26945 TID-jttps FFMPEGWorker JID-834d4bd948269048e67b083d INFO: start
+Running transcoding...
+ffmpeg -y -i /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi -vcodec libx264 -acodec libfaac -r 15 -s 176x74 -b:v 120k -vprofile baseline -b:a 32k -ar 44100 -ac 1 -threads 2 -filter:a aresample=44100 -vf scale=176:-1 -aspect 2.3783783783783785 /home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp
+
+Transcoding of /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi to /home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp succeeded
+
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 154 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 119 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1237/part1.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 119 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18000 fps=0.0 q=-1.0 Lsize=   22787kB time=00:20:00.00 bitrate= 155.6kbits/s    
+video:17630kB audio:4687kB subtitle:0 global headers:0kB muxing overhead 2.105183%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 154 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 119 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1237/part2.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 119 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18021 fps=0.0 q=-1.0 Lsize=   22782kB time=00:20:00.01 bitrate= 155.5kbits/s    
+video:17619kB audio:4693kB subtitle:0 global headers:0kB muxing overhead 2.108153%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 154 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 119 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1237/part3.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 119 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18091 fps=0.0 q=-1.0 Lsize=   21995kB time=00:20:00.02 bitrate= 150.2kbits/s    
+video:16812kB audio:4711kB subtitle:0 global headers:0kB muxing overhead 2.193990%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 154 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 119 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1237/part4.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 119 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18018 fps=0.0 q=-1.0 Lsize=   23526kB time=00:20:00.00 bitrate= 160.6kbits/s    
+video:18364kB audio:4692kB subtitle:0 global headers:0kB muxing overhead 2.039911%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 154 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], 119 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, 3gp, to '/home/waprik/public/uploads/tmp/1237/part5.3gp':
+  Metadata:
+    major_brand     : 3gp6
+    minor_version   : 256
+    compatible_brands: isomiso2avc13gp6
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p, 176x74 [SAR 1:1 DAR 88:37], q=2-31, 119 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, mono, 31 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=16123 fps=0.0 q=-1.0 Lsize=   19926kB time=00:17:53.55 bitrate= 152.0kbits/s    
+video:15314kB audio:4192kB subtitle:0 global headers:0kB muxing overhead 2.155951%
+Running transcoding...
+ffmpeg -y -i /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi -vcodec libx264 -acodec libfaac -r 15 -s 320x136 -b:v 200k -vprofile baseline -b:a 32k -ar 44100 -ac 2 -threads 2 -filter:a aresample=44100 -vf scale=320:-1 -aspect 2.3529411764705883 /home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4
+
+Transcoding of /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi to /home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4 succeeded
+
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 260 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 320x136 [SAR 1:1 DAR 40:17], 198 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part1.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 320x136 [SAR 1:1 DAR 40:17], q=2-31, 198 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18000 fps=0.0 q=-1.0 Lsize=   38452kB time=00:20:00.00 bitrate= 262.5kbits/s    
+video:29346kB audio:8636kB subtitle:0 global headers:0kB muxing overhead 1.237179%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 260 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 320x136 [SAR 1:1 DAR 40:17], 198 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part2.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 320x136 [SAR 1:1 DAR 40:17], q=2-31, 198 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=18021 fps=0.0 q=-1.0 Lsize=   38532kB time=00:20:00.01 bitrate= 263.0kbits/s    
+video:29415kB audio:8647kB subtitle:0 global headers:0kB muxing overhead 1.236107%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 260 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 320x136 [SAR 1:1 DAR 40:17], 198 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part3.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 320x136 [SAR 1:1 DAR 40:17], q=2-31, 198 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=17120 fps=0.0 q=-1.0 size=   34778kB time=00:18:55.23 bitrate= 251.0kbits/s    frame=18091 fps=0.0 q=-1.0 Lsize=   37171kB time=00:20:00.02 bitrate= 253.8kbits/s    
+video:28019kB audio:8680kB subtitle:0 global headers:0kB muxing overhead 1.286971%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 260 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 320x136 [SAR 1:1 DAR 40:17], 198 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part4.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 320x136 [SAR 1:1 DAR 40:17], q=2-31, 198 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=17132 fps=0.0 q=-1.0 size=   37899kB time=00:19:00.93 bitrate= 272.1kbits/s    frame=18018 fps=0.0 q=-1.0 Lsize=   39875kB time=00:20:00.00 bitrate= 272.2kbits/s    
+video:30759kB audio:8645kB subtitle:0 global headers:0kB muxing overhead 1.193857%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_320.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.60, start: 0.023220, bitrate: 260 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 320x136 [SAR 1:1 DAR 40:17], 198 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part5.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 320x136 [SAR 1:1 DAR 40:17], q=2-31, 198 kb/s, 15 fps, 15360 tbn, 15360 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 58 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=16123 fps=0.0 q=-1.0 Lsize=   33089kB time=00:17:53.55 bitrate= 252.5kbits/s    
+video:24945kB audio:7723kB subtitle:0 global headers:0kB muxing overhead 1.287461%
+Running transcoding...
+ffmpeg -y -i /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi -vcodec libx264 -acodec libfaac -r 23.9 -s 640x270 -b:v 350k -vprofile baseline -b:a 95k -ar 44100 -ac 2 -threads 2 -filter:a aresample=44100 -vf scale=640:-1 -aspect 2.3703703703703702 /home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4
+
+Transcoding of /home/waprik/public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi to /home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4 succeeded
+
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.52, start: 0.023220, bitrate: 450 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 640x270 [SAR 1:1 DAR 64:27], 350 kb/s, 23.90 fps, 23.90 tbr, 15296 tbn, 47.80 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part1.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 640x270 [SAR 1:1 DAR 64:27], q=2-31, 350 kb/s, 23.90 fps, 15296 tbn, 15296 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=23108 fps=0.0 q=-1.0 size=   52067kB time=00:16:06.87 bitrate= 441.1kbits/s    frame=28680 fps=0.0 q=-1.0 Lsize=   65899kB time=00:20:00.00 bitrate= 449.9kbits/s    
+video:51315kB audio:13911kB subtitle:0 global headers:0kB muxing overhead 1.033030%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.52, start: 0.023220, bitrate: 450 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 640x270 [SAR 1:1 DAR 64:27], 350 kb/s, 23.90 fps, 23.90 tbr, 15296 tbn, 47.80 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part2.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 640x270 [SAR 1:1 DAR 64:27], q=2-31, 350 kb/s, 23.90 fps, 15296 tbn, 15296 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=22376 fps=0.0 q=-1.0 size=   52128kB time=00:15:34.79 bitrate= 456.8kbits/s    frame=28715 fps=0.0 q=-1.0 Lsize=   66046kB time=00:20:00.01 bitrate= 450.9kbits/s    
+video:51443kB audio:13928kB subtitle:0 global headers:0kB muxing overhead 1.032073%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.52, start: 0.023220, bitrate: 450 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 640x270 [SAR 1:1 DAR 64:27], 350 kb/s, 23.90 fps, 23.90 tbr, 15296 tbn, 47.80 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part3.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 640x270 [SAR 1:1 DAR 64:27], q=2-31, 350 kb/s, 23.90 fps, 15296 tbn, 15296 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=21183 fps=0.0 q=-1.0 size=   48432kB time=00:14:40.21 bitrate= 450.7kbits/s    frame=28827 fps=0.0 q=-1.0 Lsize=   63683kB time=00:20:00.02 bitrate= 434.7kbits/s    
+video:49023kB audio:13982kB subtitle:0 global headers:0kB muxing overhead 1.075045%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.52, start: 0.023220, bitrate: 450 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 640x270 [SAR 1:1 DAR 64:27], 350 kb/s, 23.90 fps, 23.90 tbr, 15296 tbn, 47.80 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part4.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 640x270 [SAR 1:1 DAR 64:27], q=2-31, 350 kb/s, 23.90 fps, 15296 tbn, 15296 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=23151 fps=0.0 q=-1.0 size=   53494kB time=00:16:07.43 bitrate= 453.0kbits/s    frame=28710 fps=0.0 q=-1.0 Lsize=   68602kB time=00:20:00.00 bitrate= 468.3kbits/s    
+video:54002kB audio:13925kB subtitle:0 global headers:0kB muxing overhead 0.993116%
+ffmpeg version 1.2.6 Copyright (c) 2000-2014 the FFmpeg developers
+  built on Mar  7 2014 10:52:03 with gcc 4.7 (Debian 4.7.2-5)
+  configuration: --prefix=/usr --extra-cflags='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security ' --extra-ldflags='-Wl,-z,relro' --cc='ccache cc' --enable-shared --enable-libmp3lame --enable-gpl --enable-nonfree --enable-libvorbis --enable-pthreads --enable-libfaac --enable-libxvid --enable-postproc --enable-x11grab --enable-libgsm --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libx264 --enable-libspeex --enable-nonfree --disable-stripping --enable-libvpx --enable-libschroedinger --disable-encoder=libschroedinger --enable-version3 --enable-libopenjpeg --enable-librtmp --enable-avfilter --enable-libfreetype --enable-libvo-aacenc --disable-decoder=amrnb --enable-libvo-amrwbenc --enable-libaacplus --libdir=/usr/lib/x86_64-linux-gnu --disable-vda --enable-libbluray --enable-libcdio --enable-gnutls --enable-frei0r --enable-openssl --enable-libass --enable-libopus --enable-fontconfig --enable-libpulse --disable-mips32r2 --disable-mipsdspr1 --dis  libavutil      52. 18.100 / 52. 18.100
+  libavcodec     54. 92.100 / 54. 92.100
+  libavformat    54. 63.104 / 54. 63.104
+  libavdevice    54.  3.103 / 54.  3.103
+  libavfilter     3. 42.103 /  3. 42.103
+  libswscale      2.  2.100 /  2.  2.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  2.100 / 52.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/waprik/public/uploads/tmp/1237/Tancu1.otcedava.2014.D.HDRip.1400MB.avi_640.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+  Duration: 01:37:53.52, start: 0.023220, bitrate: 450 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 640x270 [SAR 1:1 DAR 64:27], 350 kb/s, 23.90 fps, 23.90 tbr, 15296 tbn, 47.80 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Output #0, mp4, to '/home/waprik/public/uploads/tmp/1237/part5.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf54.63.104
+    Stream #0:0(und): Video: h264 ([33][0][0][0] / 0x0021), yuv420p, 640x270 [SAR 1:1 DAR 64:27], q=2-31, 350 kb/s, 23.90 fps, 15296 tbn, 15296 tbc
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac ([64][0][0][0] / 0x0040), 44100 Hz, stereo, 94 kb/s
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame=21758 fps=0.0 q=-1.0 size=   54804kB time=00:15:09.06 bitrate= 493.9kbits/s    frame=25689 fps=0.0 q=-1.0 Lsize=   59047kB time=00:17:53.49 bitrate= 450.6kbits/s    
+video:46003kB audio:12441kB subtitle:0 global headers:0kB muxing overhead 1.031999%
+2014-06-16T14:47:54Z 26945 TID-jttps FFMPEGWorker JID-834d4bd948269048e67b083d INFO: done: 2825.078 sec
+2014-06-16T17:47:29Z 26945 TID-787bw INFO: Shutting down
+2014-06-16T17:47:31Z 26945 TID-tpmt0 INFO: Shutting down 25 quiet workers

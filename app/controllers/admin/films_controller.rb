@@ -51,7 +51,7 @@ class Admin::FilmsController < ApplicationController
 		# info
 		@film.about = @movie.description if @movie.description 
 		@film.year = @movie.year if @movie.year 
-		@film.cover = @movie.poster_big if @movie.poster_big
+		# @film.cover = @movie.poster_big if @movie.poster_big
 		@film.world_estimate = @movie.imdb_rating if @movie.imdb_rating
 		@film.cis_estimate = @movie.rating if @movie.rating 
 		@film.selected_genres = @movie.genres.join("\n") if @movie.genres
@@ -72,7 +72,7 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
-		@film.remote_cover_url = @movie.poster
+		# @film.remote_cover_url = @movie.poster
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)

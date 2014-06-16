@@ -1,273 +1,3 @@
-cd ..
-#1402562412
-ls
-#1402562416
-cd 1
-#1402562417
-ls
-#1402562432
-remove-mod-tmp.pl
-#1402562440
-cd tmp
-#1402562440
-ls
-#1402562450
-ccd backup
-#1402562454
-cd backup
-#1402562454
-ls
-#1402562458
-cd ..
-#1402562462
-ls
-#1402562465
-cd tmp
-#1402562465
-ls
-#1402562472
-cd ..
-#1402562474
-cd ..
-#1402562475
-ls
-#1402562477
-cd backup/
-#1402562484
-cd home
-#1402562485
-ls
-#1402562487
-cd 1
-#1402562487
-ls
-#1402562491
-cd 1174
-#1402562493
-ls
-#1402562496
-cd 195
-#1402562497
-ls
-#1402562498
-cd ..
-#1402562502
-cd 195
-#1402562502
-ls
-#1402562505
-d ..
-#1402562508
-cd ..
-#1402562511
-cd ..
-#1402562513
-stat 1
-#1402562523
-du -sh 1
-#1402562529
-ls
-#1402562534
-du -sh waprik
-#1402562556
-cd waprik
-#1402562556
-ls
-#1402562564
-ls
-#1402562573
-mv public ..
-#1402562584
-su
-#1402562599
-ls
-#1402562604
-rm -rf *
-#1402562607
-ls
-#1402562611
-git pull waprik master
-#1402562619
-git merger
-#1402562621
-git merge
-#1402562632
-git status
-#1402562640
-rm -rf .git
-#1402562641
-ls
-#1402562647
-git init
-#1402562680
-git add remote waprik root@85.25.235.31:/home/git/waprik.git
-#1402562690
-git remote add waprik root@85.25.235.31:/home/git/waprik.git
-#1402562697
-git pull waprik master
-#1402562719
-git status
-#1402562723
-git add .
-#1402562726
-git status
-#1402562731
-git commit -am 'test'
-#1402562734
-git status
-#1402562738
-git pull waprik master
-#1402562743
-ls
-#1402562746
-git checkout
-#1402562750
-ls
-#1402562757
-git branch
-#1402562762
-rm -rf .git
-#1402562763
-ls
-#1402562765
-ls -la
-#1402562768
-git init
-#1402562771
-git add .
-#1402562772
-ls
-#1402562774
-git status
-#1402562789
-git commit -am 'init'
-#1402562818
-git remote add waprik root@85.25.235.31:/home/git/waprik.git
-#1402562823
-git pull waprik master
-#1402562892
-ls
-#1402562909
-git status
-#1402562923
-git commit -am 'test'
-#1402562925
-git status
-#1402562937
-git pull waprik master
-#1402562950
-nano .gitignore
-#1402563002
-git commit -am 'test'
-#1402563008
-git pull waprik master
-#1402563037
-nano config/database.yml
-#1402563045
-ls
-#1402563047
-pwd
-#1402563051
-cd config
-#1402563052
-ls
-#1402563069
-touch database.yml
-#1402563071
-ls
-#1402563078
-ls
-#1402563083
-nano config/database.yml
-#1402563357
-ls
-#1402563364
-nano database.yml 
-#1402563580
-mysql -u artem -pjU3dnBd9Js32g
-#1402563588
-mysql -u artem -pjU3dnBd9Js32g waprik_production
-#1402563599
-mysql -u artem -pjU3dnBd9Js32g
-#1402563633
-cd ..
-#1402563644
-RAILS_ENV=production rake db:migrate
-#1402563652
-bundle install
-#1402563666
-RAILS_ENV=production rake db:migrate
-#1402563702
-nano config/database.yml 
-#1402563719
-RAILS_ENV=production rake db:migrate
-#1402563798
-mysql -u artem -pjU3dnBd9Js32g waprik_production < waprik_films.sql
-#1402563803
-RAILS_ENV=production rake db:migrate
-#1402563851
-nano log/production.log 
-#1402563870
-cd app/
-#1402563871
-ls
-#1402563873
-cd views
-#1402563874
-ls
-#1402563878
-cd public/
-#1402563878
-ls
-#1402563881
-cd ..
-#1402563888
-cd ..
-#1402563927
-lsof -wni tcp:4100
-#1402563937
-lsof -wni tcp:4000
-#1402563953
-nano /etc/nginx/nginx.conf 
-#1402563977
-kill -QUIT 6514
-#1402563983
-lsof -wni tcp:4000
-#1402563988
-kill -QUIT 10741
-#1402564000
-kill -QUIT 11040
-#1402564004
-lsof -wni tcp:4000
-#1402564009
-kill -QUIT 29379
-#1402564050
-unicorn -c ../config/unicorn.rb -E production -p 4000 -D
-#1402564059
-cd ..
-#1402564068
-unicorn -c config/unicorn.rb -E production -p 4000 -D
-#1402564108
-ls
-#1402564118
-cd public
-#1402564121
-cd ..
-#1402564122
-ls
-#1402564128
-su
-#1402564236
-cd waprik
-#1402564237
-ls
-#1402564241
-bundle exec sidekiq -d -L sidekiq.log -q mailer,5 -q default -e production
-#1402564244
-ls
-#1402564254
-git status
-#1402564274
 nano .gitignore 
 #1402564347
 nano log/production.log 
@@ -994,3 +724,273 @@ top
 pwd
 rails c
 exit
+#1402910901
+pwd
+#1402910906
+git pull waprik master
+#1402910919
+git checkout .irb-history
+#1402910923
+git pull waprik master
+#1402910938
+git checkout .sass-cache
+#1402910944
+git checkout .sass-cache/
+#1402910967
+git pull waprik master
+#1402910976
+git status
+#1402910986
+git checkout .bash_history
+#1402910989
+pwd
+#1402910996
+git checkout ./.bash_history
+#1402911006
+git rm .bash_history
+#1402911014
+git add .
+#1402911020
+git pull waprik master
+#1402911035
+git commit -am '.bash_history ...'
+#1402911040
+git pull waprik master
+#1402911095
+ps -ef | grep sidekiq
+#1402911114
+vim
+#1402911193
+vim /tmp/pids/sidekiq.pid
+#1402911223
+nano /tmp/pids/sidekiq.pid
+#1402911250
+mkdir tmp/pids
+#1402911252
+nano /tmp/pids/sidekiq.pid
+#1402911259
+nano /tmp/pids/sidekiq.pid
+#1402911267
+touch /tmp/pids/sidekiq.pid
+#1402911274
+touch tmp/pids/sidekiq.pid
+#1402911282
+nano tmp/pids/sidekiq.pid
+#1402911362
+sidekiqctl stop tmp/pids/sidekiq.pid 
+#1402911374
+sidekiqctl start tmp/pids/sidekiq.pid 
+#1402911391
+cd tmp
+#1402911393
+ls
+#1402911395
+cd pids
+#1402911396
+ls
+#1402911398
+pwd
+#1402911410
+quit
+#1402911415
+cd ~
+#1402911453
+bundle exec sidekiq -d -L sidekiq.log 5 -q default -e production
+#1402911468
+lsof -wni tcp:4000
+#1402911475
+kill -QUIT 2797
+#1402911504
+unicorn -c config/unicorn.rb -E production -p 4000 -D
+#1402911624
+ls -l
+#1402911627
+cd public/
+#1402911631
+ls -l
+#1402911636
+cd uploads/
+#1402911637
+ls -l
+#1402911641
+cd films
+#1402911644
+ls -l
+#1402911657
+cd 1234
+#1402911659
+ls -l
+#1402911681
+mkdir cover
+#1402911682
+ls
+#1402911686
+rm cover
+#1402911690
+rm -r cover
+#1402911982
+cd ..
+#1402911983
+cd ..
+#1402911984
+cd ..
+#1402911984
+cd ..
+#1402911987
+cd app/
+#1402911988
+ls -l
+#1402911991
+cd uploaders/
+#1402911993
+ls -l
+#1402912004
+cd ..
+#1402912005
+cd ..
+#1402912007
+ls -l
+#1402912010
+cd tmp
+#1402912012
+ls -l
+#1402912015
+cd ..
+#1402912019
+cd public
+#1402912020
+ls
+#1402912023
+ls -l
+#1402912026
+cd tmp/
+#1402912029
+ls -l
+#1402912038
+stat tmp
+#1402912045
+cd ..
+#1402912046
+stat tmp
+#1402912055
+cd ..
+#1402912058
+stat public/
+#1402912102
+cd public
+#1402912104
+ls 
+#1402912303
+top
+#1402925241
+ps -ef | grep sidekiq
+#1402925247
+ps -ef | grep sidekiq
+#1402925248
+ps -ef | grep sidekiq
+#1402925248
+ps -ef | grep sidekiq
+#1402925249
+ps -ef | grep sidekiq
+#1402925249
+ps -ef | grep sidekiq
+#1402925250
+ps -ef | grep sidekiq
+#1402925250
+ps -ef | grep sidekiq
+#1402925251
+ps -ef | grep sidekiq
+#1402925251
+ps -ef | grep sidekiq
+#1402925275
+nano tmp/pids/sidekiq.pid 
+#1402925279
+nano tmp/pids/sidekiq.pid 
+#1402925303
+ps -ef | grep sidekiq | grep -v grep | awk '{print $2}' | xargs kill -9
+#1402925308
+ps -ef | grep sidekiq
+#1402925343
+cd app/models
+#1402925344
+ls
+#1402925350
+nano film_file.rb
+#1402925355
+cd ..
+#1402925358
+cd workers/
+#1402925360
+nano ffmpeg_worker.rb 
+#1402925455
+git pull waprik master
+#1402925474
+lsof -wni tcp:4000
+#1402925480
+kill -QUIT 13239
+#1402925484
+lsof -wni tcp:4000
+#1402925489
+kill -QUIT 13293
+#1402925493
+lsof -wni tcp:4000
+#1402925494
+lsof -wni tcp:4000
+#1402925494
+lsof -wni tcp:4
+#1402925499
+kill -QUIT 13248
+#1402925506
+kill -QUIT 13239
+#1402925512
+lsof -wni tcp:4000
+#1402925514
+lsof -wni tcp:4000
+#1402925530
+cd ..
+#1402925530
+cd ..
+#1402925549
+unicorn -c config/unicorn.rb -e production -p 4000 -D
+#1402925558
+unicorn -c config/unicorn.rb -E production -p 4000 -D
+#1402925567
+lsof -wni tcp:4000
+#1402925582
+ps -ef | grep sidekiq
+#1402925620
+sidekiq -L sidekiq.log -E production -D -P tmp/pids/sidekiq.pid 
+#1402925627
+sidekiq -L sidekiq.log -e production -D -P tmp/pids/sidekiq.pid 
+#1402925641
+sidekiq -L sidekiq.log -e production -d -P tmp/pids/sidekiq.pid 
+#1402925656
+ps -ef | grep sidekiq
+#1402925660
+ps -ef | grep sidekiq
+#1402925662
+ps -ef | grep sidekiq
+#1402925663
+ps -ef | grep sidekiq
+#1402925663
+ps -ef | grep sidekiq
+#1402925715
+ps -ef | grep sidekiq
+#1402925861
+stat public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi 
+#1402926033
+rails c production
+#1402927097
+stat public/ftp/films/Tancu1.otcedava.2014.D.HDRip.1400MB.avi 
+#1402927221
+ps -ef | grep sidekiq
+#1402927231
+sidekiq -L sidekiq.log -e production -D -P tmp/pids/sidekiq.pid 
+#1402927245
+sidekiq -L sidekiq.log -e production -d -P tmp/pids/sidekiq.pid 
+#1402927250
+ps -ef | grep sidekiq
+#1402927273
+git pull waprik master
+#1402927311
+ps -ef | grep sidekiq
