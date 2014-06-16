@@ -29,7 +29,7 @@ Waprik::Application.routes.draw do
       end
     end
 
-  root :to => "public/videos#index"
+  root :to => "public/films#index"
 
   match 'login' => 'admin/access#login'
   match 'logout' => 'admin/access#logout'
