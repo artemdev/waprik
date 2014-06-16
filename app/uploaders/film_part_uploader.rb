@@ -15,11 +15,15 @@ class FilmPartUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/films/#{model.film_file.film.id}/#{model.film_file.id}"
+    "#{base_store_dir}/#{model.film_file.film.id}"
+  end
+
+  def base_store_dir
+    "uploads/films"
   end
 
   def filename
-     "#{Russian.translit(model.film_file.film.title[0..20]).gsub(" ", "_").delete(",").delete("/_")}_part#{model.num}.#{file.extension}" if original_filename.present?
+     "#{Russian.translit(model.film_file.film.title[0..20]).gsub(" ", "_").delete(",").delete("/_")}_#{model.film_file.id}_part#{model.num}.#{file.extension}" if original_filename.present?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

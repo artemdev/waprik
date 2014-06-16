@@ -60,15 +60,25 @@ class FilmFile < ActiveRecord::Base
   	self.real_name = File.open(output_video_path)
   	save!
 		# разрезать фильм на части
-		# находим правельные старты для каждой версии
-		# start_sec = 0
-		# duration_sec = 1800
-		# part_num = 1
-		# while Time.parse(start_sec) < movie.duration
-		# 	system "ffmpeg -ss #{start_sec} -i #{output_video_path} -t #{duration_sec} -c:v copy -c:a copy tmp/#{self.film.title}_part#{part_num}.mp4" 
-		# 	part = self.film_parts.new
-		# 	part.real_name = File.open("tmp/#{self.real_name}_part#{part_num}.mp4")
- 
+		start_sec = 0.second
+		duration_sec = 1200.seconds
+		part_num = 1
+		while start_sec < movie.duration
+			tmp_part = Rails.root.join(tmp_folder, "part#{part_num}.mp4")
+			system "ffmpeg -ss #{Time.at(start_sec).utc.strftime("%H:%M:%S")} -i #{output_video_path} -t #{Time.at(duration_sec).utc.strftime("%H:%M:%S")} -c:v copy -c:a copy #{tmp_part}" 
+			movie_part = FFMPEG::Movie.new(tmp_part) # чтобы узнать продолжительность duration && size
+			part = self.film_parts.new
+			part.num = part_num
+			part.film = self.film
+			part.real_name = File.open(tmp_part)
+			part.size = movie_part.size
+			part.duration = movie_part.duration
+			part.save
+			part_num += 1
+			start_sec += duration_sec
+			FileUtils.rm(tmp_part)
+		end
+ 		FileUtils.rm_rf(tmp_folder)
   end
 
   def convert_to_mp4_320 file_path
@@ -81,6 +91,25 @@ class FilmFile < ActiveRecord::Base
 		self.format = FilmFormat.find(7) # MP4 320 (хорошее качество)
   	self.real_name = File.open(output_video_path)
   	save!
+  	# разрезать фильм на части
+		start_sec = 0.second
+		duration_sec = 1200.seconds
+		part_num = 1
+		while start_sec < movie.duration
+			tmp_part = Rails.root.join(tmp_folder, "part#{part_num}.mp4")
+			system "ffmpeg -ss #{Time.at(start_sec).utc.strftime("%H:%M:%S")} -i #{output_video_path} -t #{Time.at(duration_sec).utc.strftime("%H:%M:%S")} -c:v copy -c:a copy #{tmp_part}" 
+			movie_part = FFMPEG::Movie.new(tmp_part) # чтобы узнать продолжительность duration && size
+			part = self.film_parts.new
+			part.num = part_num
+			part.film = self.film
+			part.real_name = File.open(tmp_part)
+			part.size = movie_part.size
+			part.duration = movie_part.duration
+			part.save
+			part_num += 1
+			start_sec += duration_sec
+			FileUtils.rm(tmp_part)
+		end
 		FileUtils.rm_rf(tmp_folder)
   end
 
@@ -97,7 +126,7 @@ class FilmFile < ActiveRecord::Base
   	save!
 		# разрезать фильм на части
 		start_sec = 0.second
-		duration_sec = 300.seconds
+		duration_sec = 1200.seconds
 		part_num = 1
 		while start_sec < movie.duration
 			tmp_part = Rails.root.join(tmp_folder, "part#{part_num}.3gp")

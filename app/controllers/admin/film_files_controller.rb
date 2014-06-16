@@ -16,4 +16,10 @@ class Admin::FilmFilesController < ApplicationController
 		redirect_to admin_films_path
 	end
 
+	def destroy
+		file = FilmFile.find(params[:id])
+		file.remove_real_name
+		file.destroy
+	end
+
 end
