@@ -8,7 +8,7 @@ class Admin::FilmsController < ApplicationController
 	before_filter :find_film_actors, only: [:edit, :update]
 
 	def index
-		@films = Film.paginate(page: params[:page], per_page: 30)
+		@films = Film.latest.paginate(page: params[:page], per_page: 30)
 	end
 
 	def edit
@@ -72,7 +72,7 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
-		# @film.remote_cover_url = @movie.poster
+		@film.remote_cover_url = @movie.poster
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)

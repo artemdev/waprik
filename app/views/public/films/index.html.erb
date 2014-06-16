@@ -2,7 +2,7 @@
 
 <div class="a">
 	<% @genres.each do |genre| %>
-		<%= link_to genre.title, film_genre_path(genre) %>
+		<%= link_to genre.title.mb_chars.capitalize, film_genre_path(genre) %>
 		<span class="small-text">
 			<%= genre.films.size %>
 		</span>
