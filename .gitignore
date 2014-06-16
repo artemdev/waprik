@@ -16,7 +16,7 @@ public/
 config/database.yml
 db/schema.rb
 bash_history/
-gem/
+.gem/
 ssh/
 tmp/
 .powenv

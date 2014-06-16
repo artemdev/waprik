@@ -2,7 +2,7 @@
 
 <%= error_messages_for @film %>
 
-<%= form_for(:film, url: admin_film_path(@film), method: :put) do |f| %>
+<%= form_for(:film, url: admin_film_path(@film), method: :put, :html => { :multipart => true }) do |f| %>
 
 	<%= render partial: 'admin/shared/film_form', locals: {:f => f} %>
 
