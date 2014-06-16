@@ -1,10 +1,15 @@
 <% provide(:title, "Фильмы для мобильного") %>
 
 <div class="sixteen columns'">
-	<div class="content-add">
-		<%= link_to "Добавить фильм", new_admin_film_path %>
+	<div class="add-film">
+	<%= form_tag list_admin_films_path, method: :get do %>
+		<%= label_tag :keyword, "Фильм" %>
+		<%= text_field_tag :keyword %>
+
+		<%= submit_tag "добавить" %>
+	<% end %>
 	</div>
-</div>
+
 
 	<% @films.each do |film| %>
 		<div class="group content-film">
@@ -16,3 +21,4 @@
 		</div>
 	<% end %>
 	<%= will_paginate @films, class: "pagination", previous_label: "", next_label: "" %>
+</div>

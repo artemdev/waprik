@@ -4,13 +4,20 @@
 <%= f.label :year, "Год" %>	<br />
 <%= f.text_field :year %> <br />
 
-	<%= image_tag @film.cover %>
-	<%= f.label :cover, "Обложка" %>	<br />
+<% unless @film.cover.url.nil?%>
+	<%= image_tag @film.cover.preview.url %> <br />
+	удалить обложку
+	<%= f.check_box :remove_cover %>
+<% end %>
+
+	<%= f.label :cokver, "Обложка" %>	<br />
 	<%= f.file_field :cover %> <br />
 
+	<% if @movie && @movie.poster %>
 	<%= link_to "скачать обложку", @movie.poster %>
+	<% end %>
 
-<% if @film.duration_hours && film.duration_hours %>
+<% if @movie && @film.duration_hours && @film.duration_hours %>
 	<br />
 	<%= f.text_field :duration_hours, placeholder: @movie.length.divmod(60)[0] %> часов <br />
 	<%= f.text_field :duration_minutes, placeholder: @movie.length.divmod(60)[1] %> минут
@@ -24,7 +31,7 @@
 
 
 
-<% if @film.selected_genres.empty? %>
+<% if @film.selected_genres && @film.selected_genres.empty? %>
 	<%= f.label :selected_genres, "Жанры" %> <br />
 	<%= f.select :selected_genres, @genres.map {|genre| genre.title}, {}, multiple: true %> <br />
 <% else %>
