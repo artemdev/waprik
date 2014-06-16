@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
     t.integer  "duration_minutes",   :limit => 1
     t.integer  "duration_seconds",   :limit => 1
     t.integer  "time"
-    t.integer  "downloads"
+    t.integer  "downloads",                         :default => 0
     t.string   "world_estimate",     :limit => 10
     t.string   "cis_estimate",       :limit => 10
     t.integer  "last_download_time"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20140611082701) do
     t.integer  "translation_id"
     t.integer  "count_likes"
     t.integer  "count_comments"
-    t.integer  "created_at",                        :null => false
+    t.integer  "created_at"
     t.string   "cover"
     t.datetime "updated_at"
   end
