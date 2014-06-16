@@ -3,7 +3,7 @@ class FilmFileUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-  
+
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
   after :remove, :delete_empty_upstream_dirs
@@ -15,7 +15,11 @@ class FilmFileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/films/#{model.film.id}"
+    "#{base_store_dir}/#{model.film.id}"
+  end
+
+  def base_store_dir
+    "uploads/films"
   end
 
   def filename

@@ -101,6 +101,12 @@ class Admin::FilmsController < ApplicationController
 
 	def destroy
 		# @film
+		# удаление всех файлов к фильму
+		@film.files.each do |file|
+			file.film_parts.each {|part| part.remove_real_name! }
+			file.remove_real_name!
+		end
+		# удаление фильма
 		@film.destroy
 		redirect_to :back
 	end
