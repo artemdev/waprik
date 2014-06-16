@@ -22,3 +22,8 @@
 .powenv
 .nano_history
 .irb-history
+.sass-cache
+waprik_films.sql
+mc_films.sql
+films.sql
+dump.rdb
