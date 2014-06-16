@@ -11,14 +11,19 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-./log/*.log
-./public
-./config/database.yml
-./db/schema.rb
-/.bash_history
-/.gem
-/.ssh
-./tmp
+log/*.log
+public/
+config/database.yml
+db/schema.rb
+bash_history/
+gem/
+ssh/
+tmp/
 .powenv
 .nano_history
 .irb-history
+.sass-cache
+waprik_films.sql
+mc_films.sql
+films.sql
+dump.rdb

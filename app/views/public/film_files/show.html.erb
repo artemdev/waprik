@@ -10,7 +10,7 @@
 </div>
 
 <div class="a">
-	<% @parts.each do |part|  %>
+	<% @parts.sort_by!(&:num).each do |part|  %>
 		<%= link_to "Скачать", film_file_part_path(part.id) %> <%= number_to_human_size(part.size) %> <br />
 	<% end %>
 </div>

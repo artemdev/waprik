@@ -11,6 +11,7 @@ class SetNullTrueInFilms < ActiveRecord::Migration
 	  	change_column_null(:films, :duration_seconds, true)
 	  	change_column_null(:films, :time, true)
 	  	change_column_null(:films, :downloads, true)
+			change_column(:films, :downloads, :integer, default: 0)
 	  	change_column_null(:films, :world_estimate, true)
 	  	change_column_null(:films, :cis_estimate, true)
 	  	change_column_null(:films, :last_download_time, true)
