@@ -21,8 +21,8 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover
-	attr_accessor :new_actors, :new_directors, :selected_genres
+  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :film_trailer
+	attr_accessor :new_actors, :new_directors, :selected_genres, :film_trailer
 
   mount_uploader :cover, CoverUploader
 
@@ -44,8 +44,13 @@ class Film < ActiveRecord::Base
   belongs_to :quality, class_name: "FilmQuality"
   # trailers
   has_one :trailer, class_name: "FilmTrailer"
+  accepts_nested_attributes_for :trailer
+
   # validates :title, :about, :year, presence: true
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+  
   scope :latest, order("created_at DESC")
 
   def add_actors(actors)

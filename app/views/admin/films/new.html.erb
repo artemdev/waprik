@@ -4,7 +4,7 @@
 
 <%= form_for(:film, url: {action: 'create', movie_title: @movie.title}, method: :post, :html => { :multipart => true }) do |f| %>
 
-	<%= render partial: 'admin/shared/film_form', locals: {:f => f, :film => @film} %>
+	<%= render partial: 'admin/shared/film_form', locals: {:f => f, :film => @film, :trailer => @trailer} %>
 
 	<%= f.submit "Добавить фильм"%>
 <% end %>

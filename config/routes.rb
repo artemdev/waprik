@@ -1,5 +1,11 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
+  get "music_album/show"
+
+  get "music_alphabet/eng"
+
+  get "music_alphabet/rus"
+
   # sidekiq
   mount Sidekiq::Web, at: '/tasks'
 
@@ -17,8 +23,10 @@ Waprik::Application.routes.draw do
       get 'download', on: :member
     end
   end
+
   # Public resources
     scope module: 'public' do
+
       resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
       resources :film_files do
         get 'download'
@@ -27,6 +35,17 @@ Waprik::Application.routes.draw do
       resources :films do
         get "news", on: :collection
       end
+      resources :alphabets, except: ['index', 'new', 'create', 'edit', 'update', 'destroy'], controller: "MusicAlphabet" do
+        get 'eng', on: :collection
+        get 'rus', on: :collection
+      end
+
+      resources :tracks, only: ['index', 'show'], controller: "music" do 
+        get 'download', on: :member
+      end
+
+      resources :artists, only: ['show'], controller: "MusicArtists"
+      resources :albums, only: ['show'], controller: "MusicAlbums"
     end
 
   root :to => "public/films#index"

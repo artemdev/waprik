@@ -1,7 +1,13 @@
 class Public::FilmsController < ApplicationController
 	layout 'mobile'
 	def index
-		@genres = FilmGenre.all
+		if params[:film_name]
+			@films = Film.search(params[:film_name])
+			@genres = FilmGenre.all
+		else
+			@genres = FilmGenre.all
+			@films = []
+		end
 	end
 
 	def show

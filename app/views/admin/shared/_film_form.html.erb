@@ -26,6 +26,11 @@
 <%= f.check_box :is_favourite %>	
 <%= f.label :is_favourite, "избранный" %> <br />
 
+<%= f.fields_for :trailers do |builder| %>
+	<%= builder.label :filename, "Трейлер" %>	
+	<%= builder.file_field :filename %> <br />
+<% end %>
+
 <%= f.label :about, "Описание" %> <br />
 <%= f.text_area :about %> <br />
 

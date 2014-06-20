@@ -42,6 +42,7 @@ class Admin::FilmsController < ApplicationController
 	def new
 		@movie = Kinopoisk::Movie.new(params[:movie_title])
 		@film = Film.new
+		@trailer = @film.trailers.new
 		# title
 		if @movie.title && !@movie.title_en.empty? && !@movie.title_en.nil?
 			@film.title = "#{@movie.title} / #{@movie.title_en}"
@@ -68,6 +69,7 @@ class Admin::FilmsController < ApplicationController
 		@movie = Kinopoisk::Movie.new(params[:movie_title]) # for cover
 		@film = Film.new(params[:film])
 		@directors = @film.directors
+		@actors = @film.actors
 		@genres = FilmGenre.all
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])

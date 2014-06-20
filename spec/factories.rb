@@ -3,4 +3,7 @@ FactoryGirl.define do
 		username 'admin'
 		password 'admin'
 	end
+
+	factory :mp3_track, class: 'Mp3File' do 
+	end
 end
