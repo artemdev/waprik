@@ -7,7 +7,7 @@ class EditMp3ColumnsAfterTransfer < ActiveRecord::Migration
   	rename_column :mp3_files, :file_name, :name
   	rename_column :mp3_files, :file_fname, :fname
   	rename_column :mp3_files, :file_length, :length
-  	rename_column :mp3_files, :file_date_added, :created_at
+  	# rename_column :mp3_files, :file_date_added, :created_at
   	rename_column :mp3_files, :file_genre_id, :genre_id
   	rename_column :mp3_files, :file_artist_id, :artist_id
   	rename_column :mp3_files, :file_album_id, :album_id
