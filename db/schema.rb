@@ -102,33 +102,35 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "feedbacks", ["type"], :name => "index_feedbacks_on_type"
 
   create_table "films", :force => true do |t|
-    t.integer  "item_id",                           :null => false
-    t.string   "title",              :limit => 100, :null => false
-    t.integer  "user_id",                           :null => false
-    t.boolean  "is_favourite",                      :null => false
-    t.text     "about",                             :null => false
-    t.integer  "duration_hours",     :limit => 1,   :null => false
-    t.integer  "duration_minutes",   :limit => 1,   :null => false
-    t.integer  "duration_seconds",   :limit => 1,   :null => false
-    t.integer  "time",                              :null => false
-    t.integer  "downloads",                         :null => false
-    t.string   "world_estimate",     :limit => 10,  :null => false
-    t.string   "cis_estimate",       :limit => 10,  :null => false
-    t.integer  "last_download_time",                :null => false
-    t.string   "prepare_status",     :limit => 100, :null => false
-    t.string   "file_name",                         :null => false
-    t.integer  "month",              :limit => 1,   :null => false
-    t.integer  "year",               :limit => 2,   :null => false
-    t.integer  "quality_id",                        :null => false
-    t.integer  "translation_id",                    :null => false
-    t.integer  "count_likes",                       :null => false
-    t.integer  "count_comments",                    :null => false
-    t.integer  "created_at",                        :null => false
+    t.integer  "item_id"
+    t.string   "title",              :limit => 100
+    t.integer  "user_id"
+    t.boolean  "is_favourite"
+    t.text     "about"
+    t.integer  "duration_hours",     :limit => 1
+    t.integer  "duration_minutes",   :limit => 1
+    t.integer  "duration_seconds",   :limit => 1
+    t.integer  "time"
+    t.integer  "downloads",                         :default => 0
+    t.string   "world_estimate",     :limit => 10
+    t.string   "cis_estimate",       :limit => 10
+    t.integer  "last_download_time"
+    t.string   "prepare_status",     :limit => 100
+    t.string   "file_name"
+    t.integer  "month",              :limit => 1
+    t.integer  "year",               :limit => 2
+    t.integer  "quality_id"
+    t.integer  "translation_id"
+    t.integer  "count_likes"
+    t.integer  "count_comments"
+    t.integer  "created_at",                                       :null => false
+    t.string   "cover"
     t.datetime "updated_at"
   end
 
   add_index "films", ["count_comments"], :name => "count_comments"
   add_index "films", ["count_likes"], :name => "count_likes"
+  add_index "films", ["cover"], :name => "index_films_on_cover"
   add_index "films", ["created_at"], :name => "news_time"
   add_index "films", ["downloads"], :name => "downloads"
   add_index "films", ["is_favourite"], :name => "is_favourite"
@@ -143,14 +145,14 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "films", ["year"], :name => "year"
 
   create_table "films_actors", :force => true do |t|
-    t.string   "name",       :limit => 100, :null => false
+    t.string   "name",       :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "films_actors_through", :id => false, :force => true do |t|
-    t.integer  "film_id",    :null => false
-    t.integer  "actor_id",   :null => false
+    t.integer  "film_id"
+    t.integer  "actor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -158,12 +160,12 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "films_actors_through", ["film_id", "actor_id"], :name => "film_id", :unique => true
 
   create_table "films_directors", :force => true do |t|
-    t.string "name", :limit => 100, :null => false
+    t.string "name", :limit => 100
   end
 
   create_table "films_directors_through", :id => false, :force => true do |t|
-    t.integer  "film_id",     :null => false
-    t.integer  "director_id", :null => false
+    t.integer  "film_id"
+    t.integer  "director_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -171,13 +173,13 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "films_directors_through", ["film_id", "director_id"], :name => "film_id", :unique => true
 
   create_table "films_files", :force => true do |t|
-    t.integer  "film_id",                  :null => false
-    t.integer  "format_id",                :null => false
-    t.string   "title",      :limit => 50, :null => false
-    t.string   "real_name",                :null => false
-    t.integer  "size",                     :null => false
-    t.string   "ext",        :limit => 10, :null => false
-    t.integer  "position",   :limit => 2,  :null => false
+    t.integer  "film_id"
+    t.integer  "format_id"
+    t.string   "title",      :limit => 50
+    t.string   "real_name"
+    t.integer  "size"
+    t.string   "ext",        :limit => 10
+    t.integer  "position",   :limit => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -198,14 +200,14 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   end
 
   create_table "films_genres", :force => true do |t|
-    t.string   "title",      :limit => 100, :null => false
+    t.string   "title",      :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "films_genres_through", :id => false, :force => true do |t|
-    t.integer  "film_id",    :null => false
-    t.integer  "genre_id",   :null => false
+    t.integer  "film_id"
+    t.integer  "genre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -213,14 +215,14 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "films_genres_through", ["film_id", "genre_id"], :name => "film_id", :unique => true
 
   create_table "films_parts", :force => true do |t|
-    t.integer  "num",        :null => false
-    t.integer  "file_id",    :null => false
-    t.integer  "film_id",    :null => false
-    t.integer  "format_id",  :null => false
-    t.string   "real_name",  :null => false
-    t.integer  "duration",   :null => false
-    t.integer  "size",       :null => false
-    t.integer  "downloads",  :null => false
+    t.integer  "num"
+    t.integer  "file_id"
+    t.integer  "film_id"
+    t.integer  "format_id"
+    t.string   "real_name"
+    t.integer  "duration"
+    t.integer  "size"
+    t.integer  "downloads"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -232,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "films_parts", ["num"], :name => "num"
 
   create_table "films_qualities", :force => true do |t|
-    t.string   "title",      :limit => 50, :null => false
+    t.string   "title",      :limit => 50
     t.integer  "position",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -247,7 +249,7 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   end
 
   create_table "films_translations", :force => true do |t|
-    t.string   "title",      :limit => 50, :null => false
+    t.string   "title",      :limit => 50
     t.integer  "position",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -331,7 +333,7 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
     t.string    "name",              :limit => 256,                      :null => false
     t.string    "fname",             :limit => 256,                      :null => false
     t.string    "length",            :limit => 5,   :default => "00:00", :null => false
-    t.timestamp "created_at",                                            :null => false
+    t.timestamp "file_date_added",                                       :null => false
     t.integer   "genre_id",                                              :null => false
     t.integer   "artist_id",                        :default => 0,       :null => false
     t.integer   "album_id",                         :default => 0,       :null => false
@@ -347,8 +349,8 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
   add_index "mp3_files", ["artist_id"], :name => "file_artist_id"
-  add_index "mp3_files", ["created_at"], :name => "file_date_added"
   add_index "mp3_files", ["downloads"], :name => "file_count_downloads"
+  add_index "mp3_files", ["file_date_added"], :name => "file_date_added"
   add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
   add_index "mp3_files", ["ftp_path"], :name => "file_ftp_name", :unique => true
   add_index "mp3_files", ["genre_id"], :name => "file_category_id"
@@ -392,5 +394,84 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   end
 
   add_index "mp3_users", ["user_login"], :name => "user_login", :unique => true
+
+  create_table "music", :force => true do |t|
+    t.boolean  "hit"
+    t.integer  "downloads"
+    t.string   "name"
+    t.string   "link_orig"
+    t.string   "link_128"
+    t.string   "link_64"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "news", :force => true do |t|
+    t.string   "description", :limit => 1000
+    t.string   "section"
+    t.boolean  "visible"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "title"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.integer  "downloads",   :default => 0
+    t.string   "description"
+    t.integer  "author_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.boolean  "erotic"
+  end
+
+  add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+
+  create_table "serials", :force => true do |t|
+    t.string   "description"
+    t.integer  "season"
+    t.boolean  "updating",    :default => true
+    t.string   "name"
+    t.string   "cover"
+    t.boolean  "hit"
+    t.string   "years"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "series", :force => true do |t|
+    t.integer  "serial_id"
+    t.string   "name"
+    t.string   "release_date"
+    t.integer  "number"
+    t.string   "mp4_640"
+    t.integer  "dl_mp4_640",   :default => 0
+    t.string   "mp4_320"
+    t.integer  "dl_mp4_320",   :default => 0
+    t.string   "low_3gp"
+    t.integer  "dl_low_3gp",   :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "series", ["serial_id"], :name => "index_series_on_serial_id"
+
+  create_table "videos", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "description"
+    t.string   "screen"
+    t.string   "low_3gp"
+    t.string   "mp4_320"
+    t.integer  "size"
+    t.string   "name"
+    t.string   "artist"
+    t.integer  "downloads",    :default => 0
+    t.string   "source_video"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "mp4_640"
+  end
+
+  add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
 
 end
