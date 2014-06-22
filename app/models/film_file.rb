@@ -10,7 +10,7 @@ class FilmFile < ActiveRecord::Base
   self.table_name = "films_files"
 	attr_accessible :new_file, :format_title
 
-	FTP_TMP_PATH = "public/output.mp4"
+	# переменные для конвертации видео
  	MP4_640 = "mp4_640"
   MP4_320 = "mp4_320"
   LOW_3GP = "low_3gp"

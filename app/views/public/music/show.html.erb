@@ -1,0 +1,11 @@
+<% provide(:title, @track.name) %>
+
+<div class="a">
+	Время <%= @track.length %>
+</div>
+
+<div class="a">
+	<% @track.bitrates.each do |bitrate| %>
+		<%= link_to "Скачать #{bitrate.file_bitrate} #{bitrate.file_size}", download_track_path(@track, bitrate: bitrate.file_bitrate) %> <br />
+	<% end %>
+</div>

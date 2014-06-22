@@ -9,7 +9,6 @@ class Public::MusicController < ApplicationController
 		@track = Mp3File.find(params[:id])
 	end
 
-
 	def download
 		@track = Mp3File.find(params[:id])
 		case params[:bitrate]

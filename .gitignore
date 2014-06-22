@@ -12,9 +12,13 @@
 
 # Ignore all logfiles and tempfiles.
 log/*.log
-public/
+public/uploads/*
+public/ftp/*
+public/tmp/*
+public/assets/*
 tmp/*
 config/database.yml
 db/schema.rb
 sidekiq.log
 cache/*
+.powenv
