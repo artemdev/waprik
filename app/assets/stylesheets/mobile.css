@@ -19,7 +19,7 @@ hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin
 }
 
 .b {
-	background: url(games.gif) repeat-x bottom left #f6f6f6;
+/*	background: url(games.gif) repeat-x bottom left #f6f6f6;*/
 	border: 1px solid #dbdbdb;
 	margin: 3px;
 	padding: 4px 2px 4px 5px;
