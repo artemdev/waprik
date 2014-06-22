@@ -42,7 +42,7 @@ class Admin::FilmsController < ApplicationController
 	def new
 		@movie = Kinopoisk::Movie.new(params[:movie_title])
 		@film = Film.new
-		@trailer = @film.trailers.new
+		@trailer = FilmTrailer.new
 		# title
 		if @movie.title && !@movie.title_en.empty? && !@movie.title_en.nil?
 			@film.title = "#{@movie.title} / #{@movie.title_en}"

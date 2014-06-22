@@ -10,7 +10,7 @@
 	<%= f.check_box :remove_cover %>
 <% end %>
 
-	<%= f.label :cokver, "Обложка" %>	<br />
+	<%= f.label :cover, "Обложка" %>	<br />
 	<%= f.file_field :cover %> <br />
 
 	<% if @movie && @movie.poster %>
@@ -26,7 +26,7 @@
 <%= f.check_box :is_favourite %>	
 <%= f.label :is_favourite, "избранный" %> <br />
 
-<%= f.fields_for :trailers do |builder| %>
+<%= f.fields_for :trailer do |builder| %>
 	<%= builder.label :filename, "Трейлер" %>	
 	<%= builder.file_field :filename %> <br />
 <% end %>
