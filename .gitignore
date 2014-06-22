@@ -17,6 +17,7 @@ public/ftp/*
 public/tmp/*
 public/assets/*
 tmp/*
+cache/*
 config/database.yml
 db/schema.rb
 sidekiq.log
