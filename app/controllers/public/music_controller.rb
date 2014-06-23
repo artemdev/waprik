@@ -17,6 +17,8 @@ class Public::MusicController < ApplicationController
 					send_file(@track.path.path + "_64.mp3")
 				when "128"
 					send_file(@track.path.path + "_128.mp3")
+				when "32"
+					send_file(@track.path.path + "_32.mp3")
 			end
 		end
 	end
