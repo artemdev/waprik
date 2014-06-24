@@ -3,10 +3,9 @@ class Public::MusicAlphabetController < ApplicationController
 
   def eng
   	@eng_letters = Mp3Alphabet.sorted
-  	@rus_letters = Mp3Alphabet.sorted
   end
 
   def rus
-   	@letters = Mp3Alphabet.rus.sorted
+  	@rus_letters = Mp3Alphabet.sorted
   end
 end

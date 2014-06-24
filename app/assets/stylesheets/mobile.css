@@ -65,3 +65,11 @@ hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin
 /*.field_with_errors {border: 2px solid red; padding: 0px; margin: 0px;}*/
 
 span.small-text {font-size: 11px; color: grey;}
+
+span.mini-downloads {
+	vertical-align: top;
+	text-align: right;
+	display: inline-block;
+	font-size: 11px;
+	color: #1098c5;
+}

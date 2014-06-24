@@ -1,2 +1,15 @@
-<h1>Public::MusicAlphabet#rus</h1>
-<p>Find me in app/views/public/music_alphabet/rus.html.erb</p>
+<% provide(:title, "СНГ") %>
+
+<div class="a">
+	<% @rus_letters.each do |letter| %>
+		<% if letter.artists.any? %>
+			<b><%= link_to letter.id.mb_chars.capitalize, artist_path(letter.id)  %></b>
+		<% else %>
+			<%= letter.id.mb_chars.capitalize %>
+		<% end %>
+		<% index = @rus_letters.index(letter) %>
+		<% if index % 6 == 0 && index != 0 %>
+			<br />
+		<% end %>
+	<% end %>
+</div>

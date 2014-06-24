@@ -3,7 +3,7 @@
 <div class="a">
 	<% @eng_letters.each do |letter| %>
 		<% if letter.artists.any? %>
-			<b><%= link_to letter.id.mb_chars.capitalize, artist_path(letter.id)  %></b>
+			<b><%= link_to letter.id.mb_chars.capitalize, artists_path(letter: letter.id)  %></b>
 		<% else %>
 			<%= letter.id.mb_chars.capitalize %>
 		<% end %>

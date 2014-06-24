@@ -5,6 +5,9 @@
 	<div class="a">
 		<% @films.each do |film| %>
 			<%= link_to film.title, film_path(film) %>
+			<span class="mini-downloads">
+				<%= film.downloads %>
+			</span>
 			<% unless film == @films.last %>
 			<hr >
 			<% end %>
