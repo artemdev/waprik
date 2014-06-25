@@ -21,8 +21,8 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :film_trailer
-	attr_accessor :new_actors, :new_directors, :selected_genres, :film_trailer
+  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover,  :trailer_attributes
+	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer
 
   mount_uploader :cover, CoverUploader
 
@@ -43,7 +43,7 @@ class Film < ActiveRecord::Base
   # quality
   belongs_to :quality, class_name: "FilmQuality"
   # trailers
-  has_one :trailer, class_name: "FilmTrailer"
+  has_one :trailer, class_name: "FilmTrailer", dependent: :destroy
   accepts_nested_attributes_for :trailer
 
   # validates :title, :about, :year, presence: true
@@ -52,6 +52,7 @@ class Film < ActiveRecord::Base
   include Tire::Model::Callbacks
   
   scope :latest, order("created_at DESC")
+  scope :favourite, where("is_favourite = ?", true)
 
   def add_actors(actors)
   	separated_actors = actors.split("\n")

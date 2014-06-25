@@ -12,11 +12,16 @@
 
 	<% @films.each do |film| %>
 		<div class="group content-film">
-			<%= link_to film.title, admin_film_path(film) %> <%= link_to "р", edit_admin_film_path(film) %> <%= link_to "x", admin_film_path(film), method: :delete %> <br />
-			<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %> <br />
-			<%= link_to(film.files.last.real_name, film.files.last.real_name.url) if film.files.last %> <br />
-			<%= film.files.last.format.description if film.files.last && film.files.last.format %> <br />
-			<%= film.trailers.last if film.trailers.last %> <br />
+				<%= link_to film.title, admin_film_path(film) %> <%= link_to "р", edit_admin_film_path(film) %> <%= link_to "x", admin_film_path(film), method: :delete %> <br />
+				<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %> <br />
+				<%= link_to(film.files.last.real_name, film.files.last.real_name.url) if film.files.last %> <br />
+				<%= film.files.last.format.description if film.files.last && film.files.last.format %> <br />
+				<%= film.trailer if film.trailer %> <br />
+				<% if film.is_favourite? %>
+					<%= link_to "Из избранного", remove_from_favourites_admin_film_path(film) %>
+				<% else %>
+					<%= link_to "В избранное", add_to_favourites_admin_film_path(film) %>
+				<% end %>
 			<br />
 		</div>
 	<% end %>

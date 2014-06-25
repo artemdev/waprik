@@ -14,6 +14,7 @@ class EditMp3ColumnsAfterTransfer < ActiveRecord::Migration
   	rename_column :mp3_files, :file_order, :order
   	rename_column :mp3_files, :file_order_nomination, :order_nomination
   	rename_column :mp3_files, :file_hit, :hit
+    change_column :mp3_files, :hit, :boolean
   	# rename_column :mp3_files, :file_hit_date, :hit_date
   	rename_column :mp3_files, :file_new, :new
   	rename_column :mp3_files, :file_count_downloads, :downloads

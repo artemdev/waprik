@@ -16,9 +16,7 @@
 		</div>
 	<% end %>
 	
-	<div class="a">
-		Идет работа над разделом. Некоторые фильмы могут быть временно недоступны
-	</div>
+	<div class="octobird-block" data-tp="all" data-nb="1"></div>
 
 	<div class="title">
 		<%= yield(:title) %>
@@ -34,9 +32,25 @@
 		<% end %>
 		<a href="http://waprik.ru">На главную</a>
 	</div>
+
+	<!-- octobird -->
+	<script type="text/javascript">
+	    var _ob = {
+	        sid: 987
+	    };
+	    (function() {
+	        var ob = document.createElement('script');
+	        ob.type = 'text/javascript';
+	        ob.async = true;
+	        ob.src = 'http://show.octobird.com/ob.js';
+	        var s = document.getElementsByTagName('script')[0];
+	        s.parentNode.insertBefore(ob, s);
+	    })();
+	</script>
 </body>
 </html>
 
 <% if Rails.env.development? %>
 	development
+
 <% end %>

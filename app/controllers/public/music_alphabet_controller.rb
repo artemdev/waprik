@@ -2,7 +2,7 @@ class Public::MusicAlphabetController < ApplicationController
 	layout 'mobile'
 
   def eng
-  	@eng_letters = Mp3Alphabet.sorted
+  	@eng_letters = Mp3Alphabet.eng
   end
 
   def rus

@@ -5,6 +5,6 @@ class Mp3Artist < ActiveRecord::Base
   has_many :albums, class_name: 'Mp3Album', foreign_key: 'artist_id'
 
   scope :eng, where(lang: "eng")
-  scope :eng, where(lang: "eng")
+  scope :rus, where(lang: "rus")
   scope :sorted, order("first_letter")
 end

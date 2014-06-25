@@ -112,6 +112,18 @@ class Admin::FilmsController < ApplicationController
 		redirect_to :back
 	end
 
+	def add_to_favourites
+		@film = Film.find(params[:id])
+		@film.update_attributes(is_favourite: true)
+		redirect_to admin_films_path
+	end
+
+	def remove_from_favourites
+		@film = Film.find(params[:id])
+		@film.update_attributes(is_favourite: false)
+		redirect_to admin_films_path
+	end
+
 	private
 
 	def find_film

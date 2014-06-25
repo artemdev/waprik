@@ -18,6 +18,8 @@ Waprik::Application.routes.draw do
       get 'destroy_actor', on: :member
       get 'find', on: :collection
       get 'list', on: :collection
+      get 'add_to_favourites', on: :member
+      get 'remove_from_favourites', on: :member
     end
     resources :film_files do
       get 'download', on: :member
