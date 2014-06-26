@@ -40,7 +40,7 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def new
-		@movie = Kinopoisk::Movie.new(params[:movie_id])
+		@movie = Kinopoisk::Movie.new(params[:movie_title])
 		@film = Film.new
 		# title
 		if @movie.title && !@movie.title_en.empty? && !@movie.title_en.nil?
