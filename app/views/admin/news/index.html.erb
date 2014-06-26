@@ -5,7 +5,7 @@
 <% @news.each do |news| %>
 	<% unless news.description.nil? %>
 		<div class="title">
-			<%= news.title %>
+			<%= news.section %>
 		</div>
 		<div class="a">
 			<%= link_to news.description, admin_news_path(news.id) %> <br />

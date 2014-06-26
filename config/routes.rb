@@ -24,6 +24,7 @@ Waprik::Application.routes.draw do
     resources :film_files do
       get 'download', on: :member
     end
+    resources :tracks, controller: "Music"
   end
 
   # Public resources

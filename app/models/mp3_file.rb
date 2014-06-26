@@ -14,12 +14,14 @@
 # string    "new",               :limit => 1,   :default => "0",    
 # integer   "downloads",                        :default => 0,      
 class Mp3File < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :path
 
   mount_uploader :path, Mp3Uploader
 
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
   belongs_to :artist, class_name: 'Mp3Artist'
   belongs_to :album, class_name: 'Mp3Album'
+
+  scope :latest, order("created_at DESC")
 
 end

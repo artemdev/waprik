@@ -8,7 +8,7 @@ class Admin::NewsController < ApplicationController
   end
 
   def show
-     @related_news = @item.related_news if @news = News.find(params[:id])
+     @related_news = @item.related_news if @item = News.find(params[:id])
   end
 
   def new

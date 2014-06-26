@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-  attr_accessible :section, :visible, :description, :title, :category
+  attr_accessible :section, :visible, :description, :category
   attr_accessor :name, :category
 
   before_create :add_category
@@ -9,7 +9,6 @@ class News < ActiveRecord::Base
 
   has_and_belongs_to_many :categories
   
-  validates_presence_of :title, message: "^ Нужно указать заглавие к новости"
   validates_presence_of :description, message: "^Новость не может быть пустой"
 
   # Похожие новости

@@ -1,7 +1,18 @@
 <div class="b">
-	<%= link_to('Добавить новость', :controller => 'news', :action => 'new', :section => "music") %>
+	<%= link_to('Добавить mp3', new_admin_track_path) %> <br />
+	<%= link_to('Добавить новость', :controller => 'news', :action => 'new', :section => "music") %> <br />
 </div>
-<% unless @collections.empty? %>
+
+<% if @tracks.any? %>
+	<div class="a">
+		<% @tracks.each do |track| %>
+			<%= link_to track.name, track_path(track) %> <br />
+		<% end %>
+	</div>
+	<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>
+<% end %>
+
+<% if @collections.any? %>
 		<% @collections.each do |collection| %>
 			<% unless collection.videos_empty? %> <!-- проверяем есть ли видео в коллекции -->
 			<div class="title">
@@ -13,26 +24,4 @@
 			</div>
 			<% end %>
 		<% end %>
-<% end %>
-<div class="title">
-	Жанры
-</div>
-<% unless @categories.empty? %>
-	<% @categories.each do |category| %>
-		<% if category.with_music? %>
-		<div class="a">
-			<%= link_to("#{category.name}", {:action => 'category', :id => category.id}) %>
-
-			<span class="small_text">
-				(<%= category.videos.size %>)
-				<%= link_to("р", {:action => 'edit_category', :id => category.id}) %>
-				<%= link_to("x", :action => 'destroy_category', :id => category.id) %>
-			</span>
-		</div>
-		<% else %>
-		<div class="b">
-			Пусто :(
-		</div>
-		<% end %>
-	<% end %>
 <% end %>

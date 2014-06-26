@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140618120926) do
+ActiveRecord::Schema.define(:version => 20140625203635) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -328,23 +328,23 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   add_index "mp3_category", ["category_parent_id"], :name => "category_parent_id"
 
   create_table "mp3_files", :force => true do |t|
-    t.string    "ftp_path",          :limit => 256,                      :null => false
-    t.string    "path",              :limit => 256,                      :null => false
-    t.string    "name",              :limit => 256,                      :null => false
-    t.string    "fname",             :limit => 256,                      :null => false
-    t.string    "length",            :limit => 5,   :default => "00:00", :null => false
-    t.timestamp "created_at",                                            :null => false
-    t.integer   "genre_id",                                              :null => false
-    t.integer   "artist_id",                        :default => 0,       :null => false
-    t.integer   "album_id",                         :default => 0,       :null => false
-    t.integer   "order",                                                 :null => false
-    t.integer   "order_nomination",                 :default => 0,       :null => false
-    t.string    "hit",               :limit => 1,   :default => "0",     :null => false
-    t.timestamp "file_hit_date"
-    t.string    "new",               :limit => 1,   :default => "0",     :null => false
-    t.integer   "downloads",                        :default => 0,       :null => false
-    t.text      "file_comment_up"
-    t.text      "file_comment_down"
+    t.string   "ftp_path",          :limit => 256
+    t.string   "path",              :limit => 256
+    t.string   "name",              :limit => 256
+    t.string   "fname",             :limit => 256
+    t.string   "length",            :limit => 5,   :default => "00:00"
+    t.datetime "created_at"
+    t.integer  "genre_id"
+    t.integer  "artist_id"
+    t.integer  "album_id"
+    t.integer  "order"
+    t.integer  "order_nomination",                 :default => 0
+    t.boolean  "hit",                              :default => false
+    t.datetime "file_hit_date"
+    t.boolean  "new",                              :default => false
+    t.integer  "downloads",                        :default => 0
+    t.text     "file_comment_up"
+    t.text     "file_comment_down"
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
@@ -394,5 +394,13 @@ ActiveRecord::Schema.define(:version => 20140618120926) do
   end
 
   add_index "mp3_users", ["user_login"], :name => "user_login", :unique => true
+
+  create_table "news", :force => true do |t|
+    t.string   "description"
+    t.string   "section"
+    t.boolean  "visible"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

@@ -4,6 +4,8 @@
 	<% if @movies.to_a.any? %>
 		<% @movies.each do |movie| %>
 			<%= link_to movie.title, new_admin_film_path(movie_title: movie.title) %>
+			<%= movie.year %>
+			<br />
 		<% end %>
 	<% end %>
 </div>

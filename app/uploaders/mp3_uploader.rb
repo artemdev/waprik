@@ -25,7 +25,7 @@ class Mp3Uploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{Russian.translit(model.film.title[0..20]).gsub(" ", "_").delete(",").delete("/_")}_#{model.bitrate.file_bitrate}.#{file.extension}" if original_filename.present?
+    "#{Russian.translit(model.name[0..20]).gsub(" ", "_").delete(",").delete("/_")}.#{file.extension}" if original_filename.present?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -50,9 +50,9 @@ class Mp3Uploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(mp3)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
