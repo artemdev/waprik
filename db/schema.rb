@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140625203635) do
+ActiveRecord::Schema.define(:version => 20140701135401) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20140625203635) do
     t.integer "file_id",                    :null => false
     t.integer "file_bitrate",               :null => false
     t.string  "file_size",    :limit => 16, :null => false
+    t.string  "file"
   end
 
   add_index "mp3_bitrate", ["file_id"], :name => "bitrate_file_id"
@@ -345,6 +346,8 @@ ActiveRecord::Schema.define(:version => 20140625203635) do
     t.integer  "downloads",                        :default => 0
     t.text     "file_comment_up"
     t.text     "file_comment_down"
+    t.string   "new_path"
+    t.integer  "length_sec"
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
@@ -354,6 +357,7 @@ ActiveRecord::Schema.define(:version => 20140625203635) do
   add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
   add_index "mp3_files", ["ftp_path"], :name => "file_ftp_name", :unique => true
   add_index "mp3_files", ["genre_id"], :name => "file_category_id"
+  add_index "mp3_files", ["new_path"], :name => "index_mp3_files_on_new_path"
   add_index "mp3_files", ["order"], :name => "file_order"
   add_index "mp3_files", ["order_nomination"], :name => "file_order_nomination"
 

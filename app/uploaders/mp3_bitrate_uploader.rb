@@ -1,12 +1,14 @@
-class MusicUploader < CarrierWave::Uploader::Base
+# encoding: utf-8
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+class Mp3BitrateUploader < CarrierWave::Uploader::Base
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
   after :remove, :delete_empty_upstream_dirs
+
+  # Include RMagick or MiniMagick support:
+  # include CarrierWave::RMagick
+  # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -15,15 +17,15 @@ class MusicUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{base_store_dir}/music/#{model.id}"
+    "#{base_store_dir}/#{model.track.id}"
   end
 
   def base_store_dir
-    "uploads"
+    "uploads/music"
   end
 
   def filename
-    "#{Russian.translit(model.name[0..50]).gsub(' ', '_').delete('(').delete(')').delete('/')}.#{file.extension}" if original_filename.present?
+    "#{model.track.fname}_#{model.file_bitrate}.#{file.extension}" if original_filename.present?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -77,4 +79,5 @@ class MusicUploader < CarrierWave::Uploader::Base
   rescue SystemCallError
     true # nothing, the dir is not empty
   end
+
 end

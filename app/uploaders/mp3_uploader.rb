@@ -25,7 +25,7 @@ class Mp3Uploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{Russian.translit(model.name[0..20]).gsub(" ", "_").delete(",").delete("/_")}.#{file.extension}" if original_filename.present?
+    "#{Russian.translit(model.name[0..20]).gsub(" ", "_").delete(",").delete("/")}.#{file.extension}" if original_filename.present?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

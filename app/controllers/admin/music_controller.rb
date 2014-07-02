@@ -14,9 +14,10 @@ class Admin::MusicController < ApplicationController
 
 	def create
 		@track = Mp3File.new(params[:mp3_file])
- 		# узнать время трека
+		@track.fname = params[:mp3_file][:name].gsub(' ', '_').delete('(').delete(')').delete('/') + ".mp3"
  		if @track.save 
  			# создать для трека битрейды
+ 			LameWorker.perform_async(@track.id)
  			flash[:success] = "Mp3 успешно добавлена"
  			redirect_to admin_tracks_path
  		else
@@ -24,4 +25,10 @@ class Admin::MusicController < ApplicationController
  		end
 	end
 
+
+	def destroy
+		@track = Mp3File.find(params[:id]).destroy
+		flash[:success] = "Трек удален"
+		redirect_to admin_tracks_path
+	end
 end
