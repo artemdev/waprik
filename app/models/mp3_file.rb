@@ -13,7 +13,7 @@
 # timestamp "file_hit_date"
 # string    "new",               :limit => 1,   :default => "0",    
 # integer   "downloads",                       :default => 0,      
-require 'taglib'
+# require 'taglib'
 class Mp3File < ActiveRecord::Base
   attr_accessible :name, :path, :new_path
 
