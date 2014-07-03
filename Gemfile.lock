@@ -91,6 +91,8 @@ GEM
     kinopoisk_parser (2.0.1)
       httpclient
       nokogiri
+    lame (0.0.3)
+      ffi
     less (2.5.1)
       commonjs (~> 0.2.7)
     less-rails (2.5.0)
@@ -197,6 +199,7 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     streamio-ffmpeg (1.0.0)
     subexec (0.2.3)
+    taglib-ruby (0.6.0)
     temple (0.6.7)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -250,6 +253,7 @@ DEPENDENCIES
   guard-rspec (= 1.2.1)
   jquery-rails
   kinopoisk_parser
+  lame
   less-rails
   mini_magick
   mysql2
@@ -261,6 +265,7 @@ DEPENDENCIES
   sinatra
   slim
   streamio-ffmpeg
+  taglib-ruby
   therubyracer
   tire
   twitter-bootstrap-rails
