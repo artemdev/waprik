@@ -31,5 +31,7 @@ class Public::MusicController < ApplicationController
 					send_file @track.new_path.path, filename: @track.fname
 				end
 		end
+		@track.downloads += 1
+		@track.save
 	end
 end

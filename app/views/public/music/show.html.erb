@@ -1,9 +1,5 @@
 <% provide(:title, @track.name) %>
 
-<div class="a">
-	Время <%= @track.length %>
-</div>
-
 <% if @track.bitrates.any? %>
 	<div class="a">
 		<% @track.bitrates.each do |bitrate| %>
@@ -11,3 +7,9 @@
 		<% end %>
 	</div>
 <% end %>
+
+
+<div class="a">
+	Время <%= @track.length %> <br />
+	Скачиваний <%= @track.downloads %>
+</div>
