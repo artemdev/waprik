@@ -24,7 +24,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   def base_store_dir
-    "uploads/films"
+    "uploads/#{model.class.to_s.pluralize}"
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
