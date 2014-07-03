@@ -3,11 +3,10 @@
 <% if @track.bitrates.any? %>
 	<div class="a">
 		<% @track.bitrates.each do |bitrate| %>
-			<%= link_to "Скачать #{bitrate.file_bitrate} #{number_to_human_size(bitrate.file_size)}", download_track_path(@track, bitrate: bitrate.file_bitrate) %> <br />
+			<%= link_to "Скачать #{bitrate.file_bitrate} #{number_to_human_size(bitrate.file_size)}", download_track_path(@track.bitrate, bitrate: bitrate.file_bitrate) %> <br />
 		<% end %>
 	</div>
 <% end %>
-
 
 <div class="a">
 	Время <%= @track.length %> <hr />
