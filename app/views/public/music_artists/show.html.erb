@@ -1,0 +1,12 @@
+<% provide(:title, @artist.name) %>
+
+
+<div class="a">
+	<% if @albums.any? %>
+		<% @albums.each do |album| %>
+			<%= link_to album.name, album_path(album) %> <br />
+		<% end %>
+	<% end %>
+</div>
+<%= will_paginate @albums, next_label: "", previous_label: "", class: 'b' %>
+

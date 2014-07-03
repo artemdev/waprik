@@ -1,0 +1,12 @@
+<% provide(:title, params[:letter].mb_chars.capitalize) %>
+
+
+<div class="a">
+	<% if @artists.any? %>
+		<% @artists.each do |artist| %>
+			<%= link_to artist.name, artist_path(artist) %> <br />
+		<% end %>
+	<% end %>
+</div>
+<%= will_paginate @artists, next_label: "", previous_label: "", class: 'b' %>
+

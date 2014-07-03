@@ -1,0 +1,35 @@
+<% provide(:title, @category.name) %>
+
+	<% unless @videos.nil? %>
+
+	<% end %>
+
+	<% unless @serials.nil? || @serials.empty?  %>
+		<div class="a">
+			<% @serials.uniq.each do |serial| %>
+				<table>
+					<tr>
+						<td>
+							<%= image_tag serial.cover.mini.url unless serial.cover.mini.url.nil?%>
+						</td>
+						<td valign="top">
+							<%= link_to serial.name, serial_path(serial) %> 
+						</td>
+					</tr>
+				</table>
+				<% unless serial == @serials.last %>
+					<hr />
+				<% end %>
+			<% end %>
+		</div>
+	<% else %>
+	<div class="a">
+		Сериалов пока что нет, их наверника скоро добавят :)
+	</div>
+	<% end %>
+
+	<% unless @news.nil? %>
+
+	<% end %>
+	
+<% @footer_links = ["#{link_to 'Все видео', videos_path} <br/>"] %>

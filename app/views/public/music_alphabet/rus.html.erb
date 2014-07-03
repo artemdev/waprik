@@ -1,0 +1,19 @@
+<% provide(:title, "СНГ") %>
+
+<div class="a">
+	<% @rus_letters.each do |letter| %>
+		<% if letter.artists.any? %>
+			<b><%= link_to letter.id.mb_chars.capitalize, artists_path(letter: letter.id, lang: "rus")  %></b>
+		<% else %>
+			<%= letter.id.mb_chars.capitalize %>
+		<% end %>
+		<% index = @rus_letters.index(letter) %>
+		<% if index % 6 == 0 && index != 0 || letter.id == "2" %>
+			<br />
+		<% end %>
+
+		<% if index == 27 %>
+			<br ><br >
+		<% end %>
+	<% end %>
+</div>

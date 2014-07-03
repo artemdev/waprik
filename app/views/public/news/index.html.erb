@@ -1,0 +1,7 @@
+<% provide(:title, "Новости") %>
+
+<% @news.each do |news| %>
+	<div class="b">
+		<%= news.description.html_safe %>
+	</div>
+<% end %>

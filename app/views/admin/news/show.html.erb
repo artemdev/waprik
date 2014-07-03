@@ -1,0 +1,6 @@
+<% provide(:title, "последние новости") %>
+
+<div class="a">
+	<b>Новинки от <%= @item.created_at.to_s(:DayMonth) %></b> <br />
+	<%= @item.description.html_safe %>
+</div>

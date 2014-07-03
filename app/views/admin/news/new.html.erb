@@ -1,0 +1,8 @@
+<%= form_for(:news, :url => {:action => 'create'}) do |f| %>
+
+<div class="b">
+	<%= render(:partial => 'admin/shared/news_form', :locals => {:f => f}) %>
+	<%= submit_tag("Добавить") %>
+</div>
+<% end %>
+

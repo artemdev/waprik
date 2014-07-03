@@ -1,0 +1,42 @@
+// Place all the styles related to the Admin/Films controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.content-add {
+	text-align: center;
+}
+
+.content-film {
+	text-align: center;	
+	background-color: #bcd3e7;
+	margin: 0 0 20px 0;
+	border-radius: 10px;
+	img {
+		float: left;
+		padding: 0 0 10px 10px;
+	}
+	a {
+		color: #ff6f69 !important; 
+		text-decoration: none !important;
+	}
+	a:hover {
+	color: #f3f2eb !important;  
+	}
+}
+
+/* clear floats */
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+
+.group:after {
+	clear:both;
+}
+.group {
+	zoom: 1;
+}
+/* !clear floats */

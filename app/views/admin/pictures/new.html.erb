@@ -1,0 +1,14 @@
+<% provide(:title, "Новая картинка") %>
+<div class="title">
+	Новая картинка
+</div>
+<div class="a">
+	<%= form_for(@picture, url: {action: 'create'}, multipart: true) do |f| %>
+		<%= f.label(:image, "Картинка") %> <br />
+		<%= f.file_field(:image) %> <br />
+		<%= f.check_box(:erotic, checked: true) %> эротическая <br />		
+
+		<%= f.submit "Добавить" %>
+
+	<% end %>
+</div>

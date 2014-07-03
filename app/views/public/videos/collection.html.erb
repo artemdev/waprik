@@ -1,0 +1,16 @@
+<% @title = @collection.name %>
+
+<div class="title">
+	<%= @collection.name %>
+</div>
+<div class="a">
+	<% unless @collection.videos.empty? %>
+	<% @collection.videos.each do |video| %>
+		<%= link_to(video.name, :action => 'show', :id => video.id) %> <br />
+	<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+</div>
+
+<% @footer_links = ["#{link_to 'Все видео', videos_path} <br/>"] %>
