@@ -17,8 +17,8 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'kinopoisk_parser'
 gem 'tire'
-# gem 'lame'
-# gem 'taglib-ruby'
+gem 'lame'
+gem 'taglib-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
