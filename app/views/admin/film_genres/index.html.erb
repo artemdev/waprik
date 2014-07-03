@@ -1,5 +1,0 @@
-<% provide(:title, "Жанры фильмов") %>
-
-<% @genres.each do |genre| %>
-	<%= link_to genre.title, admin_film_genre_path(genre) %> <%= link_to "р", edit_admin_film_genre_path(genre) %>  <%= link_to "x", admin_film_genre_path(genre), method: :delete %> <br/>
-<% end %>

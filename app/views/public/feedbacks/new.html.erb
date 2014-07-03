@@ -1,9 +1,0 @@
-<%= form_for(:feedback, url: {action: 'create'}) do |t| %>
-	<%= t.label(:sender, "Как вас зовут ?") %> <br />
-	<%= t.text_field(:sender) %> <br />
-
-	<%= t.label(:description, "Ваш отзыв или предложение") %> <br />
-	<%= t.text_field(:description) %> <br />
-
-	<%= t.submit("Отправить") %>
-<% end %>

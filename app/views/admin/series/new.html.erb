@@ -1,7 +1,0 @@
-<%= form_for(@series, url: {action: 'create', serial_id: @serial.id}, html: {multipart: true}) do |f| %>
-	<%= error_messages_for(@series) %>
-
-		<%= render(partial: 'admin/shared/series', locals: {:f => f, :series => @series}) %>
-		
-	<%= f.submit("Добавить") %>
-<% end %>

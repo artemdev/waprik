@@ -1,9 +1,0 @@
-УСТАНОВКА
-1) Зпустить все миграции
-		rake db:migrate
-2) Импортировать базу фильмов
-		mysql -u user -ppassword waprik_production < waprik_films.sql
-3) Перезапустить три последних миграции для обработки импортированной базы фильмов
-		rake db:migrate:redo VERSION=20140608205848
-		rake db:migrate:redo VERSION=20140609083239
-		rake db:migrate:redo VERSION=20140611082701
