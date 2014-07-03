@@ -11,25 +11,18 @@ class Public::MusicController < ApplicationController
 
 	def download
 		@track = Mp3File.find(params[:id])
-		case params[:bitrate]
-			when "128"
-				if @track.path.path
+		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
+		if @track.path.path
+			case params[:bitrate]
+				when "128"
 					send_file "#{@track.path.path}_128.mp3", filename: @track.fname
-				elsif @track.new_path.path
-					send_file @track.new_path.path, filename: @track.fname
-				end
-			when "64"
-				if @track.path.path
+				when "64"
 					send_file "#{@track.path.path}_64.mp3", filename: @track.fname
-				elsif @track.new_path.path
-					send_file @track.new_path.path, filename: @track.fname
-				end
-			when "32"
-				if @track.path.path
+				when "32"
 					send_file "#{@track.path.path}_32.mp3", filename: @track.fname
-				elsif @track.new_path.path
-					send_file @track.new_path.path, filename: @track.fname
-				end
+			end
+		elsif @bitrate.file 
+			send_file @bitrate.file.path, filename: @track.fname
 		end
 		@track.downloads += 1
 		@track.save
