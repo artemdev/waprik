@@ -1,11 +1,11 @@
 <% provide(:title, @serial.name) %>
 
-<div class="title">
-	<%= @serial.name %>
-	<% unless @serial.season.nil? %>
-		(<%= @serial.season %> сезон)
-	<% end %>
-</div>
+<% if @serial.season.present? %>
+	<div class="b">
+		<%= @serial.season %> сезон
+	</div>
+<% end %>
+
 
 <div class="b">
 	Скачиваний <%= count_downloads_for @serial %> <br />
