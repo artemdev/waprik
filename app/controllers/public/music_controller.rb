@@ -29,6 +29,6 @@ class Public::MusicController < ApplicationController
 	end
 
 	def test
-		send_file "#{Rails.root}/public/test.mp3", filename: "test.mp3"
+		send_file "#{Rails.root}/public/uploads/test.mp3", filename: "test.mp3"
 	end
 end
