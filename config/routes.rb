@@ -46,7 +46,7 @@ Waprik::Application.routes.draw do
       end
 
       resources :tracks, only: ['index', 'show'], controller: "music" do 
-        post 'download', on: :member
+        get 'download', on: :member
       end
 
       resources :artists, only: ['index','show'], controller: "MusicArtists"
