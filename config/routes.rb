@@ -29,6 +29,7 @@ Waprik::Application.routes.draw do
 
   # Public resources
     match 'music/track/:id' => 'public/music#show'
+    match 'film/:id' => 'public/films#show'
     match 'test-dl' => 'public/music#test'
     scope module: 'public' do
 
