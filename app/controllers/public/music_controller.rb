@@ -22,7 +22,7 @@ class Public::MusicController < ApplicationController
 					send_file "#{@track.path.path}_32.mp3", filename: (@track.fname + ".mp3")
 			end
 		elsif @bitrate.file 
-			send_file @bitrate.file.path, filename: (@track.fname + ".mp3")
+			send_file @bitrate.file.path
 		end
 		@track.downloads += 1
 		@track.save
