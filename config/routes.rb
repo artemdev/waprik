@@ -37,6 +37,8 @@ Waprik::Application.routes.draw do
       resources :film_files do
         get 'download'
         get 'get_file'
+        get 'part'
+        get 'get_part'
       end
       resources :films do
         get "news", on: :collection
