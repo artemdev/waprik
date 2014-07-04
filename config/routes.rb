@@ -29,6 +29,7 @@ Waprik::Application.routes.draw do
 
   # Public resources
     match 'music/track/:id' => 'public/music#show'
+    match 'test-dl' => 'public/music#test'
     scope module: 'public' do
 
       resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
@@ -45,7 +46,7 @@ Waprik::Application.routes.draw do
       end
 
       resources :tracks, only: ['index', 'show'], controller: "music" do 
-        get 'download', on: :member
+        post 'download', on: :member
       end
 
       resources :artists, only: ['index','show'], controller: "MusicArtists"

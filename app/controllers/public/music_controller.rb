@@ -27,4 +27,8 @@ class Public::MusicController < ApplicationController
 		@track.downloads += 1
 		@track.save
 	end
+
+	def test
+		send_file "#{Rails.root}/public/Alexandra_Stan_feat._DJ_Andi_–_Set_Me_Free_64.mp3", filename: "test.mp3"
+	end
 end
