@@ -6,7 +6,7 @@
 <% if @tracks.any? %>
 	<div class="a">
 		<% @tracks.each do |track| %>
-			<%= link_to track.name, track_path(track) %> <%= link_to "x", admin_track_path(track), method: :delete %><br />
+			<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.id } %> <%= link_to "x", admin_track_path(track), method: :delete %><br />
 		<% end %>
 	</div>
 	<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>
