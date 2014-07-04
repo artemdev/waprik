@@ -15,14 +15,14 @@ class Public::MusicController < ApplicationController
 		if @track.path.path
 			case params[:bitrate]
 				when "128"
-					send_file "#{@track.path.path}_128.mp3", filename: @track.fname
+					send_file "#{@track.path.path}_128.mp3", filename: (@track.fname + ".mp3")
 				when "64"
-					send_file "#{@track.path.path}_64.mp3", filename: @track.fname
+					send_file "#{@track.path.path}_64.mp3", filename: (@track.fname + ".mp3")
 				when "32"
-					send_file "#{@track.path.path}_32.mp3", filename: @track.fname
+					send_file "#{@track.path.path}_32.mp3", filename: (@track.fname + ".mp3")
 			end
 		elsif @bitrate.file 
-			send_file @bitrate.file.path, filename: @track.fname
+			send_file @bitrate.file.path, filename: (@track.fname + ".mp3")
 		end
 		@track.downloads += 1
 		@track.save

@@ -14,7 +14,7 @@ class Admin::MusicController < ApplicationController
 
 	def create
 		@track = Mp3File.new(params[:mp3_file])
-		@track.fname = params[:mp3_file][:name].gsub(' ', '_').delete('(').delete(')').delete('/') + ".mp3"
+		@track.fname = params[:mp3_file][:name].gsub(' ', '_').delete('(').delete(')').delete('/')
  		if @track.save 
  			# создать для трека битрейды
  			LameWorker.perform_async(@track.id)

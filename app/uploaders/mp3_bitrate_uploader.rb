@@ -25,7 +25,7 @@ class Mp3BitrateUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{model.track.fname}_#{model.file_bitrate}.#{file.extension}" if original_filename.present?
+    "#{model.file_bitrate}_#{model.track.fname}.#{file.extension}" if original_filename.present?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
