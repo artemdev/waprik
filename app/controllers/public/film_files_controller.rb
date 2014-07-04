@@ -17,7 +17,7 @@ class Public::FilmFilesController < ApplicationController
 		part = FilmPart.find(params[:film_file_id])
 		part.film_file.film.downloads += 1
 		part.film_file.film.save
-		send_file part.real_name.path, content_type: part.film_file.content_type
+		send_file part.real_name.path, content_type: part.real_name.content_type
 	end
 
 end
