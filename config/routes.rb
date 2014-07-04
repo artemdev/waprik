@@ -36,7 +36,7 @@ Waprik::Application.routes.draw do
       resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
       resources :film_files do
         get 'download'
-        get 'part'
+        get 'get_file'
       end
       resources :films do
         get "news", on: :collection

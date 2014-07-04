@@ -9,7 +9,15 @@ class Public::MusicController < ApplicationController
 		@track = Mp3File.find(params[:id])
 	end
 
+	# скачивание состоит из 2-х действий, чтобы избежать неправильного подсчета скачиваний
 	def download
+		@track = Mp3File.find(params[:id])
+		@track.downloads += 1
+		@track.save
+		redirect_to(action: "get_file", id: @track.id, bitrate: params[:bitrate])
+	end
+
+	def get_file
 		@track = Mp3File.find(params[:id])
 		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
 		if @track.path.path
@@ -24,8 +32,6 @@ class Public::MusicController < ApplicationController
 		elsif @bitrate.file 
 			send_file @bitrate.file.path, type: 'audio/mpeg', filename: (@track.fname + '.mp3')
 		end
-		@track.downloads += 1
-		@track.save
 	end
 
 	def test
