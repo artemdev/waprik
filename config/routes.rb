@@ -28,6 +28,7 @@ Waprik::Application.routes.draw do
   end
 
   # Public resources
+    match 'music/track/:id' => 'public/music#show'
     scope module: 'public' do
 
       resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
