@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140701135401) do
+ActiveRecord::Schema.define(:version => 20140706010226) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -295,12 +295,12 @@ ActiveRecord::Schema.define(:version => 20140701135401) do
   add_index "mp3_artist2category", ["a2c_category_id"], :name => "category_id"
 
   create_table "mp3_artists", :force => true do |t|
-    t.string   "name",                :limit => 256,                :null => false
-    t.string   "first_letter",        :limit => 1,                  :null => false
-    t.string   "lang",                :limit => 3,                  :null => false
-    t.integer  "count_albums",                       :default => 0, :null => false
-    t.integer  "count_tracks",                       :default => 0, :null => false
-    t.integer  "count_hits",          :limit => 1,   :default => 0, :null => false
+    t.string   "name",                :limit => 256
+    t.string   "first_letter",        :limit => 1
+    t.string   "lang",                :limit => 3
+    t.integer  "count_albums",                       :default => 0
+    t.integer  "count_tracks",                       :default => 0
+    t.integer  "count_hits",          :limit => 1,   :default => 0
     t.text     "artist_comment_up"
     t.text     "artist_comment_down"
     t.datetime "created_at"

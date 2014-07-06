@@ -8,24 +8,21 @@ class Public::FilmFilesController < ApplicationController
 
 	def download
 		@file = FilmFile.find(params[:film_file_id])
+		@file.film.downloads += 1
+		@file.film.save
 		redirect_to(action: "get_file", film_file_id: @file.id)
 	end
 
 	def get_file
 		@file = FilmFile.find(params[:film_file_id])
-		if send_file @file.real_name.path, content_type: @file.real_name.content_type
-				@file.film.downloads += 1
-				@file.film.save
-		else
-			redirect_to film_file_path(@file)
-		end
+		send_file @file.real_name.path, content_type: @file.real_name.content_type
 	end
 
 	def part
 		film_file = FilmPart.find(params[:film_file_id])
 		film_file.film.downloads += 1
 		film_file.film.save
-		redirect_to(action: "get_part", film_file_id: film_file.id)
+		redirect_to action: "get_part", film_file_id: film_file.id
 	end
 
 	def get_part

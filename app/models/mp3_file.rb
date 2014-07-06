@@ -15,7 +15,8 @@
 # integer   "downloads",                       :default => 0,      
 require 'taglib'
 class Mp3File < ActiveRecord::Base
-  attr_accessible :name, :path, :new_path
+  attr_accessible :name, :path, :new_path, :artist_name, :album_name
+
 
   before_create :save_file_length
 
@@ -28,6 +29,31 @@ class Mp3File < ActiveRecord::Base
 
   scope :latest, order("created_at DESC")
 
+  validates :artist, :name, :new_path, presence: true
+
+
+  def artist_name
+    artist.try(:name)
+  end
+
+  def artist_name=(name)
+    self.artist = Mp3Artist.find_or_create_by_name(name) if name.present?
+  end
+
+
+  def album_name
+    album.try(:name)
+  end
+
+  def album_name=(name)
+    album = Mp3Album.new
+    album.year = Time.now.year
+    album.name = name
+    album.artist = self.artist
+    album.save
+    self.album = album
+    save
+  end
 
   def save_file_length
   	TagLib::FileRef.open(self.new_path.path) do |file|
