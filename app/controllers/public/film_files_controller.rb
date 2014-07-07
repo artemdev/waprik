@@ -10,7 +10,7 @@ class Public::FilmFilesController < ApplicationController
 		@file = FilmFile.find(params[:film_file_id])
 		@file.film.downloads += 1
 		@file.film.save
-		send_file @file.real_name.path, content_type: @file.real_name.content_type, x_sendfile: true
+		send_file @file.real_name.path, filename: @file.real_name.filename, content_type: @file.real_name.content_type, disposition: :document
 	end
 
 	def part
