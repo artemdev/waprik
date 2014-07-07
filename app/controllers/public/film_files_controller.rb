@@ -11,7 +11,7 @@ class Public::FilmFilesController < ApplicationController
 		@file.film.downloads += 1
 		@file.film.save
 		@file = FilmFile.find(params[:film_file_id])
-		send_file @file.real_name.path, content_type: @file.real_name.content_type
+		send_file @file.real_name.path, content_type: @file.real_name.content_type, x_sendfile: true
 	end
 
 	def part
@@ -20,7 +20,7 @@ class Public::FilmFilesController < ApplicationController
 		film_file.film.save
 		redirect_to action: "get_part", film_file_id: film_file.id
 		part = FilmPart.find(params[:film_file_id])
-		send_file part.real_name.path, content_type: part.real_name.content_type
+		send_file part.real_name.path, content_type: part.real_name.content_type, x_sendfile: true
 	end
 
 	def get_part

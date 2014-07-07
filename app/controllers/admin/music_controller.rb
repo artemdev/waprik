@@ -1,6 +1,8 @@
 class Admin::MusicController < ApplicationController
 	layout 'admin'
-	
+
+	FTP_PATH = "public/ftp/music/"
+
 	before_filter :confirm_logged_in
 
 	def index
@@ -10,6 +12,7 @@ class Admin::MusicController < ApplicationController
 
 	def new
 		@track = Mp3File.new
+		@files = Dir.glob(FTP_PATH + "*").sort
 	end
 
 	def create
