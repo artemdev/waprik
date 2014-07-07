@@ -16,7 +16,7 @@ public/uploads/*
 public/ftp/*
 public/tmp/*
 public/assets/*
-tmp/*
+tmp/
 cache/*
 config/database.yml
 db/schema.rb

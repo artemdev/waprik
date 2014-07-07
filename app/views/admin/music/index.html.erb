@@ -4,17 +4,17 @@
 </div>
 
 <% if @tracks.any? %>
-	<div class="a">
 		<% @tracks.each do |track| %>
-			<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.id } %>
-			<%= link_to "т", edit_tags_admin_track_path(track) %>
-			<%= link_to "x", admin_track_path(track), method: :delete %>
-			<span class="small-text">
-				<%= track.downloads %>
-			</span>
-			<br />
+			<%= div_for track, class: 'music_track' do %>
+				<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.id } %>
+				<%= link_to "т", edit_tags_admin_track_path(track) %>
+				<%= link_to "x", admin_track_path(track), method: :delete, remote: true %>
+				<span class="small-text">
+					<%= track.downloads %>
+				</span>
+				<br />
+			<% end %>
 		<% end %>
-	</div>
 	<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>
 <% end %>
 

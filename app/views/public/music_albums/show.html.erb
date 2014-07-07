@@ -3,7 +3,7 @@
 <div class="a">
 	<% if @tracks.any? %>
 		<% @tracks.each do |track| %>
-			<%= link_to track.name, music_track_path(track) %> <br />
+			<%= link_to track.name, track_path(track) %> <br />
 		<% end %>
 	<% end %>
 </div>

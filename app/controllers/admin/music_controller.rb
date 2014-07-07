@@ -1,5 +1,5 @@
 class Admin::MusicController < ApplicationController
-	layout 'mobile'
+	layout 'admin'
 	
 	before_filter :confirm_logged_in
 
@@ -57,6 +57,9 @@ class Admin::MusicController < ApplicationController
 	def destroy
 		@track = Mp3File.find(params[:id]).destroy
 		flash[:success] = "Трек удален"
-		redirect_to admin_tracks_path
+		respond_to do |format|
+			format.html { redirect_to admin_tracks_path }
+			format.js
+		end
 	end
 end

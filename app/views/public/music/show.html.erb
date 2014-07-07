@@ -11,6 +11,6 @@
 <div class="a">
 	Время <%= @track.length %> <hr />
 	Скачиваний <%= @track.downloads %> <hr />
-	Альбом <%= @track.album.name %> <hr />
-	Исполнитель <%= @track.artist.name %>
+	Альбом <%= link_to @track.album.name, album_path(@track.album) %> <hr />
+	Исполнитель <%= link_to @track.artist.name, artist_path(@track.artist) %>
 </div>

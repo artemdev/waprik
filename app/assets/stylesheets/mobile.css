@@ -44,7 +44,6 @@ hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin
 	text-decoration: none;
 }
 .banners { 
-	background: url(rails.png) repeat-x top left;
 	margin: 1px 3px 0 3px;
 	padding: 5px;
 	font-size: 11px;
@@ -76,6 +75,12 @@ span.mini-downloads {
 
 #mp3_file_artist_name {
 	background-color: grey;
+}
+/* music */
+.music_track {
+	border-bottom: 1px solid #a5c6d4;
+	margin: 3px;
+	padding: 2px 2px 4px 2px;
 }
 
 ul.ui-autocomplete {
