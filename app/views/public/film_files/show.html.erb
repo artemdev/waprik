@@ -1,7 +1,7 @@
 <% provide(:title, @file.film.title) %>
 
 <div class="b">
-	<%= link_to "Скачать", "#{@file.id}/#{File.basename(@file.real_name.url)}" %>
+	<%= link_to "Скачать", "#{root_url}uploads/films/#{@file.id}/#{File.basename(@file.real_name.url)}" %>
 	<%= number_to_human_size(@file.size) %>
 </div>
 
