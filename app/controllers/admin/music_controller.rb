@@ -2,6 +2,7 @@ class Admin::MusicController < ApplicationController
 	layout 'admin'
 
 	FTP_PATH = "public/ftp/music/"
+	ALBUM_COPYRIGHT = "waprik.ru - новинки музыки"
 
 	before_filter :confirm_logged_in
 
@@ -18,8 +19,10 @@ class Admin::MusicController < ApplicationController
 	def create
 		@track = Mp3File.new(params[:mp3_file])
 		@track.fname = params[:mp3_file][:name].gsub(' ', '_').delete('(').delete(')').delete('/')
- 		if @track.save 
- 			# создать для трека битрейды
+ 		if @track.save
+			# копирайт сайта как альбом
+			@track.create_id3v2_album_with(ALBUM_COPYRIGHT) 
+ 			# создаются битрейды
  			LameWorker.perform_async(@track.id)
  			flash[:success] = "Mp3 успешно добавлена"
  			redirect_to admin_tracks_path
@@ -42,7 +45,8 @@ class Admin::MusicController < ApplicationController
 	def update_tags
 		track = Mp3File.find(params[:id])
 
-		# сохраняются теги
+		# сохранение тегов
+		# if track.new_path.path && FileTest.exist?(track.new_path.path)
 		TagLib::MPEG::File.open(track.new_path.path) do |file|
 			tag = file.id3v2_tag
 
@@ -50,11 +54,22 @@ class Admin::MusicController < ApplicationController
 			tag.artist = params[:artist]
 			tag.album = params[:album]
 
-			if file.save
-				flash[:success] = "id3v2 теги успешно сохранены"
-				redirect_to admin_tracks_path
-			end
+			file.save
 		end
+		# elsif track.path.path && FileTest.exist?(track.path.path)
+		# 	TagLib::MPEG::File.open(track.path.path) do |file|
+		# 		tag = file.id3v2_tag
+
+		# 		tag.title = params[:title]
+		# 		tag.artist = params[:artist]
+		# 		tag.album = params[:album]
+
+		# 		file.save
+		# 	end			
+		# end
+
+		flash[:success] = "id3v2 теги успешно сохранены"
+		redirect_to admin_tracks_path
 	end
 
 	def destroy

@@ -89,4 +89,13 @@ class Mp3File < ActiveRecord::Base
     kbs64.save
     FileUtils.rm_r("#{Rails.root}/public/tmp/#{self.id}")
   end
+
+  def create_id3v2_album_with(album)
+    TagLib::MPEG::File.open(self.new_path.path) do |file|
+      tag = file.id3v2_tag
+      tag.album = album
+      file.save
+    end
+  end
+
 end

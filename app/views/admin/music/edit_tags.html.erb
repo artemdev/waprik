@@ -4,8 +4,13 @@
 	<% @tag = file.id3v2_tag %>
 
 	<%= form_tag update_tags_admin_track_path(@track), method: :put do %>
+		<%= label_tag :title, "Название" %> <br />
 		<%= text_area_tag :title, @tag.title %> <br />
+
+		<%= label_tag :artist, "Исполнитель" %> <br />
 		<%= text_area_tag :artist, @tag.artist %> <br />
+
+		<%= label_tag :album, "Альбом" %> <br />
 		<%= text_area_tag :album, @tag.album %> <br />
 
 		<%= submit_tag "обновить"%> <br />

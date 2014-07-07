@@ -20,7 +20,4 @@ class Public::FilmFilesController < ApplicationController
 		send_file part.real_name.path, content_type: part.real_name.content_type, length: part.size
 	end
 
-	def get_part
-	end
-
 end

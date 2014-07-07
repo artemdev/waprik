@@ -8,11 +8,28 @@
 			<%= div_for track, class: 'music_track' do %>
 				<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.id } %>
 				<%= link_to "т", edit_tags_admin_track_path(track) %>
-				<%= link_to "x", admin_track_path(track), method: :delete, remote: true %>
+				<%= link_to "x", admin_track_path(track), method: :delete, remote: true, confirm: 'точно ?' %>
 				<span class="small-text">
 					<%= track.downloads %>
 				</span>
 				<br />
+				<span class="small-text">
+					<% if track.path.path && FileTest.exist?(track.path.path) %>
+						<% TagLib::MPEG::File.open(track.path.path) do |file| %>
+							<% tag = file.id3v2_tag %>
+							название <%= tag.title %> <br />
+							исполнитель <%= tag.artist %> <br />
+							альбом <%= tag.album %>
+						<% end %>
+					<% elsif track.new_path.path && FileTest.exist?(track.new_path.path) %>
+							<% TagLib::MPEG::File.open(track.new_path.path) do |file| %>
+							<% tag = file.id3v2_tag %>
+							название <%= tag.title %> <br />
+							исполнитель <%= tag.artist %> <br />
+							альбом <%= tag.album %>
+						<% end %>				
+					<% end %>
+				</span>
 			<% end %>
 		<% end %>
 	<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>
