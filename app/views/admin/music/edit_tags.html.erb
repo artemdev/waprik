@@ -1,0 +1,14 @@
+<% provide(:title, @track.name) %>
+
+<% TagLib::MPEG::File.open(@track.new_path.path) do |file| %>
+	<% @tag = file.id3v2_tag %>
+
+	<%= form_tag update_tags_admin_track_path(@track), method: :put do %>
+		<%= text_area_tag :title, @tag.title %> <br />
+		<%= text_area_tag :artist, @tag.artist %> <br />
+		<%= text_area_tag :album, @tag.album %> <br />
+
+		<%= submit_tag "обновить"%> <br />
+	<% end %>
+
+<% end %>

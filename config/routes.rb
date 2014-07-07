@@ -1,16 +1,12 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
-  get "music_album/show"
-
-  get "music_alphabet/eng"
-
-  get "music_alphabet/rus"
-
-  # sidekiq
-  mount Sidekiq::Web, at: '/tasks'
 
   # Admin resources
   namespace :admin do
+    # matches
+    match 'music/artists' => "MusicArtists#index"
+
+    # resources
     resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
 
     resources :films do
@@ -24,7 +20,15 @@ Waprik::Application.routes.draw do
     resources :film_files do
       get 'download', on: :member
     end
-    resources :tracks, controller: "Music"
+
+    resources :tracks, controller: "Music" do
+      member do 
+        get 'edit_tags'
+        put 'update_tags'
+      end
+    end
+
+    resources :music_artists, controller: "MusicArtists"
   end
 
   # Public resources
@@ -133,6 +137,9 @@ Waprik::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
+  
+  # sidekiq
+  mount Sidekiq::Web, at: '/tasks'
 
   match ':controller(/:action(/:id))(.:format)'
 end

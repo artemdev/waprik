@@ -25,6 +25,34 @@ class Admin::MusicController < ApplicationController
  		end
 	end
 
+	def edit
+		@track = Mp3File.find(params[:id])
+	end
+
+	def update
+	end
+
+	def edit_tags
+		@track = Mp3File.find(params[:id])
+	end
+
+	def update_tags
+		track = Mp3File.find(params[:id])
+
+		# сохраняются теги
+		TagLib::MPEG::File.open(track.new_path.path) do |file|
+			tag = file.id3v2_tag
+
+			tag.title = params[:title]
+			tag.artist = params[:artist]
+			tag.album = params[:album]
+
+			if file.save
+				flash[:success] = "id3v2 теги успешно сохранены"
+				redirect_to admin_tracks_path
+			end
+		end
+	end
 
 	def destroy
 		@track = Mp3File.find(params[:id]).destroy
