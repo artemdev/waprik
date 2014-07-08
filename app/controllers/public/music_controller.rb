@@ -5,6 +5,12 @@ class Public::MusicController < ApplicationController
 		@tracks = Mp3File.all
 	end
 
+	def news
+		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 10)
+		@date = Mp3File.latest.last.created_at
+		@last_tracks = Mp3File.published_at(@date)
+	end
+
 	def show
 		@track = Mp3File.find(params[:id])
 	end

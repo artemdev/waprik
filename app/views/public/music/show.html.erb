@@ -10,7 +10,7 @@
 
 <div class="a">
 	Время <%= @track.length %> <hr />
-	Скачиваний <%= @track.downloads %> <hr />
-	Альбом <%= link_to @track.album.name, album_path(@track.album) %> <hr />
-	Исполнитель <%= link_to @track.artist.name, artist_path(@track.artist) %>
+	Скачиваний <%= @track.downloads %>
 </div>
+
+<% @footer_links = ["#{link_to @track.album.name.mb_chars.capitalize, album_path(@track.album)}", "#{link_to @track.artist.name.mb_chars.capitalize, artist_path(@track.artist)}",] %>

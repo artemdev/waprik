@@ -26,8 +26,10 @@ class Mp3File < ActiveRecord::Base
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
   belongs_to :artist, class_name: 'Mp3Artist'
   belongs_to :album, class_name: 'Mp3Album'
+  belongs_to :news, class_name: 'News', foreign_key: 'news_id'
 
   scope :latest, order("created_at DESC")
+  scope :published_at, lambda { |num = nil | where("created_at = ?", num) }
 
   validates :artist, :name, :new_path, presence: true
 

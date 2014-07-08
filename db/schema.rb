@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140706010226) do
+ActiveRecord::Schema.define(:version => 20140708133538) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -348,6 +348,7 @@ ActiveRecord::Schema.define(:version => 20140706010226) do
     t.text     "file_comment_down"
     t.string   "new_path"
     t.integer  "length_sec"
+    t.integer  "news_id"
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
@@ -403,8 +404,11 @@ ActiveRecord::Schema.define(:version => 20140706010226) do
     t.string   "description"
     t.string   "section"
     t.boolean  "visible"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.datetime "published_at"
+    t.string   "title",        :default => ""
+    t.integer  "user_id"
   end
 
 end

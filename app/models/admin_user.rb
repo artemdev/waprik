@@ -5,7 +5,7 @@ class AdminUser < ActiveRecord::Base
   attr_accessor :password
 
   has_many :pictures, foreign_key: "author_id"
-  
+  has_many :news, foreign_key: "user_id" 
   # only on create, so other attributes of this user can be changed
   validates :username, presence: true, length: { maximum: 100 }
   validates :password, presence: true

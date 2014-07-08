@@ -27,4 +27,16 @@ module ApplicationHelper
 		render(:partial => 'admin/shared/error_messages', :locals => {:object => object})
 	end
 
+  def translate_month month
+    if month
+      "июля"
+    end
+  end
+
+  def hr_for object, collection
+    unless collection.last == object
+      "<hr />".html_safe
+    end
+  end
+
 end

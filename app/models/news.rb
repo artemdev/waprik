@@ -4,6 +4,8 @@ class News < ActiveRecord::Base
 
   before_create :add_category
 
+  has_many :tracks, class_name: 'Mp3File'
+
   scope :sorted, order("updated_at ASC")
   scope :latest, order("created_at DESC") 
 
