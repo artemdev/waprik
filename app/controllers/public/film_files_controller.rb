@@ -13,6 +13,11 @@ class Public::FilmFilesController < ApplicationController
 		send_file @file.real_name.path, content_type: @file.real_name.content_type
 	end
 
+	def get_file
+		file = FilmFile.find(params[:film_file_id])
+		send_file file.real_name.path, content_type: file.real_name.content_type
+	end
+
 	def part
 		part = FilmPart.find(params[:film_file_id])
 		part.film.downloads += 1
@@ -20,4 +25,8 @@ class Public::FilmFilesController < ApplicationController
 		send_file part.real_name.path, content_type: part.real_name.content_type
 	end
 
+	def get_part
+		part = FilmPart.find(params[:film_file_id])
+		send_file part.real_name.path, content_type: part.real_name.content_type
+	end
 end
