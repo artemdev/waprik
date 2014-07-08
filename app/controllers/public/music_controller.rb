@@ -7,7 +7,7 @@ class Public::MusicController < ApplicationController
 
 	def news
 		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 10)
-		@date = Mp3File.latest.last.created_at
+		@date = Mp3File.latest.first.created_at
 		@last_tracks = Mp3File.published_at(@date)
 	end
 
