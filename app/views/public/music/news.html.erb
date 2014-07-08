@@ -1,0 +1,24 @@
+<% if @last_tracks.any? %>
+	<% provide(:title, "Новинки от #{@last_tracks.last.created_at.strftime("%d.%m.%y")}") %>
+
+	<div class="a">
+		<% @last_tracks.each do |track| %>
+			<%= link_to track.name, track_path(track) %>
+			<%= hr_for track, @last_tracks %>
+		<% end %>
+	</div>
+<% end %>
+
+<% if @tracks.any? %>
+	<div class="title">
+		Предыдущие новинки
+	</div>
+	<div class="a">
+		<% @tracks.each do |track| %>
+			<%= link_to track.name, track_path(track) %>
+			<br />
+		<% end %>
+	</div>
+
+	<%= will_paginate @tracks, next_label: "", previous_label: "", class: 'b' %>
+<% end %>
