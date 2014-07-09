@@ -1,4 +1,4 @@
-<% provide(:title, @album.name) %>
+<% provide(:title, @album.name.mb_chars.capitalize) %>
 
 <div class="a">
 	<% if @tracks.any? %>
