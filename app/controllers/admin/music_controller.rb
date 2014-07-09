@@ -2,7 +2,6 @@ class Admin::MusicController < ApplicationController
 	layout 'admin'
 
 	FTP_PATH = "public/ftp/music/"
-	ALBUM_COPYRIGHT = "waprik.ru - новинки музыки"
 
 	before_filter :confirm_logged_in
 
@@ -13,15 +12,21 @@ class Admin::MusicController < ApplicationController
 
 	def new
 		@track = Mp3File.new
-		@files = Dir.glob(FTP_PATH + "*").sort
+		mp3files = File.join(FTP_PATH, "**", "*.mp3")
+		@files = Dir.glob(mp3files).sort
 	end
 
 	def create
 		@track = Mp3File.new(params[:mp3_file])
-		@track.fname = params[:mp3_file][:name].gsub(' ', '_').delete('(').delete(')').delete('/')
+		@track.new_path = File.open(params[:mp3_file][:new_file])
+		name = File.basename(params[:mp3_file][:new_file], ".mp3")
+		@track.name = name
+		@track.fname = name.gsub(' ', '_').delete('(').delete(')').delete('/').delete('?').delete('!')
+		@track.artist_name = name.split(' - ').first
+		@track.album_name = params[:mp3_file][:album_name].present? ? params[:mp3_file][:album_name] : "песни 2014"
  		if @track.save
-			# копирайт сайта как альбом
-			@track.create_id3v2_album_with(ALBUM_COPYRIGHT) 
+ 			# id3v2 теги
+ 			@track.create_id3v2_tags_from name
  			# создаются битрейды
  			LameWorker.perform_async(@track.id)
  			flash[:success] = "Mp3 успешно добавлена"

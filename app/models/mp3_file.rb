@@ -15,8 +15,10 @@
 # integer   "downloads",                       :default => 0,      
 require 'taglib'
 class Mp3File < ActiveRecord::Base
-  attr_accessible :name, :path, :new_path, :artist_name, :album_name
+  attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file
+  attr_accessor :new_file
 
+  ID3v2_ALBUM = "waprik.ru - новая музыка"
 
   before_create :save_file_length
 
@@ -92,12 +94,15 @@ class Mp3File < ActiveRecord::Base
     FileUtils.rm_r("#{Rails.root}/public/tmp/#{self.id}")
   end
 
-  def create_id3v2_album_with(album)
+  def create_id3v2_tags_from name
     TagLib::MPEG::File.open(self.new_path.path) do |file|
       tag = file.id3v2_tag
-      tag.album = album
+      tag.artist = name.split(' - ').first
+      tag.title = name.split(' - ').last
+      tag.album = ID3v2_ALBUM
       file.save
     end
   end
+
 
 end
