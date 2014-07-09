@@ -31,7 +31,7 @@ class Mp3File < ActiveRecord::Base
   belongs_to :news, class_name: 'News', foreign_key: 'news_id'
 
   scope :latest, order("created_at DESC")
-  scope :published_at, lambda { |num = nil | where("created_at = ?", num) }
+  scope :published_at, lambda { |date = nil | where("created_at > ? AND created_at < ?", date.at_beginning_of_day, date.end_of_day) }
 
   validates :artist, :name, :new_path, presence: true
 
