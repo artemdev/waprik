@@ -9,8 +9,8 @@ class Public::FilmsController < ApplicationController
 			@genres = FilmGenre.all
 			@films = []
 		end
-		@latest_date = Film.latest.last.created_at
-		@favourite_date = Film.latest.favourite.last.created_at
+		@latest_date = Film.latest.first.created_at
+		@favourite_date = Film.latest.favourite.first.created_at
 	end
 
 	def show

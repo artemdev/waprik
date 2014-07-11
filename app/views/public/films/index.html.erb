@@ -1,8 +1,8 @@
 <% provide(:title, "Фильмы для мобильного") %>
 
 <div class="b">
-	<%= link_to "Новинки", latest_films_path %> от <%= @latest_date.strftime("%d.%m.%y") %> <br />
-	<%= link_to "Избранные новинки", news_films_path %> от <%= @favourite_date.strftime("%d.%m.%y") %>
+	<%= link_to "Новинки", latest_films_path %> от <%= Time.new(@latest_date).strftime("%d.%m.%y") %> <br />
+	<%= link_to "Избранные новинки", news_films_path %> от <%= Time.new(@favourite_date).strftime("%d.%m.%y") %>
 </div>
 
 <div class="title">
