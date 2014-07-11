@@ -8,6 +8,7 @@ Waprik::Application.routes.draw do
 
     # resources
     resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
+    resources :feedbacks
 
     resources :films do
       get 'destroy_director', on: :member
@@ -37,7 +38,12 @@ Waprik::Application.routes.draw do
     match 'test-dl' => 'public/music#test'
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
-      resources :videos, :serials, :news, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
+      resources :videos, :serials, :news, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
+      
+      resources :feedbacks do 
+        get 'list', on: :collection
+      end
+
       resources :film_files do
         get 'download'
         get 'get_file'
@@ -47,10 +53,12 @@ Waprik::Application.routes.draw do
 
       resources :music do
         get 'news', on: :collection
+        get 'latest', on: :collection
       end
 
       resources :films do
         get "news", on: :collection
+        get 'latest', on: :collection
       end
       resources :alphabets, except: ['index', 'new', 'create', 'edit', 'update', 'destroy'], controller: "MusicAlphabet" do
         get 'eng', on: :collection

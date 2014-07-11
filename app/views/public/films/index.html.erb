@@ -1,5 +1,13 @@
-<% provide(:title, "Категории") %>
+<% provide(:title, "Фильмы для мобильного") %>
 
+<div class="b">
+	<%= link_to "Новинки", latest_films_path %> от <%= @latest_date.strftime("%d.%m.%y") %> <br />
+	<%= link_to "Избранные новинки", news_films_path %> от <%= @favourite_date.strftime("%d.%m.%y") %>
+</div>
+
+<div class="title">
+	Жанры
+</div>
 <div class="a">
 	<%= form_tag films_path, method: :get do %>
 		<%= text_field_tag :film_name %>

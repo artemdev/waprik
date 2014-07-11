@@ -97,8 +97,16 @@ class Mp3File < ActiveRecord::Base
   def create_id3v2_tags_from name
     TagLib::MPEG::File.open(self.new_path.path) do |file|
       tag = file.id3v2_tag
-      tag.artist = name.split(' - ').first
-      tag.title = name.split(' - ').last
+      if name.include?(' – ')
+        tag.artist = name.split(' – ').first
+        tag.title = name.split(' – ').last
+      elsif name.include?(' - ')
+        tag.artist = name.split(' - ').first
+        tag.title = name.split(' - ').last
+      else
+        tag.artist = name
+        tag.title = name
+      end
       tag.album = ID3v2_ALBUM
       file.save
     end

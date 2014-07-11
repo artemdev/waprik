@@ -18,6 +18,6 @@ class Admin::FeedbacksController < ApplicationController
   end
 
   def list
-  	@feedbacks = Feedback.published
+  	@feedbacks = Feedback.all
   end
 end

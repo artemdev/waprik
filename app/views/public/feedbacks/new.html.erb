@@ -1,9 +1,24 @@
-<%= form_for(:feedback, url: {action: 'create'}) do |t| %>
-	<%= t.label(:sender, "Как вас зовут ?") %> <br />
-	<%= t.text_field(:sender) %> <br />
+<% provide(:title, "Связь с администрацией") %>
 
-	<%= t.label(:description, "Ваш отзыв или предложение") %> <br />
-	<%= t.text_field(:description) %> <br />
+<div class="a">
+	<%= form_for(:feedback, url: {action: 'create'}) do |t| %>
 
-	<%= t.submit("Отправить") %>
-<% end %>
+		<%= t.label(:sender, "Как вас зовут ?") %>  <br />
+		<%= t.text_field(:sender) %> <br />
+
+		<%= t.label(:type, "Благодарность") %>
+		<%= t.radio_button(:type, "thank") %> <br />
+
+		<%= t.label(:type, "Пожелание") %>
+		<%= t.radio_button(:type, "wish") %> <br />
+
+		<%= t.label(:type, "Жалоба") %>
+		<%= t.radio_button(:type, "warn", checked: true) %><br />
+
+		<%= t.label(:description, "Ваш отзыв или предложение") %> <br />
+		<%= t.text_area(:description) %> <br />
+
+		<%= t.submit("Отправить") %>
+	<% end %>
+</div>
+

@@ -8,6 +8,7 @@ class Admin::MusicController < ApplicationController
 	def index
 		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 10)
 		@collections = Collection.top
+		@new_track = Mp3File.new
 	end
 
 	def new

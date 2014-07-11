@@ -20,11 +20,6 @@ class Public::MusicController < ApplicationController
 		@track = Mp3File.find(params[:id])
 		@track.downloads += 1
 		@track.save
-		redirect_to(action: "get_file", id: @track.id, bitrate: params[:bitrate])
-	end
-
-	def get_file
-		@track = Mp3File.find(params[:id])
 		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
 		if @track.path.path
 			case params[:bitrate]
@@ -35,12 +30,9 @@ class Public::MusicController < ApplicationController
 				when "32"
 					send_file "#{@track.path.path}_32.mp3", type: 'audio/mpeg', filename: @track.fname
 			end
-		elsif @bitrate.file 
-			send_file @bitrate.file.path, type: 'audio/mpeg', filename: (@track.fname + '.mp3')
+		elsif @bitrate.file
+			send_file @bitrate.file.path, type: @bitrate.file.content_type, filename: (@track.fname + '.mp3')
 		end
 	end
 
-	def test
-		send_file "#{Rails.root}/public/uploads/test.mp3", filename: "test.mp3"
-	end
 end

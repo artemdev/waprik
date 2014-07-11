@@ -1,6 +1,6 @@
-<div class="b">
-	<%= link_to('Добавить mp3', new_admin_track_path) %> <br />
-	<%= link_to('Добавить новость', :controller => 'news', :action => 'new', :section => "music") %> <br />
+
+<div class="new_track" id="new_track">
+	<%= link_to('Добавить mp3', new_admin_track_path) %>
 </div>
 
 <% if @tracks.any? %>
