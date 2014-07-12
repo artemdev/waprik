@@ -1,4 +1,9 @@
 class Admin::FeedbacksController < ApplicationController
+
+  def index
+    @feedbacks = Feedback.without_answer
+  end
+
 	def show
   	@feedback = Feedback.find(params[:id])
   end
@@ -19,5 +24,11 @@ class Admin::FeedbacksController < ApplicationController
 
   def list
   	@feedbacks = Feedback.all
+  end
+
+  def destroy
+    Feedback.find(params[:id]).destroy
+    flash[:success] = "Отзыв удален"
+    redirect_to admin_feedbacks_path
   end
 end

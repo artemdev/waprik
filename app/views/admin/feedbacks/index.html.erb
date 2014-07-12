@@ -1,0 +1,11 @@
+<% provide(:title, "отзывы / пожелания / предложения") %>
+
+<% if @feedbacks.any? %>
+	<% @feedbacks.each do |feedback| %>
+		<%= feedback.sender %>
+		<br />
+		<%= feedback.description %>
+		<br />
+		<%= link_to "ответить", new_admin_reply_path(feedback_id: feedback.id) %> <%= link_to "удалить", admin_feedback_path(feedback) , method: :delete %>
+	<% end %>
+<% end %>

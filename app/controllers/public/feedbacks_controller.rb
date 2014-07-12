@@ -6,7 +6,7 @@ class Public::FeedbacksController < ApplicationController
   end
 
   def new
-  	@feedback = Feedback.new(type: params[:type])
+  	@feedback = Feedback.new
   end
 
   def create
@@ -19,7 +19,8 @@ class Public::FeedbacksController < ApplicationController
   	end
   end
 
-  def list
+  def index
   	@feedbacks = Feedback.published
   end
+
 end

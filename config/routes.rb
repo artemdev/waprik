@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
 
+  get "replies/new"
+
   # Admin resources
   namespace :admin do
     # matches
@@ -8,7 +10,11 @@ Waprik::Application.routes.draw do
 
     # resources
     resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
-    resources :feedbacks
+    resources :replies, only: ['new', 'create', 'destroy']
+    resources :feedbacks do
+      get 'list', on: :collection
+      get 'answer', on: :member
+    end
 
     resources :films do
       get 'destroy_director', on: :member
@@ -40,9 +46,7 @@ Waprik::Application.routes.draw do
     scope module: 'public' do
       resources :videos, :serials, :news, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
       
-      resources :feedbacks do 
-        get 'list', on: :collection
-      end
+      resources :feedbacks
 
       resources :film_files do
         get 'download'

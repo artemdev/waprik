@@ -1,0 +1,6 @@
+<%= form_for @reply, url: admin_replies_path(feedback_id: @feedback.id), method: :post  do |f| %>
+	<%= f.label :content, "Ответ"  %>
+	<%= f.text_area :content  %>
+
+	<%= f.submit "ответить" %>
+<% end %>

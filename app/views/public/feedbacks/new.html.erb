@@ -6,14 +6,14 @@
 		<%= t.label(:sender, "Как вас зовут ?") %>  <br />
 		<%= t.text_field(:sender) %> <br />
 
-		<%= t.label(:type, "Благодарность") %>
-		<%= t.radio_button(:type, "thank") %> <br />
+		<%= t.label(:category, "Благодарность") %>
+		<%= t.radio_button(:category, "thank") %> <br />
 
-		<%= t.label(:type, "Пожелание") %>
-		<%= t.radio_button(:type, "wish") %> <br />
+		<%= t.label(:category, "Пожелание") %>
+		<%= t.radio_button(:category, "wish") %> <br />
 
-		<%= t.label(:type, "Жалоба") %>
-		<%= t.radio_button(:type, "warn", checked: true) %><br />
+		<%= t.label(:category, "Жалоба") %>
+		<%= t.radio_button(:category, "warn", checked: true) %><br />
 
 		<%= t.label(:description, "Ваш отзыв или предложение") %> <br />
 		<%= t.text_area(:description) %> <br />

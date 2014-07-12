@@ -6,6 +6,8 @@ class AdminUser < ActiveRecord::Base
 
   has_many :pictures, foreign_key: "author_id"
   has_many :news, foreign_key: "user_id" 
+  has_many :replies, class_name: 'AdminReply', foreign_key: "admin_id" 
+
   # only on create, so other attributes of this user can be changed
   validates :username, presence: true, length: { maximum: 100 }
   validates :password, presence: true

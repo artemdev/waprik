@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140708133538) do
+ActiveRecord::Schema.define(:version => 20140712182607) do
+
+  create_table "admin_replies", :force => true do |t|
+    t.integer  "replyable_id"
+    t.string   "replyable_type"
+    t.text     "content"
+    t.integer  "admin_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "admin_replies", ["admin_id"], :name => "index_admin_replies_on_admin_id"
+  add_index "admin_replies", ["content"], :name => "index_admin_replies_on_content", :length => {"content"=>255}
+  add_index "admin_replies", ["replyable_id"], :name => "index_admin_replies_on_replyable_id"
+  add_index "admin_replies", ["replyable_type"], :name => "index_admin_replies_on_replyable_type"
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -92,14 +106,14 @@ ActiveRecord::Schema.define(:version => 20140708133538) do
   create_table "feedbacks", :force => true do |t|
     t.string   "description"
     t.string   "answer"
-    t.string   "type"
+    t.string   "category"
     t.string   "sender"
     t.boolean  "published"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "feedbacks", ["type"], :name => "index_feedbacks_on_type"
+  add_index "feedbacks", ["category"], :name => "index_feedbacks_on_type"
 
   create_table "films", :force => true do |t|
     t.integer  "item_id"
@@ -123,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20140708133538) do
     t.integer  "translation_id"
     t.integer  "count_likes"
     t.integer  "count_comments"
-    t.integer  "created_at",                                       :null => false
+    t.datetime "created_at",                                       :null => false
     t.datetime "updated_at"
     t.string   "cover"
   end
@@ -264,10 +278,10 @@ ActiveRecord::Schema.define(:version => 20140708133538) do
   add_index "mp3_album2category", ["al2c_category_id"], :name => "category_id"
 
   create_table "mp3_albums", :force => true do |t|
-    t.integer  "artist_id",                         :default => 0,      :null => false
-    t.string   "name",               :limit => 256,                     :null => false
-    t.string   "year",               :limit => 4,   :default => "0000", :null => false
-    t.integer  "count_tracks",                      :default => 0,      :null => false
+    t.integer  "artist_id",                         :default => 0
+    t.string   "name",               :limit => 256
+    t.string   "year",               :limit => 4,   :default => "0000"
+    t.integer  "count_tracks",                      :default => 0
     t.text     "album_comment_up"
     t.text     "album_comment_down"
     t.datetime "created_at"
