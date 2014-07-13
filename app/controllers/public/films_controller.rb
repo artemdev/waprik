@@ -14,7 +14,7 @@ class Public::FilmsController < ApplicationController
 	end
 
 	def show
-		@film = Film.find(params[:id])
+		@film = Film.find_by_permalink(params[:id])
 	end
 
 	def news

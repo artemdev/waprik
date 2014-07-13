@@ -66,6 +66,8 @@ Waprik::Application.routes.draw do
         get "news", on: :collection
         get 'latest', on: :collection
       end
+      match 'films/:id' => 'films#show'
+
       resources :alphabets, except: ['index', 'new', 'create', 'edit', 'update', 'destroy'], controller: "MusicAlphabet" do
         get 'eng', on: :collection
         get 'rus', on: :collection

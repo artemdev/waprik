@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140713124742) do
+ActiveRecord::Schema.define(:version => 20140713141643) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(:version => 20140713124742) do
     t.datetime "updated_at"
     t.string   "cover"
     t.string   "permalink"
+    t.string   "ru_title"
+    t.string   "en_title"
   end
 
   add_index "films", ["count_comments"], :name => "count_comments"
@@ -148,12 +150,14 @@ ActiveRecord::Schema.define(:version => 20140713124742) do
   add_index "films", ["cover"], :name => "index_films_on_cover"
   add_index "films", ["created_at"], :name => "news_time"
   add_index "films", ["downloads"], :name => "downloads"
+  add_index "films", ["en_title"], :name => "index_films_on_en_title"
   add_index "films", ["is_favourite"], :name => "is_favourite"
   add_index "films", ["item_id"], :name => "item_id"
   add_index "films", ["last_download_time"], :name => "last_download_time"
   add_index "films", ["month"], :name => "month"
   add_index "films", ["permalink"], :name => "index_films_on_permalink"
   add_index "films", ["quality_id"], :name => "quality_id"
+  add_index "films", ["ru_title"], :name => "index_films_on_ru_title"
   add_index "films", ["time"], :name => "time"
   add_index "films", ["title"], :name => "title"
   add_index "films", ["translation_id"], :name => "translation_id"

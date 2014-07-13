@@ -3,7 +3,7 @@
 <% if @films.any? %>
 	<div class="a">
 	<% @films.each do |film| %>
-		<%= link_to film.title, film_path(film) %>
+		<%= link_to film.title, film_path(film.permalink) %>
 		<%= hr_for film, @films %>
 	<% end %>
 	</div>
