@@ -6,7 +6,7 @@
 <% if @tracks.any? %>
 		<% @tracks.each do |track| %>
 			<%= div_for track, class: 'music_track' do %>
-				<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.id } %>
+				<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.permalink } %>
 				<%= link_to "т", edit_tags_admin_track_path(track) %>
 				<%= link_to "x", admin_track_path(track), method: :delete, remote: true, confirm: 'точно ?' %>
 				<span class="small-text">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140712182607) do
+ActiveRecord::Schema.define(:version => 20140713124742) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20140712182607) do
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at"
     t.string   "cover"
+    t.string   "permalink"
   end
 
   add_index "films", ["count_comments"], :name => "count_comments"
@@ -151,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20140712182607) do
   add_index "films", ["item_id"], :name => "item_id"
   add_index "films", ["last_download_time"], :name => "last_download_time"
   add_index "films", ["month"], :name => "month"
+  add_index "films", ["permalink"], :name => "index_films_on_permalink"
   add_index "films", ["quality_id"], :name => "quality_id"
   add_index "films", ["time"], :name => "time"
   add_index "films", ["title"], :name => "title"
@@ -319,10 +321,12 @@ ActiveRecord::Schema.define(:version => 20140712182607) do
     t.text     "artist_comment_down"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink"
   end
 
   add_index "mp3_artists", ["first_letter"], :name => "artist_first_letter"
   add_index "mp3_artists", ["lang"], :name => "artist_lang"
+  add_index "mp3_artists", ["permalink"], :name => "index_mp3_artists_on_permalink"
 
   create_table "mp3_bitrate", :id => false, :force => true do |t|
     t.integer "file_id",                    :null => false
@@ -363,6 +367,7 @@ ActiveRecord::Schema.define(:version => 20140712182607) do
     t.string   "new_path"
     t.integer  "length_sec"
     t.integer  "news_id"
+    t.string   "permalink"
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
@@ -375,6 +380,7 @@ ActiveRecord::Schema.define(:version => 20140712182607) do
   add_index "mp3_files", ["new_path"], :name => "index_mp3_files_on_new_path"
   add_index "mp3_files", ["order"], :name => "file_order"
   add_index "mp3_files", ["order_nomination"], :name => "file_order_nomination"
+  add_index "mp3_files", ["permalink"], :name => "index_mp3_files_on_permalink"
 
   create_table "mp3_genres", :primary_key => "genre_id", :force => true do |t|
     t.string  "genre_name",         :limit => 256,                :null => false
@@ -424,5 +430,22 @@ ActiveRecord::Schema.define(:version => 20140712182607) do
     t.string   "title",        :default => ""
     t.integer  "user_id"
   end
+
+  create_table "videos", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "description"
+    t.string   "screen"
+    t.string   "low_3gp"
+    t.string   "mp4_320"
+    t.integer  "size"
+    t.string   "name"
+    t.string   "artist"
+    t.integer  "downloads",    :default => 0
+    t.string   "source_video"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
 
 end

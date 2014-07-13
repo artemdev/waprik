@@ -1,8 +1,6 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
 
-  get "replies/new"
-
   # Admin resources
   namespace :admin do
     # matches
@@ -17,6 +15,10 @@ Waprik::Application.routes.draw do
     end
 
     resources :films do
+      resources :qualities, only: ['index','show'] do
+        get 'empty', on: :collection
+      end
+      
       get 'destroy_director', on: :member
       get 'destroy_actor', on: :member
       get 'find', on: :collection
@@ -39,7 +41,6 @@ Waprik::Application.routes.draw do
   end
 
   # Public resources
-    match 'music/track/:id' => 'public/music#show'
     match 'film/:id' => 'public/films#show'
     match 'test-dl' => 'public/music#test'
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
@@ -59,6 +60,7 @@ Waprik::Application.routes.draw do
         get 'news', on: :collection
         get 'latest', on: :collection
       end
+      match 'music/:id' => 'music#show'
 
       resources :films do
         get "news", on: :collection

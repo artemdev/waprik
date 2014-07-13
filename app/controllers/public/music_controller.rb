@@ -12,7 +12,7 @@ class Public::MusicController < ApplicationController
 	end
 
 	def show
-		@track = Mp3File.find(params[:id])
+		@track = Mp3File.find_by_permalink(params[:id])
 	end
 
 	# скачивание состоит из 2-х действий, чтобы избежать неправильного подсчета скачиваний
@@ -24,11 +24,11 @@ class Public::MusicController < ApplicationController
 		if @track.path.path
 			case params[:bitrate]
 				when "128"
-					send_file "#{@track.path.path}_128.mp3", type: 'audio/mpeg', filename: @track.fname
+					send_file "#{@track.path.path}_128.mp3", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 				when "64"
-					send_file "#{@track.path.path}_64.mp3", type: 'audio/mpeg', filename: @track.fname
+					send_file "#{@track.path.path}_64.mp3", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 				when "32"
-					send_file "#{@track.path.path}_32.mp3", type: 'audio/mpeg', filename: @track.fname
+					send_file "#{@track.path.path}_32.mp3", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 			end
 		elsif @bitrate.file
 			send_file @bitrate.file.path, type: @bitrate.file.content_type, filename: (@track.fname + '.mp3')

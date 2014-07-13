@@ -22,7 +22,7 @@ class Admin::MusicController < ApplicationController
 		@track.new_path = File.open(params[:mp3_file][:new_file])
 		name = File.basename(params[:mp3_file][:new_file], ".mp3")
 		@track.name = name
-		@track.fname = name.gsub(' ', '_').delete('(').delete(')').delete('/').delete('?').delete('!')
+		@track.fname = Russian.translit(name.gsub(' ', '_').gsub('&', 'ft').delete('(').delete(')').delete('/').delete('?').delete('!'))
 		@track.artist_name = name.split(' - ').first
 		@track.album_name = params[:mp3_file][:album_name].present? ? params[:mp3_file][:album_name] : "песни 2014"
  		if @track.save

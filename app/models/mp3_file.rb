@@ -21,6 +21,7 @@ class Mp3File < ActiveRecord::Base
   ID3v2_ALBUM = "waprik.ru - новая музыка"
 
   before_create :save_file_length
+  before_create :create_permalink
 
   mount_uploader :path, Mp3Uploader
   mount_uploader :new_path, MusicUploader
@@ -112,5 +113,10 @@ class Mp3File < ActiveRecord::Base
     end
   end
 
+  protected
+  
+  def create_permalink
+    self.permalink = self.fname
+  end
 
 end
