@@ -79,7 +79,7 @@ class Admin::FilmsController < ApplicationController
 		@film.remote_cover_url = @movie.poster
 		@film.ru_title = @movie.title
 		@film.en_title = @movie.title_en
-		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)

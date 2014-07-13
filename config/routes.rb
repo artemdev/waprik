@@ -60,7 +60,6 @@ Waprik::Application.routes.draw do
         get 'news', on: :collection
         get 'latest', on: :collection
       end
-      match 'music/:id' => 'music#show'
 
       resources :films do
         get "news", on: :collection
