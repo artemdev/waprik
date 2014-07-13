@@ -45,7 +45,6 @@ Waprik::Application.routes.draw do
     match 'test-dl' => 'public/music#test'
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
-
       resources :videos, :serials, :news, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
       
       resources :feedbacks
