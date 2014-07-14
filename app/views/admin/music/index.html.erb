@@ -30,6 +30,13 @@
 						<% end %>				
 					<% end %>
 				</span>
+				<div class="hit-field">
+					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+						<%= f.check_box :hit %>
+						<%= f.label :hit %>
+						<%= f.submit "ok"%>
+					<% end %>
+				</div>
 			<% end %>
 		<% end %>
 	<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>

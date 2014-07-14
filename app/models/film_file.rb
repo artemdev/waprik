@@ -20,6 +20,7 @@ class FilmFile < ActiveRecord::Base
 
 	belongs_to :film
 	belongs_to :format, class_name: "FilmFormat"
+	belongs_to :quality, class_name: 'FilmQuality', foreign_key: 'quality_id'
   has_many :film_parts, foreign_key: 'file_id', dependent: :destroy
 
 	# validates :real_name, presence: true
@@ -49,7 +50,7 @@ class FilmFile < ActiveRecord::Base
 
 
 	# Конвертация видео
-  def convert_to_mp4_640 file_path
+  def convert_to_mp4_640 file_path, quality_id
 		video = FFMPEG::Movie.new(file_path)
 		file_basename = File.basename(file_path, ".mp4")
 		tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/#{self.film.id}")).first
@@ -57,6 +58,7 @@ class FilmFile < ActiveRecord::Base
 		movie = video.transcode(output_video_path, video_options_for(MP4_640), ASPECT_OPTIONS)
 		self.size = movie.size
 		self.format = FilmFormat.find(8) # MP4 640 (хорошее качество)
+		self.quality = FilmQuality.find(quality_id)
   	self.real_name = File.open(output_video_path)
   	save!
 		# разрезать фильм на части
@@ -81,7 +83,7 @@ class FilmFile < ActiveRecord::Base
  		FileUtils.rm_rf(tmp_folder)
   end
 
-  def convert_to_mp4_320 file_path
+  def convert_to_mp4_320 file_path, quality_id
 		file_basename = File.basename(file_path)
 		video = FFMPEG::Movie.new(file_path)
 		tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/#{self.film.id}")).first
@@ -90,6 +92,7 @@ class FilmFile < ActiveRecord::Base
 		self.size = movie.size
 		self.format = FilmFormat.find(7) # MP4 320 (хорошее качество)
   	self.real_name = File.open(output_video_path)
+		self.quality = FilmQuality.find(quality_id)
   	save!
   	# разрезать фильм на части
 		start_sec = 0.second
@@ -113,7 +116,7 @@ class FilmFile < ActiveRecord::Base
 		FileUtils.rm_rf(tmp_folder)
   end
 
-  def convert_to_3gp file_path
+  def convert_to_3gp file_path, quality_id
   	# конвертация
 		file_basename = File.basename(file_path)
 		video = FFMPEG::Movie.new(file_path)
@@ -123,6 +126,7 @@ class FilmFile < ActiveRecord::Base
 		self.size = movie.size
 		self.format = FilmFormat.find(1) # 3GP (среднее качество)
   	self.real_name = File.open(output_video_path)
+		self.quality = FilmQuality.find(quality_id)
   	save!
 		# разрезать фильм на части
 		start_sec = 0.second

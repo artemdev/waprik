@@ -42,6 +42,13 @@ class Admin::MusicController < ApplicationController
 	end
 
 	def update
+		@track = Mp3File.find(params[:id])
+		@track.update_attributes!(params[:mp3_file])
+		if @track.save
+			redirect_to :back
+		else
+		 render :new
+		end
 	end
 
 	def edit_tags

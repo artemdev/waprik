@@ -9,10 +9,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if !flash[:notice].nil? %>
+	<% if !flash[:success].nil? %>
 		<div class="a">
-			<%= flash[:notice] %>
+			<%= flash[:success] %>
 		</div>
+	<% elsif !flash[:error].nil? %>
+		<div class="a">
+			<%= flash[:error] %>
+		</div>	
 	<% end %>
 	
 	<div class="a">

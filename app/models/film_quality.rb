@@ -6,4 +6,6 @@ class FilmQuality < ActiveRecord::Base
   attr_accessible :title
 
   has_many :films
+  has_many :film_files
+  
 end

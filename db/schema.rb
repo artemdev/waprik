@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140713141643) do
+ActiveRecord::Schema.define(:version => 20140714071444) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -202,12 +202,14 @@ ActiveRecord::Schema.define(:version => 20140713141643) do
     t.integer  "position",   :limit => 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quality_id"
   end
 
   add_index "films_files", ["ext"], :name => "ext"
   add_index "films_files", ["film_id"], :name => "film_id"
   add_index "films_files", ["format_id"], :name => "format_id"
   add_index "films_files", ["position"], :name => "position"
+  add_index "films_files", ["quality_id"], :name => "index_films_files_on_quality_id"
   add_index "films_files", ["size"], :name => "size"
 
   create_table "films_formats", :force => true do |t|

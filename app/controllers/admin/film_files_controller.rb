@@ -7,13 +7,18 @@ class Admin::FilmFilesController < ApplicationController
 	def new
 		@film = Film.find(params[:film_id])
 		@files = Dir.glob(FTP_PATH + "*").sort
-		@formats = FilmFormat.all
+		@qualities = FilmQuality.all
 	end
 
 	def create
 		original_path = File.expand_path(params[:film_file][:new_file])
-		FFMPEGWorker.perform_async(params[:film_id], original_path)
+		FFMPEGWorker.perform_async(params[:film_id], original_path, params[:film_file][:quality])
 		redirect_to admin_films_path
+	end
+
+	def edit
+		@film = Film.find(params[:film_id])
+		@files = Dir.glob(FTP_PATH + "*").sort
 	end
 
 	def destroy
