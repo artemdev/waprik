@@ -1,0 +1,163 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= require font-awesome
+ */
+
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: auto;
+	background-color: #f6f6f6;
+	display: block;
+	vertical-align: baseline;
+	font-size: 26px;
+	font-family: 'PT Sans';
+}
+
+header {
+	background-color: #86bfe3;
+	height: 60px;
+	width: 100%;
+}
+
+
+nav ul li {
+	float: left;
+	width: 30%;
+	text-align: center;
+	list-style-type: none;
+	display: block;
+	padding: 15px 0px 0px 0px;
+	text-decoration: none;
+}
+
+nav ul li a {
+	color: white;
+	text-decoration: none;
+}
+
+nav ul li a:hover {
+	color: black;
+	background-color: white;
+	padding: 16px 15px 15px 15px;
+}
+
+/* start info panel */
+.stat	{
+	height: 50px;
+	display: inline-block;
+	width: 100%;
+	font-family: 'PT Sans';
+}
+
+.stat ul li {
+	width: 22%;
+	float: left;
+	text-align: center;
+	list-style-type: none;
+	display: inline;
+}
+
+.logo {
+	text-align: left !important;
+	padding: 0 0 0 50px;
+	font-weight: bold;
+	color: #7a8694;
+}
+
+.info {
+	padding: 10px;
+	font-size: 0.9em;
+}
+
+.logout {
+	text-align: right !important;
+	font-size: 0.8em;
+	padding: 10px;
+}
+
+.logout a {
+	color: black;
+	text-decoration: none;	
+}
+/* end info panel */
+
+.category-item {
+	text-transform: uppercase;
+	font-family: 'PT Sans', Verdana
+}
+
+.logo {
+	font-family: 'PT Sans', Verdana;
+	font-size: 1.3em;
+	font-weight: bold;
+
+}
+.container {
+	width: 1280px;
+	text-align: center;
+	margin: auto;
+}
+
+footer {
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navigation
+
+
+a { }
+
+a:hover {}
+
+.wrapper {}
+
+.header {}
+
+.container {}
+
+.block {
+
+}
+
+.add-content {
+
+}
+.footer {}
+
