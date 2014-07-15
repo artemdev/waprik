@@ -17,7 +17,7 @@ require 'taglib'
 class Mp3File < ActiveRecord::Base
   attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file, :hit
   attr_accessor :new_file
-
+ 
   ID3v2_ALBUM = "waprik.ru - новая музыка"
 
   before_create :save_file_length

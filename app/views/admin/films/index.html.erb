@@ -1,32 +1,46 @@
 <% provide(:title, "Фильмы для мобильного") %>
 
-<div class="sixteen columns'">
-	<div class="add-film">
+<div class="group add-film">
 	<%= form_tag list_admin_films_path, method: :get do %>
-		<%= label_tag :keyword, "Фильм" %>
+		<%= label_tag :keyword, "кинопоиск" %>
 		<%= text_field_tag :keyword %>
 
-		<%= submit_tag "добавить" %>
+		<%= button_tag "ok" %>
 	<% end %>
-	</div>
-
-	<% @films.each do |film| %>
-		<%= div_for(film, class: "group content-film") do %>
-				<%= link_to film.title, admin_film_path(film) %> <%= link_to "р", edit_admin_film_path(film) %> <%= link_to "x", admin_film_path(film), method: :delete, remote: true, confirm: 'удалить фильм' %> <br />
-				<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %> <br />
-				<%= link_to(film.files.last.real_name, film.files.last.real_name.url) if film.files.last %> <br />
-				<%= film.files.last.format.description if film.files.last && film.files.last.format %> <br />
-				<%= film.trailer if film.trailer %> <br />
-				<% if film.is_favourite? %>
-					<%= link_to "Из избранного", remove_from_favourites_admin_film_path(film) %>
-				<% else %>
-					<%= link_to "В избранное", add_to_favourites_admin_film_path(film) %>
-				<% end %>
-			<br />
-			<% film.files.each do |file| %>
-				<%= file.quality.title if file.quality %>
-			<% end %>
-		<% end %>
-	<% end %>
-	<%= will_paginate @films, class: "pagination", previous_label: "", next_label: "" %>
 </div>
+
+<% @films.each do |film| %>
+	<%= div_for(film, class: "group film") do %>
+			<span class="film-title">
+				<%= link_to film.title, admin_film_path(film) %>
+				<span class="film-edit-links">
+					<%= link_to fa_icon("pencil"), edit_admin_film_path(film) %>
+					<%= link_to fa_icon("times"), admin_film_path(film), method: :delete, remote: true, confirm: 'удалить фильм' %>
+				</span>
+			</span>
+			<br />
+			<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %>
+			<br />
+			<% if film.trailer %>
+				трейлер <br />
+				<%= fa_icon "check" %>
+			<% else %>
+				трейлер <br />
+				<%= fa_icon "times"  %>
+			<% end %>
+		<br />
+		<% quality = [] %>
+		<% film.files.each do |file| %>
+			<% quality << file.quality.title if file.quality %>
+		<% end %>
+		<%= quality.uniq.join(', ') %>
+		<span class="favourite">
+			<% if film.is_favourite? %>
+				<%= link_to fa_icon("star", text: 'в избранные'), remove_from_favourites_admin_film_path(film) %>
+			<% else %>
+				<%= link_to fa_icon("star", text: 'из избранных', class: 'favourite-black'), add_to_favourites_admin_film_path(film) %>
+			<% end %>	
+		</span>
+	<% end %>
+<% end %>
+<%= will_paginate @films, class: "pagination", previous_label: "", next_label: "" %>
