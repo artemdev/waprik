@@ -1,0 +1,10 @@
+<% provide(:title, @film.title) %>
+
+<%= error_messages_for @film %>
+
+<%= form_for(:film, url: {action: 'create_by_hand'}, method: :post, :html => { :multipart => true }) do |f| %>
+	<div class="edit-film">
+		<%= render partial: 'admin/shared/film_form', locals: {:f => f, :film => @film, :trailer => @trailer} %>
+	</div>
+	<%= f.submit "Добавить фильм"%>
+<% end %>

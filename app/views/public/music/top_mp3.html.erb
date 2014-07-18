@@ -1,0 +1,23 @@
+<div class="title">
+	Зарубежные
+</div>
+
+<% if @eng_hits.any? %>
+	<div class="b">
+		<% @eng_hits.each do |mp3| %>
+			<%= link_to mp3.name, music_path(mp3.permalink) %> <br />
+		<% end %>
+	</div>
+<% end %>
+
+<div class="title">
+	Зарубежные
+</div>
+
+<% if @rus_hits.any? %>
+	<div class="b">
+		<% @rus_hits.each do |mp3| %>
+			<%= link_to mp3.name, music_path(mp3.permalink) %> <br />
+		<% end %>
+	</div>
+<% end %>
