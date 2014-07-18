@@ -1,0 +1,7 @@
+<% provide(:title, "Поиск музыки") %>
+
+<% if @tracks.any? %>
+	<% @tracks.each do |track| %>
+		<%= link_to track.name, track_path(track.permalink) %> <br />
+	<% end %>
+<% end %>

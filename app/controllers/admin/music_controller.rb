@@ -93,4 +93,9 @@ class Admin::MusicController < ApplicationController
 			format.js
 		end
 	end
+
+	def search
+		@tracks = Mp3File.search(params[:keyword])
+	end
+
 end

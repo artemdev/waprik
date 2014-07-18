@@ -1,3 +1,12 @@
+<div class="group add-film">
+	<%= form_tag search_admin_tracks_path, method: :get do %>
+		<%= label_tag :keyword, "найти" %>
+		<%= text_field_tag :keyword %>
+
+		<%= button_tag "ok" %>
+	<% end %>
+</div>
+
 <div class="add-track">
 	<%= link_to('Добавить mp3', new_admin_track_path) %>
 </div>

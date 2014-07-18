@@ -41,6 +41,8 @@ class Mp3File < ActiveRecord::Base
   validates :artist, :name, :new_path, presence: true
 
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
 
   def artist_name
     artist.try(:name)
