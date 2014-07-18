@@ -15,7 +15,7 @@ class Public::FilmFilesController < ApplicationController
 
 	def get_file
 		file = FilmFile.find(params[:film_file_id])
-		send_file file.real_name.path, content_type: file.real_name.content_type
+		send_file file.real_name.path, content_type: file.real_name.content_type, filename: file.film.permalink + ".#{file.real_name.file.extension}"
 	end
 
 	def part
