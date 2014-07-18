@@ -21,7 +21,7 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover,  :trailer_attributes
+  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover,  :trailer_attributes, :ru_title, :en_title
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer
 
   mount_uploader :cover, CoverUploader

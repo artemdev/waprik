@@ -35,4 +35,8 @@ class Public::MusicController < ApplicationController
 		end
 	end
 
+	def top_mp3
+		@rus_hits = Mp3File.hits.rus.latest
+		@eng_hits = Mp3File.hits.eng.latest
+	end
 end

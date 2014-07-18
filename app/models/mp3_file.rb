@@ -34,7 +34,12 @@ class Mp3File < ActiveRecord::Base
   scope :latest, order("created_at DESC")
   scope :published_at, lambda { |date = nil | where("created_at > ? AND created_at < ?", date.at_beginning_of_day, date.end_of_day) }
   scope :without_new, lambda { |date = nil | where("created_at < ? ", date.at_beginning_of_day) }
+  scope :hits, where("hit = ?", true).limit(50)
+  scope :rus, joins(:artist).where(mp3_artists: { lang: "rus" })
+  scope :eng, joins(:artist).where(mp3_artists: { lang: "eng" })
+
   validates :artist, :name, :new_path, presence: true
+
 
 
   def artist_name

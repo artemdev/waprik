@@ -18,7 +18,8 @@ Waprik::Application.routes.draw do
       resources :qualities, only: ['index','show'] do
         get 'empty', on: :collection
       end
-      
+      get 'new_by_hand', on: :collection
+      post 'create_by_hand', on: :collection     
       get 'destroy_director', on: :member
       get 'destroy_actor', on: :member
       get 'find', on: :collection
@@ -60,6 +61,7 @@ Waprik::Application.routes.draw do
         get 'news', on: :collection
         get 'latest', on: :collection
         get 'download', on: :member
+        get 'top_mp3', on: :collection
       end
 
       resources :films do

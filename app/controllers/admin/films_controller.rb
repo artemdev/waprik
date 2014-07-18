@@ -66,6 +66,32 @@ class Admin::FilmsController < ApplicationController
 		@actors = @film.actors
 	end
 
+	def new_by_hand
+		@film = Film.new
+		@genres = FilmGenre.all
+		@directors = @film.directors
+		@actors = @film.actors
+	end
+
+	def create_by_hand
+		@film = Film.new(params[:film])
+		@directors = @film.directors
+		@actors = @film.actors
+		@genres = FilmGenre.all
+		@film.add_actors(params[:film][:new_actors])
+		@film.add_directors(params[:film][:new_directors])
+		@film.add_genres(params[:film][:selected_genres])
+		@film.ru_title = params[:film][:ru_title]
+		@film.en_title = params[:film][:en_title]
+		@film.permalink = Russian.translit(params[:film][:title].gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		if @film.save
+			flash[:success] = "Фильм успешно добавлен"
+			redirect_to new_admin_film_file_path(film_id: @film.id)
+		else
+			render 'add'
+		end
+	end
+
 	def create
 		@movie = Kinopoisk::Movie.new(params[:movie_title]) # for cover
 		@film = Film.new(params[:film])
