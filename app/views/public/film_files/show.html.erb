@@ -1,4 +1,4 @@
-<% provide(:title, "скачать" + @file.film.title) %>
+<% provide(:title, "скачать " + @file.film.title) %>
 
 <div class="b">
 	<%= link_to "Скачать", film_file_download_path(@file.id) %>
