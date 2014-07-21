@@ -37,6 +37,13 @@ class Admin::CollectionsController < ApplicationController
 	end
 
 	def update
+		@collection = Collection.find(params[:id])
+		if @collection.update_attributes!(params[:collection])
+			flash[:success] = "Подборка обновлена"
+			redirect_to admin_collections_path
+		else
+			render :edit
+		end
 	end
 
 	def destroy

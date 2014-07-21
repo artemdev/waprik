@@ -1,6 +1,6 @@
 include ApplicationHelper
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :hit, :image
+  attr_accessible :name, :hit, :image, :description
 
   mount_uploader :image, CoverUploader
 
