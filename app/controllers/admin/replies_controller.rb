@@ -1,5 +1,7 @@
 class Admin::RepliesController < ApplicationController
-	before_filter :confirm_logged_in
+  before_filter :confirm_logged_in
+
+  layout 'admin'
 
   def new
   	@feedback = Feedback.find(params[:feedback_id])

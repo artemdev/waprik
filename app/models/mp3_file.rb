@@ -15,8 +15,8 @@
 # integer   "downloads",                       :default => 0,      
 require 'taglib'
 class Mp3File < ActiveRecord::Base
-  attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file, :hit
-  attr_accessor :new_file
+  attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file, :hit, :new_collection
+  attr_accessor :new_file, :new_collection
  
   ID3v2_ALBUM = "waprik.ru - новая музыка"
 
@@ -25,6 +25,9 @@ class Mp3File < ActiveRecord::Base
 
   mount_uploader :path, Mp3Uploader
   mount_uploader :new_path, MusicUploader
+  
+  has_many :collection_music_through, foreign_key: 'track_id'
+  has_many :collections, through: :collection_music_through
 
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
   belongs_to :artist, class_name: 'Mp3Artist'
@@ -117,6 +120,12 @@ class Mp3File < ActiveRecord::Base
       end
       tag.album = ID3v2_ALBUM
       file.save
+    end
+  end
+
+  def set_collection id
+    if collection = Collection.find(id)
+      self.collections << collection
     end
   end
 

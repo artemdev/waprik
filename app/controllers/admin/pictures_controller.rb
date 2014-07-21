@@ -1,8 +1,7 @@
 class Admin::PicturesController < ApplicationController
-	layout 'mobile'
-	
-	before_filter :confirm_logged_in
+  before_filter :confirm_logged_in
 
+  layout 'admin'
 	def index
 		@pictures = Picture.erotic.latest
 	end

@@ -1,51 +1,50 @@
 class Admin::CollectionsController < ApplicationController
-
 	before_filter :confirm_logged_in
+	
+	layout 'admin'
 
 	def index
 		@collections = Collection.all
+		case params[:section]
+			when "with_music"
+				@collections = Collection.with_music
+			when "with_videos"
+				@collections = Collection.with_videos
+			when "with_films"
+				@collections = Collection.with_films
+		end
 	end
+
+	def new
+		@collection = Collection.new
+	end
+
+	def create
+		@collection = Collection.new(params[:collection])
+		if @collection.save
+			flash[:success] = "Подборка успешно создана"
+			redirect_to admin_collections_path
+		else
+			render :new
+		end
+	end
+
 	def show
 	end
 
-### ВИДЕО КОЛЛЕКЦИИ ###
-
-	def video # Показ видео колллекции
+	def edit
+		@collection = Collection.find(params[:id])
 	end
 
-	def new_video_category # Создаем видео колллекции(Шаг 1)
+	def update
 	end
 
-	def create_video_category # Создаем видео колллекцию (Шаг 2)
-	end
-
-	def edit_video_category # Редактирование видео колллекции (Шаг 1)
-	end
-
-	def update_video_category # Редактирование видео колллекции (Шаг 2)
-	end
-
-	def destroy_video_category # Удаление видео колллекции
-	end
-
-### МУЗЫКАЛЬНЫЕ КАТЕГОРИИ ###
-
-	def music # Показ музыкальной колллекции
-	end
-
-	def new_music_category # Создаем музыкальную колллекцию (Шаг 1)
-	end
-
-	def create_music_category # Создаем музыкальную колллекцию (Шаг 2)
-	end
-
-	def edit_music_category # Редактирование музыкальной колллекции (Шаг 1)
-	end
-
-	def update_music_category # Редактирование музыкальной колллекции (Шаг 2)
-	end
-
-	def destroy_music_category # Удаление музыкальной колллекции
+	def destroy
+		Collection.find(params[:id]).destroy
+		respond_to do |format|
+			format.html { redirect_to admin_collections_path }
+			format.js
+		end
 	end
 
 end

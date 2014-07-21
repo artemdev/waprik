@@ -7,8 +7,23 @@ Waprik::Application.routes.draw do
     match 'music/artists' => "MusicArtists#index"
 
     # resources
-    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
+    resources :videos
+    resources :news
+    resources :music
+    resources :admin_users
+    resources :feedbacks
+    resources :serials
+    resources :series
+    resources :categories
+    resources :collections
+    resources :pictures
     resources :replies, only: ['new', 'create', 'destroy']
+    resources :music_artists, controller: "MusicArtists"
+
+    resources :collections do
+      get 'remove_from_collection', on: :member
+    end
+
     resources :feedbacks do
       get 'list', on: :collection
       get 'answer', on: :member
@@ -27,6 +42,7 @@ Waprik::Application.routes.draw do
       get 'add_to_favourites', on: :member
       get 'remove_from_favourites', on: :member
     end
+
     resources :film_files do
       get 'download', on: :member
     end
@@ -36,10 +52,9 @@ Waprik::Application.routes.draw do
       member do 
         get 'edit_tags'
         put 'update_tags'
+        get 'remove_from_collection'
       end
     end
-
-    resources :music_artists, controller: "MusicArtists"
   end
 
   # Public resources
@@ -47,9 +62,20 @@ Waprik::Application.routes.draw do
     match 'test-dl' => 'public/music#test'
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
-      resources :videos, :serials, :news, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
-      
+      resources :videos
+      resources :serials
+      resources :news
+      resources :collections
+      resources :categories
+      resources :pictures
+      resources :film_genres
+      resources :film_actors
+      resources :film_directors
+      resources :film_treilers
+      resources :collections
       resources :feedbacks
+      resources :artists, only: ['index','show'], controller: "MusicArtists"
+      resources :albums, only: ['show'], controller: "MusicAlbums"
 
       resources :film_files do
         get 'download'
@@ -79,9 +105,6 @@ Waprik::Application.routes.draw do
       resources :tracks, only: ['index', 'show'], controller: "music" do 
         get 'download', on: :member
       end
-
-      resources :artists, only: ['index','show'], controller: "MusicArtists"
-      resources :albums, only: ['show'], controller: "MusicAlbums"
     end
 
   root :to => "public/films#index"
@@ -91,10 +114,9 @@ Waprik::Application.routes.draw do
   match 'admin' => 'admin/access#menu'
   match 'admin/access/attempt_login' => 'admin/access#attempt_login'
 
-  ### categories ###
+  # categories 
   match 'admin/categories/:id/:content_type' => 'admin/categories#show'
   match 'categories/:id/:content_type' => 'public/categories#show'
-  ### public ###
 
   # match 'news' => 'public#news'
   # match 'news/:section' => 'public#news'

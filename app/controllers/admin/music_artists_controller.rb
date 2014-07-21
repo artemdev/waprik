@@ -1,5 +1,7 @@
 class Admin::MusicArtistsController < ApplicationController
-	before_filter :confirm_logged_in
+  before_filter :confirm_logged_in
+
+  layout 'admin'
 
   def index
   	@artists = Mp3Artist.latest.paginate(page: params[:page], per_page: 10)

@@ -1,4 +1,7 @@
 class Admin::FeedbacksController < ApplicationController
+  before_filter :confirm_logged_in
+
+  layout 'admin'
 
   def index
     @feedbacks = Feedback.without_answer

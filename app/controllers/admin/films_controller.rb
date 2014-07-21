@@ -1,6 +1,8 @@
 require 'open-uri'
 class Admin::FilmsController < ApplicationController
-	layout 'admin'
+  before_filter :confirm_logged_in
+
+  layout 'admin'
 	
 	before_filter :confirm_logged_in
 	before_filter :find_film, only: [:edit, :update, :show, :destroy]

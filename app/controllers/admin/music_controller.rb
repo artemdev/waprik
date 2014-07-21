@@ -1,5 +1,7 @@
 class Admin::MusicController < ApplicationController
-	layout 'admin'
+  before_filter :confirm_logged_in
+
+  layout 'admin'
 
 	FTP_PATH = "public/ftp/music/"
 
@@ -7,7 +9,7 @@ class Admin::MusicController < ApplicationController
 
 	def index
 		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 10)
-		@collections = Collection.top
+		@collections = Collection.hits
 		@new_track = Mp3File.new
 	end
 
@@ -15,6 +17,10 @@ class Admin::MusicController < ApplicationController
 		@track = Mp3File.new
 		mp3files = File.join(FTP_PATH, "**", "*.mp3")
 		@files = Dir.glob(mp3files).sort
+	end
+
+	def show
+		@track = Mp3File.find(params[:id])
 	end
 
 	def create
@@ -39,13 +45,16 @@ class Admin::MusicController < ApplicationController
 
 	def edit
 		@track = Mp3File.find(params[:id])
+		@collections = Collection.all
 	end
 
 	def update
 		@track = Mp3File.find(params[:id])
 		@track.update_attributes!(params[:mp3_file])
+		@track.set_collection(params[:mp3_file][:new_collection])
 		if @track.save
-			redirect_to :back
+			flash[:success] = "Mp3 успешно обновлена"
+			redirect_to admin_tracks_path
 		else
 		 render :new
 		end
@@ -91,6 +100,19 @@ class Admin::MusicController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to admin_tracks_path }
 			format.js
+		end
+	end
+
+	def remove_from_collection
+		track = Mp3File.find(params[:id])
+		collection = Collection.find(params[:collection_id])
+		if collection
+			track.collections.delete(collection) 
+			flash[:success] = "Трек успешно удален из коллекции"
+			redirect_to edit_admin_collection_path(collection)
+		else
+			flash[:error] = "Произошла ошибка"
+			redirect_to edit_collection_path(collection)
 		end
 	end
 

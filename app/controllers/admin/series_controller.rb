@@ -1,6 +1,7 @@
 class Admin::SeriesController < ApplicationController
+  before_filter :confirm_logged_in
 
-	before_filter :confirm_logged_in
+  layout 'admin'
 
 	FTP_PATH = "public/ftp/serials/"
 

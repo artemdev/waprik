@@ -39,4 +39,8 @@ module ApplicationHelper
     end
   end
 
+  def permalink_for title
+    Russian.translit(title.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
+  end
+
 end

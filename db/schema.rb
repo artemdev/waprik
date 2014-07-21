@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140714071444) do
+ActiveRecord::Schema.define(:version => 20140721182442) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -80,6 +80,36 @@ ActiveRecord::Schema.define(:version => 20140714071444) do
 
   add_index "categories_videos", ["video_id", "category_id"], :name => "index_categories_videos_on_video_id_and_category_id"
 
+  create_table "collection_film_throughs", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "film_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "collection_film_throughs", ["collection_id"], :name => "index_collection_film_throughs_on_collection_id"
+  add_index "collection_film_throughs", ["film_id"], :name => "index_collection_film_throughs_on_film_id"
+
+  create_table "collection_music_throughs", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "track_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "collection_music_throughs", ["collection_id"], :name => "index_collection_music_throughs_on_collection_id"
+  add_index "collection_music_throughs", ["track_id"], :name => "index_collection_music_throughs_on_track_id"
+
+  create_table "collection_video_throughs", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "video_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "collection_video_throughs", ["collection_id"], :name => "index_collection_video_throughs_on_collection_id"
+  add_index "collection_video_throughs", ["video_id"], :name => "index_collection_video_throughs_on_video_id"
+
   create_table "collections", :force => true do |t|
     t.string   "name"
     t.boolean  "hit",         :default => false
@@ -87,21 +117,14 @@ ActiveRecord::Schema.define(:version => 20140714071444) do
     t.datetime "updated_at",                     :null => false
     t.boolean  "with_videos", :default => false
     t.boolean  "with_music",  :default => false
+    t.string   "description"
+    t.string   "image"
+    t.string   "permalink"
   end
 
-  create_table "collections_music", :id => false, :force => true do |t|
-    t.integer "music_id"
-    t.integer "collection_id"
-  end
-
-  add_index "collections_music", ["music_id", "collection_id"], :name => "index_collections_music_on_music_id_and_collection_id"
-
-  create_table "collections_videos", :id => false, :force => true do |t|
-    t.integer "video_id"
-    t.integer "collection_id"
-  end
-
-  add_index "collections_videos", ["video_id", "collection_id"], :name => "index_collections_videos_on_video_id_and_collection_id"
+  add_index "collections", ["description"], :name => "index_collections_on_description"
+  add_index "collections", ["image"], :name => "index_collections_on_image"
+  add_index "collections", ["permalink"], :name => "index_collections_on_permalink"
 
   create_table "feedbacks", :force => true do |t|
     t.string   "description"

@@ -7,6 +7,11 @@
 	<% end %>
 </div>
 
+<div class="music-collections">
+	<%= link_to 'Подборки', admin_collections_path(section: "music") %>
+</div>
+
+
 <div class="add-track">
 	<%= link_to('Добавить mp3', new_admin_track_path) %>
 </div>
@@ -14,7 +19,7 @@
 <% if @tracks.any? %>
 		<% @tracks.each do |track| %>
 			<%= div_for track, class: 'music-track' do %>
-				<%= link_to track.name, { controller: 'public/music', action: 'show', id: track.permalink } %>
+				<%= link_to track.name, edit_admin_track_path(track) %>
 				<%= link_to "т", edit_tags_admin_track_path(track) %>
 				<%= link_to "x", admin_track_path(track), method: :delete, remote: true, confirm: 'точно ?' %>
 				<span class="small-text">
@@ -52,7 +57,7 @@
 
 <% if @collections.any? %>
 		<% @collections.each do |collection| %>
-			<% unless collection.videos_empty? %> <!-- проверяем есть ли видео в коллекции -->
+			<% unless collection.with_videos? %> <!-- проверяем есть ли видео в коллекции -->
 			<div class="title">
 				Подборки
 			</div>

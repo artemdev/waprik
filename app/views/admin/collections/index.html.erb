@@ -1,0 +1,18 @@
+<% provide(:title, "Подборки") %>
+
+<div class="new-collection">
+	<%= link_to "создать подборку", new_admin_collection_path %>
+</div>
+
+<% if @collections.any? %>
+	<% @collections.each do |collection| %>
+		<%= div_for(collection, class: 'collection') do %>
+			<%= fa_icon('star', class: 'favourite-collection') if collection.hit? %>
+			<%= link_to collection.name, edit_admin_collection_path(collection) %>
+			<%= link_to fa_icon('times', class: 'remove-collection'), admin_collection_path(collection), method: :delete, remote: true %>
+			<%= collection.tracks.count %>
+		<% end %>
+	<% end %>
+<% else %>
+	Подборок нет
+<% end %>

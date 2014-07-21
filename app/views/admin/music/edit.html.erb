@@ -1,0 +1,13 @@
+<% provide(:title, "редактировать mp3") %>
+
+<%= form_for @track, url: admin_track_path(@track), method: :put, html: { multipart: true, class: 'a' } do |f| %>
+	<%= @track.name %> <br />
+
+<!-- 	<%= f.label :album_name, "Альбом" %> <br />
+	<%= f.text_field :album_name %> <br /> -->
+
+	<%= f.label :new_collection, "Подборка" %> <br />
+	<%= f.select :new_collection, @collections.map {|collection| [collection.name, collection.id] } %> <br />
+
+	<%= f.submit "Добавить" %>
+<% end %>

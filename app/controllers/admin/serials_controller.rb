@@ -1,7 +1,7 @@
 class Admin::SerialsController < ApplicationController
-	layout 'mobile'
+  before_filter :confirm_logged_in
 
-	before_filter :confirm_logged_in
+  layout 'admin'
 	
 	def index
 		@serials = Serial.paginate(page: params[:page], per_page: 10).latest
