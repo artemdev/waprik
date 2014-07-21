@@ -15,7 +15,7 @@
 <% if @collection.tracks.any? %>
 	<div class="a">
 		<% @collection.tracks.each do |track| %>
-			<%= link_to track.name, track_path(track.permalink) %>
+			<%= link_to track.name, track_path(track.permalink) %> <br />
 		<% end %>
 	</div>
 <% end %>
