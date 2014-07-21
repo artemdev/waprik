@@ -5,6 +5,7 @@ class Collection < ActiveRecord::Base
   mount_uploader :image, CoverUploader
 
   before_create :create_permalink
+  before_update :create_permalink, if: :name_changed?
 
   has_many :collection_video_through
   has_many :videos, through: :collection_video_through
