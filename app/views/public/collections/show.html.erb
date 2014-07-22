@@ -14,7 +14,7 @@
 
 <% if @collection.tracks.any? %>
 	<div class="a">
-		<% @collection.tracks.each do |track| %>
+		<% @collection.tracks.sort_by(&:created_at).each do |track| %>
 			<%= link_to track.name, track_path(track.permalink) %> <br />
 		<% end %>
 	</div>
@@ -22,7 +22,7 @@
 
 <% if @collection.films.any? %>
 	<div class="a">
-		<% @collection.films.each do |films| %>
+		<% @collection.films.sort_by(&:created_at).each do |films| %>
 			<%= link_to film.title, track_path(film.permalink) %> <br />
 		<% end %>
 	</div>
