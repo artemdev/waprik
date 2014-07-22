@@ -3,6 +3,10 @@ class Public::MusicController < ApplicationController
 
 	def index
 		@tracks = Mp3File.all
+		@collections = []
+		Collection.hits.each do |collection|
+			@collections << collection if collection.with_music
+		end
 	end
 
 	def news

@@ -9,8 +9,22 @@
 	<%= link_to "СНГ", rus_alphabets_path  %>
 </div>
 
+<% if @collections.any? %>
+	<div class="title">
+		Подборки
+	</div>
+	<div class="a">
+		<% @collections.each do |collection| %>
+			<%= link_to collection.name.mb_chars.capitalize, collection_path(collection.permalink) %>
+			<span class="small-text">
+				<%= collection.tracks.count %>
+			</span>
+		<% end %>
+	</div>
+<% end %>
+
 <div class="title">
-	Подборки
+	Интересное
 </div>
 <div class="b">
 - <a href="http://waprik.ru/best/music/eurovision_2014">Евровидение 2014</a> <br>

@@ -16,7 +16,7 @@ class Collection < ActiveRecord::Base
   has_many :collection_film_through
   has_many :films, through: :collection_film_through
 
-  scope :hits, where("hit = ?", 1)
+  scope :hits, where("hit = ?", true)
   scope :latest, order("created_at ASC")
   scope :with_music, lambda { where(with_music: true) }
   scope :with_films, where(with_films: true)
@@ -25,18 +25,18 @@ class Collection < ActiveRecord::Base
   validates :name, presence: true
 
   # Есть ли музыка в коллекции ?
-  def self.with_music
-    return true unless Collection.tracks.empty?
+  def with_music
+    return true if self.tracks.any?
   end
 
   # Есть ли видео в коллекции ?
   def with_videos
-    return true unless self.videos == []
+    return true if self.videos.any?
   end
 
   # Есть ли фильмы в коллекции ?
   def with_films
-    return true unless self.films == []
+    return true if self.films.any?
   end
 
   protected
