@@ -26,7 +26,7 @@ class Film < ActiveRecord::Base
 
   mount_uploader :cover, CoverUploader
 
-  before_save :create_title
+  before_create :create_title
 
   # actors
   has_many :films_actors_through, class_name: "FilmActorThrough"
