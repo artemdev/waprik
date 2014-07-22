@@ -2,15 +2,9 @@
 
 <% if @films.any? %>
 	<div class="a">
-		<ul class="list-films">
-			<% @films.each do |film| %>
-				<li>
-					<%= image_tag film.cover.preview.url %>
-					<%= link_to film.title, film_path(film.permalink) %>
-					<%= link_to film.description, film_path(film.permalink) %>
-				</li>
-			<% end %>
-		</ul>
+		<% @films.each do |film| %>
+			<%= link_to film.title, film_path(film.permalink) %> <br />
+		<% end %>
 	</div>
 	<%= will_paginate @films, previous_label: "", next_label: "", class: "b" %>
 <% else %>
