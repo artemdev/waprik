@@ -14,7 +14,7 @@
 
 <% if @collection.tracks.any? %>
 	<div class="a">
-		<% @collection.tracks.sort_by(&:created_at).each do |track| %>
+		<% @collection.tracks.sort_by!(&:created_at).each do |track| %>
 			<%= link_to track.name, track_path(track.permalink) %> <br />
 		<% end %>
 	</div>
