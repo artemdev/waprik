@@ -21,10 +21,12 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :title, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover,  :trailer_attributes, :ru_title, :en_title
+  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover,  :trailer_attributes, :ru_title, :en_title
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer
 
   mount_uploader :cover, CoverUploader
+
+  before_save :create_title
 
   # actors
   has_many :films_actors_through, class_name: "FilmActorThrough"
@@ -97,6 +99,16 @@ class Film < ActiveRecord::Base
         end
       end
     end
-  end
 
+    def create_title
+      if ru_title.present? && en_title.present?
+        self.title = ru_title + " / " + en_title
+      elsif ru_title.present? && !en_title.present?
+        self.title = self.ru_title
+      elsif en_title.present? && !ru_title.present?
+        self.title = self.en_title
+      end
+    end
+
+  end
 end
