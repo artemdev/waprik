@@ -13,4 +13,15 @@
 	Скачиваний <%= @track.downloads %>
 </div>
 
+<% if @track.collections %>
+	<div class="title">
+		В подборках
+	</div>
+	<div class="a">
+		<% @track.collections.each do |collection| %>
+			<%= link_to collection.name, collection_path(collection.permalink) %>
+		<% end %>
+	</div>
+<% end %>
+
 <% @footer_links = ["#{link_to @track.album.name.mb_chars.capitalize, album_path(@track.album)}", "#{link_to @track.artist.name, artist_path(@track.artist)}",] %>
