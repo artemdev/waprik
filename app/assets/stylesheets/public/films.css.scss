@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.list-films ul {
+ul.list-films li {
+ border: 0;
+ border-bottom: 1px dotted #80bfd9;
+ background: none;
+ margin: 5px 0 10px 0;
+ list-style-type: none;
+}
 
+ul.list-films {
+ padding: 0px;
+ margin: 0 auto;
+}
+
+.film-preview {
+	 	display: inline-block;
+}
+.film-info {
+	vertical-align: top;
+	 	display: inline-block;
 }

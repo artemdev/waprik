@@ -2,9 +2,27 @@
 
 <% if @films.any? %>
 	<div class="a">
-		<% @films.each do |film| %>
-			<%= link_to film.title, film_path(film.permalink) %> <br />
-		<% end %>
+		<ul class="list-films">
+			<% @films.each do |film| %>
+					<li>
+						<span class="film-preview">
+							<% if film.cover.url.nil?  %>
+									<img src="http://waprik.org/uploads/films/<%= film.id %>/cover/preview.jpg" alt="cover">
+							<% else %>
+									<%= image_tag film.cover.mini.url %>
+							<% end %>
+						</span>
+						<span class="film-info">
+							<%= link_to film.title, film_path(film.permalink) %> 
+							<span class="small-text">
+								<%= film.year %>
+							</span>
+							<br />
+							<%= truncate(film.about, length: 70, omission: '...') %>
+						</span>
+					</li>
+			<% end %>
+		</ul>
 	</div>
 	<%= will_paginate @films, previous_label: "", next_label: "", class: "b" %>
 <% else %>
