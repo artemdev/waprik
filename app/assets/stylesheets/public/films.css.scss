@@ -16,9 +16,12 @@ ul.list-films {
 }
 
 .film-preview {
-	 	display: inline-block;
+	 display: inline-block;
+	 
+	overflow: hidden;
 }
 .film-info {
 	vertical-align: top;
-	 	display: inline-block;
+	display: inline-block;
+	overflow: hidden;
 }
