@@ -7,14 +7,14 @@ class Public::CollectionsController < ApplicationController
 
 	def show
 		@collection = Collection.find_by_permalink!(params[:id])
-		@date = @collection.tracks.sort_by(&:created_at).last.created_at
+		@date = @collection.tracks.latest.first.created_at
 		@tracks = []
 		@last_tracks = []
 		@collection.tracks.each do |track| 
-			@last_tracks << track if track.created_at < @date.at_beginning_of_day
+			@last_tracks << track if track.created_at > @date.at_beginning_of_day && track.created_at < @date.end_of_day
 		end
 		@collection.tracks.each do |track|
-			@tracks << track if track.created_at > @date.at_beginning_of_day && track.created_at < @date.end_of_day
+			@tracks << track if track.created_at < @date.at_beginning_of_day
 		end
 		@tracks = @tracks.sort_by!(&:created_at).paginate(page: params[:page], per_page: 20)
 	end
