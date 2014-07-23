@@ -30,6 +30,7 @@ class Admin::CollectionsController < ApplicationController
 	end
 
 	def show
+
 	end
 
 	def edit
