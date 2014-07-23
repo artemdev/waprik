@@ -36,9 +36,9 @@
 		<%= quality.uniq.join(', ') %>
 		<span class="favourite">
 			<% if film.is_favourite? %>
-				<%= link_to fa_icon("star", text: 'из избранных', class: 'favourite-black'), add_to_favourites_admin_film_path(film) %>
+				<%= link_to fa_icon("star", text: 'из избранных', class: 'favourite-black'), remove_from_favourites_admin_film_path(film)  %>
 			<% else %>
-				<%= link_to fa_icon("star", text: 'в избранные'), remove_from_favourites_admin_film_path(film) %>
+				<%= link_to fa_icon("star", text: 'в избранные'), add_to_favourites_admin_film_path(film) %>
 			<% end %>	
 		</span>
 		<div class="film-downloads">
