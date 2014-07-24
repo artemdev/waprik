@@ -19,7 +19,8 @@ Waprik::Application.routes.draw do
     resources :pictures
     resources :replies, only: ['new', 'create', 'destroy']
     resources :music_artists, controller: "MusicArtists"
-
+    resources :film_qualities
+    
     resources :collections do
       get 'remove_from_collection', on: :member
     end

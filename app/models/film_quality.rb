@@ -5,7 +5,7 @@ class FilmQuality < ActiveRecord::Base
 
   attr_accessible :title
 
-  has_many :films
+  has_many :films, foreign_key: 'quality_id'
   has_many :film_files
   
 end

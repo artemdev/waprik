@@ -11,6 +11,7 @@ class Admin::FilmsController < ApplicationController
 
 	def index
 		@films = Film.latest.paginate(page: params[:page], per_page: 30)
+		@camrip = FilmQuality.find(6)
 	end
 
 	def edit

@@ -9,6 +9,17 @@
 	<% end %>
 </div>
 
+<div class="group films-by-quality">
+	<ul>
+		<li>
+			Все
+		</li>
+		<li>
+			<%= link_to @camrip.title, admin_film_quality_path(@camrip.id) %>
+		</li>
+	</ul>
+</div>
+
 <% @films.each do |film| %>
 	<%= div_for(film, class: "group film") do %>
 			<span class="film-title">

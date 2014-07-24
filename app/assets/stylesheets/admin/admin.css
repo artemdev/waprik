@@ -114,50 +114,18 @@ nav ul li a:hover {
 	margin: auto;
 }
 
-footer {
-	
+/* clear floats */
+.group:before,
+.group:after {
+	content: "";
+	display: table;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.navigation
-
-
-a { }
-
-a:hover {}
-
-.wrapper {}
-
-.header {}
-
-.container {}
-
-.block {
-
+.group:after {
+	clear:both;
 }
-
-.add-content {
-
+.group {
+	zoom: 1;
 }
-.footer {}
+/* !clear floats */
 

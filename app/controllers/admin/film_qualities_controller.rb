@@ -7,5 +7,14 @@ class Admin::FilmQualitiesController < ApplicationController
   end
 
   def show
+  	@quality = FilmQuality.find(params[:id])
+  	@films = []
+  	@quality.films.each do |film|
+  		if film.files.each do |file|
+  			@films << film if file.quality == @quality
+  		end
+  	end
+  	end
   end
+
 end
