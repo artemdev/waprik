@@ -1,4 +1,4 @@
-<% provide(:title, @collection.name) %>
+<% provide(:title, "#{@collection.name} от #{@last_tracks.last.created_at.strftime("%d.%m.%y")}") %>
 
 <% if @collection.image.present? %>
 	<div class="a">
@@ -13,10 +13,6 @@
 <% end %>
 
 <% if @last_tracks.any? %>
-	<div class="title">
-		<%= "Новинки от #{@last_tracks.last.created_at.strftime("%d.%m.%y")}" %>
-	</div>
-
 	<div class="a">
 		<% @last_tracks.each do |track| %>
 			<%= link_to track.name, music_path(track.permalink) %>
