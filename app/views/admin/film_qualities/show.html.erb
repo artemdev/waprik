@@ -1,7 +1,7 @@
 <% provide(:title, "Фильмы") %>
 
-<%= @films.each do |film| %>
-	<% div_for film, class: 'group content-film' do %>
+<% @films.each do |film| %>
+	<%= div_for film, class: 'group content-film' do %>
 		<%= link_to film.title %>
 	<% end %>
 <% end %>

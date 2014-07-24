@@ -8,13 +8,12 @@ class Admin::FilmQualitiesController < ApplicationController
 
   def show
   	@quality = FilmQuality.find(params[:id])
-  	@films = []
-  	@quality.films.each do |film|
-  		if film.files.each do |file|
-  			@films << film if file.quality == @quality
+  	@films = Array.new
+  	Film.all.each do |film|
+  		film.files.each do |file|
+  			@films << film if file.quality == @quality && !@films.include?(file.film)
   		end
-  	end
-  	end
+		end
   end
 
 end
