@@ -1,4 +1,4 @@
-<% provide(:title, "#{@collection.name} от #{@last_tracks.last.created_at.strftime("%d.%m.%y")}") %>
+<% provide(:title, "#{@collection.name.mb_chars.capitalize} от #{@last_tracks.last.created_at.strftime("%d.%m.%y")}") %>
 
 <% if @collection.image.present? %>
 	<div class="a">
