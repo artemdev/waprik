@@ -1,7 +1,35 @@
 <% provide(:title, "Фильмы") %>
 
 <% @films.each do |film| %>
-	<%= div_for film, class: 'group content-film' do %>
-		<%= link_to film.title %>
+	<%= div_for(film, class: "group film") do %>
+			<span class="film-title">
+				<%= link_to film.title, admin_film_path(film) %>
+				<span class="film-edit-links">
+					<%= link_to fa_icon("pencil"), edit_admin_film_path(film) %>
+					<%= link_to fa_icon("times"), admin_film_path(film), method: :delete, remote: true, confirm: 'удалить фильм' %>
+				</span>
+			</span>
+			<br />
+			<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %>
+			<br />
+			<% if film.trailer %>
+				трейлер <br />
+				<%= fa_icon "check" %>
+			<% else %>
+				трейлер <br />
+				<%= fa_icon "times"  %>
+			<% end %>
+		<br />
+		<% quality = [] %>
+		<% film.files.each do |file| %>
+			<% quality << file.quality.title if file.quality %>
+		<% end %>
+		<%= quality.uniq.join(', ') %>
+		<span class="favourite">
+				<%= link_to "обновить файлы", edit_admin_film_file_path(film.id)  %>	
+		</span>
+		<div class="film-downloads">
+			<%= fa_icon("download 2x") %> <%= film.downloads %>
+		</div>
 	<% end %>
 <% end %>

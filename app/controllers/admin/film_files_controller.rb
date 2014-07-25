@@ -18,14 +18,17 @@ class Admin::FilmFilesController < ApplicationController
 	end
 
 	def edit
-		@film = Film.find(params[:film_id])
+		@film = Film.find(params[:id])
 		@files = Dir.glob(FTP_PATH + "*").sort
+		@qualities = FilmQuality.all
 	end
 
 	def destroy
 		file = FilmFile.find(params[:id])
 		file.remove_real_name
 		file.destroy
+		flash[:success] = "Файл удален, необходимо залить новый :)"
+		redirect_to	edit_admin_film_file_path(file.film)
 	end
 
 end
