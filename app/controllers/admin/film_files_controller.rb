@@ -25,7 +25,7 @@ class Admin::FilmFilesController < ApplicationController
 
 	def destroy
 		file = FilmFile.find(params[:id])
-		file.remove_real_name
+		file.remove_real_name!
 		file.destroy
 		flash[:success] = "Файл удален, необходимо залить новый :)"
 		redirect_to	edit_admin_film_file_path(file.film)
