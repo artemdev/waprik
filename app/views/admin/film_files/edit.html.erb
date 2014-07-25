@@ -1,0 +1,18 @@
+<% provide(:title, @film.title) %>
+
+<%= @film.title %> <br />
+
+<% @film.files.each do |file| %>
+	<%= file.format.title %> <%= (file.quality.title) %>
+	<%= link_to "x", admin_film_file_path(file), method: :delete %>
+	<br />
+<% end %>
+
+<%= form_for(:film_file, url: {action: 'create', film_id: @film.id}, method: :post, multipart: true) do |f| %>
+	
+	<%= f.select :quality, @qualities.map {|f| [f.title, f.id]} %> <br>
+	<%= f.select :new_file, @files.map {|f| File.absolute_path(f)}, { include_blank: true } %> <br>
+
+
+	<%= f.submit "Обновить" %>
+<% end %>
