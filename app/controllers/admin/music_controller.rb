@@ -31,6 +31,7 @@ class Admin::MusicController < ApplicationController
 		@track.fname = Russian.translit(name.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
 		@track.artist_name = name.split(' - ').first
 		@track.album_name = params[:mp3_file][:album_name].present? ? params[:mp3_file][:album_name] : "песни 2014"
+		@track.set_collection(params[:mp3_file][:new_collection]) if params[:mp3_file][:new_collection]
  		if @track.save
  			# id3v2 теги
  			@track.create_id3v2_tags_from name

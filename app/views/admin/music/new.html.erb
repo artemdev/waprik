@@ -7,5 +7,8 @@
 	<%= f.label :album_name, "Альбом" %> <br />
 	<%= f.text_field :album_name %> <br />
 
+	<%= f.label :new_collection, "Подборка" %> <br />
+	<%= f.select :new_collection, @collections.map {|collection| [collection.name, collection.id] } %> <br />
+
 	<%= f.submit "Добавить" %>
 <% end %>
