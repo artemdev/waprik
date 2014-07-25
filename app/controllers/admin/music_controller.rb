@@ -17,7 +17,7 @@ class Admin::MusicController < ApplicationController
 		@track = Mp3File.new
 		mp3files = File.join(FTP_PATH, "**", "*.mp3")
 		@files = Dir.glob(mp3files).sort
-		@collections
+		@collections = Collection.all
 	end
 
 	def show
