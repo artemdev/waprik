@@ -3,7 +3,7 @@
 <%= @film.title %> <br />
 
 <% @film.files.each do |file| %>
-	<%= file.format.title %> <%= (file.quality.title) %>
+	<%= file.format.title if file.format.title %> <%= (file.quality.title) if file.quality.title %>
 	<%= link_to "x", admin_film_file_path(file), method: :delete %>
 	<br />
 <% end %>
