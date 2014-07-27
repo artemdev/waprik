@@ -32,7 +32,7 @@
 			<br />
 			<%= link_to image_tag(film.cover.preview.url), admin_film_path(film) %>
 			<br />
-			<% if film.trailer %>
+			<% if film.trailers.any? %>
 				трейлер <br />
 				<%= fa_icon "check" %>
 			<% else %>

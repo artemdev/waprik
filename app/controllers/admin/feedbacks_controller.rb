@@ -19,9 +19,9 @@ class Admin::FeedbacksController < ApplicationController
   	@feedback = Feedback.new(params[:feedback])
   	if @feedback.save
   		flash[:success] = "Спасибо! Отзыв отправлен и появится в разделе как только на него ответит администратор"
-  		redirect_to(action: 'list')
+  		redirect_to feedbacks_path
  		else
-  		render('new')
+  		render :new
   	end
   end
 

@@ -8,7 +8,6 @@ class Admin::FilmsController < ApplicationController
 	before_filter :find_film, only: [:edit, :update, :show, :destroy]
 	before_filter :find_film_directors, only: [:edit, :update]
 	before_filter :find_film_actors, only: [:edit, :update]
-
 	def index
 		@films = Film.latest.paginate(page: params[:page], per_page: 30)
 		@camrip = FilmQuality.find(6)
@@ -25,6 +24,12 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
+		if params[:film][:trailer_filename]
+			thrailer = @film.trailers.new
+			thrailer.filename.store! params[:film][:trailer_filename]
+			thrailer.filesize = thrailer.filename.size
+			thrailer.save
+		end
 		if @film.update_attributes(params[:film])
 			flash[:success] = "Фильм успешно обновлен"
 			redirect_to admin_films_path
@@ -159,6 +164,14 @@ class Admin::FilmsController < ApplicationController
 		@film = Film.find(params[:id])
 		@film.update_attributes!(is_favourite: false)
 		redirect_to admin_films_path
+	end
+
+	def thrailers
+		film = Film.latest
+		@films = []
+		film.each do |film|
+			@films << film if film.files.empty? && film.trailers.any?
+		end
 	end
 
 	private

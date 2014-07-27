@@ -6,4 +6,11 @@ FactoryGirl.define do
 
 	factory :mp3_track, class: 'Mp3File' do 
 	end
+
+	factory :feedback do
+		description 'классный сайт!'
+		sender 'Артем'
+		category 'films'
+	end
+
 end

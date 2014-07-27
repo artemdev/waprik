@@ -21,8 +21,8 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover,  :trailer_attributes, :ru_title, :en_title
-	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer
+  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title
+	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename
 
   mount_uploader :cover, CoverUploader
 
@@ -45,8 +45,7 @@ class Film < ActiveRecord::Base
   # quality
   belongs_to :quality, class_name: "FilmQuality"
   # trailers
-  has_one :trailer, class_name: "FilmTrailer", dependent: :destroy
-  accepts_nested_attributes_for :trailer
+  has_many :trailers, class_name: "FilmTrailer", dependent: :destroy
 
   # validates :title, :about, :year, presence: true
 

@@ -34,6 +34,7 @@ Waprik::Application.routes.draw do
       resources :qualities, only: ['index','show'] do
         get 'empty', on: :collection
       end
+      get 'thrailers', on: :collection
       get 'new_by_hand', on: :collection
       post 'create_by_hand', on: :collection     
       get 'destroy_director', on: :member

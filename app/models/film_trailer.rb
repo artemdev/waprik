@@ -2,6 +2,8 @@
 # string  "filename", :limit => 50
 # integer "filesize"
 class FilmTrailer < ActiveRecord::Base
+	attr_accessible :filename
+
   self.table_name = "films_trailers"
   attr_accessible :filename
 
@@ -9,6 +11,6 @@ class FilmTrailer < ActiveRecord::Base
 
   belongs_to :film
 
-  validates :film_id, presence: true
+  # validates :film_id, presence: true
 
 end
