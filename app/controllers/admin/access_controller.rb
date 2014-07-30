@@ -4,17 +4,17 @@ class Admin::AccessController < ApplicationController
   before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout]
 
 	def index
-    redirect_to(action: 'menu')
+    redirect_to action: 'menu'
 	end
 
   def login
-  	redirect_to(action: 'menu') if cookies[:remember_token]
+  	redirect_to action: 'menu' if cookies[:remember_token]
   end
 
   def attempt_login
   	authorized_user = AdminUser.authenticate(params[:username], params[:password])
   	if authorized_user
-  		cookies.permanent[:remember_token] = authorized_user.remember_token
+  		sign_in authorized_user
   		flash[:notice] = "Успех!"
   		redirect_to(action: 'menu')
   	else
@@ -27,7 +27,7 @@ class Admin::AccessController < ApplicationController
   end
 
   def logout
-  	cookies.delete(:remember_token)
+    sign_out
   	flash[:notice] = "Выход спешен :)"
 		redirect_to(action: 'login')
   end

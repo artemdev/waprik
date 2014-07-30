@@ -19,6 +19,12 @@
 		</li>
 	</ul>
 </div>
+<div class="a">
+	<%= form_tag films_path, method: :get do %>
+		<%= text_field_tag :film_name %>
+		<%= submit_tag "найти", name: nil %>
+	<% end %>
+</div>
 
 <% @films.each do |film| %>
 	<%= div_for(film, class: "group film") do %>
