@@ -50,8 +50,10 @@
 		</span>
 		<hr />
 	<% end %>
-	<% if @film.trailer && @film.trailer.filesize > 0 %>
-		<%= link_to "Скачать трейлер", film_treiler_path(@film.trailer) %> <%= number_to_human_size(@film.trailer.filesize) %>
+	<% if @film.trailers.any? %>
+		<% @film.trailers.each_with_index do |trailer, index| %>
+			<%= link_to "Скачать трейлер #{index}", film_treiler_path(trailer) %> <%= number_to_human_size(trailer.filesize) %>
+		<% end %>
 	<% else %>
 		Трейлера нет
 	<% end %>
