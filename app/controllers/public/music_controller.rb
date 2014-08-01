@@ -40,7 +40,7 @@ class Public::MusicController < ApplicationController
 	end
 
 	def top_mp3
-		@tracks = Mp3File.hits.latest
+		@tracks = Mp3File.latest.hits.limit(200)
 		@rus_hits = Array.new
 		@eng_hits = Array.new
 		@tracks.each do |track|
