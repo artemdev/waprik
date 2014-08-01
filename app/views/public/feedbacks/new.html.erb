@@ -8,14 +8,14 @@
 		<%= t.label(:sender, "Как вас зовут ?") %>  <br />
 		<%= t.text_field(:sender) %> <br />
 
-		<%= t.label(:new_category, "Благодарность") %>
+		<%= t.label(:new_category, "Благодарность", checked: true) %>
 		<%= t.radio_button(:new_category, "thank") %> <br />
 
 		<%= t.label(:new_category, "Пожелание") %>
 		<%= t.radio_button(:new_category, "wish") %> <br />
 
 		<%= t.label(:new_category, "Жалоба") %>
-		<%= t.radio_button(:new_category, "warn", checked: true) %><br />
+		<%= t.radio_button(:new_category, "warn") %><br />
 
 		<%= t.label(:description, "Сообщение") %> <br />
 		<%= t.text_area(:description) %> <br />
