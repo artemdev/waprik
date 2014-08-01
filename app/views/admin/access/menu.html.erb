@@ -2,6 +2,7 @@
 	Привет, <%= session[:username] %>
 </div>
 <div class="a">
+	<%= link_to("Музыка", admin_tracks_path) %>	<hr />
 	<%= link_to("Видео", admin_videos_path) %>	<hr />
 	<%= link_to("Новости", controller: 'admin/news', action: 'index') %>	<hr />
 	<%= link_to("Фильмы", controller: 'admin/films', action: 'index') %>	<hr />

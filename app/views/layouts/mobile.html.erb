@@ -25,9 +25,11 @@
 		<div class="octobird-block" data-tp="all" data-nb="1"></div>
 	</div>
 
-	<div class="title">
-		<%= yield(:title) %>
-	</div>	
+	<% if yield(:title).present? %>
+		<div class="title">
+			<%= yield(:title) %>
+		</div>	
+	<% end %>
 
 	<%= yield %>
 
