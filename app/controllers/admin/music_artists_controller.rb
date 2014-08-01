@@ -4,7 +4,7 @@ class Admin::MusicArtistsController < ApplicationController
   layout 'admin'
 
   def index
-  	@artists = Mp3Artist.latest.paginate(page: params[:page], per_page: 10)
+  	@artists = Mp3Artist.latest.paginate(page: params[:page], per_page: 50)
   end
 
   def edit
