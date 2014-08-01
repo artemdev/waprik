@@ -7,6 +7,7 @@ Waprik::Application.routes.draw do
     match 'music/artists' => "MusicArtists#index"
 
     # resources
+    resources :links
     resources :videos
     resources :news
     resources :music

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140722145029) do
+ActiveRecord::Schema.define(:version => 20140731154045) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(:version => 20140722145029) do
     t.datetime "updated_at",      :null => false
     t.string   "remember_token"
   end
+
+  create_table "ads_links", :force => true do |t|
+    t.string   "title"
+    t.string   "to"
+    t.string   "from"
+    t.datetime "expires_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ads_links", ["expires_at"], :name => "index_ads_links_on_expires_at"
+  add_index "ads_links", ["from"], :name => "index_ads_links_on_from"
+  add_index "ads_links", ["title"], :name => "index_ads_links_on_title"
 
   create_table "categories", :force => true do |t|
     t.string   "name"

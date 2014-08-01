@@ -1,0 +1,8 @@
+<% provide(:title, "Добавить ссылки") %>
+
+<%= form_for @link, url: admin_link_path(@link), method: :put do |f| %>
+	
+	<%= render partial: 'admin/shared/link', locals: { :f => f } %>
+
+	<%= f.button "Обновить" %>
+<% end %>

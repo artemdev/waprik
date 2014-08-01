@@ -5,13 +5,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def confirm_logged_in
-  	unless cookies[:remember_token]
-  		flash[:notice] = "Please, log in"
-  		redirect_to(:controller => 'admin/access', :action => 'login')
-  		return 'false'
-  	else
-  		return true
-  	end
+  	if signed_in?
+      return true
+    else
+      redirect_to login_path
+    end
   end
 
 end

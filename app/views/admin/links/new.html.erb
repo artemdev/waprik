@@ -1,0 +1,17 @@
+<% provide(:title, "Добавить ссылки") %>
+
+<%= form_for @link, url: admin_links_path, method: :post do |f| %>
+	<%= f.label :title, "Название" %>
+	<%= f.text_field :title %> <br />
+
+	<%= f.label :from, "Откуда" %>
+	<%= f.text_field :from %> <br />
+
+	<%= f.label :to, "Куда" %>
+	<%= f.text_field :to %> <br />
+
+	<%= f.label :expires_at, "Истекает" %>
+	<%= f.datetime_select :expires_at	%> <br />
+
+	<%= f.button "Создать" %>
+<% end %>

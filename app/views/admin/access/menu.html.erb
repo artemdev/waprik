@@ -7,7 +7,8 @@
 	<%= link_to("Фильмы", controller: 'admin/films', action: 'index') %>	<hr />
 	<%= link_to("Сериалы", controller: 'admin/serials', action: 'index') %>	<hr />
 	<%= link_to("Картинки", controller: 'admin/pictures', action: 'index') %>	<hr />
-	<%= link_to("Категории", controller: 'admin/categories', action: 'index') %> <hr />	
+	<%= link_to("Категории", controller: 'admin/categories', action: 'index') %> <hr />
+	<%= link_to "Ссылки", admin_links_path %> <hr />
 	<%= link_to("Админы", {:controller => 'admin_users', :action => 'list'}) %>
 </div>
 <div class="footer">
