@@ -8,7 +8,7 @@ class Admin::MusicController < ApplicationController
 	before_filter :confirm_logged_in
 
 	def index
-		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 10)
+		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 50)
 		@collections = Collection.hits
 		@new_track = Mp3File.new
 	end
