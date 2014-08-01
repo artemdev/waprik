@@ -53,7 +53,7 @@ class Admin::MusicController < ApplicationController
 	def update
 		@track = Mp3File.find(params[:id])
 		@track.update_attributes!(params[:mp3_file])
-		@track.set_collection(params[:mp3_file][:new_collection])
+		@track.set_collection(params[:mp3_file][:new_collection]) if params[:mp3_file][:new_collection]
 		if @track.save
 			flash[:success] = "Mp3 успешно обновлена"
 			redirect_to admin_tracks_path
