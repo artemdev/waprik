@@ -44,8 +44,8 @@ class Public::MusicController < ApplicationController
 		@rus_hits = Array.new
 		@eng_hits = Array.new
 		@tracks.each do |track|
-			@eng_hits << track if track.artist.eng?
-			@rus_hits << track if track.artist.rus?
+			@eng_hits << track if track.artist && track.artist.eng?
+			@rus_hits << track if track.artist && track.artist.rus?
 		end	
 	end
 end
