@@ -40,7 +40,12 @@ class Public::MusicController < ApplicationController
 	end
 
 	def top_mp3
-		@rus_hits = Mp3File.rus.latest.hits
-		@eng_hits = Mp3File.eng.latest.hits
+		@tracks = Mp3File.latest
+		@rus_hits = Array.new
+		@eng_hits = Array.new
+		@tracks.each do |track|
+			@eng_hits << track if track.artist.eng?
+			@rus_hits << track if track.artist.rus?
+		end	
 	end
 end

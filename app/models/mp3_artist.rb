@@ -21,6 +21,14 @@ class Mp3Artist < ActiveRecord::Base
     end
   end
 
+  def eng?
+    true if self.lang == "eng"
+  end
+
+  def rus?
+    true if self.lang == "rus"
+  end
+
   private
 
   def set_first_letter

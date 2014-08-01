@@ -2,9 +2,8 @@
 
 <% if @artists.any? %>
 	<% @artists.each do |artist| %>
-		<%= link_to artist.name, admin_music_artist_path(artist) %>
+		<%= link_to artist.name, edit_admin_music_artist_path(artist) %>
 		<%= artist.lang %>
-		<%= link_to "р", edit_admin_music_artist_path(artist) %>
 		<%= link_to "x", admin_music_artist_path(artist), method: :delete %>
 		<br />
 	<% end %>

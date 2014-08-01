@@ -1,9 +1,12 @@
 <% provide(:title, @artist.name) %>
 
 <%= form_for @artist, url: admin_music_artist_path, method: :put do |f| %>
+	
+	<%= f.label :name, "Имя" %> <br />
+	<%= f.text_field :name %> <br />
 
 	<%= f.label :lang, "язык" %>
-	<%= f.select :lang, [['английский', 'eng'], ['русский', 'rus']]  %>
+	<%= f.select :lang, [['английский', 'eng'], ['русский', 'rus']]  %> <br />
 
 	<%= f.submit "обновить" %>
 <% end %>
