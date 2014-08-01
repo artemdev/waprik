@@ -10,8 +10,8 @@ class Public::FeedbacksController < ApplicationController
   end
 
   def create
-  	@feedback = Feedback.new(params[:feedback])
-  	if @feedback.add_category_from params[:feedback][:category] && @feedback.save
+  	@feedback = Feedback.new(params[:feedback].except(:category))
+  	if @feedback.save
   		flash[:success] = "Спасибо! Отзыв отправлен и появится в разделе как только на него ответит администратор"
   		redirect_to feedbacks_path
  		else

@@ -1,5 +1,9 @@
-<%= link_to("Добавить отзыв", action: 'new', type: 'video') %>
+<div class="new-feedback">
+	<%= link_to("Добавить отзыв", action: 'new', type: 'video') %>
+</div>
 
-<% @feedbacks.each do |feedback| %>
-	<%= link_to(feedback.name, action: 'show', id: feedback.id )%>
-<% end %>
+<div class="a">
+	<% @feedbacks.each do |feedback| %>
+		<%= link_to(feedback.name, action: 'show', id: feedback.id )%>
+	<% end %>
+</div>
