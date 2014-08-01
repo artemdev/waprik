@@ -40,7 +40,7 @@ class Public::MusicController < ApplicationController
 	end
 
 	def top_mp3
-		@tracks = Mp3File.latest.hits.limit(200).where("created_at >= ?", 1.month.ago)
+		@tracks = Mp3File.latest.hits.limit(200).where("created_at >= ?", 3.month.ago)
 		@rus_hits = Array.new
 		@eng_hits = Array.new
 		@tracks.each do |track|
