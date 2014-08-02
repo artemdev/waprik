@@ -4,7 +4,11 @@ class Admin::FeedbacksController < ApplicationController
   layout 'admin'
 
   def index
-    @feedbacks = Feedback.without_answer
+    @feedbacks = Feedback.latest
+    @feedbacks_without_answer = []
+    @feedbacks.each do |feedback|
+      @feedbacks_without_answer << feedback unless feedback.reply.present?
+    end
   end
 
 	def show

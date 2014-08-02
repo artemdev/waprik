@@ -138,3 +138,24 @@ ul.ui-autocomplete {
     }
   }
 }
+
+/* FEEDBACKS */
+.thank {
+	background-color: #c4f2dd;
+		padding: 5px;
+}
+
+.warn {
+	padding: 5px;
+	background-color: #f7bcba;	
+}
+.wish {
+	padding: 5px;
+	background-color: #ffeead;	
+}
+.admin-answer {
+	margin: 5px;
+	padding: 5px 5px 5px 10px;
+	background-color: #86bfe3;
+	color: white;
+}

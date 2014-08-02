@@ -1,8 +1,8 @@
 <% provide(:title, "отзывы / пожелания / предложения") %>
 
 <div class="a">
-	<% if @feedbacks.any? %>
-		<% @feedbacks.each do |feedback| %>
+	<% if @feedbacks_without_answer.any? %>
+		<% @feedbacks_without_answer.each do |feedback| %>
 			<%= feedback.sender %>
 			<br />
 			<%= feedback.description %>

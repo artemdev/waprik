@@ -11,7 +11,9 @@ class Admin::RepliesController < ApplicationController
   def create
   	@feedback = Feedback.find(params[:feedback_id])
   	@reply = current_user.replies.new(params[:admin_reply])
-  	@reply.replyadble = @feedback
+  	@reply.replyable = @feedback
+    @feedback.published = true
+    @feedback.save(validate: false)
   	if @reply.save
   		flash[:success] = "Ответ отправлен"
   		redirect_to admin_feedbacks_path

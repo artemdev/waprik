@@ -5,7 +5,8 @@ class Feedback < ActiveRecord::Base
   has_one :reply, as: 'replyable', class_name: 'AdminReply'
 
   scope :published, where(published: true).order("updated_at ASC")
-  scope :without_answer, order("created_at DESC")
+  scope :without_answer, joins(:reply).where(admin_replies: { content: nil })
+  scope :latest, order("created_at DESC")
 
   validates_presence_of :description, :message => "^Напишите сообщение для администрации " 
   validates_presence_of :sender, :message => "^Укажите как вас зовут" 
