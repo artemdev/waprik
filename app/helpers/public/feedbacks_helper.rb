@@ -1,13 +1,14 @@
 module Public::FeedbacksHelper
 
 	def translate_category_for object
-		case object.category
-			when "wish"
-				"пожелание"
-			when "thank"
-				"благодарность"
-			when "warn"
-				"жалоба"
+		if object.category == "wish"
+			"пожелание"
+		elsif object.category == "thank"
+			"благодарность"
+		elsif object.category == "warn"
+			"жалоба"
+		else
+			"другое"
 		end
 	end
 
