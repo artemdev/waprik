@@ -16,12 +16,12 @@ class Feedback < ActiveRecord::Base
   def add_category
 	  if self.new_category == "thank"
 	  		self.category = "thank"
-  	elsif category == "wish"
-	  		self.new_category = "wish"
-  	elsif category == "warn"
-	  		self.new_category = "warn"
+  	elsif self.new_category == "wish"
+	  		self.category = "wish"
+  	elsif self.new_category == "warn"
+	  		self.category = "warn"
 	  else
-	  		self.new_category = "no_permited"
+	  		self.category = "other"
   	end
   end
 
