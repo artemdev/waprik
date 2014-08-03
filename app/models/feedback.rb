@@ -10,15 +10,15 @@ class Feedback < ActiveRecord::Base
 
   validates_presence_of :description, :message => "^Напишите сообщение для администрации " 
   validates_presence_of :sender, :message => "^Укажите как вас зовут" 
-  validates_presence_of :new_category, :message => "^Выберите категорию из списка ниже" 
+  # validates_presence_of :category, :message => "^Выберите категорию из списка ниже" 
   before_create :add_category
 
   def add_category
-	  if self.new_category == "thank"
+	  if new_category == "thank"
 	  		self.category = "thank"
-  	elsif self.new_category == "wish"
+  	elsif new_category == "wish"
 	  		self.category = "wish"
-  	elsif self.new_category == "warn"
+  	elsif new_category == "warn"
 	  		self.category = "warn"
 	  else
 	  		self.category = "other"
