@@ -20,7 +20,7 @@ class Public::FeedbacksController < ApplicationController
   end
 
   def index
-  	@feedbacks = Feedback.published
+  	@feedbacks = Feedback.published.latest
   end
 
 end
