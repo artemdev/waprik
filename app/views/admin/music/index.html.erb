@@ -19,7 +19,7 @@
 <% if @tracks.any? %>
 		<% @tracks.each do |track| %>
 			<%= div_for track, class: 'music-track' do %>
-				<%= link_to track.name, edit_admin_track_path(track) %>
+				<%= link_to track.name, edit_admin_track_path(track) %> <br />
 				<%= link_to "т", edit_tags_admin_track_path(track) %>
 				<%= link_to "x", admin_track_path(track), method: :delete, remote: true, confirm: 'точно ?' %>
 				<span class="small-text">
@@ -43,6 +43,14 @@
 						<% end %>				
 					<% end %>
 				</span>
+				<% if track.collections.any? %>
+					<br />
+					Подборки
+					<% track.collections.each do |collection| %>
+						<%= link_to collection.name, collection_path(collection) %>
+					<% end %>
+				<% end %>
+
 				<div class="hit-field">
 					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
 						<%= f.check_box :hit %>
