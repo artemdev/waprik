@@ -16,7 +16,7 @@ class Public::CollectionsController < ApplicationController
 		@collection.tracks.each do |track|
 			@tracks << track if track.created_at < @date.at_beginning_of_day
 		end
-		@tracks = @tracks.sort_by!(&:created_at).paginate(page: params[:page], per_page: 20)
+		@tracks = @tracks.reverse.paginate(page: params[:page], per_page: 20)
 	end
 
 end
