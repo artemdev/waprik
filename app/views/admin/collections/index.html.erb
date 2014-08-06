@@ -10,7 +10,9 @@
 			<%= fa_icon('star', class: 'favourite-collection') if collection.hit? %>
 			<%= link_to collection.name, edit_admin_collection_path(collection) %>
 			<%= link_to fa_icon('times', class: 'remove-collection'), admin_collection_path(collection), method: :delete, remote: true %>
-			<%= collection.tracks.count %>
+			<%= collection.tracks.count %> <br />
+			с музыкой <b><%= collection.with_music ? "да" : "нет" %></b> <br />
+			с фильмами <b><%= collection.with_films ? "да" : "нет" %></b>
 		<% end %>
 	<% end %>
 <% else %>

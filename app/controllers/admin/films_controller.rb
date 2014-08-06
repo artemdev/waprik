@@ -1,13 +1,13 @@
 require 'open-uri'
 class Admin::FilmsController < ApplicationController
-  before_filter :confirm_logged_in
-
   layout 'admin'
 	
 	before_filter :confirm_logged_in
 	before_filter :find_film, only: [:edit, :update, :show, :destroy]
 	before_filter :find_film_directors, only: [:edit, :update]
 	before_filter :find_film_actors, only: [:edit, :update]
+  before_filter :set_collections, only: ['new', 'edit']
+
 	def index
 		@films = Film.latest.paginate(page: params[:page], per_page: 30)
 		@camrip = FilmQuality.find(6)
@@ -24,6 +24,7 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
 		if params[:film][:trailer_filename]
 			thrailer = @film.trailers.new
 			thrailer.filename.store! params[:film][:trailer_filename]
@@ -92,6 +93,7 @@ class Admin::FilmsController < ApplicationController
 		@film.ru_title = params[:film][:ru_title]
 		@film.en_title = params[:film][:en_title]
 		@film.permalink = Russian.translit(@film.ru_title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
@@ -113,6 +115,7 @@ class Admin::FilmsController < ApplicationController
 		@film.ru_title = @movie.title
 		@film.en_title = @movie.title_en
 		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
@@ -186,6 +189,10 @@ class Admin::FilmsController < ApplicationController
 
 	def find_film_actors
 		@actors = @film.actors		
+	end
+
+	def set_collections
+		@collections = Collection.all	
 	end
 
 end

@@ -475,6 +475,18 @@ ActiveRecord::Schema.define(:version => 20140731154045) do
     t.integer  "user_id"
   end
 
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.integer  "downloads",   :default => 0
+    t.string   "description"
+    t.integer  "author_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.boolean  "erotic"
+  end
+
+  add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+
   create_table "videos", :force => true do |t|
     t.integer  "category_id"
     t.string   "description"

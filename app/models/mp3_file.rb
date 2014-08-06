@@ -15,6 +15,8 @@
 # integer   "downloads",                       :default => 0,      
 require 'taglib'
 class Mp3File < ActiveRecord::Base
+  default_scope order("created_at DESC")
+
   attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file, :hit, :new_collection
   attr_accessor :new_file, :new_collection
  
@@ -28,7 +30,6 @@ class Mp3File < ActiveRecord::Base
   
   has_many :collection_music_through, foreign_key: 'track_id'
   has_many :collections, through: :collection_music_through
-
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
   belongs_to :artist, class_name: 'Mp3Artist'
   belongs_to :album, class_name: 'Mp3Album'
@@ -38,6 +39,7 @@ class Mp3File < ActiveRecord::Base
   scope :published_at, lambda { |date = nil | where("created_at > ? AND created_at < ?", date.at_beginning_of_day, date.end_of_day) }
   scope :without_new, lambda { |date = nil | where("created_at < ? ", date.at_beginning_of_day) }
   scope :hits, -> { where("hit = ?", true) }
+  scope :top, lambda { |number = 100| where("hit = ?", true).limit(number) }
 
   validates :artist, :name, :new_path, presence: true
 
@@ -122,9 +124,7 @@ class Mp3File < ActiveRecord::Base
   end
 
   def set_collection id
-    if collection = Collection.find(id)
-      self.collections << collection
-    end
+    self.collections << collection if collection = Collection.find(id)
   end
 
   protected

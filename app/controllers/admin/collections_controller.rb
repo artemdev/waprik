@@ -7,11 +7,17 @@ class Admin::CollectionsController < ApplicationController
 		@collections = Collection.all
 		case params[:section]
 			when "with_music"
-				@collections = Collection.with_music
+				@collections = []
+				@all_collections = Collection.all
+				@all_collections.each {|c| @collections << c if c.with_music }
 			when "with_videos"
-				@collections = Collection.with_videos
+				@collections = []
+				@all_collections = Collection.all
+				@all_collections.each {|c| @collections << c if c.with_videos }
 			when "with_films"
-				@collections = Collection.with_films
+				@collections = []
+				@all_collections = Collection.all
+				@all_collections.each {|c| @collections << c if c.with_films }
 		end
 	end
 

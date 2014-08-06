@@ -21,8 +21,8 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title
-	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename
+  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection
+	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection
 
   mount_uploader :cover, CoverUploader
 
@@ -46,6 +46,9 @@ class Film < ActiveRecord::Base
   belongs_to :quality, class_name: "FilmQuality"
   # trailers
   has_many :trailers, class_name: "FilmTrailer", dependent: :destroy
+
+  has_many :collection_film_through, foreign_key: 'film_id'
+  has_many :collections, through: :collection_film_through
 
   # validates :title, :about, :year, presence: true
 
@@ -108,6 +111,12 @@ class Film < ActiveRecord::Base
         self.title = self.en_title
       end
     end
-
   end
+
+  def set_collection id
+    if collection = Collection.find(id)
+      self.collections << collection
+    end
+  end
+
 end

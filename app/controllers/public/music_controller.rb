@@ -10,16 +10,15 @@ class Public::MusicController < ApplicationController
 	end
 
 	def news
-		@date = Mp3File.latest.first.created_at
-		@tracks = Mp3File.without_new(@date).latest.paginate(page: params[:page], per_page: 20)
-		@last_tracks = Mp3File.published_at(@date).latest
+		@date = Mp3File.first.created_at
+		@tracks = Mp3File.without_new(@date).paginate(page: params[:page], per_page: 20)
+		@last_tracks = Mp3File.published_at(@date)
 	end
 
 	def show
 		@track = Mp3File.find_by_permalink(params[:id])
 	end
 
-	# скачивание состоит из 2-х действий, чтобы избежать неправильного подсчета скачиваний
 	def download
 		@track = Mp3File.find(params[:id])
 		@track.downloads += 1
@@ -40,9 +39,9 @@ class Public::MusicController < ApplicationController
 	end
 
 	def top_mp3
-		@tracks = Mp3File.latest.hits.limit(200).where("created_at >= ?", 3.month.ago)
-		@rus_hits = Array.new
-		@eng_hits = Array.new
+		@tracks = Mp3File.top(200).where("created_at >= ?", 3.month.ago)
+		@rus_hits = []
+		@eng_hits = []
 		@tracks.each do |track|
 			@eng_hits << track if track.artist && track.artist.eng?
 			@rus_hits << track if track.artist && track.artist.rus?

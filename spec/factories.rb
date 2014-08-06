@@ -4,8 +4,23 @@ FactoryGirl.define do
 		password 'lordik37ztxq'
 	end
 
-	factory :mp3_track, class: 'Mp3File' do 
+	factory :mp3_track, class: 'Mp3File' do
+		new_path File.open "/Users/Artem/Documents/wapriktesting/music/lana_del_rey.mp3"
+		artist_name "lana del rey"
+		album_name "песни 2014"
+		permalink "lana_del_rey"
+		fname "lana_del_rey"
+		after(:create ) do |mp3|
+	    bitrate = mp3.bitrates.new
+	    bitrate.file_bitrate = "128"
+	    bitrate.file = File.open "/Users/Artem/Documents/wapriktesting/music/lana_del_rey.mp3"
+	    bitrate.file_size = File.size "/Users/Artem/Documents/wapriktesting/music/lana_del_rey.mp3"
+	    bitrate.save
+		end
 	end
+
+	# СОЗДАТЬ MP3 ARTIST
+
 
 	factory :feedback do
 		description 'классный сайт!'

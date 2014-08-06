@@ -52,7 +52,7 @@
 	<% end %>
 	<% if @film.trailers.any? %>
 		<% @film.trailers.each_with_index do |trailer, index| %>
-			<%= link_to "Скачать трейлер #{index}", film_treiler_path(trailer) %> <%= number_to_human_size(trailer.filesize) %>
+			<%= link_to "Скачать трейлер #{index + 1 unless index + 1 == 1}", film_treiler_path(trailer) %> <%= number_to_human_size(trailer.filesize) %> <br />
 		<% end %>
 	<% else %>
 		Трейлера нет
