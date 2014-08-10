@@ -16,6 +16,8 @@ public/uploads/*
 public/ftp/*
 public/tmp/*
 public/assets/*
+public/sitemap.xml.gz
+public/sitemap.xml
 tmp/
 cache/*
 config/database.yml
@@ -24,3 +26,4 @@ sidekiq.log
 cache/*
 .powenv
 dump.rdb
+

@@ -21,6 +21,7 @@ gem 'tire'
 gem 'lame'
 gem 'taglib-ruby'
 gem "font-awesome-rails"
+gem 'sitemap_generator'
 
 # Gems used only for assets and not required
 # in production environments by default.
