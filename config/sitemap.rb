@@ -8,7 +8,7 @@ SitemapGenerator::Sitemap.create do
   end
 
   Mp3File.find_each do |track|
-    add track_path(track.permalink), lastmod: track.updated_at
+    add track_path(track.permalink), lastmod: track.created_at
   end  
 
   # Put links creation logic here.
