@@ -7,6 +7,10 @@ SitemapGenerator::Sitemap.create do
     add film_path(film.permalink), lastmod: film.updated_at
   end
 
+  Mp3File.find_each do |track|
+    add track_path(track.permalink), lastmod: track.updated_at
+  end  
+
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
