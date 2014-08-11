@@ -124,7 +124,9 @@ class Mp3File < ActiveRecord::Base
   end
 
   def set_collection id
-    self.collections << collection if collection = Collection.find(id)
+    if collection = Collection.find(id)
+      self.collections << collection
+    end
   end
 
   protected
