@@ -99,7 +99,7 @@ class Admin::FilmsController < ApplicationController
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
 		else
-			render 'add'
+			render :new_by_hand
 		end
 	end
 
