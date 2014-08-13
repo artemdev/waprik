@@ -3,7 +3,7 @@
 class FilmQuality < ActiveRecord::Base
   self.table_name = "films_qualities"
 
-  attr_accessible :title
+  attr_accessible :title, :position
 
   has_many :films, foreign_key: 'quality_id'
   has_many :film_files

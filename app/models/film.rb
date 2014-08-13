@@ -114,7 +114,7 @@ class Film < ActiveRecord::Base
   end
 
   def set_collection id
-    if collection = Collection.find(id)
+    if id.present? && collection = Collection.find(id)
       self.collections << collection
     end
   end

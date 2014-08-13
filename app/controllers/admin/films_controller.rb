@@ -8,9 +8,11 @@ class Admin::FilmsController < ApplicationController
 	before_filter :find_film_actors, only: [:edit, :update]
   before_filter :set_collections, only: ['new', 'edit']
 
+  CAMRip = 1
+
 	def index
 		@films = Film.latest.paginate(page: params[:page], per_page: 30)
-		@camrip = FilmQuality.find(6)
+		@camrip = FilmQuality.find(CAMRip)
 	end
 
 	def edit
