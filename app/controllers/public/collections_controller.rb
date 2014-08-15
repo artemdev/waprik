@@ -17,7 +17,7 @@ class Public::CollectionsController < ApplicationController
 			@collection.tracks.each do |track|
 				@tracks << track if track.created_at < @date.at_beginning_of_day
 			end
-			@tracks = @tracks.reverse.paginate(page: params[:page], per_page: 20)
+			@tracks = @tracks.paginate(page: params[:page], per_page: 20)
 			@date = @last_tracks.last.created_at
 		elsif @collection.with_films
 			@date = @collection.films.latest.first.created_at
