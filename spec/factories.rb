@@ -4,6 +4,12 @@ FactoryGirl.define do
 		password 'lordik37ztxq'
 	end
 
+	factory :blocked_film, class: 'Film' do
+		ru_title "тест"
+		en_title "test"
+		blocked true
+	end
+
 	factory :mp3_track, class: 'Mp3File' do
 		new_path File.open "/Users/Artem/Documents/wapriktesting/music/lana_del_rey.mp3"
 		artist_name "lana del rey"

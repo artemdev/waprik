@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140731154045) do
+ActiveRecord::Schema.define(:version => 20140819140651) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -180,8 +180,10 @@ ActiveRecord::Schema.define(:version => 20140731154045) do
     t.string   "ru_title"
     t.string   "en_title"
     t.boolean  "without_files"
+    t.boolean  "blocked"
   end
 
+  add_index "films", ["blocked"], :name => "index_films_on_blocked"
   add_index "films", ["count_comments"], :name => "count_comments"
   add_index "films", ["count_likes"], :name => "count_likes"
   add_index "films", ["cover"], :name => "index_films_on_cover"
@@ -419,89 +421,5 @@ ActiveRecord::Schema.define(:version => 20140731154045) do
   add_index "mp3_files", ["created_at"], :name => "file_date_added"
   add_index "mp3_files", ["downloads"], :name => "file_count_downloads"
   add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
-  add_index "mp3_files", ["ftp_path"], :name => "file_ftp_name", :unique => true
-  add_index "mp3_files", ["genre_id"], :name => "file_category_id"
-  add_index "mp3_files", ["new_path"], :name => "index_mp3_files_on_new_path"
-  add_index "mp3_files", ["order"], :name => "file_order"
-  add_index "mp3_files", ["order_nomination"], :name => "file_order_nomination"
-  add_index "mp3_files", ["permalink"], :name => "index_mp3_files_on_permalink"
-
-  create_table "mp3_genres", :primary_key => "genre_id", :force => true do |t|
-    t.string  "genre_name",         :limit => 256,                :null => false
-    t.integer "genre_count_tracks",                :default => 0, :null => false
-    t.text    "genre_comment_up"
-    t.text    "genre_comment_down"
-  end
-
-  create_table "mp3_nomination", :primary_key => "nomination_id", :force => true do |t|
-    t.string "nomination_name",         :limit => 256, :null => false
-    t.text   "nomination_comment_up"
-    t.text   "nomination_comment_down"
-  end
-
-  create_table "mp3_track2category", :id => false, :force => true do |t|
-    t.integer "t2c_file_id",     :null => false
-    t.integer "t2c_category_id", :null => false
-  end
-
-  add_index "mp3_track2category", ["t2c_category_id"], :name => "category_id"
-  add_index "mp3_track2category", ["t2c_file_id"], :name => "file_id"
-
-  create_table "mp3_track2nomination", :id => false, :force => true do |t|
-    t.integer   "t2n_file_id",       :null => false
-    t.integer   "t2n_nomination_id", :null => false
-    t.timestamp "t2n_date_start",    :null => false
-    t.timestamp "t2n_date_end"
-  end
-
-  add_index "mp3_track2nomination", ["t2n_file_id"], :name => "file_id"
-  add_index "mp3_track2nomination", ["t2n_nomination_id"], :name => "nomination_id"
-
-  create_table "mp3_users", :primary_key => "user_id", :force => true do |t|
-    t.string "user_login",    :limit => 256, :null => false
-    t.string "user_password", :limit => 32,  :null => false
-  end
-
-  add_index "mp3_users", ["user_login"], :name => "user_login", :unique => true
-
-  create_table "news", :force => true do |t|
-    t.string   "description"
-    t.string   "section"
-    t.boolean  "visible"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.datetime "published_at"
-    t.string   "title",        :default => ""
-    t.integer  "user_id"
-  end
-
-  create_table "pictures", :force => true do |t|
-    t.string   "image"
-    t.integer  "downloads",   :default => 0
-    t.string   "description"
-    t.integer  "author_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.boolean  "erotic"
-  end
-
-  add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
-
-  create_table "videos", :force => true do |t|
-    t.integer  "category_id"
-    t.string   "description"
-    t.string   "screen"
-    t.string   "low_3gp"
-    t.string   "mp4_320"
-    t.integer  "size"
-    t.string   "name"
-    t.string   "artist"
-    t.integer  "downloads",    :default => 0
-    t.string   "source_video"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
 
 end

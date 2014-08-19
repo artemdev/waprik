@@ -21,7 +21,7 @@
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
 class Film < ActiveRecord::Base
-  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection
+  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection
 
   mount_uploader :cover, CoverUploader
@@ -101,17 +101,18 @@ class Film < ActiveRecord::Base
         end
       end
     end
-
-    def create_title
-      if ru_title.present? && en_title.present?
-        self.title = ru_title + " / " + en_title
-      elsif ru_title.present? && !en_title.present?
-        self.title = self.ru_title
-      elsif en_title.present? && !ru_title.present?
-        self.title = self.en_title
-      end
+  end
+  
+  def create_title
+    if ru_title.present? && en_title.present?
+      self.title = ru_title + " / " + en_title
+    elsif ru_title.present? && !en_title.present?
+      self.title = self.ru_title
+    elsif en_title.present? && !ru_title.present?
+      self.title = self.en_title
     end
   end
+
 
   def set_collection id
     if id.present? && collection = Collection.find(id)

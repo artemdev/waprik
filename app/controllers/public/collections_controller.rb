@@ -5,6 +5,7 @@ class Public::CollectionsController < ApplicationController
 		@collections = Collection.all
 	end
 
+	# refactoring ...
 	def show
 		@collection = Collection.find_by_permalink!(params[:id])
 		if @collection.with_music
