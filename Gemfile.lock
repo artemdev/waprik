@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 64111a2b5602c311e08c7d40201a758e6001fb34
+  specs:
+    elasticsearch-rails (0.1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -264,6 +270,7 @@ DEPENDENCIES
   childprocess (= 0.3.6)
   coffee-rails (~> 3.2.1)
   database_cleaner (= 0.7.0)
+  elasticsearch-rails!
   execjs
   factory_girl_rails (= 4.1.0)
   font-awesome-rails

@@ -20,6 +20,7 @@
 # integer "news_time"
 # integer "count_comments",                    :default => 0
 # integer "count_likes",                       :default => 0
+require 'elasticsearch/rails/tasks/import'
 class Film < ActiveRecord::Base
   attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection

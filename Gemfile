@@ -22,6 +22,7 @@ gem 'lame'
 gem 'taglib-ruby'
 gem "font-awesome-rails"
 gem 'sitemap_generator'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
