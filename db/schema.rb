@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140819140651) do
+ActiveRecord::Schema.define(:version => 20140820163206) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -64,20 +64,6 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
     t.string   "categorable_type"
     t.boolean  "for_pictures"
   end
-
-  create_table "categories_music", :id => false, :force => true do |t|
-    t.integer "music_id"
-    t.integer "category_id"
-  end
-
-  add_index "categories_music", ["music_id", "category_id"], :name => "index_categories_music_on_music_id_and_category_id"
-
-  create_table "categories_news", :id => false, :force => true do |t|
-    t.integer "category_id"
-    t.integer "news_id"
-  end
-
-  add_index "categories_news", ["news_id", "category_id"], :name => "index_categories_news_on_news_id_and_category_id"
 
   create_table "categories_serials", :id => false, :force => true do |t|
     t.integer "category_id"
@@ -174,8 +160,8 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
     t.integer  "count_likes"
     t.integer  "count_comments"
     t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at"
     t.string   "cover"
+    t.datetime "updated_at"
     t.string   "permalink"
     t.string   "ru_title"
     t.string   "en_title"
@@ -317,14 +303,6 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
     t.datetime "updated_at"
   end
 
-  create_table "mp3_album2category", :id => false, :force => true do |t|
-    t.integer "al2c_album_id",    :null => false
-    t.integer "al2c_category_id", :null => false
-  end
-
-  add_index "mp3_album2category", ["al2c_album_id"], :name => "file_id"
-  add_index "mp3_album2category", ["al2c_category_id"], :name => "category_id"
-
   create_table "mp3_albums", :force => true do |t|
     t.integer  "artist_id",                         :default => 0
     t.string   "name",               :limit => 256
@@ -347,14 +325,6 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
 
   add_index "mp3_alphabet", ["isset_eng"], :name => "alph_isset_eng"
   add_index "mp3_alphabet", ["isset_rus"], :name => "alph_isset_rus"
-
-  create_table "mp3_artist2category", :id => false, :force => true do |t|
-    t.integer "a2c_artist_id",   :null => false
-    t.integer "a2c_category_id", :null => false
-  end
-
-  add_index "mp3_artist2category", ["a2c_artist_id"], :name => "file_id"
-  add_index "mp3_artist2category", ["a2c_category_id"], :name => "category_id"
 
   create_table "mp3_artists", :force => true do |t|
     t.string   "name",                :limit => 256
@@ -398,7 +368,7 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
     t.string   "name",              :limit => 256
     t.string   "fname",             :limit => 256
     t.string   "length",            :limit => 5,   :default => "00:00"
-    t.datetime "created_at"
+    t.datetime "file_date_added",                                       :null => false
     t.integer  "genre_id"
     t.integer  "artist_id"
     t.integer  "album_id"
@@ -410,6 +380,7 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
     t.integer  "downloads",                        :default => 0
     t.text     "file_comment_up"
     t.text     "file_comment_down"
+    t.datetime "created_at"
     t.string   "new_path"
     t.integer  "length_sec"
     t.integer  "news_id"
@@ -418,8 +389,108 @@ ActiveRecord::Schema.define(:version => 20140819140651) do
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
   add_index "mp3_files", ["artist_id"], :name => "file_artist_id"
-  add_index "mp3_files", ["created_at"], :name => "file_date_added"
   add_index "mp3_files", ["downloads"], :name => "file_count_downloads"
+  add_index "mp3_files", ["file_date_added"], :name => "file_date_added"
   add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
+  add_index "mp3_files", ["ftp_path"], :name => "index_mp3_files_on_ftp_path", :length => {"ftp_path"=>255}
+  add_index "mp3_files", ["genre_id"], :name => "file_category_id"
+  add_index "mp3_files", ["new_path"], :name => "index_mp3_files_on_new_path"
+  add_index "mp3_files", ["order"], :name => "file_order"
+  add_index "mp3_files", ["order_nomination"], :name => "file_order_nomination"
+  add_index "mp3_files", ["permalink"], :name => "index_mp3_files_on_permalink"
+
+  create_table "mp3_genres", :primary_key => "genre_id", :force => true do |t|
+    t.string  "genre_name",         :limit => 256,                :null => false
+    t.integer "genre_count_tracks",                :default => 0, :null => false
+    t.text    "genre_comment_up"
+    t.text    "genre_comment_down"
+  end
+
+  create_table "mp3_nomination", :primary_key => "nomination_id", :force => true do |t|
+    t.string "nomination_name",         :limit => 256, :null => false
+    t.text   "nomination_comment_up"
+    t.text   "nomination_comment_down"
+  end
+
+  create_table "music", :force => true do |t|
+    t.boolean  "hit"
+    t.integer  "downloads"
+    t.string   "name"
+    t.string   "link_orig"
+    t.string   "link_128"
+    t.string   "link_64"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "news", :force => true do |t|
+    t.string   "description",  :limit => 1000
+    t.string   "section"
+    t.boolean  "visible"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.string   "title"
+    t.datetime "published_at"
+    t.integer  "user_id"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.integer  "downloads",   :default => 0
+    t.string   "description"
+    t.integer  "author_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.boolean  "erotic"
+  end
+
+  add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+
+  create_table "serials", :force => true do |t|
+    t.string   "description"
+    t.integer  "season"
+    t.boolean  "updating",    :default => true
+    t.string   "name"
+    t.string   "cover"
+    t.boolean  "hit"
+    t.string   "years"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "series", :force => true do |t|
+    t.integer  "serial_id"
+    t.string   "name"
+    t.string   "release_date"
+    t.integer  "number"
+    t.string   "mp4_640"
+    t.integer  "dl_mp4_640",   :default => 0
+    t.string   "mp4_320"
+    t.integer  "dl_mp4_320",   :default => 0
+    t.string   "low_3gp"
+    t.integer  "dl_low_3gp",   :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "series", ["serial_id"], :name => "index_series_on_serial_id"
+
+  create_table "videos", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "description"
+    t.string   "screen"
+    t.string   "low_3gp"
+    t.string   "mp4_320"
+    t.integer  "size"
+    t.string   "name"
+    t.string   "artist"
+    t.integer  "downloads",    :default => 0
+    t.string   "source_video"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "mp4_640"
+  end
+
+  add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
 
 end

@@ -25,12 +25,9 @@
 		Время
 		<%= @film.duration_hours %> час
 		<%= @film.duration_minutes %> мин
-		<%= @film.duration_seconds %> сек
 		<br />
-		<% if @film.quality %>
-			Качество <%= @film.quality.title %> 
-			<br />
-		<% end %>
+		Качество <%= quality_for @film %> 
+		<br />
 		Жанр
 		<% @film.genres.each do |genre| %>
 			<%= link_to genre.title, film_genre_path(genre) %>

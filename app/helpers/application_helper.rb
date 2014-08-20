@@ -43,4 +43,12 @@ module ApplicationHelper
     Russian.translit(title.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
   end
 
+  # упростить
+  def quality_for film
+    film.files.each do |file|
+      quality << file.quality.title if file.quality
+    end
+    quality.uniq.join(', ')
+  end
+
 end

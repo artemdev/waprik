@@ -16,17 +16,21 @@
 	<%= f.check_box :remove_cover %>
 <% end %>
 
-	<%= f.label :cover, "Обложка" %>	<br />
-	<%= f.file_field :cover %> <br />
+<%= f.label :cover, "Обложка" %>	<br />
+<%= f.file_field :cover %> <br />
 
-	<% if @movie && @movie.poster %>
-	<%= link_to "скачать обложку", @movie.poster %>
-	<% end %>
+<% if @movie && @movie.poster %>
+<%= link_to "скачать обложку", @movie.poster %>
+<% end %>
 
-<% if @movie && @film.duration_hours && @film.duration_hours %>
+<% if @movie %>
 	<br />
 	<%= f.text_field :duration_hours, placeholder: @movie.length.divmod(60)[0] %> часов <br />
 	<%= f.text_field :duration_minutes, placeholder: @movie.length.divmod(60)[1] %> минут
+<% else %>
+	<br />
+	<%= f.text_field :duration_hours %> часов <br />
+	<%= f.text_field :duration_minutes %> минут	
 <% end %>
 
 <%= f.check_box :is_favourite %>	
