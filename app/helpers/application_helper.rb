@@ -49,8 +49,10 @@ module ApplicationHelper
     film.files.each do |file|
       qualities << file.quality.title if file.quality
     end
-    if quality.empty?
-      film.quality.title || "не определено"
+    if qualities.empty? && film.quality
+      film.quality.title
+    elsif film.quality.nil? && qualities.empty?
+      "не определено"
     else
       qualities.uniq.join(', ')
     end
