@@ -50,7 +50,7 @@ module ApplicationHelper
       quality << file.quality.title if file.quality
     end
     if quality.empty?
-      film.quality.title
+      "не определено"
     else
       quality.uniq.join(', ')
     end
