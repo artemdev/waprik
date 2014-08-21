@@ -47,12 +47,12 @@ module ApplicationHelper
   def quality_for film
     quality = Array.new
     film.files.each do |file|
-      quality << file.quality.title if file.quality
+      qualities << file.quality.title if file.quality
     end
     if quality.empty?
-      "не определено"
+      film.quality.title || "не определено"
     else
-      quality.uniq.join(', ')
+      qualities.uniq.join(', ')
     end
   end
 
