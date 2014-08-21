@@ -49,7 +49,11 @@ module ApplicationHelper
     film.files.each do |file|
       quality << file.quality.title if file.quality
     end
-    quality.uniq.join(', ')
+    if quality.empty?
+      film.quality.title
+    else
+      quality.uniq.join(', ')
+    end
   end
 
 end
