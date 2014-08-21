@@ -45,7 +45,7 @@ module ApplicationHelper
 
   # упростить
   def quality_for film
-    quality = Array.new
+    qualities = Array.new
     film.files.each do |file|
       qualities << file.quality.title if file.quality
     end
