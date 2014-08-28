@@ -35,6 +35,14 @@ header {
 	width: 100%;
 }
 
+.hmenu {
+	max-width: 1200px;
+	margin 0 auto;
+	vertical-align: baseline;
+	width:  1200px;
+	display: block;
+}
+
 /* HEADER */
 .menu-item {
 /*	text-transform: uppercase;*/
@@ -129,4 +137,3 @@ nav ul li a:hover {
 	zoom: 1;
 }
 /* !clear floats */
-

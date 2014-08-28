@@ -19,22 +19,24 @@
   </head>
   <body>
     <header>
-      <nav class="navigation">
-        <ul>
-         <li class="logo">
-          WAPRIK.RU
-         </li>
-          <li class="menu-item">
-            <%= link_to "фильмы", admin_films_path %>
-          </li>
-          <li class="menu-item">
-            <%= link_to "музыка", admin_music_index_path %>
-          </li>
-          <li class="menu-item">
-            <%= link_to "сериалы" %>
-          </li>
-        </ul>
-      </nav>
+      <div class="hmenu">
+        <nav class="navigation">
+          <ul>
+           <li class="logo">
+            WAPRIK.RU
+           </li>
+            <li class="menu-item">
+              <%= link_to "фильмы", admin_films_path %>
+            </li>
+            <li class="menu-item">
+              <%= link_to "музыка", admin_music_index_path %>
+            </li>
+            <li class="menu-item">
+              <%= link_to "сериалы" %>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <div class="container">

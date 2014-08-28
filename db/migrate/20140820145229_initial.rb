@@ -240,10 +240,10 @@ class Initial < ActiveRecord::Migration
 		add_index "films_files", ["size"], :name => "size"
 
 		create_table "films_formats", :force => true do |t|
-		  t.string   "title",       :limit => 100,  :null => false
-		  t.string   "description", :limit => 100,  :null => false
-		  t.string   "ffparams",    :limit => 1000, :null => false
-		  t.string   "ext",         :limit => 10,   :null => false
+		  t.string   "title",       :limit => 100
+		  t.string   "description", :limit => 100
+		  t.string   "ffparams",    :limit => 1000
+		  t.string   "ext",         :limit => 10
 		  t.datetime "created_at"
 		  t.datetime "updated_at"
 		end
@@ -284,22 +284,22 @@ class Initial < ActiveRecord::Migration
 
 		create_table "films_qualities", :force => true do |t|
 		  t.string   "title",      :limit => 50
-		  t.integer  "position",                 :null => false
+		  t.integer  "position"
 		  t.datetime "created_at"
 		  t.datetime "updated_at"
 		end
 
 		create_table "films_trailers", :force => true do |t|
 		  t.integer  "film_id",                  :null => false
-		  t.string   "filename",   :limit => 50, :null => false
-		  t.integer  "filesize",                 :null => false
+		  t.string   "filename",   :limit => 50
+		  t.integer  "filesize"
 		  t.datetime "created_at"
 		  t.datetime "updated_at"
 		end
 
 		create_table "films_translations", :force => true do |t|
 		  t.string   "title",      :limit => 50
-		  t.integer  "position",                 :null => false
+		  t.integer  "position"
 		  t.datetime "created_at"
 		  t.datetime "updated_at"
 		end
@@ -326,18 +326,18 @@ class Initial < ActiveRecord::Migration
 		add_index "mp3_albums", ["artist_id"], :name => "album_artist_id"
 
 		create_table "mp3_alphabet", :force => true do |t|
-		  t.integer "isset_rus",      :default => 0, :null => false
-		  t.integer "isset_eng",      :default => 0, :null => false
-		  t.integer "count_hits_rus", :default => 0, :null => false
-		  t.integer "count_hits_eng", :default => 0, :null => false
+		  t.integer "isset_rus",      :default => 0
+		  t.integer "isset_eng",      :default => 0
+		  t.integer "count_hits_rus", :default => 0
+		  t.integer "count_hits_eng", :default => 0
 		end
 
 		add_index "mp3_alphabet", ["isset_eng"], :name => "alph_isset_eng"
 		add_index "mp3_alphabet", ["isset_rus"], :name => "alph_isset_rus"
 
 		create_table "mp3_artist2category", :id => false, :force => true do |t|
-		  t.integer "a2c_artist_id",   :null => false
-		  t.integer "a2c_category_id", :null => false
+		  t.integer "a2c_artist_id"
+		  t.integer "a2c_category_id"
 		end
 
 		add_index "mp3_artist2category", ["a2c_artist_id"], :name => "file_id"
@@ -362,17 +362,17 @@ class Initial < ActiveRecord::Migration
 		add_index "mp3_artists", ["permalink"], :name => "index_mp3_artists_on_permalink"
 
 		create_table "mp3_bitrate", :id => false, :force => true do |t|
-		  t.integer "file_id",                    :null => false
-		  t.integer "file_bitrate",               :null => false
-		  t.string  "file_size",    :limit => 16, :null => false
+		  t.integer "file_id"
+		  t.integer "file_bitrate"
+		  t.string  "file_size",    :limit => 16
 		  t.string  "file"
 		end
 
 		add_index "mp3_bitrate", ["file_id"], :name => "bitrate_file_id"
 
 		create_table "mp3_category", :primary_key => "category_id", :force => true do |t|
-		  t.integer "category_parent_id",                   :default => 0, :null => false
-		  t.string  "category_name",         :limit => 256,                :null => false
+		  t.integer "category_parent_id",                   :default => 0
+		  t.string  "category_name",         :limit => 256
 		  t.text    "category_comment_up"
 		  t.text    "category_comment_down"
 		end
@@ -417,14 +417,14 @@ class Initial < ActiveRecord::Migration
 		add_index "mp3_files", ["permalink"], :name => "index_mp3_files_on_permalink"
 
 		create_table "mp3_genres", :primary_key => "genre_id", :force => true do |t|
-		  t.string  "genre_name",         :limit => 256,                :null => false
-		  t.integer "genre_count_tracks",                :default => 0, :null => false
+		  t.string  "genre_name",         :limit => 256
+		  t.integer "genre_count_tracks"
 		  t.text    "genre_comment_up"
 		  t.text    "genre_comment_down"
 		end
 
 		create_table "mp3_nomination", :primary_key => "nomination_id", :force => true do |t|
-		  t.string "nomination_name",         :limit => 256, :null => false
+		  t.string "nomination_name",         :limit => 256
 		  t.text   "nomination_comment_up"
 		  t.text   "nomination_comment_down"
 		end

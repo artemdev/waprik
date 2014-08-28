@@ -122,4 +122,9 @@ class Admin::MusicController < ApplicationController
 		redirect_to :back
 	end
 
+	def hits
+		@track = Mp3File.hits
+	end
+
+
 end

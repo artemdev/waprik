@@ -1,6 +1,5 @@
 <% provide(:title, @film.title) %>
 
-<% if !@film.blocked? %>
 	<div class="a">
 		Скачиваний <%= @film.downloads %> <br />
 		Мировая оценка <%= @film.cis_estimate %> <br />
@@ -40,14 +39,20 @@
 		Скачать
 	</div>
 	<div class="b">
-		<% @film.files.sort_by!(&:size).each do |file| %>
-			<%= link_to file.format.title, film_file_path(file) %>
-			<%= number_to_human_size(file.size) %> <br />
-			<span class="small-text">
-				<%= file.format.description %>
-			</span>
+		<% if @film.blocked? %>
+			Скачивание фильма заблокировано правообладателем
 			<hr />
+		<% else %>
+			<% @film.files.sort_by!(&:size).each do |file| %>
+				<%= link_to file.format.title, film_file_path(file) %>
+				<%= number_to_human_size(file.size) %> <br />
+				<span class="small-text">
+					<%= file.format.description %>
+				</span>
+				<hr />
+			<% end %>
 		<% end %>
+
 		<% if @film.trailers.any? %>
 			<% @film.trailers.each_with_index do |trailer, index| %>
 				<%= link_to "Скачать трейлер #{index + 1 unless index + 1 == 1}", film_treiler_path(trailer) %> <%= number_to_human_size(trailer.filesize) %> <br />
@@ -70,10 +75,4 @@
 		<% @film.directors.each do |director| %>
 			<%= link_to director.name, film_director_path(director) %>
 		<% end %>
-
 	</div>
-<% else %>
-	<div class="a">
-		Фильм заблокирован правообладателем
-	</div>
-<% end %>

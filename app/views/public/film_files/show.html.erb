@@ -1,16 +1,22 @@
 <% provide(:title, @file.film.title + " скачать бесплатно") %>
 
-<div class="b">
-	<%= link_to "Скачать", film_file_download_path(@file.id) %>
-	<%= number_to_human_size(@file.size) %>
-</div>
+<% if @file.film.blocked? %>
+	<div class="b">
+		Скачивание фильма заблокировано правообладателем
+	</div>
+<% else %>
+	<div class="b">
+		<%= link_to "Скачать", film_file_download_path(@file.id) %>
+		<%= number_to_human_size(@file.size) %>
+	</div>
 
-<div class="title">
-		Скачать частями
-</div>
+	<div class="title">
+			Скачать частями
+	</div>
 
-<div class="a">
-	<% @parts.sort_by!(&:num).each do |part|  %>
-		<%= link_to "Скачать", film_file_part_path(part.id) %> <%= number_to_human_size(part.size) %> <br />
-	<% end %>
-</div>
+	<div class="a">
+		<% @parts.sort_by!(&:num).each do |part|  %>
+			<%= link_to "Скачать", film_file_part_path(part.id) %> <%= number_to_human_size(part.size) %> <br />
+		<% end %>
+	</div>
+<% end %>
