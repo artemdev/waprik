@@ -80,18 +80,6 @@ class Admin::MusicController < ApplicationController
 
 			file.save
 		end
-		# elsif track.path.path && FileTest.exist?(track.path.path)
-		# 	TagLib::MPEG::File.open(track.path.path) do |file|
-		# 		tag = file.id3v2_tag
-
-		# 		tag.title = params[:title]
-		# 		tag.artist = params[:artist]
-		# 		tag.album = params[:album]
-
-		# 		file.save
-		# 	end			
-		# end
-
 		flash[:success] = "id3v2 теги успешно сохранены"
 		redirect_to admin_tracks_path
 	end
@@ -120,6 +108,18 @@ class Admin::MusicController < ApplicationController
 
 	def search
 		@tracks = Mp3File.search(params[:keyword])
+	end
+
+	def update_multiple
+		@tracks = Mp3File.find(params[:track_ids])
+				# @tracks = Mp3File.update_all(["hit = ?", true], id: params[:track_ids])
+
+		@tracks.each do |track|
+			track.hit = true
+			track.save(validate: false)
+		end
+		flash[:success] = "Треки обновлены"
+		redirect_to :back
 	end
 
 end

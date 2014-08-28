@@ -51,7 +51,10 @@ Waprik::Application.routes.draw do
     end
 
     resources :tracks, controller: "Music" do
-      get 'search', on: :collection
+      collection do
+        post 'update_multiple'
+        get 'search'
+      end
       member do 
         get 'edit_tags'
         put 'update_tags'
