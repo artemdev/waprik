@@ -385,7 +385,6 @@ class Initial < ActiveRecord::Migration
 		  t.string    "name",              :limit => 256
 		  t.string    "fname",             :limit => 256
 		  t.string    "length",            :limit => 5,   :default => "00:00"
-		  t.timestamp "file_date_added",                                       :null => false
 		  t.integer   "genre_id"
 		  t.integer   "artist_id"
 		  t.integer   "album_id"
@@ -402,13 +401,14 @@ class Initial < ActiveRecord::Migration
 		  t.integer   "length_sec"
 		  t.integer   "news_id"
 		  t.string    "permalink"
+		  t.datetime "updated_at",                    :null => false
 		end
 
 		add_index "mp3_files", ["album_id"], :name => "file_album_id"
 		add_index "mp3_files", ["artist_id"], :name => "file_artist_id"
 		add_index "mp3_files", ["downloads"], :name => "file_count_downloads"
-		add_index "mp3_files", ["file_date_added"], :name => "file_date_added"
 		add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
+		add_index "mp3_files", ["created_at"], :name => "created_at"
 		add_index "mp3_files", ["ftp_path"]
 		add_index "mp3_files", ["genre_id"], :name => "file_category_id"
 		add_index "mp3_files", ["new_path"], :name => "index_mp3_files_on_new_path"
@@ -447,12 +447,12 @@ class Initial < ActiveRecord::Migration
 		# add_index "mp3_track2nomination", ["t2n_file_id"], :name => "file_id"
 		# add_index "mp3_track2nomination", ["t2n_nomination_id"], :name => "nomination_id"
 
-		create_table "mp3_users", :primary_key => "user_id", :force => true do |t|
-		  t.string "user_login",    :limit => 256, :null => false
-		  t.string "user_password", :limit => 32,  :null => false
-		end
+		# create_table "mp3_users", :primary_key => "user_id", :force => true do |t|
+		#   t.string "user_login",    :limit => 256, :null => false
+		#   t.string "user_password", :limit => 32,  :null => false
+		# end
 
-		add_index "mp3_users", ["user_login"], :name => "user_login"
+		# add_index "mp3_users", ["user_login"], :name => "user_login"
 
 		create_table "music", :force => true do |t|
 		  t.boolean  "hit"

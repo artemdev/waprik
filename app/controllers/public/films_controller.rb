@@ -9,7 +9,7 @@ class Public::FilmsController < ApplicationController
 			@genres = FilmGenre.all
 			@films = []
 		end
-		@latest_date = Film.latest.first.created_at
+		@latest_date = Film.latest.first.created_at.strftime("%d.%m.%y") if Film.latest.first
 		# @favourite_date = Film.latest.favourite.first.created_at
 	end
 

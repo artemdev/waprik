@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140820163206) do
+ActiveRecord::Schema.define(:version => 20140821115828) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20140820163206) do
     t.string   "en_title"
     t.boolean  "without_files"
     t.boolean  "blocked"
+    t.boolean  "broken"
   end
 
   add_index "films", ["blocked"], :name => "index_films_on_blocked"
@@ -368,7 +369,6 @@ ActiveRecord::Schema.define(:version => 20140820163206) do
     t.string   "name",              :limit => 256
     t.string   "fname",             :limit => 256
     t.string   "length",            :limit => 5,   :default => "00:00"
-    t.datetime "file_date_added",                                       :null => false
     t.integer  "genre_id"
     t.integer  "artist_id"
     t.integer  "album_id"
@@ -380,17 +380,18 @@ ActiveRecord::Schema.define(:version => 20140820163206) do
     t.integer  "downloads",                        :default => 0
     t.text     "file_comment_up"
     t.text     "file_comment_down"
-    t.datetime "created_at"
+    t.datetime "created_at",                                            :null => false
     t.string   "new_path"
     t.integer  "length_sec"
     t.integer  "news_id"
     t.string   "permalink"
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
   add_index "mp3_files", ["artist_id"], :name => "file_artist_id"
+  add_index "mp3_files", ["created_at"], :name => "created_at"
   add_index "mp3_files", ["downloads"], :name => "file_count_downloads"
-  add_index "mp3_files", ["file_date_added"], :name => "file_date_added"
   add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
   add_index "mp3_files", ["ftp_path"], :name => "index_mp3_files_on_ftp_path", :length => {"ftp_path"=>255}
   add_index "mp3_files", ["genre_id"], :name => "file_category_id"

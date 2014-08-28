@@ -12,11 +12,11 @@
 	</div>
 <% end %>
 
-<% if @last_tracks && @last_tracks.any? %>
+<% if @latest_tracks.any? %>
 	<div class="a">
-		<% @last_tracks.each do |track| %>
+		<% @latest_tracks.each do |track| %>
 			<%= link_to track.name, music_path(track.permalink) %>
-			<%= hr_for track, @last_tracks %>
+			<%= hr_for track, @latest_tracks %>
 		<% end %>
 	</div>
 <% elsif @last_films && @last_films.any? %>
@@ -28,7 +28,7 @@
 	</div>
 <% end %>
 
-<% if @tracks && @tracks.any? %>
+<% if @tracks.any? %>
 	<div class="title">
 		Предыдущие новинки
 	</div>

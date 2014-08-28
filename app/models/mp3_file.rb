@@ -36,8 +36,8 @@ class Mp3File < ActiveRecord::Base
   belongs_to :news, class_name: 'News', foreign_key: 'news_id'
 
   scope :latest, order("created_at DESC")
-  scope :published_at, lambda { |date = nil | where("created_at > ? AND created_at < ?", date.at_beginning_of_day, date.end_of_day) }
-  scope :without_new, lambda { |date = nil | where("created_at < ? ", date.at_beginning_of_day) }
+  scope :published_at, lambda { |date = nil | where(created_at: date.at_beginning_of_day..date.end_of_day) }
+  scope :without_new, lambda { |date = nil | where("mp3_files.created_at <= ?", date.at_beginning_of_day) }
   scope :hits, -> { where("hit = ?", true) }
   scope :top, lambda { |number = 100| where("hit = ?", true).limit(number) }
 
