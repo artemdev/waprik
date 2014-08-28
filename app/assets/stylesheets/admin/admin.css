@@ -31,18 +31,33 @@ body {
 
 header {
 	background-color: #86bfe3;
-	height: 60px;
+	height: 40px;
 	width: 100%;
 }
 
+/* HEADER */
+.menu-item {
+/*	text-transform: uppercase;*/
+	margin: 0 0 0 20px;
+	font-family: 'PT Sans', Verdana;
+	font-size: 20px;
+	padding-top: 5px;
+}
+
+.logo {
+	font-family: 'PT Sans', Verdana;
+	margin: 5px 5px 0 20px;
+	color: #7a8694;
+	font-size: .8em;
+}
 
 nav ul li {
 	float: left;
-	width: 30%;
+/*	width: 30%;*/
 	text-align: center;
 	list-style-type: none;
 	display: block;
-	padding: 15px 0px 0px 0px;
+	/*padding: 15px 0px 0px 0px;*/
 	text-decoration: none;
 }
 
@@ -50,12 +65,14 @@ nav ul li a {
 	color: white;
 	text-decoration: none;
 }
-
+/*
 nav ul li a:hover {
 	color: black;
 	background-color: white;
 	padding: 16px 15px 15px 15px;
-}
+}*/
+
+/* != HEADER */
 
 /* start info panel */
 .stat	{
@@ -71,13 +88,6 @@ nav ul li a:hover {
 	text-align: center;
 	list-style-type: none;
 	display: inline;
-}
-
-.logo {
-	text-align: left !important;
-	padding: 0 0 0 50px;
-	font-weight: bold;
-	color: #7a8694;
 }
 
 .info {
@@ -97,17 +107,8 @@ nav ul li a:hover {
 }
 /* end info panel */
 
-.category-item {
-	text-transform: uppercase;
-	font-family: 'PT Sans', Verdana
-}
 
-.logo {
-	font-family: 'PT Sans', Verdana;
-	font-size: 1.3em;
-	font-weight: bold;
 
-}
 .container {
 	width: 1280px;
 	text-align: center;

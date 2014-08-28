@@ -18,32 +18,19 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <div class="stat">
-      <ul>
-        <li class="logo">
-          WAPRIK.RU
-        </li>
-        <li class="info">
-          + 10 фильмов 10 mp3
-        </li>
-        <li class="info">
-          с 100 фильмов 150 mp3
-        </li>
-        <li class="logout">
-          <%= link_to "выйти", logout_path %>
-        </li>
-      </ul>
-    </div>
     <header>
       <nav class="navigation">
         <ul>
-          <li class="category-item">
+         <li class="logo">
+          WAPRIK.RU
+         </li>
+          <li class="menu-item">
             <%= link_to "фильмы", admin_films_path %>
           </li>
-          <li class="category-item">
+          <li class="menu-item">
             <%= link_to "музыка", admin_music_index_path %>
           </li>
-          <li class="category-item">
+          <li class="menu-item">
             <%= link_to "сериалы" %>
           </li>
         </ul>

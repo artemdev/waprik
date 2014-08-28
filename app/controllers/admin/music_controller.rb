@@ -56,7 +56,7 @@ class Admin::MusicController < ApplicationController
 		@track.set_collection(params[:mp3_file][:new_collection]) if params[:mp3_file][:new_collection]
 		if @track.save
 			flash[:success] = "Mp3 успешно обновлена"
-			redirect_to admin_tracks_path
+			redirect_to :back
 		else
 		 render :new
 		end
