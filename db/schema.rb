@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140821115828) do
+ActiveRecord::Schema.define(:version => 20140904071226) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20140821115828) do
     t.boolean  "without_files"
     t.boolean  "blocked"
     t.boolean  "broken"
+    t.datetime "published_at"
   end
 
   add_index "films", ["blocked"], :name => "index_films_on_blocked"
@@ -386,6 +387,7 @@ ActiveRecord::Schema.define(:version => 20140821115828) do
     t.integer  "news_id"
     t.string   "permalink"
     t.datetime "updated_at",                                            :null => false
+    t.datetime "published_at"
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
@@ -450,13 +452,14 @@ ActiveRecord::Schema.define(:version => 20140821115828) do
   create_table "serials", :force => true do |t|
     t.string   "description"
     t.integer  "season"
-    t.boolean  "updating",    :default => true
+    t.boolean  "updating",     :default => true
     t.string   "name"
     t.string   "cover"
     t.boolean  "hit"
     t.string   "years"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.datetime "published_at"
   end
 
   create_table "series", :force => true do |t|
@@ -490,6 +493,7 @@ ActiveRecord::Schema.define(:version => 20140821115828) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "mp4_640"
+    t.datetime "published_at"
   end
 
   add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
