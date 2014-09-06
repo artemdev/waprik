@@ -13,7 +13,7 @@ class Admin::FilmFilesController < ApplicationController
 
 	def create
 		original_path = File.expand_path(params[:film_file][:new_file])
-		FFMPEGWorker.perform_async(params[:film_id], original_path, params[:film_file][:quality])
+		FFMPEGWorker.perform_async(params[:film_id], original_path, params[:film_file][:quality], 5)
 		redirect_to admin_films_path
 	end
 
