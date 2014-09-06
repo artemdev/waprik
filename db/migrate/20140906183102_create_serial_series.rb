@@ -1,4 +1,4 @@
-class CreateAddColumnToSeries < ActiveRecord::Migration
+class CreateSerialSeries < ActiveRecord::Migration
   def change
     create_table :serial_seasons do |t|
       t.integer :serial_id, index: true
