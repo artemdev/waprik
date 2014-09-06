@@ -24,6 +24,7 @@ Waprik::Application.routes.draw do
 
     resources :ftp_files, only: ['index'] do
       get :rename_films, on: :collection
+      get :rename_music, on: :collection
     end
     resources :collections do
       get 'remove_from_collection', on: :member
