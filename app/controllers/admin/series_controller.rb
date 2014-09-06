@@ -20,7 +20,7 @@ class Admin::SeriesController < ApplicationController
 		if @serie.save
 			if params[:series][:files_attributes]
 				original_path = File.expand_path(params[:series][:files_attributes]["0"][:attach])
-				SerialsWorker.perform_async(@serie.id, original_path, params[:series][:files_attributes]["0"][:quality], 4)
+				SerialsWorker.perform_async(@serie.id, original_path, params[:series][:files_attributes]["0"][:quality], 5)
 			end
 			flash[:success] = "Успех! Серия добавлена"
 			redirect_to @serial
