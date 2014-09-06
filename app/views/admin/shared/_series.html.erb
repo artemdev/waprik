@@ -1,12 +1,16 @@
 <div class="b">
-		<%= f.label :number, "номер серии" %> <br>
-		<%= f.text_field :number %> <br>
+
+		<%= f.fields_for :season do |builder| %>
+			<%= builder.label :number, "Сезон" %> <br>
+			<%= builder.text_field :number %> <br>
+		<% end %>
 
 		<%= f.label :name, "название серии" %> <br>
 		<%= f.text_field :name %> <br>
 
 		<%= f.label :release_date, "официальная дата выхода" %> <br>
 		<%= f.text_field :release_date %> <br>
+
 		<% if series.files.any? && series.files.first.attach.present? %>
 			TODO можно удалять файлы
 		<% else %>

@@ -1,6 +1,7 @@
 <%= link_to "К сериалу #{@serial.name}", edit_admin_serial_path(@serial.id) %> <br />
 
 <% @serial.series.each do |series| %>
+	<% series.build_season unless series.season.present? %>
 	<%= form_for(series, url: admin_series_path(series), html: {multipart: true}) do |f| %>
 		<%= error_messages_for(series) %>
 

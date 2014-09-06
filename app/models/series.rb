@@ -18,12 +18,15 @@
 #
 
 class Series < ActiveRecord::Base
-  attr_accessible :name, :release_date, :number, :files_attributes
+  attr_accessible :name, :release_date, :number, :files_attributes, :season_attributes
   attr_accessor :ftp_mp4_320, :ftp_mp4_640, :ftp_low_3gp
 
   belongs_to :serial
   has_many :files, class_name: "SerialSerieFile", foreign_key: "serie_id", dependent: :destroy
+  has_one :season, class_name: "SerialSeason", foreign_key: "serial_serie_id"
+
   accepts_nested_attributes_for :files
+  accepts_nested_attributes_for :season
 
   mount_uploader :low_3gp, SerialsUploader
   mount_uploader :mp4_320, SerialsUploader

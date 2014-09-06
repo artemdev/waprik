@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140906141517) do
+ActiveRecord::Schema.define(:version => 20140906183102) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -451,6 +451,14 @@ ActiveRecord::Schema.define(:version => 20140906141517) do
   end
 
   add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+
+  create_table "serial_seasons", :force => true do |t|
+    t.integer  "serial_id"
+    t.integer  "number"
+    t.integer  "serial_serie_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "serial_serie_files", :force => true do |t|
     t.integer  "serie_id"

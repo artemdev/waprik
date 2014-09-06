@@ -11,6 +11,7 @@ class Admin::SerialsController < ApplicationController
 		n = 1
 		@serial = Serial.new
 		n.times { @serial.series.build }
+		n.times { @serial.seasons.build }
 		@categories = Category.for_serials
 	end
 
@@ -36,6 +37,7 @@ class Admin::SerialsController < ApplicationController
 		@categories = Category.for_serials
 		@qualities = FilmQuality.all
 		n.times { @serial.series.build }
+		n.times { @serial.seasons.build }
 	end
 
 	def update

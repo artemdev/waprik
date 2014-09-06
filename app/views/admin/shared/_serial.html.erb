@@ -2,8 +2,10 @@
 	<%= f.label(:name, "Название") %> <br>
 	<%= f.text_field(:name) %> <br>
 
-	<%= f.label(:season, "Сезон") %> <br>
-	<%= f.text_field(:season) %> <br>
+	<%= f.fields_for :seasons do |builder| %>
+		<%= builder.label :number, "Сезон" %> <br>
+		<%= builder.text_field :number %> <br>
+	<% end %>
 
 	<%= f.label(:years, "Года") %> <br>
 	<%= f.text_field(:years) %> <br>

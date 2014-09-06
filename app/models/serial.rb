@@ -16,7 +16,7 @@
 #
 
 class Serial < ActiveRecord::Base
-  attr_accessible :cover, :description, :season, :updating, :name, :hit, :years, :series_attributes, :category, :new_genres
+  attr_accessible :cover, :description, :season, :updating, :name, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes
   attr_accessor :category, :new_genres
   mount_uploader :cover, CoverUploader
 
@@ -29,9 +29,11 @@ class Serial < ActiveRecord::Base
   has_many :series, dependent: :destroy
   has_many :genres_through, class_name: "GenreThrough", as: :genreable
   has_many :genres, through: :genres_through
+  has_many :seasons, class_name: "SerialSeason"
 
 
   accepts_nested_attributes_for :series
+  accepts_nested_attributes_for :seasons
 
   scope :hits, where(hit: true)
   scope :latest, order("updated_at DESC")
