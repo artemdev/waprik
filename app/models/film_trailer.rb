@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: films_trailers
+#
+#  id         :integer          not null, primary key
+#  film_id    :integer          not null
+#  filename   :string(50)       not null
+#  filesize   :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # integer "film_id"
 # string  "filename", :limit => 50
 # integer "filesize"

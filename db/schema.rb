@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140904071226) do
+ActiveRecord::Schema.define(:version => 20140905071821) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -448,6 +448,22 @@ ActiveRecord::Schema.define(:version => 20140904071226) do
   end
 
   add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+
+  create_table "serial_serie_files", :force => true do |t|
+    t.integer  "serie_id"
+    t.integer  "quality_id"
+    t.integer  "format_id"
+    t.string   "attach"
+    t.integer  "size",       :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "serial_serie_files", ["attach"], :name => "index_serial_serie_files_on_attach"
+  add_index "serial_serie_files", ["format_id"], :name => "index_serial_serie_files_on_format_id"
+  add_index "serial_serie_files", ["quality_id"], :name => "index_serial_serie_files_on_quality_id"
+  add_index "serial_serie_files", ["serie_id"], :name => "index_serial_serie_files_on_serie_id"
+  add_index "serial_serie_files", ["size"], :name => "index_serial_serie_files_on_size"
 
   create_table "serials", :force => true do |t|
     t.string   "description"

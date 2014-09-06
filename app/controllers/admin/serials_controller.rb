@@ -8,18 +8,20 @@ class Admin::SerialsController < ApplicationController
 	end
 
 	def new
+		n = 1
 		@serial = Serial.new
-		1.times { @serial.series.build }
+		n.times { @serial.series.build }
 		@categories = Category.for_serials
 	end
 
 	def create
 		@serial = Serial.new(params[:serial])
+		@categories = Category.for_serials
 		if @serial.save
 			flash[:success] = "Сериал успешно добавлен"
-			redirect_to admin_serial_path(@serial.id)
+			redirect_to edit_admin_serial_path(@serial)
 		else
-			render(new_admin_serial_path)
+			render :new
 		end
 	end
 
@@ -29,9 +31,11 @@ class Admin::SerialsController < ApplicationController
 	end
 
 	def edit
+		n = 1
 		@serial = Serial.find(params[:id])
 		@categories = Category.for_serials
-		1.times { @serial.series.build }
+		@qualities = FilmQuality.all
+		n.times { @serial.series.build }
 	end
 
 	def update

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: feedbacks
+#
+#  id          :integer          not null, primary key
+#  description :string(255)
+#  answer      :string(255)
+#  category    :string(255)
+#  sender      :string(255)
+#  published   :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Feedback < ActiveRecord::Base
   attr_accessible :description, :sender, :answer, :new_category
   attr_accessor :new_category

@@ -23,7 +23,7 @@ gem 'taglib-ruby'
 gem "font-awesome-rails"
 gem 'sitemap_generator'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-
+gem 'annotate'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

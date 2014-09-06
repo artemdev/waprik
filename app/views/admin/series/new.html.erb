@@ -1,7 +1,7 @@
-<%= form_for(@series, url: {action: 'create', serial_id: @serial.id}, html: {multipart: true}) do |f| %>
-	<%= error_messages_for(@series) %>
+<%= form_for(@serie, url: {action: 'create', serial_id: @serial.id}, html: {multipart: true}) do |f| %>
+	<%= error_messages_for(@serie) %>
 
-		<%= render(partial: 'admin/shared/series', locals: {:f => f, :series => @series}) %>
+		<%= render(partial: 'admin/shared/series', locals: {:f => f, :series => @serie}) %>
 		
 	<%= f.submit("Добавить") %>
 <% end %>

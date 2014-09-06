@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: films_parts
+#
+#  id         :integer          not null, primary key
+#  num        :integer
+#  file_id    :integer
+#  film_id    :integer
+#  format_id  :integer
+#  real_name  :string(255)
+#  duration   :integer
+#  size       :integer
+#  downloads  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # integer "num"
 # integer "file_id"
 # integer "film_id"

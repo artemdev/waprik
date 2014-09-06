@@ -1,3 +1,33 @@
+# == Schema Information
+#
+# Table name: mp3_files
+#
+#  id                :integer          not null, primary key
+#  ftp_path          :string(256)
+#  path              :string(256)
+#  name              :string(256)
+#  fname             :string(256)
+#  length            :string(5)        default("00:00")
+#  genre_id          :integer
+#  artist_id         :integer
+#  album_id          :integer
+#  order             :integer
+#  order_nomination  :integer          default(0)
+#  hit               :boolean          default(FALSE)
+#  file_hit_date     :datetime
+#  new               :boolean          default(FALSE)
+#  downloads         :integer          default(0)
+#  file_comment_up   :text
+#  file_comment_down :text
+#  created_at        :datetime         not null
+#  new_path          :string(255)
+#  length_sec        :integer
+#  news_id           :integer
+#  permalink         :string(255)
+#  updated_at        :datetime         not null
+#  published_at      :datetime
+#
+
 # string    "ftp_path",          :limit => 256,                     
 # string    "path",              :limit => 256,                     
 # string    "name",              :limit => 256,                     

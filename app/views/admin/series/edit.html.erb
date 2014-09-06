@@ -7,7 +7,7 @@
 		<%= render(partial: 'admin/shared/series', locals: {:f => f, :series => series}) %>
 
 		<%= f.submit("Обновить") %>
-		<%= link_to "удалить серию", {controller: 'series', action: 'delete', id: series.id}  %>
+		<%= link_to "удалить серию", admin_series_path(series), method: :delete %>
 	<% end %>
 <% end %>
 

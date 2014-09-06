@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: films_translations
+#
+#  id         :integer          not null, primary key
+#  title      :string(50)
+#  position   :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # string  "title",    :limit => 50
 # integer "position"
 class FilmTranslation < ActiveRecord::Base

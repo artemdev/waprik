@@ -1,18 +1,19 @@
 # == Schema Information
 #
-# Table name: ads_links
+# Table name: serial_serie_files
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)
-#  to         :string(255)
-#  from       :string(255)
-#  expires_at :datetime
+#  serie_id   :integer
+#  quality_id :integer
+#  format_id  :integer
+#  attach     :string(255)
+#  size       :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'spec_helper'
 
-describe AdsLink do
+describe SerialSerieFile do
   pending "add some examples to (or delete) #{__FILE__}"
 end

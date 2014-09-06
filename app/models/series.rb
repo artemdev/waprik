@@ -1,8 +1,29 @@
+# == Schema Information
+#
+# Table name: series
+#
+#  id           :integer          not null, primary key
+#  serial_id    :integer
+#  name         :string(255)
+#  release_date :string(255)
+#  number       :integer
+#  mp4_640      :string(255)
+#  dl_mp4_640   :integer          default(0)
+#  mp4_320      :string(255)
+#  dl_mp4_320   :integer          default(0)
+#  low_3gp      :string(255)
+#  dl_low_3gp   :integer          default(0)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Series < ActiveRecord::Base
-  attr_accessible :name, :release_date, :number, :low_3gp, :mp4_320, :mp4_640, :serial_id, :ftp_mp4_320, :ftp_mp4_640, :ftp_low_3gp
+  attr_accessible :name, :release_date, :number, :files_attributes
   attr_accessor :ftp_mp4_320, :ftp_mp4_640, :ftp_low_3gp
 
   belongs_to :serial
+  has_many :files, class_name: "SerialSerieFile", foreign_key: "serie_id", dependent: :destroy
+  accepts_nested_attributes_for :files
 
   mount_uploader :low_3gp, SerialsUploader
   mount_uploader :mp4_320, SerialsUploader
@@ -12,4 +33,6 @@ class Series < ActiveRecord::Base
 
   scope :latest, order("number DESC")
   scope :fresh, order("created_at DESC")
+
+
 end

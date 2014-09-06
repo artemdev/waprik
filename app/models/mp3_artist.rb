@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: mp3_artists
+#
+#  id                  :integer          not null, primary key
+#  name                :string(256)
+#  first_letter        :string(1)
+#  lang                :string(3)
+#  count_albums        :integer          default(0)
+#  count_tracks        :integer          default(0)
+#  count_hits          :integer          default(0)
+#  artist_comment_up   :text
+#  artist_comment_down :text
+#  created_at          :datetime
+#  updated_at          :datetime
+#  permalink           :string(255)
+#
+
 class Mp3Artist < ActiveRecord::Base
   attr_accessible :name, :lang
 

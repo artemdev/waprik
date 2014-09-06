@@ -1,3 +1,41 @@
+# == Schema Information
+#
+# Table name: films
+#
+#  id                 :integer          not null, primary key
+#  item_id            :integer
+#  title              :string(100)
+#  user_id            :integer
+#  is_favourite       :boolean
+#  about              :text
+#  duration_hours     :integer
+#  duration_minutes   :integer
+#  duration_seconds   :integer
+#  time               :integer
+#  downloads          :integer          default(0)
+#  world_estimate     :string(10)
+#  cis_estimate       :string(10)
+#  last_download_time :integer
+#  prepare_status     :string(100)
+#  file_name          :string(255)
+#  month              :integer
+#  year               :integer
+#  quality_id         :integer
+#  translation_id     :integer
+#  count_likes        :integer
+#  count_comments     :integer
+#  created_at         :datetime         not null
+#  cover              :string(255)
+#  updated_at         :datetime
+#  permalink          :string(255)
+#  ru_title           :string(255)
+#  en_title           :string(255)
+#  without_files      :boolean
+#  blocked            :boolean
+#  broken             :boolean
+#  published_at       :datetime
+#
+
 # integer "item_id"
 # string  "title",              :limit => 100
 # integer "user_id"

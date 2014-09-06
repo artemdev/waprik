@@ -7,35 +7,31 @@ class Admin::SeriesController < ApplicationController
 
 	def new 
 		@serial = Serial.find(params[:id])
-		@series = @serial.series.build
+		@serie = @serial.series.build
+		1.times { @serie.files.build }
   	@files = Dir.glob(FTP_PATH + "*").sort
+  	@qualities = FilmQuality.all
 	end
 
 	def create
 		@serial = Serial.find(params[:serial_id])
-		@series = Series.new(params[:series])
-
-		@series.serial = @serial
-
-		@series.low_3gp = File.open(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
-		@series.mp4_320 = File.open(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
-		@series.mp4_640 = File.open(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
-
-		if @series.save
-			@serial.save
-			File.delete(params[:series][:ftp_low_3gp]) unless params[:series][:ftp_low_3gp].nil? || params[:series][:ftp_low_3gp].empty?
-			File.delete(params[:series][:ftp_mp4_320]) unless params[:series][:ftp_mp4_320].nil? || params[:series][:ftp_mp4_320].empty?
-			File.delete(params[:series][:ftp_mp4_640]) unless params[:series][:ftp_mp4_640].nil? || params[:series][:ftp_mp4_640].empty?
-			flash[:success] = "Сериал успешно добавлен"
-			redirect_to edit_admin_serial_path(@serial.id)
+		@serie = @serial.series.new(params[:series].except("files_attributes"))
+		if @serie.save
+			if params[:series][:files_attributes]
+				original_path = File.expand_path(params[:series][:files_attributes]["0"][:attach])
+				SerialsWorker.perform_async(@serie.id, original_path, params[:series][:files_attributes]["0"][:quality])
+			end
+			flash[:success] = "Успех! Серия добавлена"
+			redirect_to @serial
 		else
-			render(new_admin_serial_path)
-		end		
+			render :new
+		end
 	end
 
   def edit
   	@serial = Serial.find(params[:id])
   	@files = Dir.glob(FTP_PATH + "*").sort
+  	@qualities = FilmQuality.all
   end	
 
   def update
@@ -56,11 +52,11 @@ class Admin::SeriesController < ApplicationController
   	end
   end
 
-  def delete
+  def destroy
 		series = Series.find(params[:id])
 		@serial_id = series.serial.id
 		series.destroy
-		redirect_to(controller: 'serials', action: 'edit', :id => @serial_id)
+		redirect_to edit_admin_series_path(series.serial)
   end
 
  	def delete_file
