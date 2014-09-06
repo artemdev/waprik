@@ -9,7 +9,7 @@ class Admin::SeriesController < ApplicationController
 		@serial = Serial.find(params[:id])
 		@serie = @serial.series.build
 		1.times { @serie.files.build }
-  	@files = Dir.glob(FTP_PATH + "*").sort
+  	@files = Dir.glob(FTP_PATH + "**/*").sort
   	@qualities = FilmQuality.all
 	end
 
