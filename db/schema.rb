@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140906122739) do
+ActiveRecord::Schema.define(:version => 20140906141517) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -261,6 +261,7 @@ ActiveRecord::Schema.define(:version => 20140906122739) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "genreable_type"
+    t.integer  "id"
   end
 
   add_index "films_genres_through", ["genreable_id", "genre_id"], :name => "film_id", :unique => true
