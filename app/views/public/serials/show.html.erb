@@ -24,11 +24,11 @@
 		Года: <%= @serial.years %>
 	<% end %>
 
-	<% if @serial.categories.any? %>
+	<% if @serial.genres.any? %>
 		<hr />
 		Жанры
-		<% @serial.categories.uniq.each do |category| %>
-			<%= link_to category.name, controller: 'public/categories', action: 'show', id: category.id, content_type: 'serials' %>
+		<% @serial.genres.uniq.each do |genre| %>
+			<%= link_to genre.title, "" %>
 		<% end %>	
 	<% end %>
 </div>
@@ -60,4 +60,4 @@
 
 <% @footer_links = Array.new %>
 <% @footer_links << "#{ link_to 'Все сериалы', serials_path }" %>
-<% @footer_links << "#{ link_to @serial.categories.last.name }" if @serial.categories.last %>
+<% @footer_links << "#{ link_to @serial.genres.last.title }" if @serial.genres.last %>
