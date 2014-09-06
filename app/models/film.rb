@@ -71,7 +71,7 @@ class Film < ActiveRecord::Base
   has_many :films_actors_through, class_name: "FilmActorThrough"
   has_many :actors, through: :films_actors_through
   # genres
-  has_many :films_genres_through, class_name: "FilmGenreThrough"
+  has_many :films_genres_through, class_name: "GenreThrough", as: :genreable
   has_many :genres, through: :films_genres_through
   # directors
   has_many :films_directors_through, class_name: "FilmDirectorThrough"
@@ -83,8 +83,7 @@ class Film < ActiveRecord::Base
   belongs_to :translation, class_name: "FilmTranslation"
   # quality
   belongs_to :quality, class_name: "FilmQuality"
-  # trailers
-  has_many :trailers, class_name: "FilmTrailer", dependent: :destroy
+  # trailersss_name: "FilmTrailer", dependent: :destroy
 
   has_many :collection_film_through, foreign_key: 'film_id'
   has_many :collections, through: :collection_film_through
@@ -98,15 +97,16 @@ class Film < ActiveRecord::Base
   scope :favourite, where("is_favourite = ?", true)
 
   def add_actors(actors)
-  	separated_actors = actors.split("\n")
-  	separated_actors.each do |actor|
+    separated_actors = actors.split("\n")
+    separated_actors.each do |actor|
       actor.strip!
       if new_actor = FilmActor.find_by_name(actor)
         self.actors << new_actor
       else
         new_actor = FilmActor.create!(name: actor)
-  		  self.actors << new_actor
+        self.actors << new_actor
       end 
+  has_many :trailers, cla
   	end
   end
 

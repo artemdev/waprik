@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140905071821) do
+ActiveRecord::Schema.define(:version => 20140906122739) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -256,13 +256,15 @@ ActiveRecord::Schema.define(:version => 20140905071821) do
   end
 
   create_table "films_genres_through", :id => false, :force => true do |t|
-    t.integer  "film_id"
+    t.integer  "genreable_id"
     t.integer  "genre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "genreable_type"
   end
 
-  add_index "films_genres_through", ["film_id", "genre_id"], :name => "film_id", :unique => true
+  add_index "films_genres_through", ["genreable_id", "genre_id"], :name => "film_id", :unique => true
+  add_index "films_genres_through", ["genreable_type"], :name => "index_films_genres_through_on_genreable_type"
 
   create_table "films_parts", :force => true do |t|
     t.integer  "num"

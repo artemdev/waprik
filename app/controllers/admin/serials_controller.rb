@@ -16,7 +16,7 @@ class Admin::SerialsController < ApplicationController
 
 	def create
 		@serial = Serial.new(params[:serial])
-		@categories = Category.for_serials
+		@serial.add_genres params[:serial][:new_genres]
 		if @serial.save
 			flash[:success] = "Сериал успешно добавлен"
 			redirect_to edit_admin_serial_path(@serial)
@@ -40,8 +40,7 @@ class Admin::SerialsController < ApplicationController
 
 	def update
 		@serial = Serial.find(params[:id])
-		@category = Category.find_by_name(params[:serial][:category])
-		@serial.categories << @category
+		@serial.add_genres params[:serial][:new_genres]
 		if @serial.update_attributes(params[:serial])
 			flash[:success] = "Сериал успешно обновлен"
 			redirect_to edit_admin_serial_path(@serial.id)
