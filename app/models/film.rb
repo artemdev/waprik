@@ -109,7 +109,6 @@ class Film < ActiveRecord::Base
         new_actor = FilmActor.create!(name: actor)
         self.actors << new_actor
       end 
-  has_many :trailers, cla
   	end
   end
 
