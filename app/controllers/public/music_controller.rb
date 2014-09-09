@@ -17,6 +17,7 @@ class Public::MusicController < ApplicationController
 
 	def show
 		@track = Mp3File.find_by_permalink(params[:id])
+		redirect_to music_path if @track.nil?
 	end
 
 	def download
