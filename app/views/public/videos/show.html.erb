@@ -31,42 +31,6 @@
 	<% end %>
 </div>
 
-<% unless @video.mp4_320.url.nil? && @video.mp4_640.url.nil? && @video.low_3gp.url.nil? %>
-	<div class="title">
-		Скачать
-	</div>
-<% end %>
-
-<% unless @video.mp4_640.url.nil? %>
-	<div class="b">
-		<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_640", :id => @video.id}) %>
-		<span class="small_text">
-		 		<%= number_to_human_size(@video.mp4_640.size) %> <br />
-		 		Для смартфонов, планшетов
-		</span>		
-	</div>
-<% end %>
-
-<% unless @video.mp4_320.url.nil? %>
-	<div class="b">
-		<%= link_to("MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => @video.id}) %>
-		<span class="small_text">
-		 		<%= number_to_human_size(@video.mp4_320.size) %> <br />
-				 		Для телефонов, смартфонов
-		</span>		
-	</div>
-<% end %>
-
-
-<% unless @video.low_3gp.url.nil?%>
-	<div class="b">
-		<%= link_to("3GP (среднее качество)", {:action => 'download', :version => "3gp", :id => @video.id}) %>
-		<span class="small_text">
-		 		<%= number_to_human_size(@video.low_3gp.size) %> <br />
-		 		Для телефонов
-		</span>		
-	</div>
-<% end %>
 <% unless @video.collections.empty?%>
 	<div class="title">
 		В подборках
@@ -77,6 +41,20 @@
 		<% end %>
 	</div>
 <% end %>
+
+<% if @video.files.any? %>
+		<% @video.files.each do |file| %>
+			<div class="a">  <!-- files -->	
+				<!-- TODO сделать скачивание файлов серии -->
+				<%= link_to file.format.title, "" %>
+				<%= number_to_human_size(file.size) %>
+				<br />
+				<span class="small-text">
+					<%= file.format.description %>
+				</span> 
+			</div>
+		<% end %> <!-- # @video.files.each -->
+<% end %> <!-- # @video.files.any? -->
 
 <% @footer_links = [
 	"#{link_to "В категорию #{@categories.last.name}", {controller: 'public/videos', action: 'category', id: @categories.last.id}} <br/>",

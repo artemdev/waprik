@@ -8,5 +8,4 @@ class FFMPEGWorker
 		film.files.new.convert_to_mp4_640 path, quality_id
 	end
 		
-
 end

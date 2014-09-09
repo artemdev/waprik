@@ -15,6 +15,7 @@ class Public::SerialsController < ApplicationController
 		@series = @serial.series.latest
 	end
 
+  # TODO сделать скачивание
   def download
     @series = Series.find(params[:id])
     version = params[:version]

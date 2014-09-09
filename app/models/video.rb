@@ -28,6 +28,8 @@ class Video < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :collections
 
+  has_many :files, class_name: "VideFile"
+
   validates :name, presence: true, length: { minimum: 5, maximum: 100}
   # validates_presence_of :screen
   # validates_presence_of :low_3gp
@@ -35,10 +37,6 @@ class Video < ActiveRecord::Base
   # validates_presence_of :mp4_320
 
   mount_uploader :screen, CoverUploader
-  mount_uploader :low_3gp, VideosUploader
-  mount_uploader :mp4_320, VideosUploader
-  mount_uploader :mp4_640, VideosUploader
-  mount_uploader :source_video, VideosUploader
 
   # before_create :mark
   # after_create :convert

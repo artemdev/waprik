@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140906183102) do
+ActiveRecord::Schema.define(:version => 20140909113745) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -505,6 +505,22 @@ ActiveRecord::Schema.define(:version => 20140906183102) do
   end
 
   add_index "series", ["serial_id"], :name => "index_series_on_serial_id"
+
+  create_table "video_files", :force => true do |t|
+    t.integer  "video_id"
+    t.integer  "quality_id"
+    t.integer  "format_id"
+    t.integer  "size"
+    t.string   "attach"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "video_files", ["attach"], :name => "index_video_files_on_attach"
+  add_index "video_files", ["format_id"], :name => "index_video_files_on_format_id"
+  add_index "video_files", ["quality_id"], :name => "index_video_files_on_quality_id"
+  add_index "video_files", ["size"], :name => "index_video_files_on_size"
+  add_index "video_files", ["video_id"], :name => "index_video_files_on_video_id"
 
   create_table "videos", :force => true do |t|
     t.integer  "category_id"
