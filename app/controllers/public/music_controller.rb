@@ -20,7 +20,7 @@ class Public::MusicController < ApplicationController
 	end
 
 	def download
-		@track = Mp3File.find(params[:id])
+		@track = Mp3File.find_by_permalink(params[:id])
 		@track.downloads += 1
 		@track.save
 		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
