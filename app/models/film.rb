@@ -63,6 +63,7 @@ class Film < ActiveRecord::Base
   attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection
 
+
   mount_uploader :cover, CoverUploader
 
   before_create :create_title

@@ -39,6 +39,7 @@ Waprik::Application.routes.draw do
       resources :qualities, only: ['index','show'] do
         get 'empty', on: :collection
       end
+      get 'updating', on: :collection
       get 'thrailers', on: :collection
       get 'new_by_hand', on: :collection
       post 'create_by_hand', on: :collection     
@@ -103,6 +104,7 @@ Waprik::Application.routes.draw do
 
       resources :films do
         get "news", on: :collection
+        get "updating", on: :collection
         get 'latest', on: :collection
       end
       match 'films/:id' => 'films#show'

@@ -1,5 +1,15 @@
 class Public::FilmsController < ApplicationController
 	layout 'mobile'
+	
+  # мониторинг обновлени качеств фильмов
+  def updating
+  	@files = FilmFile.order("created_at DESC")
+  	# TODO refactoring
+  	@films = [].uniq.paginate(page: params[:page], per_page: 10)
+  	@files.each do |file|
+  		@films << file.film
+  	end
+  end
 
 	def index
 		if params[:film_name]
