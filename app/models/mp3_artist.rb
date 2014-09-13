@@ -50,8 +50,8 @@ class Mp3Artist < ActiveRecord::Base
 
   def set_language
     wl = WhatLanguage.new(:english, :russian)
-    self.lang = "rus" if wl.language(self.name) == :russian
-    self.lang = "eng" if wl.language(self.name) == :english
+    self.lang = "rus" if wl.language(self.first_letter) == :russian
+    self.lang = "eng" if wl.language(self.first_letter) == :english
     true
   end
 
