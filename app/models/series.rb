@@ -32,7 +32,7 @@ class Series < ActiveRecord::Base
   mount_uploader :mp4_320, SerialsUploader
   mount_uploader :mp4_640, SerialsUploader
 
-  validates_presence_of :number, message: '^ Нужно указать номер серии'
+  validates :number, :serial_id, presence: true
 
   scope :latest, order("number DESC")
   scope :fresh, order("created_at DESC")

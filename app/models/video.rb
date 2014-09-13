@@ -20,6 +20,9 @@
 #
 
 class Video < ActiveRecord::Base
+  def to_param
+    "#{id}-#{name}"
+  end
 
   attr_accessible :name, :screen, :description, :category_id, :collection, :artist, :source_video, :ftp_mp4_320, :ftp_low_3gp, :ftp_mp4_640
   attr_accessor :collection, :ftp_mp4_320, :ftp_low_3gp, :ftp_mp4_640

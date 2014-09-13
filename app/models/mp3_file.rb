@@ -27,22 +27,7 @@
 #  updated_at        :datetime         not null
 #  published_at      :datetime
 #
-
-# string    "ftp_path",          :limit => 256,                     
-# string    "path",              :limit => 256,                     
-# string    "name",              :limit => 256,                     
-# string    "fname",             :limit => 256,                     
-# string    "length",            :limit => 5,   :default => "00:00",
-# timestamp "created_at",                                           
-# integer   "genre_id",                                             
-# integer   "artist_id",                        :default => 0,      
-# integer   "album_id",                         :default => 0,      
-# integer   "order",                                                
-# integer   "order_nomination",                 :default => 0,      
-# string    "hit",               :limit => 1,   :default => "0",    
-# timestamp "file_hit_date"
-# string    "new",               :limit => 1,   :default => "0",    
-# integer   "downloads",                       :default => 0,      
+    
 require 'taglib'
 class Mp3File < ActiveRecord::Base
   default_scope order("created_at DESC")

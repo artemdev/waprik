@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140909113745) do
+ActiveRecord::Schema.define(:version => 20140912072250) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -124,6 +124,22 @@ ActiveRecord::Schema.define(:version => 20140909113745) do
   add_index "collections", ["description"], :name => "index_collections_on_description"
   add_index "collections", ["image"], :name => "index_collections_on_image"
   add_index "collections", ["permalink"], :name => "index_collections_on_permalink"
+
+  create_table "faces", :force => true do |t|
+    t.integer  "instagram_id"
+    t.integer  "vk_id"
+    t.integer  "fb_id"
+    t.integer  "sex",          :default => 0
+    t.integer  "views",        :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "faces", ["fb_id"], :name => "index_faces_on_fb_id"
+  add_index "faces", ["instagram_id"], :name => "index_faces_on_instagram_id"
+  add_index "faces", ["sex"], :name => "index_faces_on_sex"
+  add_index "faces", ["views"], :name => "index_faces_on_views"
+  add_index "faces", ["vk_id"], :name => "index_faces_on_vk_id"
 
   create_table "feedbacks", :force => true do |t|
     t.string   "description"
@@ -458,7 +474,10 @@ ActiveRecord::Schema.define(:version => 20140909113745) do
     t.integer  "serial_serie_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "title"
   end
+
+  add_index "serial_seasons", ["title"], :name => "index_serial_seasons_on_title"
 
   create_table "serial_serie_files", :force => true do |t|
     t.integer  "serie_id"
@@ -505,6 +524,24 @@ ActiveRecord::Schema.define(:version => 20140909113745) do
   end
 
   add_index "series", ["serial_id"], :name => "index_series_on_serial_id"
+
+  create_table "users", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "video_files", :force => true do |t|
     t.integer  "video_id"

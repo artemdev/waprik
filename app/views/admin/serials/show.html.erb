@@ -12,10 +12,12 @@
 <div class="a">
 	<%= @serial.description %>
 </div>
+
 <% @serial.series.each do |series| %>
 	<div class="title">
 		<%= series.number %> (<%= series.release_date %>)
 	</div>
+
 	<div class="a">
 			<%= link_to "3GP (среднее качество)", series.low_3gp.url unless series.low_3gp.url.nil? %>
 			<%= link_to "MP4 320 (хорошее качество)", series.mp4_320.url unless series.mp4_320.url.nil? %>

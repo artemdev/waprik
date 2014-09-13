@@ -35,9 +35,9 @@
 
 <% if @series.any? %> <!-- series -->	
 	<% @series.each do |serie| %>
-		<% if serie.files.any? %>
+		<% if serie.season.files.any? %>
 			<div class="title">
-				<%= serie.number %> серия
+				<%= serie.season.number %> серия
 			</div>
 				<% serie.files.each do |file| %>
 					<div class="a">  <!-- files -->	
