@@ -2,7 +2,7 @@
 
 <% if @films && @films.any? %>
 	<div class="a">
-		<%= render partial: 'public/shared/_films', locals: { :films => @films } %>
+		<%= render partial: 'public/shared/films', locals: { :films => @films } %>
 	</div>
 	
 	<%= will_paginate @films, previous_label: "", next_label: "", class: "b" %>
