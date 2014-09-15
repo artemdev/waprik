@@ -25,8 +25,8 @@ class AdminUser < ActiveRecord::Base
   has_many :replies, class_name: 'AdminReply', foreign_key: "admin_id" 
 
   # only on create, so other attributes of this user can be changed
-  validates :username, presence: true, length: { maximum: 100 }
-  validates :password, presence: true
+  validates :username, presence: { message: "Имя пользователь может быть от от 6 до 30 символов" }, length: { minimum: 6,  maximum: 30 }
+  validates :password, presence: { message: "Пароль должен быть от 6 до 30 символов" }, length: { minimum: 6, maximum: 30 }
   # validates_presence_of :first_name
   # validates_length_of :first_name, :maximum => 100
 

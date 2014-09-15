@@ -1,6 +1,6 @@
 <%= link_to "Добавить сериал", new_admin_serial_path %>
 <div class="a">
-	<% unless @serials.empty? %>
+	<% if @serials.any? %>
 	<% @serials.each do |serial| %>
 		<%= link_to serial.name, admin_serial_path(serial) %> <%= link_to "ред", edit_admin_serial_path(serial) %> <%= link_to "x", admin_serial_path(serial), :method => :delete %> <br />
 	<% end %>

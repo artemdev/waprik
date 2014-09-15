@@ -23,7 +23,12 @@ class Admin::FilmGenresController < ApplicationController
 
   def show
  		@genre = FilmGenre.find(params[:id])
-  	@films = @genre.films.paginate(page: params[:page], per_page: 10)
+    content = params[:content] 
+    if content && content = "serials"
+      @serials = @genre.serials.paginate(page: params[:page], per_page: 10)
+    else
+      @films = @genre.films.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   def destroy

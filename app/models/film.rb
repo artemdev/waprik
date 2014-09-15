@@ -36,28 +36,6 @@
 #  published_at       :datetime
 #
 
-# integer "item_id"
-# string  "title",              :limit => 100
-# integer "user_id"
-# boolean "is_favourite"
-# text    "about"
-# integer "duration_hours",     :limit => 1
-# integer "duration_minutes",   :limit => 1
-# integer "duration_seconds",   :limit => 1
-# integer "time"
-# integer "downloads",                         :default => 0
-# string  "world_estimate",     :limit => 10
-# string  "cis_estimate",       :limit => 10
-# integer "last_download_time"
-# string  "prepare_status",     :limit => 100
-# string  "file_name"
-# integer "month",              :limit => 1
-# integer "year",               :limit => 2
-# integer "quality_id"
-# integer "translation_id"
-# integer "news_time"
-# integer "count_comments",                    :default => 0
-# integer "count_likes",                       :default => 0
 require 'elasticsearch/rails/tasks/import'
 class Film < ActiveRecord::Base
   attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked
@@ -144,7 +122,15 @@ class Film < ActiveRecord::Base
       end
     end
   end
+
+  def set_collection id
+    if id.present? && collection = Collection.find(id)
+      self.collections << collection
+    end
+  end
   
+  private
+
   def create_title
     if ru_title.present? && en_title.present?
       self.title = ru_title + " / " + en_title
@@ -155,11 +141,5 @@ class Film < ActiveRecord::Base
     end
   end
 
-
-  def set_collection id
-    if id.present? && collection = Collection.find(id)
-      self.collections << collection
-    end
-  end
 
 end

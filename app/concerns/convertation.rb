@@ -4,7 +4,21 @@ module Convertation
   LOW_3GP = "low_3gp"
   ASPECT_OPTIONS = { preserve_aspect_ratio: :width }
 
-	def video_options_for(version)
+	  def self.to_3gp object, file_path, quality_id
+			video = FFMPEG::Movie.new(file_path)
+			file_basename = File.basename(file_path, ".mp4")
+			tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/series/#{object.serie}")).first
+			output_video_path = Rails.root.join(tmp_folder, "#{file_basename}.3gp")
+			movie = video.transcode(output_video_path, video_options_for(LOW_3GP), ASPECT_OPTIONS)
+			object.size = movie.size
+			object.format = FilmFormat.find_by_title("3GP (среднее качество)") # MP4 320 (хорошее качество)
+			object.quality = FilmQuality.find(quality_id)
+	  	object.attach = File.open(output_video_path)
+	  	object.save
+	 		FileUtils.rm_rf(tmp_folder)
+	  end
+
+		def self.video_options_for(version)
 			if version == MP4_640
 				  options = {
 				  		video_codec: "libx264", frame_rate: 23.9, resolution: "640x320", video_bitrate: 350,
@@ -28,44 +42,32 @@ module Convertation
 		end
 
 		# Конвертация видео
-	  def convert_to_mp4_640 file_path, quality_id
+	  def self.to_mp4_640 object, file_path, quality_id
 			video = FFMPEG::Movie.new(file_path)
 			file_basename = File.basename(file_path, ".mp4")
-			tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/series/#{self.serie}")).first
+			tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/series/#{object.serie}")).first
 			output_video_path = Rails.root.join(tmp_folder, "#{file_basename}_640.mp4")
 			movie = video.transcode(output_video_path, video_options_for(MP4_640), ASPECT_OPTIONS)
-			self.size = movie.size
-			self.format = FilmFormat.find_by_title("MP4 640 (хорошее качество)") # MP4 640 (хорошее качество)
-			self.quality = FilmQuality.find(quality_id)
-	  	self.attach = File.open(output_video_path)
-	  	save
+			object.size = movie.size
+			object.format = FilmFormat.find_by_title("MP4 640 (хорошее качество)") # MP4 640 (хорошее качество)
+			object.quality = FilmQuality.find(quality_id)
+	  	object.attach = File.open(output_video_path)
+	  	object.save
 	 		FileUtils.rm_rf(tmp_folder)
 	  end
 
-	  def convert_to_mp4_320 file_path, quality_id
+	  def self.to_mp4_320 object, file_path, quality_id
 			video = FFMPEG::Movie.new(file_path)
 			file_basename = File.basename(file_path, ".mp4")
-			tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/series/#{self.serie}")).first
+			tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/series/#{object.serie}")).first
 			output_video_path = Rails.root.join(tmp_folder, "#{file_basename}_320.mp4")
 			movie = video.transcode(output_video_path, video_options_for(MP4_320), ASPECT_OPTIONS)
-			self.size = movie.size
-			self.format = FilmFormat.find_by_title("MP4 320 (хорошее качество)") # MP4 320 (хорошее качество)
-			self.quality = FilmQuality.find(quality_id)
-	  	self.attach = File.open(output_video_path)
-	  	save
+			object.size = movie.size
+			object.format = FilmFormat.find_by_title("MP4 320 (хорошее качество)") # MP4 320 (хорошее качество)
+			object.quality = FilmQuality.find(quality_id)
+	  	object.attach = File.open(output_video_path)
+	  	object.save
 	 		FileUtils.rm_rf(tmp_folder)
 	  end
-	  def convert_to_3gp file_path, quality_id
-			video = FFMPEG::Movie.new(file_path)
-			file_basename = File.basename(file_path, ".mp4")
-			tmp_folder = FileUtils.mkdir_p(Rails.root.join("public/uploads/tmp/series/#{self.serie}")).first
-			output_video_path = Rails.root.join(tmp_folder, "#{file_basename}.3gp")
-			movie = video.transcode(output_video_path, video_options_for(LOW_3GP), ASPECT_OPTIONS)
-			self.size = movie.size
-			self.format = FilmFormat.find_by_title("3GP (среднее качество)") # MP4 320 (хорошее качество)
-			self.quality = FilmQuality.find(quality_id)
-	  	self.attach = File.open(output_video_path)
-	  	save
-	 		FileUtils.rm_rf(tmp_folder)
-	  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140912072250) do
+ActiveRecord::Schema.define(:version => 20140915072848) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -487,9 +487,11 @@ ActiveRecord::Schema.define(:version => 20140912072250) do
     t.integer  "size",       :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.integer  "downloads",  :default => 0
   end
 
   add_index "serial_serie_files", ["attach"], :name => "index_serial_serie_files_on_attach"
+  add_index "serial_serie_files", ["downloads"], :name => "index_serial_serie_files_on_downloads"
   add_index "serial_serie_files", ["format_id"], :name => "index_serial_serie_files_on_format_id"
   add_index "serial_serie_files", ["quality_id"], :name => "index_serial_serie_files_on_quality_id"
   add_index "serial_serie_files", ["serie_id"], :name => "index_serial_serie_files_on_serie_id"
@@ -506,7 +508,12 @@ ActiveRecord::Schema.define(:version => 20140912072250) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.datetime "published_at"
+    t.string   "permalink"
+    t.boolean  "lang"
   end
+
+  add_index "serials", ["lang"], :name => "index_serials_on_lang"
+  add_index "serials", ["permalink"], :name => "index_serials_on_permalink"
 
   create_table "series", :force => true do |t|
     t.integer  "serial_id"

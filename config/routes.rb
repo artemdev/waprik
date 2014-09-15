@@ -74,7 +74,10 @@ Waprik::Application.routes.draw do
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
       resources :videos
-      resources :serials
+      resources :serials do
+        get 'download', on: :member
+        get 'get_file', on: :member
+      end
       resources :news
       resources :collections
       resources :categories

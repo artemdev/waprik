@@ -1,11 +1,16 @@
 <% provide(:title, @genre.title) %>
 
-<% if @films.any? %>
+<% if @films && @films.any? %>
 	<div class="a">
-		<% render partial: 'public/shared/_films', locals: { @films => films } %>
+		<%= render partial: 'public/shared/_films', locals: { @films => films } %>
 	</div>
 	
 	<%= will_paginate @films, previous_label: "", next_label: "", class: "b" %>
+<% elsif @serials && @serials.any? %>
+	<div class="a">
+		<%= render partial: 'public/shared/serials', locals: { :serials => @serials } %>
+	</div>
+	<%= will_paginate @serials, previous_label: "", next_label: "", class: "b" %>
 <% else %>
 	<div class="a">
 		Пусто

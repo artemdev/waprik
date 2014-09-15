@@ -8,7 +8,7 @@ class Admin::AccessController < ApplicationController
 	end
 
   def login
-  	redirect_to action: 'menu' if cookies[:remember_token]
+  	redirect_to action: 'menu' if current_user
   end
 
   def attempt_login

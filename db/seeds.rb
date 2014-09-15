@@ -12,9 +12,8 @@
 		FilmFormat.create(title: "3GP (среднее качество)", description: "Для телефонов", ffparams: "", ext: "")
 
 		# сериалы
-		serial = Serial.create(years: "2011...", description: "desc", hit: true, name: "for test", cover: File.open(File.join(Rails.root, 'public', 'testing', 'films', 'cover.jpg')))
-		serie = Series.create(number: 1, serial_id: serial.id)
-		file = SerialSerieFile.create(quality_id: quality.id, format_id: serie.id, attach: File.open(File.join(Rails.root, 'public', 'testing', 'films', 'cover.jpg')))
-	
-		# serie
+		serial = Serial.create(season: 1, lang: 1, years: "2011...", description: "desc", hit: true, name: "for test", cover: File.open(File.join(Rails.root, 'public', 'testing', 'films', 'cover.jpg')))
+		serial.genres.create title: "фантастика"
+		serie = serial.series.create number: 1
+		serie.files.create quality_id: quality.id, format_id: serie.id, attach: File.open(File.join(Rails.root, 'public', 'testing', 'films', 'cover.jpg'))
 
