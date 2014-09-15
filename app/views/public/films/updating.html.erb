@@ -1,0 +1,9 @@
+<% provide(:title, "Обновления фильмов") %>
+
+<div class="a">
+	<% if @films.any? %>
+		<%= render(partial: 'public/shared/films', locals: { :films => @films }) %>
+	<% else %>
+		Пусто
+	<% end %> <!-- if @films.any? -->
+</div>
