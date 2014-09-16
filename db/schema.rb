@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140915072848) do
+ActiveRecord::Schema.define(:version => 20140915120525) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -467,6 +467,16 @@ ActiveRecord::Schema.define(:version => 20140915072848) do
   end
 
   add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+
+  create_table "related_items", :force => true do |t|
+    t.integer  "source_item_id"
+    t.integer  "related_item_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "related_items", ["related_item_id"], :name => "index_related_items_on_related_item_id"
+  add_index "related_items", ["source_item_id"], :name => "index_related_items_on_source_item_id"
 
   create_table "serial_seasons", :force => true do |t|
     t.integer  "serial_id"

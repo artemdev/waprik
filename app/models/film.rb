@@ -45,6 +45,7 @@ class Film < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   before_create :create_title
+  before_create :create_permalink
 
   # actors
   has_many :films_actors_through, class_name: "FilmActorThrough"
@@ -130,6 +131,10 @@ class Film < ActiveRecord::Base
   end
   
   private
+
+  def create_permalink
+    self.permalink = self.ru_title.parameterize
+  end
 
   def create_title
     if ru_title.present? && en_title.present?

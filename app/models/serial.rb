@@ -38,6 +38,11 @@ class Serial < ActiveRecord::Base
   accepts_nested_attributes_for :series
   has_many :genres_through, class_name: "GenreThrough", as: :genreable
   has_many :genres, through: :genres_through
+  
+  has_many :related_items
+  has_many :relations, through: :related_items, foreign_key: 'source_item_id'
+  has_many :related, through: :related_items, foreign_key: 'second_item_id'
+
 
   scope :hits, where(hit: true)
   scope :latest, order("updated_at DESC")

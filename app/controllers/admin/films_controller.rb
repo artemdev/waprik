@@ -95,7 +95,6 @@ class Admin::FilmsController < ApplicationController
 		@film.add_genres(params[:film][:selected_genres])
 		@film.ru_title = params[:film][:ru_title]
 		@film.en_title = params[:film][:en_title]
-		@film.permalink = Russian.translit(@film.ru_title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"

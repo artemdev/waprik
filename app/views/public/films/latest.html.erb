@@ -2,12 +2,9 @@
 
 <% if @films.any? %>
 	<div class="a">
-	<% @films.each do |film| %>
-		<%= link_to film.title, film_path(film.permalink) %>
-		<%= hr_for film, @films %>
-	<% end %>
+		<%= render partial: 'public/shared/films', locals: { :films => @films } %>
 	</div>
-
+	
 	<%= will_paginate @films, next_label: "", previous_label: "", class: 'b' %>
 <% else %>
 	<div class="a">
