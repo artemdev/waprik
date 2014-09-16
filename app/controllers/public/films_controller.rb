@@ -33,7 +33,7 @@ class Public::FilmsController < ApplicationController
 	end
 
 	def latest
-		@films = Film.latest.paginate(page: params[:page], per_page: 10)
+		@films = Film.latest.paginate(page: params[:page], per_page: 5)
 	end
 
 
