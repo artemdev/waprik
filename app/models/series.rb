@@ -18,7 +18,7 @@
 #
 
 class Series < ActiveRecord::Base
-  attr_accessible :name, :release_date, :number, :files_attributes, :season_attributes
+  attr_accessible :name, :release_date, :number, :files_attributes, :season_attributes, :serial_id
   attr_accessor :ftp_mp4_320, :ftp_mp4_640, :ftp_low_3gp
 
   belongs_to :serial
