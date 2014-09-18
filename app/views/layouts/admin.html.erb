@@ -17,29 +17,16 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <header>
-
-    </header>
-    <nav>
-      <ul>
-        <li>
-          <a href="">Фильмы</a>
-        </li>
-        <li>
-          <a href="">Музыка</a>
-        </li>
-        <li>
-          <a href="">Сериалы</a>
-        </li>
-      </ul>
-    </nav>
 
     <div class="container">
-      <%= yield %>
+      <div class="row">
+        <div class="col-md-8">
+          <%= yield %>
+        </div>
+        <div class="col-md-4">
+          :)
+        </div>
+      </div>
     </div>
-
-    <footer>
-      
-    </footer>
   </body>
 </html>
