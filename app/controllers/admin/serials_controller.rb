@@ -11,7 +11,6 @@ class Admin::SerialsController < ApplicationController
 		n = 1
 		@serial = Serial.new
 		n.times { @serial.series.build }
-		n.times { @serial.seasons.build }
 		@categories = Category.for_serials
 	end
 
