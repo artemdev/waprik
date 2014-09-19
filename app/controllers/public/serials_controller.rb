@@ -20,7 +20,7 @@ class Public::SerialsController < ApplicationController
     @file.downloads = 0 if @file.downloads.nil?
     @file.downloads += 1 
     @file.save
-    redirect_to action: "get_file", film_file_id: @file.id
+    redirect_to action: "get_file", id: @file.id
   end
 
   def get_file
