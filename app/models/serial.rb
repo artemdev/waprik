@@ -33,6 +33,7 @@ class Serial < ActiveRecord::Base
   validates :cover, presence: { message: '^ Нужно добавить ковер' }
   validates :description, presence: { message: '^ Нужно описать сериал' }
   validates :years, presence: { message: '^ Нужно указать год(ы) выхода сериала' }
+  validates :season, presence: { message: '^ Нужно указать сезон сериала' }
 
   has_many :series, dependent: :destroy
   accepts_nested_attributes_for :series

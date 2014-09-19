@@ -9,7 +9,7 @@
 							<%= image_tag hit.cover.mini.url unless hit.cover.mini.url.nil?%>
 						</td>
 						<td valign="top">
-							<%= link_to hit.name, serial_path(hit) %>
+							<%= link_to title_for(hit), serial_path(hit) %>
 							<span class="small_text">
 								<% unless hit.series.last.nil? %>
 									<br />
