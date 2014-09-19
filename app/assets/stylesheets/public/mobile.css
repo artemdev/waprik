@@ -26,7 +26,6 @@ img { border: 0; }
 hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin: 4px 0; }
 
 .a {
-	background: url(main.gif) repeat-x bottom left;
 	border-bottom: 1px solid #a5c6d4;
 	margin: 3px;
 	padding: 2px 2px 4px 2px;
@@ -43,7 +42,7 @@ hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin
 }
 
 .foot { 
-	background: url(foot.gif) repeat-x top left #5d9ab4;
+	background: #5d9ab4;
 	border-top: 1px solid #3c748c;
 	border-bottom: 1px solid #3c748c;
 	color: #c0dde7;
@@ -85,7 +84,7 @@ hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin
 }
 
 .title { 
-	background: url(title.gif) repeat-x top left #76adc4;
+	background: #76adc4;
 	border: 1px solid #76adc4;
 	margin: 6px 3px 3px 3px;
 	padding: 3px 2px 5px 5px;

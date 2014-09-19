@@ -17,6 +17,6 @@ module Public::SerialsHelper
 	end
 
 	def title_for serial
-		serial.name + "(#{serial.season} сезон)"
+		serial.name + " (#{serial.season} сезон)"
 	end
 end
