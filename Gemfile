@@ -27,6 +27,7 @@ gem 'annotate'
 gem "friendly_id", "~> 4.0.10"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'whatlanguage'
 
 # Gems used only for assets and not required
 # in production environments by default.
