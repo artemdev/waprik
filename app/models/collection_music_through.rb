@@ -11,7 +11,7 @@
 
 class CollectionMusicThrough < ActiveRecord::Base
 
-	belongs_to :collection
-	belongs_to :track, class_name: 'Mp3File'
+	belongs_to :collection, touch: true
+	belongs_to :track, class_name: 'Mp3File', touch: true
 
 end
