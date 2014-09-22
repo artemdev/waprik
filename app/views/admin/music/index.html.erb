@@ -10,7 +10,7 @@
 <div class="add-track">
 	<% if @today_collections.any? %>
 	сегодня:
-		<% @collections.each do |collection| %>
+		<% @today_collections.each do |collection| %>
 		<pre>
 			+ <%= link_to collection.name, collection_path(collection.permalink) %> <br />
 		<% end %>
