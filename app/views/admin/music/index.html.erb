@@ -12,7 +12,8 @@
 	сегодня:
 		<pre>
 			<% @today_collections.each do |collection| %>
-				+ <a href="<%= collection_path(collection.permalink) %>"> <%= collection.name %></a> <br />
+				+ <%= link_to collection.name, collection_path(collection.permalink) %>
+				<br />
 			<% end %>
 		</pre>
 	<% end %>
