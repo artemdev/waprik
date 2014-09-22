@@ -10,12 +10,11 @@
 <div class="add-track">
 	<% if @today_collections.any? %>
 	сегодня:
-		<% @today_collections.each do |collection| %>
 		<pre>
-			+ <%= link_to collection.name, collection_path(collection.permalink) %> <br />
-		<% end %>
+			<% @today_collections.each do |collection| %>
+				+ <a href="<%= collection_path(collection.permalink) %>"> <%= collection.name %></a> <br />
+			<% end %>
 		</pre>
-	<% end %>
 </div>
 
 <div class="music-collections">
