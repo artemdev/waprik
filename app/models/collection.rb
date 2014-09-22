@@ -33,7 +33,7 @@ class Collection < ActiveRecord::Base
   has_many :films, through: :collection_film_through
 
   scope :hits, where("hit = ?", true)
-  scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day).where(created_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }
+  scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }
   scope :latest, order("created_at ASC")
   scope :fresh, order("updated_at ASC")
   scope :with_music, lambda { where(with_music: true) }
