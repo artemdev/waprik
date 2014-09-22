@@ -11,6 +11,8 @@ class Admin::MusicController < ApplicationController
 		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 50)
 		@collections = Collection.hits
 		@new_track = Mp3File.new
+		@today_collections = []
+		Collection.today.map { |c| @today_collections << c if c.with_music == true }
 	end
 
 	def new
