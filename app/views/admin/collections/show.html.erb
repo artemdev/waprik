@@ -1,36 +1,51 @@
 <% provide(:title, "#{@collection.name.mb_chars.capitalize} от #{show_date_for @date}") %>
 <div class="row">
 
-	<div class="span10 offset1">
-		<a href="" class="refresh-button btn btn-primary">обновить</a>
-		
+		<div class="span9 offset5">
+			<a href="" class="refresh-button btn btn-primary">обновить</a>
+		</div>
+
+		<div class="span10 offset1">
+		<!-- кавер -->
 		<% if @collection.image.present? %>
 			<div>
 				<%= image_tag @collection.image.preview.url %>
 			</div>
 		<% end %>
 
+		<!-- описание -->
 		<% if @collection.description.present? %>
 			<div>
 				<%= @collection.description %>
 			</div>
 		<% end %>
 
-		<% if @latest_tracks && @latest_tracks.any? %>
-			<div>
-				<% @latest_tracks.each do |track| %>
-					<%= link_to track.name, music_path(track.permalink) %> <%= track.downloads %>
-						<div class="hit-field">
-							<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-								<%= f.check_box :hit %>
-								<%= f.label :hit %>
-								<%= f.submit "ok"%>
-							<% end %>
-						</div>
-					<%= hr_for track, @latest_tracks %>
-				<% end %>
-			</div>
-		<% elsif @last_films && @last_films.any? %>
+		<!-- музыка -->
+		<table class="table table-bordered table-striped">
+			<th>название</th>
+			<th>скачиваний</th>
+			<th>хит?</th>
+			<% if @latest_tracks && @latest_tracks.any? %>
+					<% @latest_tracks.each do |track| %>
+						<tr class="">
+							<td>
+								<%= link_to track.name, music_path(track.permalink) %>
+							</td>
+							<td>
+								 <%= track.downloads %>
+							</td>
+							<td>
+								<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+									<%= f.check_box :hit %>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+			<% end %>
+		</table>
+
+		<!-- фильмы -->
+		<% if @last_films && @last_films.any? %>
 			<div>
 				<% @last_films.each do |film| %>
 					<%= link_to film.title, film_path(film.permalink) %> <%= track.downloads %>
@@ -46,6 +61,7 @@
 			</div>
 		<% end %>
 
+		<!-- log новинок -->
 		<% if @tracks && @tracks.any? %>
 			<div>
 				Предыдущие новинки
