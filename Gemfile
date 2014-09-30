@@ -30,7 +30,6 @@ gem 'whatlanguage'
 gem 'trans-api', github: "dblommesteijn/trans-api"
 gem 'mechanize'
 gem 'useragent'
-gem 'sidekiq'
 gem 'vkontakte_api'
 gem 'autoprefixer-rails'
 
