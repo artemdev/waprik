@@ -10,6 +10,7 @@ class Admin::VkPostsController < ApplicationController
 		# TODO add to remote jobs
 		collection_name = params[:collection_name].strip
 		collection = Collection.find_or_create_by_name(collection_name)
+		collection.update_attributes(hit: true) if params[:hit] == "on"
 		MusicPostsWorker.perform_async(params[:post_url], collection.id)
 		redirect_to admin_collection_path(collection.permalink)
 	end

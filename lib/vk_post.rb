@@ -23,7 +23,7 @@ class VkPost
 	end
 
 	def image
-		@doc.at_css("img.wi_img")['src']
+		@doc.at_css("img.ph_img")['data-src_big'].split('|604|350').shift
 	end
 
 	def tracks
@@ -31,7 +31,7 @@ class VkPost
 		@doc.css(".wi_body").each do |body|
 			body.css(".medias_row").each do |row|
 				artist = row.at_css(".medias_audio_artist").text.strip
-				title = row.at_css(".medias_audio_title").text.split('(').shift.gsub('–', '-')
+				title = row.at_css(".medias_audio_title").text.split('(').shift
 				track = artist + title
 				agent = Mechanize.new
 				form = agent.get(SERVICE_URL).forms.first
@@ -40,7 +40,7 @@ class VkPost
 				audios = form.submit
 				# ссылка для скачивания
 				url = audios.at(".playlist-down")['href']
-				tracks_urls << [artist, track, url]
+				tracks_urls << [artist, track.gsub('–', '-').gsub('&', 'and').gsub('\'', ''), url]
 			end
 		end
 		tracks_urls
@@ -51,4 +51,4 @@ class VkPost
 	end
 
 end
-puts VkPost.new('http://vk.com/exclusive_muzic?w=wall-27895931_1103191').image
+puts VkPost.new('http://vk.com/exclusive_muzic?w=wall-27895931_1106536').tracks

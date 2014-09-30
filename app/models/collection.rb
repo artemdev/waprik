@@ -61,7 +61,7 @@ class Collection < ActiveRecord::Base
   protected
 
   def create_permalink
-    self.permalink = permalink_for name
+    self.permalink = name.parameterize
   end
 
 end

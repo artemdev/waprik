@@ -7,6 +7,8 @@
 				<%= label_tag :collection_name, 'название' %>
 				<%= text_field_tag :collection_name, nil, class: 'form-control', placeholder: "http://vk.com/..." %>
 
+				<%= check_box_tag :hit, nil, class: 'form-control' %>
+
 <!-- 				<%= select_tag :collection_name, options_from_collection_for_select(@collections, :id, :name), include_blank: true %> <br /> -->
 
 				<%= button_tag "взять из vk", class: "btn btn-info" %>

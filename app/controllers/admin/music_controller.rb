@@ -29,7 +29,7 @@ class Admin::MusicController < ApplicationController
 	def create
 		@track = Mp3File.new(params[:mp3_file])
 		@track.new_path = File.open(params[:mp3_file][:new_file])
-		name = File.basename(params[:mp3_file][:new_file], ".mp3").gsub('–', '-')
+		name = File.basename(params[:mp3_file][:new_file], ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
 		@track.name = name
 		@track.fname = Russian.translit(name.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
 		@track.artist_name = name.split(' - ').first
