@@ -25,9 +25,14 @@ gem 'sitemap_generator'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'annotate'
 gem "friendly_id", "~> 4.0.10"
-gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'whatlanguage'
+gem 'trans-api', github: "dblommesteijn/trans-api"
+gem 'mechanize'
+gem 'useragent'
+gem 'sidekiq'
+gem 'vkontakte_api'
+gem 'autoprefixer-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

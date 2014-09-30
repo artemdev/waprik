@@ -21,6 +21,7 @@ Waprik::Application.routes.draw do
     resources :replies, only: ['new', 'create', 'destroy']
     resources :music_artists, controller: "MusicArtists"
     resources :film_qualities
+    resources :vk_posts, only: ['new', 'create']
 
     resources :ftp_files, only: ['index'] do
       get :rename_films, on: :collection

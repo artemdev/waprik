@@ -56,7 +56,7 @@ class Mp3File < ActiveRecord::Base
   scope :hits, -> { where("hit = ?", true) }
   scope :top, lambda { |number = 100| where("hit = ?", true).limit(number) }
 
-  validates :artist, :name, :new_path, presence: true
+  validates :artist, :name, presence: true
 
 
   include Tire::Model::Search

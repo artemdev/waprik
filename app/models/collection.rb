@@ -12,6 +12,7 @@
 #  description :string(255)
 #  image       :string(255)
 #  permalink   :string(255)
+#  vk_title    :string(255)
 #
 
 include ApplicationHelper

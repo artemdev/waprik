@@ -37,14 +37,14 @@ class Admin::CollectionsController < ApplicationController
 
 	def show
 		@collection = Collection.find_by_permalink!(params[:id])
-		if @collection.with_music
+		if @collection.with_music && @collection.tracks.latest.first
 			# дата самых новых треков
 			@date = @collection.tracks.latest.first.created_at
 			# самые новые треки
 			@latest_tracks = @collection.tracks.where(created_at: @date.at_beginning_of_day..@date.end_of_day)
 			# все треки кроме самых новых
 			@tracks = @collection.tracks.without_new(@date).paginate(page: params[:page], per_page: 20)
-		elsif @collection.with_films
+		elsif @collection.with_films && @collection.films.latest.first
 			# дата самых новых фильмов
 			@date = @collection.films.latest.first.created_at
 			# самые новые фильмы

@@ -14,7 +14,7 @@
 #  updated_at   :datetime         not null
 #  published_at :datetime
 #  permalink    :string(255)
-#  lang         :boolean # 0 - rus , 1 - eng
+#  lang         :boolean
 #
 
 class Serial < ActiveRecord::Base

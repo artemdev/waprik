@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140915120525) do
+ActiveRecord::Schema.define(:version => 20140929113307) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20140915120525) do
     t.string   "description"
     t.string   "image"
     t.string   "permalink"
+    t.string   "vk_title"
   end
 
   add_index "collections", ["description"], :name => "index_collections_on_description"
