@@ -35,8 +35,8 @@ class Collection < ActiveRecord::Base
 
   scope :hits, where("hit = ?", true)
   scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }
-  scope :latest, order("created_at ASC")
-  scope :fresh, order("updated_at ASC")
+  scope :latest, order("created_at DESC")
+  scope :fresh, order("updated_at DESC")
   scope :with_music, lambda { where(with_music: true) }
   scope :with_films, where(with_films: true)
   scope :with_videos, where(with_videos: true)
