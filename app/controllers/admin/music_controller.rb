@@ -5,39 +5,34 @@ class Admin::MusicController < ApplicationController
 
 	FTP_PATH = "public/ftp/music/"
 
-	before_filter :confirm_logged_in
-
 	def index
-		@tracks = Mp3File.latest.paginate(page: params[:page], per_page: 50)
+		@tracks = Mp3File.paginate(page: params[:page], per_page: 50)
 		@collections = Collection.hits
-		@new_track = Mp3File.new
 		@today_collections = []
 		Collection.today.map { |c| @today_collections << c if c.with_music == true }
 	end
 
 	def new
 		@track = Mp3File.new
-		mp3files = File.join(FTP_PATH, "**", "*.mp3")
-		@files = Dir.glob(mp3files).sort
+		@files = Dir.glob(File.join(FTP_PATH, "**", "*.mp3")).sort
 		@collections = Collection.all
 	end
 
 	def show
-		@track = Mp3File.find(params[:id])
+		@track = find_track params[:id]
 	end
 
 	def create
 		@track = Mp3File.new(params[:mp3_file])
 		@track.new_path = File.open(params[:mp3_file][:new_file])
-		name = File.basename(params[:mp3_file][:new_file], ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
-		@track.name = name
-		@track.fname = Russian.translit(name.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
-		@track.artist_name = name.split(' - ').first
+		@track.set_name_from params[:mp3_file][:new_file]
+		@track.set_fname
+		@track.artist_name = @track.name.split(' - ').first
 		@track.album_name = params[:mp3_file][:album_name].present? ? params[:mp3_file][:album_name] : "песни 2014"
 		@track.set_collection(params[:mp3_file][:new_collection]) if params[:mp3_file][:new_collection]
  		if @track.save
  			# id3v2 теги
- 			@track.create_id3v2_tags_from name
+ 			@track.create_id3v2_tags_from @track.name
  			# создаются битрейды
  			LameWorker.perform_async(@track.id)
  			flash[:success] = "Mp3 успешно добавлена"
@@ -48,7 +43,7 @@ class Admin::MusicController < ApplicationController
 	end
 
 	def edit
-		@track = Mp3File.find(params[:id])
+		@track = find_track params[:id]
 		@collections = Collection.all
 	end
 
@@ -113,9 +108,7 @@ class Admin::MusicController < ApplicationController
 	end
 
 	def update_multiple
-		@tracks = Mp3File.find(params[:track_ids])
-				# @tracks = Mp3File.update_all(["hit = ?", true], id: params[:track_ids])
-
+		@tracks = find_track params[:track_ids]
 		@tracks.each do |track|
 			track.hit = true
 			track.save(validate: false)
@@ -126,6 +119,12 @@ class Admin::MusicController < ApplicationController
 
 	def hits
 		@track = Mp3File.hits
+	end
+
+	private
+
+	def find_track(params)
+		Mp3File.find(params)
 	end
 
 

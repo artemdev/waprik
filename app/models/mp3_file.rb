@@ -26,7 +26,9 @@
 #  permalink         :string(255)
 #  updated_at        :datetime         not null
 #  published_at      :datetime
+#  vk_url            :string(255)
 #
+
     
 require 'taglib'
 class Mp3File < ActiveRecord::Base
@@ -70,6 +72,20 @@ class Mp3File < ActiveRecord::Base
     self.artist = Mp3Artist.find_or_create_by_name(name) if name.present?
   end
 
+  def artist_name
+  end
+
+  def set_name_from=(file)
+    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
+  end
+
+  def set_name_from file
+    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
+  end
+
+  def set_fname
+    self.fname = Russian.translit(self.name.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
+  end
 
   def album_name
     album.try(:name)

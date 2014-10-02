@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140929113307) do
+ActiveRecord::Schema.define(:version => 20141002065014) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -408,6 +408,7 @@ ActiveRecord::Schema.define(:version => 20140929113307) do
     t.string   "permalink"
     t.datetime "updated_at",                                            :null => false
     t.datetime "published_at"
+    t.string   "vk_url"
   end
 
   add_index "mp3_files", ["album_id"], :name => "file_album_id"

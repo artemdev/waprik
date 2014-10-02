@@ -14,10 +14,11 @@ class MusicPostsWorker
 		count = 0
 		post_tracks.each do |track|
 				mp3 = Mp3File.new
-				mp3.artist_name = track.first
+				mp3.artist_name = track[0]
 				mp3.name = track[1]
 				# tmp_file = open(gravatar_url) 
 				mp3.remote_new_path_url = track[2]
+				mp3.vk_url = track[2]
 				mp3.fname = track[1].parameterize
 				mp3.album_name = collection.name
 				mp3.save
