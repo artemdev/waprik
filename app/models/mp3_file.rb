@@ -80,7 +80,7 @@ class Mp3File < ActiveRecord::Base
   end
 
   def set_name_from file
-    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
+    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&amp;', 'and').gsub('&', 'and').gsub('\'', '')
   end
 
   def set_fname
