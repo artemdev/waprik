@@ -111,7 +111,6 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
-		@film.remote_cover_url = @movie.poster
 		@film.ru_title = @movie.title
 		@film.en_title = @movie.title_en
 		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
