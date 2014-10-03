@@ -17,6 +17,11 @@ class Public::MusicController < ApplicationController
 
 	def show
 		@track = Mp3File.find_by_permalink(params[:id])
+		@recomendations = []
+		@track.collections.each do |c|
+			c.tracks.map {|t| @recomendations << t unless t == @track }
+		end
+		@recomendations = @recomendations.paginate(page: params[:page], per_page: 10)
 		if @track.nil?
 			flash[:error] = "трек не найден"
 			redirect_to tracks_path 

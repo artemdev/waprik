@@ -13,13 +13,13 @@
 	Скачиваний <%= @track.downloads %>
 </div>
 
-<% if @track.collections %>
+<% if @recomendations.any? %>
 	<div class="title">
-		В подборках
+		Похожая музыка
 	</div>
 	<div class="a">
-		<% @track.collections.each do |collection| %>
-			<%= link_to collection.name, collection_path(collection.permalink) %>
+		<% @recomendations.each do |track| %>
+			<%= link_to track.name, music_path(track.permalink) %> <br />
 		<% end %>
 	</div>
 <% end %>
