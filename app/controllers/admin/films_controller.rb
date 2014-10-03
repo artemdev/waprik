@@ -104,7 +104,6 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def create
-		@movie = Kinopoisk::Movie.new(params[:movie_title]) # for cover
 		@film = Film.new(params[:film])
 		@directors = @film.directors
 		@actors = @film.actors
