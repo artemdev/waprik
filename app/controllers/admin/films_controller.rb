@@ -111,15 +111,14 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
-		@film.ru_title = @movie.title
-		@film.en_title = @movie.title_en
-		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		@film.ru_title = params[:film][:ru_title]
+		@film.en_title = params[:film][:en_title]
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
 		else
-			render 'new'
+			render :new
 		end
 	end
 
