@@ -113,6 +113,7 @@ class Admin::FilmsController < ApplicationController
 		@film.add_genres(params[:film][:selected_genres])
 		@film.ru_title = params[:film][:ru_title]
 		@film.en_title = params[:film][:en_title]
+		@film.cover =  File.open(params[:film][:new_cover])
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
