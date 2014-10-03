@@ -1,10 +1,9 @@
 <% provide(:title, "Фильм с кинопоиска") %>
 
-<% if @movies.to_a.any? %>
+<% if @movies.any? %>
 	<% @movies.each do |movie| %>
 		<%= content_tag(:div, class: 'kinopoisk-film') do %>
-			<%= link_to movie.title, new_admin_film_path(movie_title: movie.title_en) %>
-			<%= movie.year %>
+			<%= link_to movie.first, new_admin_film_path(movie_url: movie.last) %>
 			<br />
 		<% end %>
 	<% end %>

@@ -46,32 +46,31 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def list
-		s = Kinopoisk::Search.new(params[:keyword])
-		@movies = s.movies
+		@movies = ParseBrbSearch.new(params[:keyword]).results
 	end
 
 	def new
-		@movie = Kinopoisk::Movie.new(params[:movie_title])
+		@movie = ParseBrbFilm.new params[:movie_url]
 		@film = Film.new
 		# title
-		if @movie.title && !@movie.title_en.empty? && !@movie.title_en.nil?
-			@film.title = "#{@movie.title} / #{@movie.title_en}"
-		elsif @movie.title
-			@film.title = @movie.title
+		if @movie.ru_title.present? && @movie.eng_title.present?
+			@film.title = "#{@movie.ru_title} / #{@movie.eng_title}"
+		elsif @movie.ru_title.present?
+			@film.title = @movie.ru_title
 		end
-		@film.ru_title = @movie.title
-		@film.en_title = @movie.title_en
+		@film.ru_title = @movie.ru_title
+		@film.en_title = @movie.eng_title
 		# info
 		@film.about = @movie.description if @movie.description 
-		@film.year = @movie.year if @movie.year 
-		@film.cover = @movie.poster if @movie.poster
-		@film.world_estimate = @movie.imdb_rating if @movie.imdb_rating
-		@film.cis_estimate = @movie.rating if @movie.rating 
+		@film.year = @movie.years if @movie.years
+		@film.remote_cover_url = @movie.cover if @movie.cover
+		# @film.world_estimate = @movie.imdb_rating if @movie.imdb_rating
+		# @film.cis_estimate = @movie.rating if @movie.rating 
 		@film.selected_genres = @movie.genres.join("\n") if @movie.genres
 		@film.new_actors = @movie.actors.join("\n") if @movie.actors && !@movie.actors.empty?
 		@film.new_directors = @movie.directors.join("\n") if @movie.directors && !@movie.directors.empty?
-		@film.duration_hours = @movie.length.divmod(60).first
-		@film.duration_minutes = @movie.length.divmod(60).last
+		# @film.duration_hours = @movie.length.divmod(60).first
+		# @film.duration_minutes = @movie.length.divmod(60).last
 		@genres = FilmGenre.all
 		@directors = @film.directors
 		@actors = @film.actors
