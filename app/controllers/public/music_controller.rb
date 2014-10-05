@@ -35,8 +35,6 @@ class Public::MusicController < ApplicationController
 		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
 		if @track.path.path
 			case params[:bitrate]
-				when "orig"
-					send_file "#{@track.new_path.path}", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 				when "128"
 					send_file "#{@track.path.path}_128.mp3", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 				when "64"
@@ -44,6 +42,8 @@ class Public::MusicController < ApplicationController
 				when "32"
 					send_file "#{@track.path.path}_32.mp3", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 			end
+		elsif params[:bitrate] == "orig"
+			send_file "#{@track.new_path.path}", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 		elsif @bitrate.file
 			send_file @bitrate.file.path, type: @bitrate.file.content_type, filename: (@track.fname + '.mp3')
 		end
