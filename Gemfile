@@ -34,6 +34,8 @@ gem 'vkontakte_api'
 gem 'autoprefixer-rails'
 gem "twitter-bootstrap-rails"
 gem "kinopoisk_parser"
+gem 'viddl-rb'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

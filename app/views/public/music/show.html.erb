@@ -1,12 +1,14 @@
 <% provide(:title, @track.name) %>
 
-<% if @track.bitrates.any? %>
-	<div class="a">
-		<% @track.bitrates.each do |bitrate| %>
-			<%= link_to "Скачать #{bitrate.file_bitrate} #{number_to_human_size(bitrate.file_size)}", download_music_path(@track.permalink, bitrate: bitrate.file_bitrate), id: 'download-mp3' %> <br />
-		<% end %>
-	</div>
-<% end %>
+<div class="a">
+	<%= link_to "Оригинал #{number_to_human_size(@track.new_path.size)}", download_music_path(@track.permalink, bitrate: "orig") %> <br />
+
+	<% if @track.bitrates.any? %>
+			<% @track.bitrates.each do |bitrate| %>
+				<%= link_to "Скачать #{bitrate.file_bitrate} #{number_to_human_size(bitrate.file_size)}", download_music_path(@track.permalink, bitrate: bitrate.file_bitrate), id: 'download-mp3' %> <br />
+			<% end %>
+	<% end %>
+</div>
 
 <div class="a">
 	Время <%= @track.length %> <hr />
