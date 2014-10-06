@@ -55,7 +55,7 @@
 				<span class="small-text">
 					<%= file.format.description %>
 				</span>
-				<hr />
+				<%= hr_for file, @film.files %>
 			<% end %>
 		<% elsif @film.files.empty? %>
 			 Нет файлов для скачивания <br />
