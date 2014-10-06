@@ -62,8 +62,8 @@
 			 <a href="#">Попросить добавить</a>
 		<% end %>	
 
-		<br />
 		<% if @film.trailers.any? %>
+			<br />
 			<% @film.trailers.each_with_index do |trailer, index| %>
 				<%= link_to "Скачать трейлер #{index + 1 unless index + 1 == 1}", film_treiler_path(trailer) %> <%= number_to_human_size(trailer.filesize) %> <br />
 			<% end %>
