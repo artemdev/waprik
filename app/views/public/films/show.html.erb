@@ -76,7 +76,7 @@
 		</div>
 		<div class="a">
 			<% @film.recomendation_list.films.each do |film| %>
-				<%= link_to film.title, film_path(film) %> <br />
+				<%= link_to film.title, film_path(film) unless film == @film %> <br />
 			<% end %>
 		</div>
 	<% end %>
