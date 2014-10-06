@@ -58,8 +58,8 @@ class Admin::FilmsController < ApplicationController
 		elsif @movie.ru_title.present?
 			@film.title = @movie.ru_title
 		end
-		@film.ru_title = @movie.ru_title
-		@film.en_title = @movie.eng_title
+		@film.ru_title = @movie.ru_title if @movie.ru_title
+		@film.en_title = @movie.eng_title if @movie.eng_title
 		# info
 		@film.about = @movie.description if @movie.description 
 		@film.year = @movie.years if @movie.years
@@ -114,8 +114,8 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
-		@film.ru_title = params[:film][:ru_title]
-		@film.en_title = params[:film][:en_title]
+		@film.ru_title = params[:film][:ru_title] if params[:film][:ru_title].present?
+		@film.en_title = params[:film][:en_title] if params[:film][:en_title].present?
 		@film.cover = File.open(params[:film][:new_cover])
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
 		@film.brb_url = params[:film][:brb_url]

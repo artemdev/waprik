@@ -154,20 +154,27 @@ class Film < ActiveRecord::Base
     recomendation_list = RecomendationList.create!
     playlist.each do |movie|
       source_movie = ParseBrbFilm.new(movie.last)
-      site_movie = Film.new
-      site_movie.ru_title = source_movie.ru_title
-      site_movie.en_title = source_movie.eng_title
-      site_movie.about = source_movie.description
-      site_movie.remote_cover_url = source_movie.cover
-      site_movie.brb_url  = movie.last
-      site_movie.year  = source_movie.years
-      site_movie.add_directors(source_movie.directors.first.to_s)
-      site_movie.add_genres(source_movie.genres.first.to_s)
-      site_movie.add_actors(source_movie.actors.first.to_s)
-      site_movie.recomendation_list_id = recomendation_list.id
-      site_movie.visible = false
-      # site_movie.create_common_films!
-      site_movie.save
+      if Film.find_by_ru_title(source_movie.ru_title)
+        site_movie = Film.find_by_ru_title(source_movie.ru_title)
+        site_movie.recomendation_list_id = recomendation_list.id
+        site_movie.brb_url  = movie.last
+        site_movie.save
+      else
+        site_movie = Film.new
+        site_movie.ru_title = source_movie.ru_title
+        site_movie.en_title = source_movie.eng_title
+        site_movie.about = source_movie.description
+        site_movie.remote_cover_url = source_movie.cover
+        site_movie.brb_url  = movie.last
+        site_movie.year  = source_movie.years
+        site_movie.add_directors(source_movie.directors.first.to_s)
+        site_movie.add_genres(source_movie.genres.first.to_s)
+        site_movie.add_actors(source_movie.actors.first.to_s)
+        site_movie.recomendation_list_id = recomendation_list.id
+        site_movie.visible = false
+        # site_movie.create_common_films!
+        site_movie.save
+      end
     end
   end
 
