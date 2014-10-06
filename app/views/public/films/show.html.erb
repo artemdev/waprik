@@ -70,7 +70,7 @@
 		<% end %>
 	</div>
 
-	<% if @film.recomendation_list.films.any? %>
+	<% if @film.recomendation_list && @film.recomendation_list.films.any? %>
 		<div class="title">
 			Похожие фильмы
 		</div>
