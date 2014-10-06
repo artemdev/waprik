@@ -2,9 +2,11 @@
 
 <% if @latest_date %>
 	<div class="b">
-
-		<%= link_to "Новинки", latest_films_path %>
-		от <%= @latest_date  %> <br />
+		<% if @latest_date %>
+			<%= link_to "Новинки", latest_films_path %>
+			от <%= @latest_date %>
+			<br />
+		<% end %>
 		<%= link_to "Избранные новинки", news_films_path %>
 	</div>
 
