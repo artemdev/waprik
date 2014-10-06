@@ -2,45 +2,47 @@
 #
 # Table name: films
 #
-#  id                 :integer          not null, primary key
-#  item_id            :integer
-#  title              :string(100)
-#  user_id            :integer
-#  is_favourite       :boolean
-#  about              :text
-#  duration_hours     :integer
-#  duration_minutes   :integer
-#  duration_seconds   :integer
-#  time               :integer
-#  downloads          :integer          default(0)
-#  world_estimate     :string(10)
-#  cis_estimate       :string(10)
-#  last_download_time :integer
-#  prepare_status     :string(100)
-#  file_name          :string(255)
-#  month              :integer
-#  year               :integer
-#  quality_id         :integer
-#  translation_id     :integer
-#  count_likes        :integer
-#  count_comments     :integer
-#  created_at         :datetime         not null
-#  cover              :string(255)
-#  updated_at         :datetime
-#  permalink          :string(255)
-#  ru_title           :string(255)
-#  en_title           :string(255)
-#  without_files      :boolean
-#  blocked            :boolean
-#  broken             :boolean
-#  published_at       :datetime
+#  id                    :integer          not null, primary key
+#  item_id               :integer
+#  title                 :string(100)
+#  user_id               :integer
+#  is_favourite          :boolean
+#  about                 :text
+#  duration_hours        :integer
+#  duration_minutes      :integer
+#  duration_seconds      :integer
+#  time                  :integer
+#  downloads             :integer          default(0)
+#  world_estimate        :string(10)
+#  cis_estimate          :string(10)
+#  last_download_time    :integer
+#  prepare_status        :string(100)
+#  file_name             :string(255)
+#  month                 :integer
+#  year                  :integer
+#  quality_id            :integer
+#  translation_id        :integer
+#  count_likes           :integer
+#  count_comments        :integer
+#  created_at            :datetime         not null
+#  cover                 :string(255)
+#  updated_at            :datetime
+#  permalink             :string(255)
+#  ru_title              :string(255)
+#  en_title              :string(255)
+#  without_files         :boolean
+#  blocked               :boolean
+#  broken                :boolean
+#  published_at          :datetime
+#  brb_url               :string(255)
+#  recomendation_list_id :integer
 #
 
 require 'elasticsearch/rails/tasks/import'
 class Film < ActiveRecord::Base
-  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked, :new_cover
+  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked, :new_cover, :common_films, :brb_url
 
-	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection, :new_cover
+	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection, :new_cover, :common_films
 
 
   mount_uploader :cover, CoverUploader
@@ -71,6 +73,14 @@ class Film < ActiveRecord::Base
 
   has_many :collection_film_through, foreign_key: 'film_id'
   has_many :collections, through: :collection_film_through
+
+  # visits
+  has_many :visits_from, class_name: 'Visit', as: 'fromable' # инициатор визита
+  has_many :visited, class_name: 'Visit', as: 'visitable' # обладатель визита
+
+  # recomendations
+  belongs_to :recomendation_list
+
 
   # validates :title, :about, :year, presence: true
 
@@ -130,8 +140,37 @@ class Film < ActiveRecord::Base
       self.collections << collection
     end
   end
-  
+
+  def track_visit_from source
+    content = source.class.to_s.constantize.find(source.id)
+    visit = self.visited.new
+    visit.fromable = content
+    visit.save
+  end  
+
+  def create_recomendations!
+    playlist = ParseBrbFilm.new(self.brb_url).common_films
+    recomendation_list = RecomendationList.create!
+    playlist.each do |movie|
+      source_movie = ParseBrbFilm.new(movie.last)
+      site_movie = Film.new
+      site_movie.ru_title = source_movie.ru_title
+      site_movie.en_title = source_movie.eng_title
+      site_movie.about = source_movie.description
+      site_movie.remote_cover_url = source_movie.cover
+      site_movie.brb_url  = movie.last
+      site_movie.year  = source_movie.years
+      site_movie.add_directors(source_movie.directors.first.to_s)
+      site_movie.add_genres(source_movie.genres.first.to_s)
+      site_movie.add_actors(source_movie.actors.first.to_s)
+      site_movie.recomendation_list_id = recomendation_list.id
+      # site_movie.create_common_films!
+      site_movie.save
+    end
+  end
+
   private
+
 
   def create_permalink
     self.permalink = self.ru_title.parameterize

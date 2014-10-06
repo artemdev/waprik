@@ -2,8 +2,11 @@
 
 	<div class="a">
 		Скачиваний <%= @film.downloads %> <br />
-		Мировая оценка <%= @film.cis_estimate %> <br />
-		Оценка СНГ <%= @film.world_estimate %> <br />
+		<% if @film.cis_estimate%>
+			Мировая оценка <%= @film.cis_estimate %> <br />
+		<% elsif @film.world_estimate %>
+			Оценка СНГ <%= @film.world_estimate %> <br />
+		<% end %>
 	</div>
 
 	<div class="a">
@@ -21,10 +24,13 @@
 	<div class="a">
 		Год выпуска <%= @film.year %>
 		<br />
-		Время
-		<%= @film.duration_hours %> час
-		<%= @film.duration_minutes %> мин
-		<br />
+		<% if @film.duration_hours && @film.duration_minutes %>
+			Время
+			<%= @film.duration_hours %> час
+			<%= @film.duration_minutes %> мин
+			<br />
+		<% end %>
+
 		Качество <%= quality_for @film %> 
 		<br />
 		Жанр
@@ -42,7 +48,7 @@
 		<% if @film.blocked? %>
 			Скачивание фильма заблокировано правообладателем
 			<hr />
-		<% else %>
+		<% elsif @film.files.any? %>
 			<% @film.files.sort_by!(&:size).each do |file| %>
 				<%= link_to file.format.title, film_file_path(file) %>
 				<%= number_to_human_size(file.size) %> <br />
@@ -51,16 +57,29 @@
 				</span>
 				<hr />
 			<% end %>
-		<% end %>
+		<% elsif @film.files.empty? %>
+			 Нет файлов для скачивания <br />
+			 <a href="#">Попросить добавить</a>
+		<% end %>	
 
+		<br />
 		<% if @film.trailers.any? %>
 			<% @film.trailers.each_with_index do |trailer, index| %>
 				<%= link_to "Скачать трейлер #{index + 1 unless index + 1 == 1}", film_treiler_path(trailer) %> <%= number_to_human_size(trailer.filesize) %> <br />
 			<% end %>
-		<% else %>
-			Трейлера нет
 		<% end %>
 	</div>
+
+	<% if @film.recomendation_list.films.any? %>
+		<div class="title">
+			Похожие фильмы
+		</div>
+		<div class="a">
+			<% @film.recomendation_list.films.each do |film| %>
+				<%= link_to film.title, film_path(film) %> <br />
+			<% end %>
+		</div>
+	<% end %>
 
 	<div class="title">
 		Знаменитые актеры

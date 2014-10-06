@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141002065014) do
+ActiveRecord::Schema.define(:version => 20141006122129) do
+
+  create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
+    t.integer  "recomendation_list_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -156,27 +162,27 @@ ActiveRecord::Schema.define(:version => 20141002065014) do
 
   create_table "films", :force => true do |t|
     t.integer  "item_id"
-    t.string   "title",              :limit => 100
+    t.string   "title",                 :limit => 100
     t.integer  "user_id"
     t.boolean  "is_favourite"
     t.text     "about"
-    t.integer  "duration_hours",     :limit => 1
-    t.integer  "duration_minutes",   :limit => 1
-    t.integer  "duration_seconds",   :limit => 1
+    t.integer  "duration_hours",        :limit => 1
+    t.integer  "duration_minutes",      :limit => 1
+    t.integer  "duration_seconds",      :limit => 1
     t.integer  "time"
-    t.integer  "downloads",                         :default => 0
-    t.string   "world_estimate",     :limit => 10
-    t.string   "cis_estimate",       :limit => 10
+    t.integer  "downloads",                            :default => 0
+    t.string   "world_estimate",        :limit => 10
+    t.string   "cis_estimate",          :limit => 10
     t.integer  "last_download_time"
-    t.string   "prepare_status",     :limit => 100
+    t.string   "prepare_status",        :limit => 100
     t.string   "file_name"
-    t.integer  "month",              :limit => 1
-    t.integer  "year",               :limit => 2
+    t.integer  "month",                 :limit => 1
+    t.integer  "year",                  :limit => 2
     t.integer  "quality_id"
     t.integer  "translation_id"
     t.integer  "count_likes"
     t.integer  "count_comments"
-    t.datetime "created_at",                                       :null => false
+    t.datetime "created_at",                                          :null => false
     t.string   "cover"
     t.datetime "updated_at"
     t.string   "permalink"
@@ -186,6 +192,8 @@ ActiveRecord::Schema.define(:version => 20141002065014) do
     t.boolean  "blocked"
     t.boolean  "broken"
     t.datetime "published_at"
+    t.string   "brb_url"
+    t.integer  "recomendation_list_id"
   end
 
   add_index "films", ["blocked"], :name => "index_films_on_blocked"
@@ -470,6 +478,11 @@ ActiveRecord::Schema.define(:version => 20141002065014) do
 
   add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
 
+  create_table "recomendation_lists", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "related_items", :force => true do |t|
     t.integer  "source_item_id"
     t.integer  "related_item_id"
@@ -596,5 +609,14 @@ ActiveRecord::Schema.define(:version => 20141002065014) do
   end
 
   add_index "videos", ["category_id"], :name => "index_videos_on_category_id"
+
+  create_table "visits", :force => true do |t|
+    t.integer  "visitable_id"
+    t.string   "visitable_type"
+    t.integer  "fromable_id"
+    t.string   "fromable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end

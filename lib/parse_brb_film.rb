@@ -65,10 +65,10 @@ class ParseBrbFilm
 	def common_films
 		films = []
 		@movie.search('.b-poster-new').each do |poster|
-			films << [poster.at('.b-poster-new__image-poster')['style'].split("background-image: url(").last.tr('));\'',''), poster.at('.m-poster-new__short_title').text, "#{SOURCE_URL}#{poster.at('a')['href']}"]
+			films << [poster.at('.m-poster-new__short_title').text, poster.at('.b-poster-new__image-poster')['style'].split("background-image: url(").last.tr('));\'',''), "#{poster.at('a')['href']}"]
 		end
 		# cover, title, link
-		puts films
+		films
 	end
 
 	def actors
@@ -114,5 +114,5 @@ class ParseBrbFilm
 
 end
 
-film = ParseBrbFilm.new('/video/films/iLeIMlVcyJmlDG9qHq9E9W-trassa-60.html')
-puts film.ru_title
+# film = ParseBrbFilm.new('/video/films/iLeIMlVcyJmlDG9qHq9E9W-trassa-60.html')
+# puts film.common_films

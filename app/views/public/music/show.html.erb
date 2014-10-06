@@ -1,7 +1,9 @@
 <% provide(:title, @track.name) %>
 
 <div class="a">
+	<% if @track.new_path %>
 	<%= link_to "Оригинал #{number_to_human_size(@track.new_path.size)}", download_music_path(@track.permalink, bitrate: "orig") %> <br />
+	<% end %>
 
 	<% if @track.bitrates.any? %>
 			<% @track.bitrates.each do |bitrate| %>

@@ -1,6 +1,12 @@
 <%= f.label :ru_title, "RU Название" %> <br />
 <%= f.text_field :ru_title %> <br />
 
+brb <%= f.text_field :brb_url %>	<br />
+
+<% if @film.common_films.any? %>
+	есть похожие фильмы
+<% end %>
+
 <%= f.label :eng_title, "ENG Название" %> <br />
 <%= f.text_field :en_title %> <br />
 
