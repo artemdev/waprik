@@ -30,7 +30,7 @@
 #  permalink             :string(255)
 #  ru_title              :string(255)
 #  en_title              :string(255)
-#  without_files         :boolean
+#  visible               :boolean
 #  blocked               :boolean
 #  broken                :boolean
 #  published_at          :datetime
@@ -89,6 +89,7 @@ class Film < ActiveRecord::Base
   
   scope :latest, order("created_at DESC")
   scope :favourite, where("is_favourite = ?", true)
+  scope :visible, where("visible = ?", true)
 
   def add_actors(actors)
     separated_actors = actors.split("\n")
@@ -164,9 +165,15 @@ class Film < ActiveRecord::Base
       site_movie.add_genres(source_movie.genres.first.to_s)
       site_movie.add_actors(source_movie.actors.first.to_s)
       site_movie.recomendation_list_id = recomendation_list.id
+      site_movie.visible = false
       # site_movie.create_common_films!
       site_movie.save
     end
+  end
+
+  def make_visible!
+    self.visible = true
+    save
   end
 
   private

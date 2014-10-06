@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141006122129) do
+ActiveRecord::Schema.define(:version => 20141006124711) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(:version => 20141006122129) do
     t.string   "permalink"
     t.string   "ru_title"
     t.string   "en_title"
-    t.boolean  "without_files"
+    t.boolean  "visible"
     t.boolean  "blocked"
     t.boolean  "broken"
     t.datetime "published_at"
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(:version => 20141006122129) do
   add_index "films", ["title"], :name => "title"
   add_index "films", ["translation_id"], :name => "translation_id"
   add_index "films", ["user_id"], :name => "user_id"
-  add_index "films", ["without_files"], :name => "index_films_on_without_files"
+  add_index "films", ["visible"], :name => "index_films_on_without_files"
   add_index "films", ["year"], :name => "year"
 
   create_table "films_actors", :force => true do |t|
