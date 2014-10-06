@@ -75,8 +75,10 @@
 			Похожие фильмы
 		</div>
 		<div class="a">
-			<% @film.recomendation_list.films.each do |film| %>
-				<%= link_to film.title, film_path(film) unless film == @film %> <br />
+			<% @film.recomendation_list.films.each do |film| %> 
+				<% unless film == @film  %>
+					<%= link_to film.title, film_path(film) %> <br />
+				<% end %>
 			<% end %>
 		</div>
 	<% end %>
