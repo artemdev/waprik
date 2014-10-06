@@ -19,7 +19,7 @@ class Public::FilmsController < ApplicationController
 			@genres = FilmGenre.all
 			@films = []
 		end
-		@latest_date = Film.latest.first.created_at.strftime("%d.%m.%y") if Film.latest.first
+		@latest_date = Film.latest.visible.first.created_at.strftime("%d.%m.%y") if Film.latest.first
 		# @favourite_date = Film.latest.favourite.first.created_at
 	end
 
@@ -34,11 +34,11 @@ class Public::FilmsController < ApplicationController
 	end
 
 	def news
-		@films = Film.latest.favourite.limit(100).paginate(page: params[:page], per_page: 10)
+		@films = Film.latest.visible.favourite.limit(100).paginate(page: params[:page], per_page: 10)
 	end
 
 	def latest
-		@films = Film.latest.paginate(page: params[:page], per_page: 5)
+		@films = Film.latest.visible.paginate(page: params[:page], per_page: 5)
 	end
 
 
