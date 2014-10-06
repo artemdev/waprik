@@ -21,7 +21,7 @@ class ParseBrbFilm
 	end
 
 	def eng_title
-		@movie.at('.b-tab-item__title-origin').text
+		@movie.at('.b-tab-item__title-origin').text if @movie.at('.b-tab-item__title-origin')
 	end
 
 	def genres
