@@ -154,7 +154,7 @@ class Film < ActiveRecord::Base
     recomendation_list = RecomendationList.create!
     playlist.each do |movie|
       source_movie = ParseBrbFilm.new(movie.last)
-      if Film.find_by_ru_title(source_movie.ru_title)
+      if Film.find_by_ru_title(source_movie.ru_title.downcase)
         site_movie = Film.find_by_ru_title(source_movie.ru_title)
         site_movie.recomendation_list_id = recomendation_list.id
         site_movie.brb_url  = movie.last
