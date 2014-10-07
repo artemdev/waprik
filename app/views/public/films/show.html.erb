@@ -59,7 +59,8 @@
 			<% end %>
 		<% elsif @film.files.empty? %>
 			 Нет файлов для скачивания <br />
-			 <a href="#">Попросить добавить</a>
+			 <!-- TODO сохранять в куки данные заказавшего -->
+			 <%= link_to("Попросить добавить", new_wish_path(film_id: @film.id), method: :post) %>
 		<% end %>	
 
 		<% if @film.trailers.any? %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141006124711) do
+ActiveRecord::Schema.define(:version => 20141006175610) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -617,6 +617,13 @@ ActiveRecord::Schema.define(:version => 20141006124711) do
     t.string   "fromable_type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "wishes", :force => true do |t|
+    t.integer  "wishable_id"
+    t.string   "wishable_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

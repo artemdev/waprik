@@ -1,5 +1,8 @@
 <% provide(:title, "#{@collection.name.mb_chars.capitalize} от #{@date.strftime("%d.%m.%y")}") %>
 
+
+<!-- TODO общее число скачиваний -->
+
 <% if @collection.image.present? %>
 	<div class="a">
 		<%= image_tag @collection.image.preview.url %>
