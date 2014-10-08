@@ -1,10 +1,10 @@
 <% provide(:title, @film.title) %>
 
 	<div class="a">
-		Скачиваний <%= @film.downloads %> <br />
-		<% if @film.cis_estimate%>
+		Скачиваний <%= @film.downloads.present? %> <br />
+		<% if @film.cis_estimate %>
 			Мировая оценка <%= @film.cis_estimate %> <br />
-		<% elsif @film.world_estimate %>
+		<% elsif @film.world_estimate.present? %>
 			Оценка СНГ <%= @film.world_estimate %> <br />
 		<% end %>
 	</div>
