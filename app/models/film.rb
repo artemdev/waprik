@@ -36,16 +36,18 @@
 #  published_at          :datetime
 #  brb_url               :string(255)
 #  recomendation_list_id :integer
+#  torrent               :string(255)
 #
 
 require 'elasticsearch/rails/tasks/import'
 class Film < ActiveRecord::Base
-  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked, :new_cover, :common_films, :brb_url
+  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked, :new_cover, :common_films, :brb_url, :torrent
 
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection, :new_cover, :common_films
 
 
   mount_uploader :cover, CoverUploader
+  mount_uploader :torrent, TorrentUploader
 
   before_create :create_title
   before_create :create_permalink
@@ -183,6 +185,11 @@ class Film < ActiveRecord::Base
   end
 
   def make_visible!
+    self.visible = true
+    save
+  end
+
+  def add_to_vk
     self.visible = true
     save
   end

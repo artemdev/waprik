@@ -45,9 +45,9 @@ class Video < ActiveRecord::Base
   # after_create :convert
   # before_create :mark
   # before_create :rename_file
-  after_save :remove_chached_files
-  before_destroy :remember_id
-  after_destroy :remove_id_directory
+  # after_save :remove_chached_files
+  # before_destroy :remember_id
+  # after_destroy :remove_id_directory
 
   scope :sorted, order("updated_at DESC")
   scope :latest, order("created_at DESC")
@@ -122,17 +122,17 @@ class Video < ActiveRecord::Base
 
   # Конвертирация исходного видео
 
-  # Удаление cache файлов
-  def remove_chached_files
-    FileUtils.rm_r(CarrierWave.clean_cached_files!)
-  end
+  # # Удаление cache файлов
+  # def remove_chached_files
+  #   FileUtils.rm_r(CarrierWave.clean_cached_files!)
+  # end
 
-  # Удаление файлов
-  def remember_id
-    @id = self.id
-  end
+  # # Удаление файлов
+  # def remember_id
+  #   @id = self.id
+  # end
 
-  def remove_id_directory
-    FileUtils.remove_dir("#{Rails.root}/public/uploads/video/#{@id}", :force => true)
-  end
+  # def remove_id_directory
+  #   FileUtils.remove_dir("#{Rails.root}/public/uploads/video/#{@id}", :force => true)
+  # end
 end

@@ -1,0 +1,10 @@
+<div class="row">
+	<%= form_for :public_page, url: admin_public_pages_path do |f| %>
+
+		<%= f.label :vk_url, "адрес вконтакте" %>
+		<%= f.text_field :vk_url %>
+
+		<%= f.submit "продолжить" %>
+
+	<% end %>
+</div>

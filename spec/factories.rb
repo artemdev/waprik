@@ -47,7 +47,6 @@ FactoryGirl.define do
 
 	# СОЗДАТЬ MP3 ARTIST
 
-
 	factory :feedback do
 		description 'классный сайт!'
 		sender 'Артем'
@@ -59,6 +58,16 @@ FactoryGirl.define do
 		to 'http://waprik.ru/adroid'
 		from 'http://wapwa.ru'
 		expires_at 1.day.from_now
+	end
+
+	# categories
+	factory :category do 
+		name "юмор"
+	end
+
+	# content
+	factory :video do 
+		name "vitalyzdtv prank"
 	end
 
 end

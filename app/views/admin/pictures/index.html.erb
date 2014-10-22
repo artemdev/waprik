@@ -1,14 +1,16 @@
 <% provide(:title, "Картинки") %>
+<div class="row">
+	<%= link_to "Добавить картинку", new_admin_picture_path %>
+	<%= link_to "Взять эро из вк", get_ero_admin_vk_posts_path, method: :post %>
 
-<%= link_to "Добавить картинку", new_admin_picture_path %>
-
-<div class="a">
-	<% @pictures.each do |picture| %>
-		<%= link_to image_tag(picture.image.preview.url), admin_picture_path(picture) %>
-		<%= link_to "ред.", edit_admin_picture_path(picture) %>
-		<%= link_to "x", admin_picture_path(picture), method: :delete %>
-		<% unless picture == @pictures.last %>
-		<hr>
+	<div class="a">
+		<% @pictures.each do |picture| %>
+			<%= link_to image_tag(picture.image.preview.url), admin_picture_path(picture) %>
+			<%= link_to "ред.", edit_admin_picture_path(picture) %>
+			<%= link_to "x", admin_picture_path(picture), method: :delete %>
+			<% unless picture == @pictures.last %>
+			<hr>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 </div>

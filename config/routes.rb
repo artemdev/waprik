@@ -21,7 +21,11 @@ Waprik::Application.routes.draw do
     resources :replies, only: ['new', 'create', 'destroy']
     resources :music_artists, controller: "MusicArtists"
     resources :film_qualities
-    resources :vk_posts, only: ['new', 'create']
+
+    resources :public_pages, only: ['index', 'new', 'create']
+    resources :vk_posts, only: ['new', 'create'] do
+      post 'get_ero', on: :collection
+    end
 
     resources :ftp_files, only: ['index'] do
       get :rename_films, on: :collection
@@ -72,10 +76,16 @@ Waprik::Application.routes.draw do
   # Public resources
     match 'film/:id' => 'public/films#show'
     match 'test-dl' => 'public/music#test'
+    match 'auth/:provider' => 'public/authentications#create'
+
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
+      resources :authentications, only: 'create'
       resources :wishes, only: ['new']
       resources :videos
+      resources :users, only: ['new', 'create'] do 
+        get :account, on: :collection
+      end
       resources :serials do
         get 'download', on: :member
         get 'get_file', on: :member
@@ -127,6 +137,7 @@ Waprik::Application.routes.draw do
 
   root :to => "public/films#index"
 
+  match 'signin' => 'public/users#new'
   match 'login' => 'admin/access#login'
   match 'logout' => 'admin/access#logout'
   match 'admin' => 'admin/access#menu'

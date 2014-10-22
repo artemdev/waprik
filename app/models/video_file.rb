@@ -13,7 +13,6 @@
 #
 
 class VideoFile < ActiveRecord::Base
-	include Convertation
 
   attr_accessible :attach
 

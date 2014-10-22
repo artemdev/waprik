@@ -3,12 +3,13 @@ class Public::CategoriesController < ApplicationController
 	
 	def show
 		@category = Category.find(params[:id])
-		if params[:content_type] == "videos"
-			@videos = @category.videos
-		elsif params[:content_type] == "serials"
-			@serials = @category.serials
-		elsif params[:content_type] == "news"
-			@news = @category.news			
+		case params[:content_type]
+			when "videos"
+				@videos = @category.videos
+			when "serials"
+				@serials = @category.serials
+			when "news"
+				@news = @category.news			
 		end
 	end
 

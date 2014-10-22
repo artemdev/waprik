@@ -32,9 +32,10 @@ gem 'mechanize'
 gem 'useragent'
 gem 'vkontakte_api'
 gem 'autoprefixer-rails'
-gem "twitter-bootstrap-rails"
-gem "kinopoisk_parser"
+gem 'less-rails-bootstrap'
 gem 'viddl-rb'
+gem 'omniauth-vkontakte'
+# gem 'quvi', '~> 0.1.1'
 
 # Gems used only for assets and not required
 # in production environments by default.

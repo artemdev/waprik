@@ -1,0 +1,7 @@
+<div class="a">
+	<% if !flash[:success].nil? %>
+	  <%= flash[:success] %>
+	<% elsif !flash[:error].nil? %>
+	  <%= flash[:error] %>
+	<% end %>
+</div> 

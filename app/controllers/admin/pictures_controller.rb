@@ -14,6 +14,10 @@ class Admin::PicturesController < ApplicationController
 		@picture = Picture.new
 	end
 
+	def parse_ero
+		@pictures = Picture.parse_ero
+	end
+
 	def create
 		@picture = Picture.new(params[:picture])
 		if @picture.save

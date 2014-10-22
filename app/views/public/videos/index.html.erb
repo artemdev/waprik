@@ -15,15 +15,19 @@
 	Жанры
 </div>
 <div class="a">
-	<% @categories.each do |category| %>
+	<% if @categories.any? %>
+		<% @categories.each do |category| %>
 
-		<%= link_to(category.name, :action => 'category', :id => category.id) %>
-		<span class="small_text">
-			<%= category.videos.size %>
-		</span>
-		<% unless category == @categories.last %>
-			<hr /> 
+			<%= link_to(category.name, :action => 'category', :id => category.id) %>
+			<span class="small_text">
+				<%= category.videos.size %>
+			</span>
+			<% unless category == @categories.last %>
+				<hr /> 
+			<% end %>
+
 		<% end %>
-
+	<% else %>
+		Пусто
 	<% end %>
 </div>

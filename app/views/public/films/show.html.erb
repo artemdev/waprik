@@ -98,3 +98,7 @@
 			<%= link_to director.name, film_director_path(director) %>
 		<% end %>
 	</div>
+
+	<% genre = Struct.new(:title, :url) %>
+	<% @footer_links = [] %>
+	<% @footer_links << genre.new(@film.genres.last.title.mb_chars.capitalize, film_genre_url(@film.genres.last)) %>

@@ -1,0 +1,11 @@
+<%= error_messages_for(@user) %>
+
+<div class="row">
+	<%= form_for @user do |f| %>
+
+		<%= render partial: 'public/shared/new_user', locals: { :f => f } %>
+
+		<%= f.submit "продолжить" %>
+
+	<% end %>
+</div>

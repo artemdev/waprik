@@ -1,7 +1,7 @@
 <%= f.label :ru_title, "RU Название" %> <br />
 <%= f.text_field :ru_title %> <br />
 
-brb <%= f.text_field :brb_url %>	<br />
+brb url <%= f.text_field :brb_url %>	<br />
 
 <% if @film.common_films.any? %>
 	есть похожие фильмы
@@ -23,8 +23,11 @@ brb <%= f.text_field :brb_url %>	<br />
 		<%= f.check_box :remove_cover %>
 	<% end %>
 
-	<%= f.label :cover, "Обложка" %>	<br />
-	<%= f.file_field :cover %> <br />
+<%= f.label :cover, "Обложка" %>	<br />
+<%= f.file_field :cover %> <br />
+
+<%= f.label :torrent, "Торрент" %>	<br />
+<%= f.file_field :torrent %> <br />
 
 <% if @movie && @movie.cover %>
 	<%= link_to "скачать обложку", @movie.cover %>

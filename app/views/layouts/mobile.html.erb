@@ -11,16 +11,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-	<% if !flash[:success].nil? %>
-		<div class="a">
-			<%= flash[:success] %>
-		</div>
-	<% elsif !flash[:error].nil? %>
-		<div class="a">
-			<%= flash[:error] %>
-		</div>	
-	<% end %>
+	
+	<%= render partial: 'shared/flash_messages' %>
 	
 	<div class="ads">
 		<div class="octobird-block" data-tp="all" data-nb="1"></div>
@@ -37,7 +29,7 @@
 	<div class="foot">
 		<% unless @footer_links.nil? %>
 			<% @footer_links.each do |link| %>
-				<%= link.html_safe %> <br />
+				<%= link_to link.title, link.url %> <br />
 			<% end %>
 		<% end %>
 		<a href="http://waprik.ru">На главную</a>

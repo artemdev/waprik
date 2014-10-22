@@ -64,46 +64,15 @@ class Admin::FilmsController < ApplicationController
 		@film.about = @movie.description if @movie.description 
 		@film.year = @movie.years if @movie.years
 		@film.remote_cover_url = @movie.cover if @movie.cover
-		# @film.world_estimate = @movie.imdb_rating if @movie.imdb_rating
-		# @film.cis_estimate = @movie.rating if @movie.rating 
 		@film.selected_genres = @movie.genres.join("\n") if @movie.genres
 		@film.new_actors = @movie.actors.join("\n") if @movie.actors && !@movie.actors.empty?
 		@film.new_directors = @movie.directors.join("\n") if @movie.directors && !@movie.directors.empty?
-		# @film.duration_hours = @movie.length.divmod(60).first
-		# @film.duration_minutes = @movie.length.divmod(60).last
 		@genres = FilmGenre.all
 		@directors = @film.directors
 		@actors = @film.actors
 		@film.common_films = @movie.common_films
 		@film.brb_url = params[:movie_url]
 	end
-
-	# def new_by_hand
-	# 	@film = Film.new
-	# 	@genres = FilmGenre.all
-	# 	@directors = @film.directors
-	# 	@actors = @film.actors
-	# 	@collections = Collection.all
-	# end
-
-	# def create_by_hand
-	# 	@film = Film.new(params[:film])
-	# 	@directors = @film.directors
-	# 	@actors = @film.actors
-	# 	@genres = FilmGenre.all
-	# 	@film.add_actors(params[:film][:new_actors])
-	# 	@film.add_directors(params[:film][:new_directors])
-	# 	@film.add_genres(params[:film][:selected_genres])
-	# 	@film.ru_title = params[:film][:ru_title]
-	# 	@film.en_title = params[:film][:en_title]
-	# 	@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
-	# 	if @film.save
-	# 		flash[:success] = "Фильм успешно добавлен"
-	# 		redirect_to new_admin_film_file_path(film_id: @film.id)
-	# 	else
-	# 		render :new_by_hand
-	# 	end
-	# end
 
 	def create
 		@film = Film.new(params[:film])

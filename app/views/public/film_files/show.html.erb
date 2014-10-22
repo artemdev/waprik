@@ -20,3 +20,10 @@
 		<% end %>
 	</div>
 <% end %>
+
+
+<% film = Struct.new(:title, :url) %>
+<% genre = Struct.new(:title, :url) %>
+<% @footer_links = [] %>
+<% @footer_links << film.new(@film.title, film_url(@film)) %>
+<% @footer_links << genre.new(@film.genres.last.title.mb_chars.capitalize, film_genre_url(@film.genres.last)) %>
