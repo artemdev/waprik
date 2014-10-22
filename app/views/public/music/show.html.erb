@@ -28,4 +28,8 @@
 	</div>
 <% end %>
 
-<% @footer_links = ["#{link_to @track.album.name.mb_chars.capitalize, album_path(@track.album)}", "#{link_to @track.artist.name, artist_path(@track.artist)}",] %>
+<% album = Struct.new(:title, :url) %>
+<% artist = Struct.new(:title, :url) %>
+<% @footer_links = [] %>
+<% @footer_links << album.new(@track.album.name.mb_chars.capitalize, album_path(@track.album)) %>
+<% @footer_links << artist.new(@track.artist.name.mb_chars.capitalize, artist_path(@track.artist)) %>
