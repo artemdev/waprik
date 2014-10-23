@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141020075535) do
+ActiveRecord::Schema.define(:version => 20141023073607) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20141020075535) do
     t.string   "brb_url"
     t.integer  "recomendation_list_id"
     t.string   "torrent"
+    t.boolean  "social"
   end
 
   add_index "films", ["blocked"], :name => "index_films_on_blocked"
@@ -517,8 +518,10 @@ ActiveRecord::Schema.define(:version => 20141020075535) do
     t.boolean  "visible"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "image"
   end
 
+  add_index "public_posts", ["image"], :name => "index_public_posts_on_image"
   add_index "public_posts", ["visible"], :name => "index_public_posts_on_visible"
   add_index "public_posts", ["vk_id"], :name => "index_public_posts_on_vk_id"
 

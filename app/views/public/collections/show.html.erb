@@ -4,7 +4,10 @@
 <!-- Refactoring общее число скачиваний -->
 <% downloads = 0 %>
 <% @collection.tracks.map { |track| downloads += track.downloads } %>
-<%= downloads %>
+
+<div class="b">
+	<%= downloads %> скачиваний
+</div>
 
 <% if @collection.image.present? %>
 	<div class="a">

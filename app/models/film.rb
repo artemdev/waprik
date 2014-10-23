@@ -37,6 +37,7 @@
 #  brb_url               :string(255)
 #  recomendation_list_id :integer
 #  torrent               :string(255)
+#  social                :boolean
 #
 
 require 'elasticsearch/rails/tasks/import'
@@ -45,6 +46,7 @@ class Film < ActiveRecord::Base
 
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection, :new_cover, :common_films
 
+  FILMS_PUBLIC = "waprikfilms"
 
   mount_uploader :cover, CoverUploader
   mount_uploader :torrent, TorrentUploader
@@ -189,13 +191,15 @@ class Film < ActiveRecord::Base
     save
   end
 
-  def add_to_vk
-    self.visible = true
+  def make_social!
+    # post to vk
+    vk = VkontakteApi::Client.new
+    vk.wall.post(owner_id: FILMS_PUBLIC, message: self.title)
+    self.social = true
     save
   end
 
   private
-
 
   def create_permalink
     self.permalink = self.ru_title.parameterize

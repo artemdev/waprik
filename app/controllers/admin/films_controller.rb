@@ -150,6 +150,12 @@ class Admin::FilmsController < ApplicationController
 		end
 	end
 
+
+	def make_social
+		film = Film.find(prams[:id])
+		film.make_social!
+	end
+
 	private
 
 	def find_film
