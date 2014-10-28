@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141023073607) do
+ActiveRecord::Schema.define(:version => 20141026111223) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(:version => 20141023073607) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "remember_token"
+    t.integer  "vk_user_id"
+    t.string   "vk_access_token"
+    t.string   "vk_code"
   end
 
   create_table "ads_links", :force => true do |t|
@@ -600,6 +603,7 @@ ActiveRecord::Schema.define(:version => 20141023073607) do
     t.integer  "dl_low_3gp",   :default => 0
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.boolean  "vk"
   end
 
   add_index "series", ["serial_id"], :name => "index_series_on_serial_id"
@@ -1675,6 +1679,7 @@ ActiveRecord::Schema.define(:version => 20141023073607) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "vk_access_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

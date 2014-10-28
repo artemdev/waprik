@@ -12,6 +12,9 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  remember_token  :string(255)
+#  vk_user_id      :integer
+#  vk_access_token :string(255)
+#  vk_code         :string(255)
 #
 
 require 'digest/sha1'

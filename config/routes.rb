@@ -21,7 +21,10 @@ Waprik::Application.routes.draw do
     resources :replies, only: ['new', 'create', 'destroy']
     resources :music_artists, controller: "MusicArtists"
     resources :film_qualities
-
+    resources :authentications, only: :index do
+      get 'to_vk', on: :collection
+      get 'from_vk', on: :collection
+    end
     resources :public_pages, only: ['index', 'new', 'create']
     resources :vk_posts, only: ['new', 'create'] do
       post 'get_ero', on: :collection
