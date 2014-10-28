@@ -1,0 +1,21 @@
+<ul class="list-films">
+	<% serials.each do |serial| %>
+			<li>
+				<span class="film-preview">
+					<% if serial.cover.url.nil?  %>
+							<img src="http://waprik.org/uploads/films/<%= film.id %>/cover/preview.jpg" alt="cover">
+					<% else %>
+							<%= image_tag serial.cover.mini.url %>
+					<% end %>
+				</span>
+				<span class="film-info">
+					<%= link_to title_for(serial), serial_path(serial) %> 
+					<span class="small-text">
+						<%= serial.years %>
+					</span>
+					<br />
+					<%= truncate(serial.description, length: 70, omission: '...') %>
+				</span>
+			</li>
+	<% end %>
+</ul>

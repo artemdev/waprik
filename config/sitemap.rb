@@ -1,14 +1,18 @@
+require 'rubygems'
+require 'sitemap_generator'
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://waprik.org"
+SitemapGenerator::Sitemap.default_host = 'http://waprik.org'
 
 SitemapGenerator::Sitemap.create do
-
+  add "/", :priority => 0.5, :changefreq => 'daily'
   Film.find_each do |film|
     add film_path(film.permalink), lastmod: film.updated_at
   end
 
+  add "music", :priority => 0.7, :changefreq => 'daily'
+
   Mp3File.find_each do |track|
-    add track_path(track.permalink), lastmod: track.created_at
+    add music_path(track.permalink), lastmod: track.created_at
   end  
 
   # Put links creation logic here.
@@ -34,3 +38,6 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 end
+
+SitemapGenerator::Sitemap.ping_search_engines # Not needed if you use the rake tasks
+

@@ -12,6 +12,7 @@
 #  description :string(255)
 #  image       :string(255)
 #  permalink   :string(255)
+#  vk_title    :string(255)
 #
 
 include ApplicationHelper
@@ -33,8 +34,9 @@ class Collection < ActiveRecord::Base
   has_many :films, through: :collection_film_through
 
   scope :hits, where("hit = ?", true)
-  scope :latest, order("created_at ASC")
-  scope :fresh, order("updated_at ASC")
+  scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }
+  scope :latest, order("created_at DESC")
+  scope :fresh, order("updated_at DESC")
   scope :with_music, lambda { where(with_music: true) }
   scope :with_films, where(with_films: true)
   scope :with_videos, where(with_videos: true)
@@ -59,7 +61,7 @@ class Collection < ActiveRecord::Base
   protected
 
   def create_permalink
-    self.permalink = permalink_for name
+    self.permalink = name.parameterize
   end
 
 end

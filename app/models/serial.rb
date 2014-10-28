@@ -13,27 +13,37 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  published_at :datetime
+#  permalink    :string(255)
+#  lang         :boolean
 #
 
 class Serial < ActiveRecord::Base
-  attr_accessible :cover, :description, :season, :updating, :name, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes
+  attr_accessible :cover, :description, :season, :updating, :name, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes, :lang
   attr_accessor :category, :new_genres
+
+  def to_param
+    "#{id} #{name}".parameterize
+  end
+
+  before_update :set_permalink
+
   mount_uploader :cover, CoverUploader
 
-  validates_presence_of :name, message: '^ Нужно указать название сериала' 
-  validates_presence_of :cover, message: '^ Нужно добавить ковер' 
-  validates_presence_of :description, message: '^ Нужно описать сериал' 
-  validates_presence_of :season, message: '^ Нужно указать сезон' 
-  validates_presence_of :years, message: '^ Нужно указать год(ы) выхода сериала' 
+  validates :name, presence: { message: '^ Нужно указать название сериала' }
+  validates :cover, presence: { message: '^ Нужно добавить ковер' }
+  validates :description, presence: { message: '^ Нужно описать сериал' }
+  validates :years, presence: { message: '^ Нужно указать год(ы) выхода сериала' }
+  validates :season, presence: { message: '^ Нужно указать сезон сериала' }
 
   has_many :series, dependent: :destroy
+  accepts_nested_attributes_for :series
   has_many :genres_through, class_name: "GenreThrough", as: :genreable
   has_many :genres, through: :genres_through
-  has_many :seasons, class_name: "SerialSeason"
+  
+  has_many :related_items
+  has_many :relations, through: :related_items, foreign_key: 'source_item_id'
+  has_many :related, through: :related_items, foreign_key: 'second_item_id'
 
-
-  accepts_nested_attributes_for :series
-  accepts_nested_attributes_for :seasons
 
   scope :hits, where(hit: true)
   scope :latest, order("updated_at DESC")
@@ -51,6 +61,13 @@ class Serial < ActiveRecord::Base
         end
       end
     end
+  end
+
+  private
+
+  def set_permalink
+    self.permalink = self.name.parameterize
+    true
   end
 
 end

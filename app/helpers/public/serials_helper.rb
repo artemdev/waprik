@@ -15,4 +15,8 @@ module Public::SerialsHelper
 		end
 		return @downloads.to_i
 	end
+
+	def title_for serial
+		serial.name + " (#{serial.season} сезон)"
+	end
 end

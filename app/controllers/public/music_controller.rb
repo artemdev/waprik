@@ -17,10 +17,19 @@ class Public::MusicController < ApplicationController
 
 	def show
 		@track = Mp3File.find_by_permalink(params[:id])
+		@recomendations = []
+		@track.collections.each do |c|
+			c.tracks.map {|t| @recomendations << t unless t == @track }
+		end
+		@recomendations = @recomendations.paginate(page: params[:page], per_page: 10)
+		if @track.nil?
+			flash[:error] = "трек не найден"
+			redirect_to tracks_path 
+		end
 	end
 
 	def download
-		@track = Mp3File.find(params[:id])
+		@track = Mp3File.find_by_permalink(params[:id])
 		@track.downloads += 1
 		@track.save
 		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
@@ -33,6 +42,8 @@ class Public::MusicController < ApplicationController
 				when "32"
 					send_file "#{@track.path.path}_32.mp3", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 			end
+		elsif params[:bitrate] == "orig"
+			send_file "#{@track.new_path.path}", type: 'audio/mpeg', filename: @track.fname + '.mp3'
 		elsif @bitrate.file
 			send_file @bitrate.file.path, type: @bitrate.file.content_type, filename: (@track.fname + '.mp3')
 		end

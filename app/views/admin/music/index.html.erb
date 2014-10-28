@@ -7,6 +7,22 @@
 	<% end %>
 </div>
 
+<div class="add-track">
+	<% if @today_collections.any? %>
+	сегодня:
+		<pre>
+			<% @today_collections.each do |collection| %>
+				+ <%= link_to collection.name, collection_path(collection.permalink) %>
+				<br />
+			<% end %>
+		</pre>
+	<% end %>
+</div>
+
+<div class="parse">
+	<%= link_to 'Парсить пост', new_admin_vk_post_path %>
+</div>
+
 <div class="music-collections">
 	<%= link_to 'Подборки', admin_collections_path(section: "with_music") %>
 </div>

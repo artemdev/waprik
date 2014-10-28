@@ -15,17 +15,9 @@
 #  quality_id :integer
 #
 
-# integer "film_id"
-# integer "format_id"
-# string  "title"
-# string  "real_name"
-# integer "size"
-# string  "ext"
-# string  "file"
-# integer "position"
 class FilmFile < ActiveRecord::Base
   self.table_name = "films_files"
-	attr_accessible :new_file, :format_title
+	attr_accessible :new_file, :format_title, :film_id
 
 	# переменные для конвертации видео
  	MP4_640 = "mp4_640"

@@ -10,11 +10,6 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
-
-# string "title",       :limit => 100,  :null => false
-# string "description", :limit => 100,  :null => false
-# string "ffparams",    :limit => 1000, :null => false
-# string "ext",         :limit => 10,   :null => false
 class FilmFormat < ActiveRecord::Base
   self.table_name = "films_formats"
 

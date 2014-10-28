@@ -6,6 +6,10 @@ class FFMPEGWorker
 		film.files.new.convert_to_3gp path, quality_id
 		film.files.new.convert_to_mp4_320 path, quality_id
 		film.files.new.convert_to_mp4_640 path, quality_id
+		film.make_visible! unless film.visible?
+		# TODO 17.10 добавить фильм в паблик vk
+		# film.add_to_vk
+
 	end
 		
 end

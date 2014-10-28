@@ -26,23 +26,10 @@
 #  permalink         :string(255)
 #  updated_at        :datetime         not null
 #  published_at      :datetime
+#  vk_url            :string(255)
 #
 
-# string    "ftp_path",          :limit => 256,                     
-# string    "path",              :limit => 256,                     
-# string    "name",              :limit => 256,                     
-# string    "fname",             :limit => 256,                     
-# string    "length",            :limit => 5,   :default => "00:00",
-# timestamp "created_at",                                           
-# integer   "genre_id",                                             
-# integer   "artist_id",                        :default => 0,      
-# integer   "album_id",                         :default => 0,      
-# integer   "order",                                                
-# integer   "order_nomination",                 :default => 0,      
-# string    "hit",               :limit => 1,   :default => "0",    
-# timestamp "file_hit_date"
-# string    "new",               :limit => 1,   :default => "0",    
-# integer   "downloads",                       :default => 0,      
+    
 require 'taglib'
 class Mp3File < ActiveRecord::Base
   default_scope order("created_at DESC")
@@ -71,7 +58,7 @@ class Mp3File < ActiveRecord::Base
   scope :hits, -> { where("hit = ?", true) }
   scope :top, lambda { |number = 100| where("hit = ?", true).limit(number) }
 
-  validates :artist, :name, :new_path, presence: true
+  validates :artist, :name, presence: true
 
 
   include Tire::Model::Search
@@ -85,6 +72,20 @@ class Mp3File < ActiveRecord::Base
     self.artist = Mp3Artist.find_or_create_by_name(name) if name.present?
   end
 
+  def artist_name
+  end
+
+  def set_name_from=(file)
+    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
+  end
+
+  def set_name_from file
+    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&amp;', 'and').gsub('&', 'and').gsub('\'', '')
+  end
+
+  def set_fname
+    self.fname = Russian.translit(self.name.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
+  end
 
   def album_name
     album.try(:name)

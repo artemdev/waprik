@@ -4,14 +4,34 @@ FactoryGirl.define do
 		password 'lordik37ztxq'
 	end
 
+	factory :film do
+		ru_title "тест"
+		en_title "test"
+		permalink "test"
+	end
+
+	factory :film_format_320, class: 'FilmFormat' do
+		title "mp4 320 (хорошее качество)"
+		description "mp4 320 (хорошее качество)"
+		ffparams "1"
+		ext "mp4"
+	end
+
+	factory :film_file do
+		real_name File.open "#{Rails.root}/public/testing/films/for_testing.mp4"
+		format FactoryGirl.create(:film_format_320)
+	end
+
+
 	factory :blocked_film, class: 'Film' do
 		ru_title "тест"
 		en_title "test"
+		permalink "test"
 		blocked true
 	end
 
 	factory :mp3_track, class: 'Mp3File' do
-		new_path File.open "/Users/Artem/Documents/wapriktesting/music/lana_del_rey.mp3"
+		new_path File.open "#{Rails.root}/public/testing/music/lana_del_rey.mp3"
 		artist_name "lana del rey"
 		album_name "песни 2014"
 		permalink "lana_del_rey"
@@ -27,7 +47,6 @@ FactoryGirl.define do
 
 	# СОЗДАТЬ MP3 ARTIST
 
-
 	factory :feedback do
 		description 'классный сайт!'
 		sender 'Артем'
@@ -39,6 +58,16 @@ FactoryGirl.define do
 		to 'http://waprik.ru/adroid'
 		from 'http://wapwa.ru'
 		expires_at 1.day.from_now
+	end
+
+	# categories
+	factory :category do 
+		name "юмор"
+	end
+
+	# content
+	factory :video do 
+		name "vitalyzdtv prank"
 	end
 
 end

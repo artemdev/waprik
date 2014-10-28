@@ -24,6 +24,19 @@ gem "font-awesome-rails"
 gem 'sitemap_generator'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'annotate'
+gem "friendly_id", "~> 4.0.10"
+gem 'autoprefixer-rails'
+gem 'whatlanguage'
+gem 'trans-api', github: "dblommesteijn/trans-api"
+gem 'mechanize'
+gem 'useragent'
+gem 'vkontakte_api'
+gem 'autoprefixer-rails'
+gem 'less-rails-bootstrap'
+gem 'viddl-rb'
+gem 'omniauth-vkontakte'
+# gem 'quvi', '~> 0.1.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -31,7 +44,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 	gem 'execjs'
-	gem "twitter-bootstrap-rails"
 end
 
 # group :production, :staging do

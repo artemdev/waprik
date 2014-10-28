@@ -20,6 +20,7 @@ class Mp3Artist < ActiveRecord::Base
   attr_accessible :name, :lang
 
   before_create :set_first_letter
+  before_create :set_language
   before_update :check_language
   
   has_many :tracks, class_name: 'Mp3File', foreign_key: 'artist_id'
@@ -45,6 +46,13 @@ class Mp3Artist < ActiveRecord::Base
 
   def rus?
     true if self.lang == "rus"
+  end
+
+  def set_language
+    wl = WhatLanguage.new(:english, :russian)
+    self.lang = "rus" if wl.language(self.first_letter) == :russian
+    self.lang = "eng" if wl.language(self.first_letter) == :english
+    true
   end
 
   private

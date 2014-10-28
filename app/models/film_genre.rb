@@ -18,4 +18,7 @@ class FilmGenre < ActiveRecord::Base
   has_many :films, through: :films_genres_through, :source => :genreable, :source_type => 'Film'
   has_many :serials, through: :films_genres_through, :source => :genreable, :source_type => 'Serial'
 
+  scope :with_serials, joins(:serials)
+
+
 end

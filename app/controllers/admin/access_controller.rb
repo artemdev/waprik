@@ -8,15 +8,15 @@ class Admin::AccessController < ApplicationController
 	end
 
   def login
-  	redirect_to action: 'menu' if cookies[:remember_token]
+  	redirect_to action: 'menu' if current_user
   end
 
   def attempt_login
-  	authorized_user = AdminUser.authenticate(params[:username], params[:password])
+  	authorized_user = User.authenticate(params[:username], params[:password])
   	if authorized_user
   		sign_in authorized_user
   		flash[:notice] = "Успех!"
-  		redirect_to(action: 'menu')
+  		redirect_to action: 'menu'
   	else
   		flash[:notice] = "Неверный логин или пароль :("
   		redirect_to(action: 'login')
@@ -29,6 +29,6 @@ class Admin::AccessController < ApplicationController
   def logout
     sign_out
   	flash[:notice] = "Выход спешен :)"
-		redirect_to(action: 'login')
+		redirect_to action: 'login'
   end
 end

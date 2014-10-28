@@ -33,6 +33,7 @@
 	<% end %>
 </div>
 
+
 <% if @series.any? %> <!-- series -->	
 	<% @series.each do |serie| %>
 		<% if serie.files.any? %>
@@ -42,14 +43,14 @@
 				<% serie.files.each do |file| %>
 					<div class="a">  <!-- files -->	
 						<!-- TODO сделать скачивание файлов серии -->
-						<%= link_to file.format.title, "" %>
+						<%= link_to file.format.title, download_serial_path(file) %>
 						<%= number_to_human_size(file.size) %>
 						<br />
 						<span class="small-text">
 							<%= file.format.description %>
 						</span> 
 					</div>
-				<% end %><!-- # serie.files.each -->
+			<% end %><!-- # serie.files.each -->
 		<% end %> <!-- # @series.each -->
 	<% end %> <!-- # serie.files.any? -->
 <% else %>
@@ -58,6 +59,8 @@
 	</div>
 <% end %> <!-- @series.any? -->
 
-<% @footer_links = Array.new %>
-<% @footer_links << "#{ link_to 'Все сериалы', serials_path }" %>
-<% @footer_links << "#{ link_to @serial.genres.last.title }" if @serial.genres.last %>
+<% genre = Struct.new(:title, :url) %>
+<% @footer_links = [] %>
+<% @footer_links << genre.new(@serial.genres.last.title.mb_chars.capitalize, film_genre_path(@serial.genres.last, content: "serials")) %>
+<% @footer_links << genre.new('Все сериалы', serials_path) %>
+

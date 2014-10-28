@@ -12,10 +12,12 @@
 <div class="a">
 	<%= @serial.description %>
 </div>
+
 <% @serial.series.each do |series| %>
 	<div class="title">
 		<%= series.number %> (<%= series.release_date %>)
 	</div>
+
 	<div class="a">
 			<%= link_to "3GP (среднее качество)", series.low_3gp.url unless series.low_3gp.url.nil? %>
 			<%= link_to "MP4 320 (хорошее качество)", series.mp4_320.url unless series.mp4_320.url.nil? %>
@@ -23,3 +25,9 @@
 	</div>
 <% end %>
 </div>
+
+<% serial = Struct.new(:title, :url) %>
+<% genre = Struct.new(:title, :url) %>
+<% @footer_links = [] %>
+<% @footer_links << serial.new(@serial.title, film_url(@serial)) %>
+<% @footer_links << genre.new(@serial.genres.last.title.mb_chars.capitalize, film_genre_url(@serial.genres.last)) %>

@@ -5,7 +5,7 @@ class Public::VideosController < ApplicationController
 
   def index
   	@categories = Category.for_videos.sorted
-    @collections = Collection.top
+    @collections = Collection.with_videos.hits
     @section = "video"
     @last_news = News.sorted.where(:section => @section).last
     @today_videos = Video.today

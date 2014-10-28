@@ -1,10 +1,13 @@
 <% provide(:title, @film.title) %>
+<div class="row">
+	<div class="span10 offset1">
+		<%= error_messages_for @film %>
 
-<%= error_messages_for @film %>
-
-<%= form_for(:film, url: {action: 'create', movie_title: @movie.title}, method: :post, :html => { :multipart => true }) do |f| %>
-	<div class="edit-film">
-		<%= render partial: 'admin/shared/film_form', locals: {:f => f, :film => @film, :trailer => @trailer} %>
+		<%= form_for(:film, url: {action: 'create', movie_title: @movie.ru_title}, method: :post, :html => { :multipart => true }) do |f| %>
+			<div class="edit-film">
+				<%= render partial: 'admin/shared/film_form', locals: {:f => f, :film => @film, :trailer => @trailer} %>
+			</div>
+			<%= f.submit "Добавить фильм"%>
+		<% end %>
 	</div>
-	<%= f.submit "Добавить фильм"%>
-<% end %>
+</div>

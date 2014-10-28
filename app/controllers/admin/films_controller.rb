@@ -46,84 +46,54 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def list
-		s = Kinopoisk::Search.new(params[:keyword])
-		@movies = s.movies
+		@movies = ParseBrbSearch.new(params[:keyword]).results
 	end
 
 	def new
-		@movie = Kinopoisk::Movie.new(params[:movie_title])
+		@movie = ParseBrbFilm.new params[:movie_url]
 		@film = Film.new
 		# title
-		if @movie.title && !@movie.title_en.empty? && !@movie.title_en.nil?
-			@film.title = "#{@movie.title} / #{@movie.title_en}"
-		elsif @movie.title
-			@film.title = @movie.title
+		if @movie.ru_title.present? && @movie.eng_title.present?
+			@film.title = "#{@movie.ru_title} / #{@movie.eng_title}"
+		elsif @movie.ru_title.present?
+			@film.title = @movie.ru_title
 		end
-		@film.ru_title = @movie.title
-		@film.en_title = @movie.title_en
+		@film.ru_title = @movie.ru_title if @movie.ru_title
+		@film.en_title = @movie.eng_title if @movie.eng_title
 		# info
 		@film.about = @movie.description if @movie.description 
-		@film.year = @movie.year if @movie.year 
-		@film.cover = @movie.poster if @movie.poster
-		@film.world_estimate = @movie.imdb_rating if @movie.imdb_rating
-		@film.cis_estimate = @movie.rating if @movie.rating 
+		@film.year = @movie.years if @movie.years
+		@film.remote_cover_url = @movie.cover if @movie.cover
 		@film.selected_genres = @movie.genres.join("\n") if @movie.genres
 		@film.new_actors = @movie.actors.join("\n") if @movie.actors && !@movie.actors.empty?
 		@film.new_directors = @movie.directors.join("\n") if @movie.directors && !@movie.directors.empty?
-		@film.duration_hours = @movie.length.divmod(60).first
-		@film.duration_minutes = @movie.length.divmod(60).last
 		@genres = FilmGenre.all
 		@directors = @film.directors
 		@actors = @film.actors
-	end
-
-	def new_by_hand
-		@film = Film.new
-		@genres = FilmGenre.all
-		@directors = @film.directors
-		@actors = @film.actors
-		@collections = Collection.all
-	end
-
-	def create_by_hand
-		@film = Film.new(params[:film])
-		@directors = @film.directors
-		@actors = @film.actors
-		@genres = FilmGenre.all
-		@film.add_actors(params[:film][:new_actors])
-		@film.add_directors(params[:film][:new_directors])
-		@film.add_genres(params[:film][:selected_genres])
-		@film.ru_title = params[:film][:ru_title]
-		@film.en_title = params[:film][:en_title]
-		@film.permalink = Russian.translit(@film.ru_title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
-		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
-		if @film.save
-			flash[:success] = "Фильм успешно добавлен"
-			redirect_to new_admin_film_file_path(film_id: @film.id)
-		else
-			render :new_by_hand
-		end
+		@film.common_films = @movie.common_films
+		@film.brb_url = params[:movie_url]
 	end
 
 	def create
-		@movie = Kinopoisk::Movie.new(params[:movie_title]) # for cover
 		@film = Film.new(params[:film])
+		@common_films = params[:film][:common_films]
 		@directors = @film.directors
 		@actors = @film.actors
 		@genres = FilmGenre.all
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
-		@film.remote_cover_url = @movie.poster
-		@film.ru_title = @movie.title
-		@film.en_title = @movie.title_en
-		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
-		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
+		@film.ru_title = params[:film][:ru_title] if params[:film][:ru_title].present?
+		@film.en_title = params[:film][:en_title] if params[:film][:en_title].present?
+		@film.cover = File.open(params[:film][:new_cover])
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
+		@film.brb_url = params[:film][:brb_url]
+		@film.create_recomendations!
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
 		else
-			render 'new'
+			render :new
 		end
 	end
 
@@ -173,11 +143,17 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def thrailers
-		film = Film.latest
+		films = Film.latest
 		@films = []
-		film.each do |film|
+		films.each do |film|
 			@films << film if film.files.empty? && film.trailers.any?
 		end
+	end
+
+
+	def make_social
+		film = Film.find(prams[:id])
+		film.make_social!
 	end
 
 	private

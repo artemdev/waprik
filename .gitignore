@@ -11,6 +11,7 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
+db/schema.rb
 log/*.log
 public/uploads/*
 public/ftp/*
@@ -26,4 +27,4 @@ sidekiq.log
 cache/*
 .powenv
 dump.rdb
-
+Gemfile.lock

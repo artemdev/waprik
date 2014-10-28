@@ -21,6 +21,14 @@ Waprik::Application.routes.draw do
     resources :replies, only: ['new', 'create', 'destroy']
     resources :music_artists, controller: "MusicArtists"
     resources :film_qualities
+    resources :authentications, only: :index do
+      get 'to_vk', on: :collection
+      get 'from_vk', on: :collection
+    end
+    resources :public_pages, only: ['index', 'new', 'create']
+    resources :vk_posts, only: ['new', 'create'] do
+      post 'get_ero', on: :collection
+    end
 
     resources :ftp_files, only: ['index'] do
       get :rename_films, on: :collection
@@ -39,6 +47,7 @@ Waprik::Application.routes.draw do
       resources :qualities, only: ['index','show'] do
         get 'empty', on: :collection
       end
+      get 'updating', on: :collection
       get 'thrailers', on: :collection
       get 'new_by_hand', on: :collection
       post 'create_by_hand', on: :collection     
@@ -70,10 +79,21 @@ Waprik::Application.routes.draw do
   # Public resources
     match 'film/:id' => 'public/films#show'
     match 'test-dl' => 'public/music#test'
+    match 'auth/:provider' => 'public/authentications#create'
+
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
+      resources :authentications, only: 'create'
+      resources :wishes, only: ['new']
       resources :videos
-      resources :serials
+      resources :users, only: ['new', 'create'] do 
+        get :account, on: :collection
+      end
+      resources :serials do
+        get 'download', on: :member
+        get 'get_file', on: :member
+      end
+
       resources :news
       resources :collections
       resources :categories
@@ -103,6 +123,7 @@ Waprik::Application.routes.draw do
 
       resources :films do
         get "news", on: :collection
+        get "updating", on: :collection
         get 'latest', on: :collection
       end
       match 'films/:id' => 'films#show'
@@ -119,6 +140,7 @@ Waprik::Application.routes.draw do
 
   root :to => "public/films#index"
 
+  match 'signin' => 'public/users#new'
   match 'login' => 'admin/access#login'
   match 'logout' => 'admin/access#logout'
   match 'admin' => 'admin/access#menu'

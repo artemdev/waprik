@@ -6,6 +6,8 @@
 	<%= genre.title %>
 <% end %>
 <hr />
+Торрент <%= link_to "торрент", @film.torrent.url %>
+<hr />
 Режисеры<% @film.directors.each do |director| %>
 	<%= director.name %>
 <% end %>

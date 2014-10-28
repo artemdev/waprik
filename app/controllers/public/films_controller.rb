@@ -1,5 +1,15 @@
 class Public::FilmsController < ApplicationController
 	layout 'mobile'
+	
+  # мониторинг обновлени качеств фильмов
+  def updating
+  	@files = FilmFile.order("created_at DESC")
+  	# TODO refactoring
+  	@films = [].uniq.paginate(page: params[:page], per_page: 10)
+  	@files.each do |file|
+  		@films << file.film
+  	end
+  end
 
 	def index
 		if params[:film_name]
@@ -9,21 +19,26 @@ class Public::FilmsController < ApplicationController
 			@genres = FilmGenre.all
 			@films = []
 		end
-		@latest_date = Film.latest.first.created_at.strftime("%d.%m.%y") if Film.latest.first
+		@latest_date = Film.latest.visible.first.created_at.strftime("%d.%m.%y") if Film.latest.visible.first
 		# @favourite_date = Film.latest.favourite.first.created_at
 	end
 
 	def show
 		@film = Film.find_by_permalink(params[:id])
 		@film ||= Film.find(params[:id])
+		# создать визит
+		@film.track_visit_from @source if params[:from_film].present?
+		# TODO 6.10
+		# @common_films = @film.common_films
+
 	end
 
 	def news
-		@films = Film.latest.favourite.limit(100).paginate(page: params[:page], per_page: 10)
+		@films = Film.latest.visible.favourite.limit(100).paginate(page: params[:page], per_page: 10)
 	end
 
 	def latest
-		@films = Film.latest.paginate(page: params[:page], per_page: 10)
+		@films = Film.latest.visible.paginate(page: params[:page], per_page: 5)
 	end
 
 

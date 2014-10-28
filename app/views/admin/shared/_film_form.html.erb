@@ -1,6 +1,12 @@
 <%= f.label :ru_title, "RU Название" %> <br />
 <%= f.text_field :ru_title %> <br />
 
+brb url <%= f.text_field :brb_url %>	<br />
+
+<% if @film.common_films.any? %>
+	есть похожие фильмы
+<% end %>
+
 <%= f.label :eng_title, "ENG Название" %> <br />
 <%= f.text_field :en_title %> <br />
 
@@ -10,28 +16,25 @@
 <%= f.label :new_collection, "Подборка" %>	<br />
 <%= f.select :new_collection, @collections.map { |collection| [collection.name, collection.id] }, include_blank: true %>	<br />
 
-<% unless @film.cover.url.nil?%>
-	<%= image_tag @film.cover.preview.url %> <br />
-	удалить обложку
-	<%= f.check_box :remove_cover %>
-<% end %>
+	<% if @film.cover.url.present?%>
+		<%= image_tag @film.cover.preview.url %> <br />
+		удалить обложку
+		<%= f.hidden_field :new_cover, value: @film.cover.path %>
+		<%= f.check_box :remove_cover %>
+	<% end %>
 
 <%= f.label :cover, "Обложка" %>	<br />
 <%= f.file_field :cover %> <br />
 
-<% if @movie && @movie.poster %>
-<%= link_to "скачать обложку", @movie.poster %>
+<%= f.label :torrent, "Торрент" %>	<br />
+<%= f.file_field :torrent %> <br />
+
+<% if @movie && @movie.cover %>
+	<%= link_to "скачать обложку", @movie.cover %>
 <% end %>
 
-<% if @movie %>
-	<br />
-	<%= f.text_field :duration_hours, placeholder: @movie.length.divmod(60)[0] %> часов <br />
-	<%= f.text_field :duration_minutes, placeholder: @movie.length.divmod(60)[1] %> минут
-<% else %>
-	<br />
-	<%= f.text_field :duration_hours %> часов <br />
-	<%= f.text_field :duration_minutes %> минут	
-<% end %>
+<%= f.text_field :duration_hours %> часов <br />
+<%= f.text_field :duration_minutes %> минут	
 
 <%= f.check_box :is_favourite %>	
 <%= f.label :is_favourite, "избранный" %> <br />

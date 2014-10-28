@@ -1,0 +1,15 @@
+<div class="row">
+		<%= form_tag admin_vk_posts_path, html: { method: :post } do %>
+			<div class="span9 offset2 form-group">
+				<%= label_tag :post_url, 'адрес' %>
+				<%= text_field_tag :post_url, nil, class: 'form-control', placeholder: "http://vk.com/..." %>
+
+				<%= label_tag :collection_name, 'название' %>
+				<%= text_field_tag :collection_name, nil, class: 'form-control', placeholder: "http://vk.com/..." %>
+
+				<%= check_box_tag :hit, nil, class: 'form-control' %>
+
+				<%= button_tag "взять из vk", class: "btn btn-info" %>
+			</div>
+		<% end %>
+</div>

@@ -10,10 +10,12 @@
 #  size       :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  downloads  :integer          default(0)
 #
 
 class SerialSerieFile < ActiveRecord::Base
   attr_accessible :attach, :format_id, :quality_id
+
  	MP4_640 = "mp4_640"
   MP4_320 = "mp4_320"
   LOW_3GP = "low_3gp"
@@ -26,6 +28,13 @@ class SerialSerieFile < ActiveRecord::Base
   belongs_to :quality, class_name: "FilmQuality"
   belongs_to :format, class_name: "FilmFormat"
   validates :quality, :serie, :format, presence: true
+
+  # def after_initialize format=nil, file_path=nil, quality_id=nil
+		# Convertation.to_low_3gp self, file_path, quality_id if format && format == LOW_3GP
+		# Convertation.to_mp4_320 self, file_path, quality_id if format && format == MP4_320
+		# Convertation.to_mp4_640 self, file_path, quality_id if format && format == MP4_640
+		# true
+  # end
 
 	def video_options_for(version)
 		if version == MP4_640
@@ -58,7 +67,7 @@ class SerialSerieFile < ActiveRecord::Base
 		output_video_path = Rails.root.join(tmp_folder, "#{file_basename}_640.mp4")
 		movie = video.transcode(output_video_path, video_options_for(MP4_640), ASPECT_OPTIONS)
 		self.size = movie.size
-		self.format = FilmFormat.find_by_title("MP4 640 (хорошее качество)") # MP4 640 (хорошее качество)
+		self.format = FilmFormat.find_or_create_by_title("MP4 640 (хорошее качество)") # MP4 640 (хорошее качество)
 		self.quality = FilmQuality.find(quality_id)
   	self.attach = File.open(output_video_path)
   	save
@@ -78,6 +87,7 @@ class SerialSerieFile < ActiveRecord::Base
   	save
  		FileUtils.rm_rf(tmp_folder)
   end
+
   def convert_to_3gp file_path, quality_id
 		video = FFMPEG::Movie.new(file_path)
 		file_basename = File.basename(file_path, ".mp4")

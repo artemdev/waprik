@@ -9,7 +9,7 @@
 							<%= image_tag hit.cover.mini.url unless hit.cover.mini.url.nil?%>
 						</td>
 						<td valign="top">
-							<%= link_to hit.name, serial_path(hit) %>
+							<%= link_to title_for(hit), serial_path(hit) %>
 							<span class="small_text">
 								<% unless hit.series.last.nil? %>
 									<br />
@@ -24,13 +24,13 @@
 		<% end %>
 <% end %>
 
-<% unless @categories.empty? %>
+<% unless @genres.empty? %>
 	<div class="title">
 		Жанры
 	</div>
 	<div class="a">
-		<% @categories.each do |category| %>
-			<%= link_to category.name, {controller: "categories", action: "show", id: category.id, content_type: "serials"} %> <span class="small_text"><%= category.serials.uniq.count %></span> <br />
+		<% @genres.each do |genre| %>
+			<%= link_to genre.title, film_genre_path(genre, content: "serials") %> <span class="small_text"><%= genre.serials.uniq.count %></span> <br />
 		<% end %>
 	</div>
 	
