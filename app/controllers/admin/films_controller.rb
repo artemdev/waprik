@@ -1,14 +1,18 @@
 require 'open-uri'
 class Admin::FilmsController < ApplicationController
-	layout 'admin'
+  layout 'admin'
 	
 	before_filter :confirm_logged_in
 	before_filter :find_film, only: [:edit, :update, :show, :destroy]
 	before_filter :find_film_directors, only: [:edit, :update]
 	before_filter :find_film_actors, only: [:edit, :update]
+  before_filter :set_collections, only: ['new', 'edit']
+
+  CAMRip = 1
 
 	def index
 		@films = Film.latest.paginate(page: params[:page], per_page: 30)
+		@camrip = FilmQuality.find(CAMRip)
 	end
 
 	def edit
@@ -22,6 +26,13 @@ class Admin::FilmsController < ApplicationController
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
+		if params[:film][:trailer_filename]
+			thrailer = @film.trailers.new
+			thrailer.filename.store! params[:film][:trailer_filename]
+			thrailer.filesize = thrailer.filename.size
+			thrailer.save
+		end
 		if @film.update_attributes(params[:film])
 			flash[:success] = "Фильм успешно обновлен"
 			redirect_to admin_films_path
@@ -48,6 +59,8 @@ class Admin::FilmsController < ApplicationController
 		elsif @movie.title
 			@film.title = @movie.title
 		end
+		@film.ru_title = @movie.title
+		@film.en_title = @movie.title_en
 		# info
 		@film.about = @movie.description if @movie.description 
 		@film.year = @movie.year if @movie.year 
@@ -64,6 +77,34 @@ class Admin::FilmsController < ApplicationController
 		@actors = @film.actors
 	end
 
+	def new_by_hand
+		@film = Film.new
+		@genres = FilmGenre.all
+		@directors = @film.directors
+		@actors = @film.actors
+		@collections = Collection.all
+	end
+
+	def create_by_hand
+		@film = Film.new(params[:film])
+		@directors = @film.directors
+		@actors = @film.actors
+		@genres = FilmGenre.all
+		@film.add_actors(params[:film][:new_actors])
+		@film.add_directors(params[:film][:new_directors])
+		@film.add_genres(params[:film][:selected_genres])
+		@film.ru_title = params[:film][:ru_title]
+		@film.en_title = params[:film][:en_title]
+		@film.permalink = Russian.translit(@film.ru_title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
+		if @film.save
+			flash[:success] = "Фильм успешно добавлен"
+			redirect_to new_admin_film_file_path(film_id: @film.id)
+		else
+			render :new_by_hand
+		end
+	end
+
 	def create
 		@movie = Kinopoisk::Movie.new(params[:movie_title]) # for cover
 		@film = Film.new(params[:film])
@@ -74,6 +115,10 @@ class Admin::FilmsController < ApplicationController
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
 		@film.remote_cover_url = @movie.poster
+		@film.ru_title = @movie.title
+		@film.en_title = @movie.title_en
+		@film.permalink = Russian.translit(@movie.title.gsub(' ', '_').gsub('&', 'ft').gsub(':', '-').delete('.').delete('»').delete('«').delete('(').delete(')').delete('/').delete('?').delete('!'))
+		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]		
 		if @film.save
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
@@ -109,19 +154,30 @@ class Admin::FilmsController < ApplicationController
 		end
 		# удаление фильма
 		@film.destroy
-		redirect_to :back
+		respond_to do |format|
+			format.html { redirect_to :back }
+			format.js
+		end
 	end
 
 	def add_to_favourites
 		@film = Film.find(params[:id])
-		@film.update_attributes(is_favourite: true)
+		@film.update_attributes!(is_favourite: true)
 		redirect_to admin_films_path
 	end
 
 	def remove_from_favourites
 		@film = Film.find(params[:id])
-		@film.update_attributes(is_favourite: false)
+		@film.update_attributes!(is_favourite: false)
 		redirect_to admin_films_path
+	end
+
+	def thrailers
+		film = Film.latest
+		@films = []
+		film.each do |film|
+			@films << film if film.files.empty? && film.trailers.any?
+		end
 	end
 
 	private
@@ -136,6 +192,10 @@ class Admin::FilmsController < ApplicationController
 
 	def find_film_actors
 		@actors = @film.actors		
+	end
+
+	def set_collections
+		@collections = Collection.all	
 	end
 
 end

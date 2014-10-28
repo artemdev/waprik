@@ -1,0 +1,10 @@
+<% provide(:title, "Подборки") %>
+
+<% if @collections.any? %>
+		<div class="a">
+			<% @collections.each do |collection|%>
+				<%= link_to collection.name, collection_path(collection.permalink) %>
+				<%= hr_for collection, @collections %>
+			<% end %>
+		</div>
+<% end %>

@@ -1,0 +1,24 @@
+<% provide(:title, "Редактировать подборку") %>
+
+<%= form_for @collection, url: admin_collection_path(@collection), method: :put, multipart: true do |f| %>
+	<%= f.label :name, "Название"  %> <br />
+	<%= f.text_field :name  %> <br />
+
+	<%= f.label :image, "Кавер"  %> <br />
+	<%= f.file_field :image  %> <br />
+
+	<%= f.label :description, "Описание"  %> <br />
+	<%= f.text_area :description  %> <br />
+
+	<%= f.check_box :hit  %>
+	<%= f.label :hit, "хит ?"  %> <br />
+	
+	<%= f.submit "Обновить"  %>
+<% end %>
+
+<% if @collection.tracks.any? %>
+	<% @collection.tracks.each do |track| %>
+		<%= link_to track.name, edit_admin_track_path(track) %>
+		<%= link_to fa_icon("times"), remove_from_collection_admin_track_path(track, collection_id: @collection.id) %> <br />
+	<% end %>
+<% end %>

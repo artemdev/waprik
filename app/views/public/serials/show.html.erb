@@ -1,64 +1,63 @@
 <% provide(:title, @serial.name) %>
 
 <% if @serial.season.present? %>
-	<div class="b">
+	<div class="b">  <!-- season -->	
 		<%= @serial.season %> сезон
 	</div>
 <% end %>
 
 
-<div class="b">
+<div class="b"> <!-- info -->	
 	Скачиваний <%= count_downloads_for @serial %> <br />
 	Статус: <%= status_for @serial %>
 </div>
 
-<div class="a">
+<div class="a"> <!-- cover -->	
 	<%= image_tag @serial.cover.preview.url unless @serial.cover.url.nil? %>
 </div>
 
-<div class="a">
+<div class="a"> <!-- description -->	
 	<%= @serial.description %>
 
-	<% unless @serial.years.nil? || @serial.years.empty? %>
+	<% if @serial.years.present? %>
 		<hr />
 		Года: <%= @serial.years %>
 	<% end %>
 
-	<% unless @serial.categories.empty? %>
+	<% if @serial.genres.any? %>
 		<hr />
 		Жанры
-		<% @serial.categories.uniq.each do |category| %>
-			<%= link_to category.name, controller: 'public/categories', action: 'show', id: category.id, content_type: 'serials' %>
+		<% @serial.genres.uniq.each do |genre| %>
+			<%= link_to genre.title, "" %>
 		<% end %>	
 	<% end %>
 </div>
 
-<% @series.each do |series| %>
-	<% if has_any_files?(series) %>
-		<div class="title">
-			<%= series.number %> серия
-		</div>
-		<div class="a">
-			<% unless series.low_3gp.url.nil? %>
-				<%= link_to "3GP", {:action => 'download', :version => "low_3gp", :id => series.id}  %> <%= number_to_human_size(series.low_3gp.size) %> <br />
-				<span class="small_text">Для телефонов</span>
-			<% end %>
+<% if @series.any? %> <!-- series -->	
+	<% @series.each do |serie| %>
+		<% if serie.files.any? %>
+			<div class="title">
+				<%= serie.number %> серия
+			</div>
+				<% serie.files.each do |file| %>
+					<div class="a">  <!-- files -->	
+						<!-- TODO сделать скачивание файлов серии -->
+						<%= link_to file.format.title, "" %>
+						<%= number_to_human_size(file.size) %>
+						<br />
+						<span class="small-text">
+							<%= file.format.description %>
+						</span> 
+					</div>
+				<% end %><!-- # serie.files.each -->
+		<% end %> <!-- # @series.each -->
+	<% end %> <!-- # serie.files.any? -->
+<% else %>
+	<div class="a">
+		Нет доступных серий, попробуйте зайти позже
+	</div>
+<% end %> <!-- @series.any? -->
 
-			<% unless series.mp4_320.url.nil? %>
-				<hr />
-				<%= link_to "MP4 (хорошее качество)", {:action => 'download', :version => "mp4_320", :id => series.id} %> <%= number_to_human_size(series.mp4_320.size) %> <br />
-				<span class="small_text">Для телефонов, смартфонов</span> 
-			<% end %>
-				
-			<% unless series.mp4_640.url.nil? %>
-				<hr />
-				<%= link_to "MP4 (отличное качество)", {:action => 'download', :version => "mp4_640", :id => series.id} %> <%= number_to_human_size(series.mp4_640.size) %> <br />
-				<span class="small_text">Для смартфонов, планшетов</span> 
-			<% end %>
-		</div>
-	<% end %>
-<% end %>
-</div>
-
-<% @footer_links = [] %>
-<% @footer_links << "#{link_to 'Все сериалы', serials_path} <br/>" %>
+<% @footer_links = Array.new %>
+<% @footer_links << "#{ link_to 'Все сериалы', serials_path }" %>
+<% @footer_links << "#{ link_to @serial.genres.last.title }" if @serial.genres.last %>

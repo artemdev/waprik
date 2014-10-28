@@ -27,4 +27,35 @@ module ApplicationHelper
 		render(:partial => 'admin/shared/error_messages', :locals => {:object => object})
 	end
 
+  def translate_month month
+    if month
+      "июля"
+    end
+  end
+
+  def hr_for object, collection
+    unless collection.last == object
+      "<hr />".html_safe
+    end
+  end
+
+  def permalink_for title
+    Russian.translit(title.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
+  end
+
+  # упростить
+  def quality_for film
+    qualities = Array.new
+    film.files.each do |file|
+      qualities << file.quality.title if file.quality
+    end
+    if qualities.empty? && film.quality
+      film.quality.title
+    elsif film.quality.nil? && qualities.empty?
+      "не определено"
+    else
+      qualities.uniq.join(', ')
+    end
+  end
+
 end

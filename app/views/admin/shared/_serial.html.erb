@@ -2,8 +2,10 @@
 	<%= f.label(:name, "Название") %> <br>
 	<%= f.text_field(:name) %> <br>
 
-	<%= f.label(:season, "Сезон") %> <br>
-	<%= f.text_field(:season) %> <br>
+	<%= f.fields_for :seasons do |builder| %>
+		<%= builder.label :number, "Сезон" %> <br>
+		<%= builder.text_field :number %> <br>
+	<% end %>
 
 	<%= f.label(:years, "Года") %> <br>
 	<%= f.text_field(:years) %> <br>
@@ -19,7 +21,12 @@
 
 	<%= f.label(:cover, "Обложка") %> <br>
 	<%= f.file_field(:cover) %> <br>
-
-	<%= f.label(:category, "Категория") %> <br>
-	<%= f.select(:category, @categories.map {|c| c.name}) %> <br>
+	<% if @serial.genres.any? %>
+		<% @serial.genres.each do |genre| %>
+			<%= genre.title %>
+			<br />
+		<% end %>
+	<% end %>
+	<%= f.label :new_genres, "Жанры" %> <br>
+	<%= f.text_area :new_genres %> <br>
 </div>

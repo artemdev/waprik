@@ -1,27 +1,84 @@
-<div class="b">
-	<%= link_to('Добавить mp3', new_admin_track_path) %> <br />
-	<%= link_to('Добавить новость', :controller => 'news', :action => 'new', :section => "music") %> <br />
+<div class="group add-film">
+	<%= form_tag search_admin_tracks_path, method: :get do %>
+		<%= label_tag :keyword, "найти" %>
+		<%= text_field_tag :keyword %>
+
+		<%= button_tag "ok" %>
+	<% end %>
+</div>
+
+<div class="music-collections">
+	<%= link_to 'Подборки', admin_collections_path(section: "with_music") %>
+</div>
+
+<div class="hits">
+	<%= link_to 'хиты', admin_collections_path(section: "with_music") %>
+</div>
+
+<div class="add-track">
+	<%= link_to('Добавить mp3', new_admin_track_path) %>
 </div>
 
 <% if @tracks.any? %>
-	<div class="a">
-		<% @tracks.each do |track| %>
-			<%= link_to track.name, track_path(track) %> <%= link_to "x", admin_track_path(track), method: :delete %><br />
-		<% end %>
-	</div>
-	<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>
-<% end %>
+	<%= form_tag update_multiple_admin_tracks_path, html: { method: :put } do %> 	<!-- form 1 -->
+		<%= submit_tag "обновить"%>
+		<% for track in @tracks %>	<!-- track block -->
+				<%= div_for track, class: 'music-track' do %> <!-- track div -->
+					<%= link_to track.name, edit_admin_track_path(track) %> <br />
+					<%= link_to "т", edit_tags_admin_track_path(track) %>
+					<%= link_to "x", admin_track_path(track), method: :delete, remote: true, confirm: 'точно ?' %>
+					<span class="small-text">
+						<%= track.downloads %>
+					</span>
+					<br />
+					<% if track.hit? %>
+						хит!
+					<% else %>
+						хит <%= check_box_tag "track_ids[]", track.id %>
+					<% end %>
+					<br />
+					<span class="small-text">
+						<% if track.path.path && FileTest.exist?(track.path.path) %> <!-- track tags -->
+							<% TagLib::MPEG::File.open(track.path.path) do |file| %>
+								<% tag = file.id3v2_tag %>
+								название <%= tag.title %> <br />
+								исполнитель <%= tag.artist %> <br />
+								альбом <%= tag.album %>
+							<% end %>
+						<% elsif track.new_path.path && FileTest.exist?(track.new_path.path) %>
+							<% TagLib::MPEG::File.open(track.new_path.path) do |file| %>
+								<% tag = file.id3v2_tag %>
+								название <%= tag.title %> <br />
+								исполнитель <%= tag.artist %> <br />
+								альбом <%= tag.album %>
+							<% end %>				
+						<% end %> <!-- != track tags -->
+					</span>
+					<% if track.collections.any? %> <!-- track collections -->
+						<br />
+						Подборки
+						<% track.collections.each do |collection| %>
+							<%= link_to collection.name, collection_path(collection) %>
+						<% end %>
+					<% end %> <!-- != track collections -->
+				<% end %> <!-- != track div -->
+		<% end %> <!-- != track block -->
+		<%= will_paginate @tracks, next_label: "", previous_label: "", class: "b" %>
+
+		<%= submit_tag "обновить"%>
+	<% end %>  	<!-- != form 1 -->
+<% end %> <!-- != if -->
 
 <% if @collections.any? %>
 		<% @collections.each do |collection| %>
-			<% unless collection.videos_empty? %> <!-- проверяем есть ли видео в коллекции -->
-			<div class="title">
-				Подборки
-			</div>
-			<div class="b">
-					<%= link_to(collection.name, :action => 'collection', :id => collection.id) %> 
-					<br />
-			</div>
+			<% unless collection.with_videos? %> <!-- проверяем есть ли видео в коллекции -->
+				<div class="title">
+					Подборки
+				</div>
+				<div class="b">
+						<%= link_to(collection.name, :action => 'collection', :id => collection.id) %> 
+						<br />
+				</div>
 			<% end %>
 		<% end %>
 <% end %>

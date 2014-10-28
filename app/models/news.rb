@@ -1,8 +1,25 @@
+# == Schema Information
+#
+# Table name: news
+#
+#  id           :integer          not null, primary key
+#  description  :string(1000)
+#  section      :string(255)
+#  visible      :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  title        :string(255)
+#  published_at :datetime
+#  user_id      :integer
+#
+
 class News < ActiveRecord::Base
   attr_accessible :section, :visible, :description, :category
   attr_accessor :name, :category
 
   before_create :add_category
+
+  has_many :tracks, class_name: 'Mp3File'
 
   scope :sorted, order("updated_at ASC")
   scope :latest, order("created_at DESC") 

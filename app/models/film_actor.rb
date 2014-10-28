@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: films_actors
+#
+#  id         :integer          not null, primary key
+#  name       :string(100)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # string "name", :limit => 100
 class FilmActor < ActiveRecord::Base
   self.table_name = "films_actors"

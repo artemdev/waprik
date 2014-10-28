@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: admin_users
+#
+#  id              :integer          not null, primary key
+#  username        :string(255)
+#  first_name      :string(255)
+#  last_name       :string(255)
+#  hashed_password :string(255)
+#  salt            :string(255)
+#  email           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  remember_token  :string(255)
+#
+
 require 'digest/sha1'
 
 class AdminUser < ActiveRecord::Base
@@ -5,7 +21,9 @@ class AdminUser < ActiveRecord::Base
   attr_accessor :password
 
   has_many :pictures, foreign_key: "author_id"
-  
+  has_many :news, foreign_key: "user_id" 
+  has_many :replies, class_name: 'AdminReply', foreign_key: "admin_id" 
+
   # only on create, so other attributes of this user can be changed
   validates :username, presence: true, length: { maximum: 100 }
   validates :password, presence: true

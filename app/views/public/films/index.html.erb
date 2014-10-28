@@ -1,25 +1,43 @@
-<% provide(:title, "Категории") %>
+<% provide(:title, "Фильмы для мобильного") %>
 
-<div class="a">
-	<%= form_tag films_path, method: :get do %>
-		<%= text_field_tag :film_name %>
-		<%= submit_tag "найти", name: nil %>
-	<% end %>
-</div>
+<% if @latest_date %>
+	<div class="b">
 
-<% if @films.any? %>
+		<%= link_to "Новинки", latest_films_path %>
+		от <%= @latest_date  %> <br />
+		<%= link_to "Избранные новинки", news_films_path %>
+	</div>
+
+	<div class="title">
+		Жанры
+	</div>
+
 	<div class="a">
-		<% @films.each do |film| %>
-			<%= link_to film.title, film_path(film) %> <br />
+		<%= form_tag films_path, method: :get do %>
+			<%= text_field_tag :film_name %>
+			<%= submit_tag "найти", name: nil %>
 		<% end %>
 	</div>
-<% end %>
-<div class="a">
-	<% @genres.each do |genre| %>
-		<%= link_to genre.title.mb_chars.capitalize, film_genre_path(genre) %>
-		<span class="small-text">
-			<%= genre.films.size %>
-		</span>
-		<br />
+
+	<% if @films.any? %>
+		<div class="a">
+			<% @films.each do |film| %>
+				<%= link_to film.title, film_path(film.permalink) %> <br />
+			<% end %>
+		</div>
 	<% end %>
-</div>
+
+	<div class="a">
+		<% @genres.each do |genre| %>
+			<%= link_to genre.title.mb_chars.capitalize, film_genre_path(genre) %>
+			<span class="small-text">
+				<%= genre.films.size %>
+			</span>
+			<br />
+		<% end %>
+	</div>
+<% else %>
+	<div class="a">
+		Фильмов нет
+	</div>
+<% end %>

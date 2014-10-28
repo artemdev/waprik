@@ -3,7 +3,7 @@
 <% if @track.bitrates.any? %>
 	<div class="a">
 		<% @track.bitrates.each do |bitrate| %>
-			<%= link_to "Скачать #{bitrate.file_bitrate} #{number_to_human_size(bitrate.file_size)}", download_track_path(@track, file_id: bitrate.file_id, bitrate: bitrate.file_bitrate) %> <br />
+			<%= link_to "Скачать #{bitrate.file_bitrate} #{number_to_human_size(bitrate.file_size)}", download_music_path(@track.permalink, bitrate: bitrate.file_bitrate), id: 'download-mp3' %> <br />
 		<% end %>
 	</div>
 <% end %>
@@ -12,3 +12,16 @@
 	Время <%= @track.length %> <hr />
 	Скачиваний <%= @track.downloads %>
 </div>
+
+<% if @track.collections %>
+	<div class="title">
+		В подборках
+	</div>
+	<div class="a">
+		<% @track.collections.each do |collection| %>
+			<%= link_to collection.name, collection_path(collection.permalink) %>
+		<% end %>
+	</div>
+<% end %>
+
+<% @footer_links = ["#{link_to @track.album.name.mb_chars.capitalize, album_path(@track.album)}", "#{link_to @track.artist.name, artist_path(@track.artist)}",] %>

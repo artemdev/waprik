@@ -1,6 +1,7 @@
 class Admin::VideosController < ApplicationController
-	
-	layout 'mobile'
+  before_filter :confirm_logged_in
+
+  layout 'admin'
 	
 	before_filter :confirm_logged_in
 	before_filter :find_category, :only => ['new', 'create', 'delete']
@@ -23,17 +24,9 @@ class Admin::VideosController < ApplicationController
 		@categories = Category.all.collect {|i| [i.name, i.id]}
 		@category.videos << @video
 		@video.add_to_collection
-
- 		@video.low_3gp = File.open(params[:video][:ftp_low_3gp]) unless params[:video][:ftp_low_3gp].nil? || params[:video][:ftp_low_3gp].empty?
-  	@video.mp4_320 = File.open(params[:video][:ftp_mp4_320]) unless params[:video][:ftp_mp4_320].nil? || params[:video][:ftp_mp4_320].empty?
- 		@video.mp4_640 = File.open(params[:video][:ftp_mp4_640]) unless params[:video][:ftp_mp4_640].nil? || params[:video][:ftp_mp4_640].empty?
-
+		VideoWorker.perform_async()
 		if @video.save
-			File.delete(params[:video][:ftp_low_3gp]) unless params[:video][:ftp_low_3gp].nil? || params[:video][:ftp_low_3gp].empty?
-			File.delete(params[:video][:ftp_mp4_320]) unless params[:video][:ftp_mp4_320].nil? || params[:video][:ftp_mp4_320].empty?
-			File.delete(params[:video][:ftp_mp4_640]) unless params[:video][:ftp_mp4_640].nil? || params[:video][:ftp_mp4_640].empty?
-			
-			flash[:notice] = "Видео добавлено"
+		flash[:notice] = "Видео добавлено"
 			redirect_to(:action => 'category', :id => @category.id)
 		else
 			render('new', :category_id => @category.id)

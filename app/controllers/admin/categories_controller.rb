@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
-	layout 'mobile'
-
 	before_filter :confirm_logged_in
+
+	layout 'admin'
 
 	def index
 		@video_categories = Category.for_videos.paginate(page: params[:page], per_page: 10)

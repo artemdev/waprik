@@ -1,9 +1,26 @@
-<%= form_for(:feedback, url: {action: 'create'}) do |t| %>
-	<%= t.label(:sender, "Как вас зовут ?") %> <br />
-	<%= t.text_field(:sender) %> <br />
+<% provide(:title, "Связь с администрацией") %>
 
-	<%= t.label(:description, "Ваш отзыв или предложение") %> <br />
-	<%= t.text_field(:description) %> <br />
+<%= render partial: 'public/shared/error_messages', locals: { object: @feedback } %>
 
-	<%= t.submit("Отправить") %>
-<% end %>
+<div class="a">
+	<%= form_for(:feedback, url: {action: 'create'}) do |t| %>
+
+		<%= t.label(:sender, "Как вас зовут ?") %>  <br />
+		<%= t.text_field(:sender) %> <br />
+
+		<%= t.label(:new_category, "Благодарность") %>
+		<%= t.radio_button(:new_category, "thank", checked: true) %> <br />
+
+		<%= t.label(:new_category, "Пожелание") %>
+		<%= t.radio_button(:new_category, "wish") %> <br />
+
+		<%= t.label(:new_category, "Жалоба") %>
+		<%= t.radio_button(:new_category, "warn") %><br />
+
+		<%= t.label(:description, "Сообщение") %> <br />
+		<%= t.text_area(:description) %> <br />
+
+		<%= t.submit("Отправить") %>
+	<% end %>
+</div>
+

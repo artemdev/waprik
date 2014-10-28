@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: videos
+#
+#  id           :integer          not null, primary key
+#  category_id  :integer
+#  description  :string(255)
+#  screen       :string(255)
+#  low_3gp      :string(255)
+#  mp4_320      :string(255)
+#  size         :integer
+#  name         :string(255)
+#  artist       :string(255)
+#  downloads    :integer          default(0)
+#  source_video :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  mp4_640      :string(255)
+#  published_at :datetime
+#
+
 class Video < ActiveRecord::Base
 
   attr_accessible :name, :screen, :description, :category_id, :collection, :artist, :source_video, :ftp_mp4_320, :ftp_low_3gp, :ftp_mp4_640
@@ -7,6 +28,8 @@ class Video < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :collections
 
+  has_many :files, class_name: "VideFile"
+
   validates :name, presence: true, length: { minimum: 5, maximum: 100}
   # validates_presence_of :screen
   # validates_presence_of :low_3gp
@@ -14,10 +37,6 @@ class Video < ActiveRecord::Base
   # validates_presence_of :mp4_320
 
   mount_uploader :screen, CoverUploader
-  mount_uploader :low_3gp, VideosUploader
-  mount_uploader :mp4_320, VideosUploader
-  mount_uploader :mp4_640, VideosUploader
-  mount_uploader :source_video, VideosUploader
 
   # before_create :mark
   # after_create :convert

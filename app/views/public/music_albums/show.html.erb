@@ -1,9 +1,9 @@
-<% provide(:title, @album.name) %>
+<% provide(:title, @album.name.mb_chars.capitalize) %>
 
 <div class="a">
 	<% if @tracks.any? %>
 		<% @tracks.each do |track| %>
-			<%= link_to track.name, music_path(track) %> <br />
+			<%= link_to track.name, music_path(track.permalink) %> <br />
 		<% end %>
 	<% end %>
 </div>

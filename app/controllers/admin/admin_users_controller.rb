@@ -1,7 +1,7 @@
 class Admin::AdminUsersController < ApplicationController
-	layout 'mobile'
-
 	before_filter :confirm_logged_in
+  
+  layout 'admin'
 
 	def index
 		redirect_to(:action => 'list')

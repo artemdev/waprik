@@ -4,9 +4,10 @@
 <div class="a">
 	<% if @albums.any? %>
 		<% @albums.each do |album| %>
-			<%= link_to album.name, album_path(album) %> <br />
+			<%= link_to album.name.mb_chars.capitalize, album_path(album) %> <br />
 		<% end %>
 	<% end %>
 </div>
+
 <%= will_paginate @albums, next_label: "", previous_label: "", class: 'b' %>
 

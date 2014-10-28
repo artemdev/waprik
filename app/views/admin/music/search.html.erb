@@ -1,0 +1,14 @@
+<% provide(:title, "Поиск музыки") %>
+
+<% if @tracks.any? %>
+	<% @tracks.each do |track| %>
+		<%= link_to track.name, track_path(track.permalink) %> <br />
+		<div class="hit-field">
+			<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+				<%= f.check_box :hit %>
+				<%= f.label :hit %>
+				<%= f.submit "ok"%>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>

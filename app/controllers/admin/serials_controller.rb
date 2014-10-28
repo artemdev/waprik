@@ -1,25 +1,28 @@
 class Admin::SerialsController < ApplicationController
-	layout 'mobile'
+  before_filter :confirm_logged_in
 
-	before_filter :confirm_logged_in
+  layout 'admin'
 	
 	def index
 		@serials = Serial.paginate(page: params[:page], per_page: 10).latest
 	end
 
 	def new
+		n = 1
 		@serial = Serial.new
-		1.times { @serial.series.build }
+		n.times { @serial.series.build }
+		n.times { @serial.seasons.build }
 		@categories = Category.for_serials
 	end
 
 	def create
 		@serial = Serial.new(params[:serial])
+		@serial.add_genres params[:serial][:new_genres]
 		if @serial.save
 			flash[:success] = "Сериал успешно добавлен"
-			redirect_to admin_serial_path(@serial.id)
+			redirect_to edit_admin_serial_path(@serial)
 		else
-			render(new_admin_serial_path)
+			render :new
 		end
 	end
 
@@ -29,15 +32,17 @@ class Admin::SerialsController < ApplicationController
 	end
 
 	def edit
+		n = 1
 		@serial = Serial.find(params[:id])
 		@categories = Category.for_serials
-		1.times { @serial.series.build }
+		@qualities = FilmQuality.all
+		n.times { @serial.series.build }
+		n.times { @serial.seasons.build }
 	end
 
 	def update
 		@serial = Serial.find(params[:id])
-		@category = Category.find_by_name(params[:serial][:category])
-		@serial.categories << @category
+		@serial.add_genres params[:serial][:new_genres]
 		if @serial.update_attributes(params[:serial])
 			flash[:success] = "Сериал успешно обновлен"
 			redirect_to edit_admin_serial_path(@serial.id)

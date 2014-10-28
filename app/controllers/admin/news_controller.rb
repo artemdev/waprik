@@ -1,7 +1,7 @@
 class Admin::NewsController < ApplicationController
-	layout 'mobile'
-  
   before_filter :confirm_logged_in
+
+  layout 'admin'
 
   def index
     @news = News.all

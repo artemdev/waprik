@@ -16,10 +16,14 @@ public/uploads/*
 public/ftp/*
 public/tmp/*
 public/assets/*
-tmp/*
+public/sitemap.xml.gz
+public/sitemap.xml
+tmp/
 cache/*
 config/database.yml
 db/schema.rb
 sidekiq.log
 cache/*
 .powenv
+dump.rdb
+

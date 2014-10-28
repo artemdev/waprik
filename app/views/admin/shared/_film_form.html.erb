@@ -1,8 +1,14 @@
-<%= f.label :title, "Название" %> <br />
-<%= f.text_field :title %> <br />
+<%= f.label :ru_title, "RU Название" %> <br />
+<%= f.text_field :ru_title %> <br />
+
+<%= f.label :eng_title, "ENG Название" %> <br />
+<%= f.text_field :en_title %> <br />
 
 <%= f.label :year, "Год" %>	<br />
-<%= f.text_field :year %> <br />
+<%= f.text_field :year %>	<br />
+
+<%= f.label :new_collection, "Подборка" %>	<br />
+<%= f.select :new_collection, @collections.map { |collection| [collection.name, collection.id] }, include_blank: true %>	<br />
 
 <% unless @film.cover.url.nil?%>
 	<%= image_tag @film.cover.preview.url %> <br />
@@ -10,30 +16,34 @@
 	<%= f.check_box :remove_cover %>
 <% end %>
 
-	<%= f.label :cover, "Обложка" %>	<br />
-	<%= f.file_field :cover %> <br />
+<%= f.label :cover, "Обложка" %>	<br />
+<%= f.file_field :cover %> <br />
 
-	<% if @movie && @movie.poster %>
-	<%= link_to "скачать обложку", @movie.poster %>
-	<% end %>
+<% if @movie && @movie.poster %>
+<%= link_to "скачать обложку", @movie.poster %>
+<% end %>
 
-<% if @movie && @film.duration_hours && @film.duration_hours %>
+<% if @movie %>
 	<br />
 	<%= f.text_field :duration_hours, placeholder: @movie.length.divmod(60)[0] %> часов <br />
 	<%= f.text_field :duration_minutes, placeholder: @movie.length.divmod(60)[1] %> минут
+<% else %>
+	<br />
+	<%= f.text_field :duration_hours %> часов <br />
+	<%= f.text_field :duration_minutes %> минут	
 <% end %>
 
 <%= f.check_box :is_favourite %>	
 <%= f.label :is_favourite, "избранный" %> <br />
 
-<%= f.fields_for :trailer do |builder| %>
-	<%= builder.label :filename, "Трейлер" %>	
-	<%= builder.file_field :filename %> <br />
-<% end %>
+<%= f.check_box :blocked %>	
+<%= f.label :blocked, "заблокировать" %> <br />
+
+<%= f.label :trailer_filename, "Трейлер" %>	
+<%= f.file_field :trailer_filename %> <br />
 
 <%= f.label :about, "Описание" %> <br />
 <%= f.text_area :about %> <br />
-
 
 
 <% if @film.selected_genres && @film.selected_genres.empty? %>
@@ -67,4 +77,4 @@
 <%= f.text_field :world_estimate %> <br />
 
 <%= f.label :cis_estimate, "Оценка снг" %> <br />
-<%= f.text_field :cis_estimate %> <br />
+<%= f.text_field :cis_estimate %>

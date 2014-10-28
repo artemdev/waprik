@@ -1,17 +1,5 @@
 module Public::SerialsHelper
 
-	def has_any_files? (object)
-		if !object.low_3gp.url.nil?
-			return true
-		elsif !object.mp4_320.url.nil?
-			return true
-		elsif !object.mp4_640.url.nil?
-			return true
-		else
-			return false
-		end
-	end
-
 	def status_for serial
 		if serial.updating?
 		 "серии обновляются"

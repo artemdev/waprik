@@ -1,0 +1,11 @@
+<% provide(:title, "Создать подборку") %>
+
+<%= form_for @collection, url: admin_collections_path, method: :post do |f| %>
+	<%= f.label :name, "Название"  %> <br />
+	<%= f.text_field :name  %> <br />
+
+	<%= f.check_box :hit  %>
+	<%= f.label :hit, "хит ?"  %> <br />
+	
+	<%= f.submit "Создать"  %>
+<% end %>

@@ -1,0 +1,13 @@
+<% provide(:title, "Трейлеры") %>
+
+<% if @films.any? %>
+	<% @films.each do |film| %>
+		<%= div_for film, class: 'group film' do %>
+			<%= link_to film.title, edit_admin_film_path(film) %> <br />
+		<% end %>
+	<% end %>
+<% else %>
+	<div class="empty">
+		Пусто
+	</div>
+<% end %>

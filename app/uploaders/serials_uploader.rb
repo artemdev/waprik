@@ -20,7 +20,7 @@ class SerialsUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{base_store_dir}/serials/#{model.serial.id}/#{model.number}/"
+    "#{base_store_dir}/serials/#{model.serie.serial.id}/#{model.serie.number}/"
   end
 
   def base_store_dir

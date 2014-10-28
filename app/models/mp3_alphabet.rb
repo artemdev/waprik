@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: mp3_alphabet
+#
+#  id             :integer          not null, primary key
+#  isset_rus      :integer          default(0), not null
+#  isset_eng      :integer          default(0), not null
+#  count_hits_rus :integer          default(0), not null
+#  count_hits_eng :integer          default(0), not null
+#
+
 class Mp3Alphabet < ActiveRecord::Base
 	self.table_name = "mp3_alphabet"
   # attr_accessible :title, :body

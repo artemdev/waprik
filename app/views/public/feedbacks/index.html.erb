@@ -1,0 +1,21 @@
+<div class="new-feedback">
+	<%= link_to("Написать отзыв", action: 'new', type: 'video') %>
+</div>
+
+<div class="a">
+	<% if @feedbacks.any? %>
+		<% @feedbacks.each do |feedback| %>
+			<div class="<%= feedback.category %>">
+				<b> <%= feedback.sender %> (<%= translate_category_for feedback %>) </b>
+				<br />
+				<%= feedback.description %>
+			</div>
+
+			<div class="admin-answer">
+				<b>Ответ</b> <%= feedback.reply.content %>
+			</div>
+		<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+</div>

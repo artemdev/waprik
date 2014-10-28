@@ -23,7 +23,7 @@ class FilmFileUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{Russian.translit(model.film.title[0..20]).gsub(" ", "_").delete(",").delete("/_")}_#{model.format.id}.#{file.extension}" if original_filename.present?
+    "#{Russian.translit(model.film.title[0..20]).gsub(" ", "_").delete(",").delete(":").delete("?")}_#{model.format.id}.#{file.extension}" if original_filename.present?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

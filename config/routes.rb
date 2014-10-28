@@ -1,19 +1,47 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
-  get "music_album/show"
-
-  get "music_alphabet/eng"
-
-  get "music_alphabet/rus"
-
-  # sidekiq
-  mount Sidekiq::Web, at: '/tasks'
 
   # Admin resources
   namespace :admin do
-    resources :videos, :news, :music, :admin_users, :feedbacks, :serials, :series, :categories, :collections, :pictures
+    # matches
+    match 'music/artists' => "MusicArtists#index"
+
+    # resources
+    resources :links
+    resources :videos
+    resources :news
+    resources :music
+    resources :admin_users
+    resources :feedbacks
+    resources :serials
+    resources :series
+    resources :categories
+    resources :collections
+    resources :pictures
+    resources :replies, only: ['new', 'create', 'destroy']
+    resources :music_artists, controller: "MusicArtists"
+    resources :film_qualities
+
+    resources :ftp_files, only: ['index'] do
+      get :rename_films, on: :collection
+      get :rename_music, on: :collection
+    end
+    resources :collections do
+      get 'remove_from_collection', on: :member
+    end
+
+    resources :feedbacks do
+      get 'list', on: :collection
+      get 'answer', on: :member
+    end
 
     resources :films do
+      resources :qualities, only: ['index','show'] do
+        get 'empty', on: :collection
+      end
+      get 'thrailers', on: :collection
+      get 'new_by_hand', on: :collection
+      post 'create_by_hand', on: :collection     
       get 'destroy_director', on: :member
       get 'destroy_actor', on: :member
       get 'find', on: :collection
@@ -21,23 +49,64 @@ Waprik::Application.routes.draw do
       get 'add_to_favourites', on: :member
       get 'remove_from_favourites', on: :member
     end
+
     resources :film_files do
       get 'download', on: :member
     end
-    resources :tracks, controller: "Music"
+
+    resources :tracks, controller: "Music" do
+      collection do
+        post 'update_multiple'
+        get 'search'
+      end
+      member do 
+        get 'edit_tags'
+        put 'update_tags'
+        get 'remove_from_collection'
+      end
+    end
   end
 
   # Public resources
+    match 'film/:id' => 'public/films#show'
+    match 'test-dl' => 'public/music#test'
+    # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
+      resources :videos
+      resources :serials
+      resources :news
+      resources :collections
+      resources :categories
+      resources :pictures
+      resources :film_genres
+      resources :film_actors
+      resources :film_directors
+      resources :film_treilers
+      resources :collections
+      resources :feedbacks
+      resources :artists, only: ['index','show'], controller: "MusicArtists"
+      resources :albums, only: ['show'], controller: "MusicAlbums"
 
-      resources :videos, :serials, :news, :music, :feedbacks, :collections, :categories, :pictures, :film_genres, :film_actors, :film_directors, :film_treilers
       resources :film_files do
         get 'download'
+        get 'get_file'
         get 'part'
+        get 'get_part'
       end
+
+      resources :music do
+        get 'news', on: :collection
+        get 'latest', on: :collection
+        get 'download', on: :member
+        get 'top_mp3', on: :collection
+      end
+
       resources :films do
         get "news", on: :collection
+        get 'latest', on: :collection
       end
+      match 'films/:id' => 'films#show'
+
       resources :alphabets, except: ['index', 'new', 'create', 'edit', 'update', 'destroy'], controller: "MusicAlphabet" do
         get 'eng', on: :collection
         get 'rus', on: :collection
@@ -46,9 +115,6 @@ Waprik::Application.routes.draw do
       resources :tracks, only: ['index', 'show'], controller: "music" do 
         get 'download', on: :member
       end
-
-      resources :artists, only: ['index','show'], controller: "MusicArtists"
-      resources :albums, only: ['show'], controller: "MusicAlbums"
     end
 
   root :to => "public/films#index"
@@ -58,10 +124,9 @@ Waprik::Application.routes.draw do
   match 'admin' => 'admin/access#menu'
   match 'admin/access/attempt_login' => 'admin/access#attempt_login'
 
-  ### categories ###
+  # categories 
   match 'admin/categories/:id/:content_type' => 'admin/categories#show'
   match 'categories/:id/:content_type' => 'public/categories#show'
-  ### public ###
 
   # match 'news' => 'public#news'
   # match 'news/:section' => 'public#news'
@@ -128,6 +193,9 @@ Waprik::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
+  
+  # sidekiq
+  mount Sidekiq::Web, at: '/tasks'
 
   match ':controller(/:action(/:id))(.:format)'
 end

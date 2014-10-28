@@ -1,5 +1,4 @@
 class Public::VideosController < ApplicationController
-
   layout 'mobile'
 
 	before_filter :find_category, :only => ['list', 'show']

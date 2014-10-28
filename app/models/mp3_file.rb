@@ -1,3 +1,33 @@
+# == Schema Information
+#
+# Table name: mp3_files
+#
+#  id                :integer          not null, primary key
+#  ftp_path          :string(256)
+#  path              :string(256)
+#  name              :string(256)
+#  fname             :string(256)
+#  length            :string(5)        default("00:00")
+#  genre_id          :integer
+#  artist_id         :integer
+#  album_id          :integer
+#  order             :integer
+#  order_nomination  :integer          default(0)
+#  hit               :boolean          default(FALSE)
+#  file_hit_date     :datetime
+#  new               :boolean          default(FALSE)
+#  downloads         :integer          default(0)
+#  file_comment_up   :text
+#  file_comment_down :text
+#  created_at        :datetime         not null
+#  new_path          :string(255)
+#  length_sec        :integer
+#  news_id           :integer
+#  permalink         :string(255)
+#  updated_at        :datetime         not null
+#  published_at      :datetime
+#
+
 # string    "ftp_path",          :limit => 256,                     
 # string    "path",              :limit => 256,                     
 # string    "name",              :limit => 256,                     
@@ -15,19 +45,60 @@
 # integer   "downloads",                       :default => 0,      
 require 'taglib'
 class Mp3File < ActiveRecord::Base
-  attr_accessible :name, :path, :new_path
+  default_scope order("created_at DESC")
+
+  attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file, :hit, :new_collection
+  attr_accessor :new_file, :new_collection
+ 
+  ID3v2_ALBUM = "waprik.ru - новая музыка"
 
   before_create :save_file_length
+  before_create :create_permalink
 
   mount_uploader :path, Mp3Uploader
   mount_uploader :new_path, MusicUploader
-
+  
+  has_many :collection_music_through, foreign_key: 'track_id'
+  has_many :collections, through: :collection_music_through
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
   belongs_to :artist, class_name: 'Mp3Artist'
   belongs_to :album, class_name: 'Mp3Album'
+  belongs_to :news, class_name: 'News', foreign_key: 'news_id'
 
   scope :latest, order("created_at DESC")
+  scope :published_at, lambda { |date = nil | where(created_at: date.at_beginning_of_day..date.end_of_day) }
+  scope :without_new, lambda { |date = nil | where("mp3_files.created_at <= ?", date.at_beginning_of_day) }
+  scope :hits, -> { where("hit = ?", true) }
+  scope :top, lambda { |number = 100| where("hit = ?", true).limit(number) }
 
+  validates :artist, :name, :new_path, presence: true
+
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  def artist_name
+    artist.try(:name)
+  end
+
+  def artist_name=(name)
+    self.artist = Mp3Artist.find_or_create_by_name(name) if name.present?
+  end
+
+
+  def album_name
+    album.try(:name)
+  end
+
+  def album_name=(name)
+    album = Mp3Album.new
+    album.year = Time.now.year
+    album.name = name
+    album.artist = self.artist
+    album.save
+    self.album = album
+    save
+  end
 
   def save_file_length
   	TagLib::FileRef.open(self.new_path.path) do |file|
@@ -63,4 +134,35 @@ class Mp3File < ActiveRecord::Base
     kbs64.save
     FileUtils.rm_r("#{Rails.root}/public/tmp/#{self.id}")
   end
+
+  def create_id3v2_tags_from name
+    TagLib::MPEG::File.open(self.new_path.path) do |file|
+      tag = file.id3v2_tag
+      if name.include?(' – ')
+        tag.artist = name.split(' – ').first
+        tag.title = name.split(' – ').last
+      elsif name.include?(' - ')
+        tag.artist = name.split(' - ').first
+        tag.title = name.split(' - ').last
+      else
+        tag.artist = name
+        tag.title = name
+      end
+      tag.album = ID3v2_ALBUM
+      file.save
+    end
+  end
+
+  def set_collection id
+    if collection = Collection.find(id)
+      self.collections << collection
+    end
+  end
+
+  protected
+  
+  def create_permalink
+    self.permalink = self.fname
+  end
+
 end

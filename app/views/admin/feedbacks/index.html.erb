@@ -1,0 +1,15 @@
+<% provide(:title, "отзывы / пожелания / предложения") %>
+
+<div class="a">
+	<% if @feedbacks_without_answer.any? %>
+		<% @feedbacks_without_answer.each do |feedback| %>
+			<%= feedback.sender %>
+			<br />
+			<%= feedback.description %>
+			<br />
+			<%= link_to "ответить", new_admin_reply_path(feedback_id: feedback.id) %> <%= link_to "удалить", admin_feedback_path(feedback) , method: :delete %>
+		<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+</div>

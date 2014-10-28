@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    attributes:
+      feedback:
+        sender: ""
+    errors:
+      models:
+        feedback:
+          attributes:
+            sender:
+              blank: "Пожалуйста, укажите как вас зовут"
