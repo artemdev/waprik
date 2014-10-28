@@ -39,7 +39,7 @@ class Series < ActiveRecord::Base
     # 2 ...
     # 3 ...
     # отправить в vk
-    responce = vk.wall.post(owner_id: VK_SERIALS_PUBLIC_ID, message: self.serial.name, from_group: 1, attachments: vk_photo, Rails.application.routes.url_helpers.serial_url(self.serial, host: 'waprik.org'))
+    vk.wall.post(owner_id: VK_SERIALS_PUBLIC_ID, message: self.serial.name, from_group: 1, attachments: Rails.application.routes.url_helpers.serial_url(self.serial, host: 'waprik.org'))
     self.vk = true
     save
   end
