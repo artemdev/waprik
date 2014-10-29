@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-		# User.create(username: "artway", password: "lordik37ztxq") unless User.find_by_username("artway")
+		User.create(username: "artway", password: "lordik37ztxq") unless User.find_by_username("artway")
 		# quality = FilmQuality.create(title: "CAMRip", position: 0)
 		FilmFormat.create(title: "MP4 640 (хорошее качество)", description: "Для смартфонов, планшетов", ffparams: "", ext: "")
 		FilmFormat.create(title: "MP4 320 (хорошее качество)", description: "Для телефонов, смартфонов", ffparams: "", ext: "")
