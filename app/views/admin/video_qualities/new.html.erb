@@ -1,0 +1,7 @@
+<%= form_for @quality, url: admin_video_qualities_path do |f| %>
+	
+	<%= render partial: 'admin/shared/video_quality', locals: { :f => f } %>
+
+	<%= f.submit "Добавить" %>
+
+<% end %>

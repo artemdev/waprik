@@ -1,0 +1,9 @@
+<%= link_to "Добавить формат", new_admin_video_format_path %> <br />
+
+<% if @qualities.any? %>
+	<% @qualities.each do |quality| %>
+		<%= link_to quality.title, edit_admin_video_quality_path(quality) %>
+		<%= link_to "x", admin_video_quality_path(quality), method: :delete %>
+		<%= hr_for quality, @qualities %>
+	<% end %>
+<% end %>
