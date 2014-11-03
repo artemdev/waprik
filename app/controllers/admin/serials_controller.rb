@@ -28,6 +28,7 @@ class Admin::SerialsController < ApplicationController
 	def show
 		@serial = Serial.find(params[:id])
 		@categories = Category.for_serials
+		@series = @serial.series
 	end
 
 	def edit

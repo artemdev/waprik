@@ -1,4 +1,4 @@
-<%= link_to "К сериалу #{@serial.name}", edit_admin_serial_path(@serial.id) %> <br />
+<%= link_to "К сериалу #{@serial.title}", edit_admin_serial_path(@serial.id) %> <br />
 
 <% @serial.series.each do |series| %>
 	<% series.build_season unless series.season.present? %>
@@ -12,4 +12,4 @@
 	<% end %>
 <% end %>
 
-<%= link_to "К сериалу #{@serial.name}", edit_admin_serial_path(@serial.id) %>
+<%= link_to "К сериалу #{@serial.title}", edit_admin_serial_path(@serial.id) %>

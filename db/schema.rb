@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141026111223) do
+ActiveRecord::Schema.define(:version => 20141103063137) do
 
   create_table "admin_replies", :force => true do |t|
     t.integer  "replyable_id"
@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(:version => 20141026111223) do
   end
 
   create_table "films_genres_through", :id => false, :force => true do |t|
-    t.integer  "genreable_id"
+    t.integer  "genreable_id",   :null => false
     t.integer  "genre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -562,7 +562,7 @@ ActiveRecord::Schema.define(:version => 20141026111223) do
     t.string   "description"
     t.integer  "season"
     t.boolean  "updating",     :default => true
-    t.string   "name"
+    t.string   "title"
     t.string   "cover"
     t.boolean  "hit"
     t.string   "years"

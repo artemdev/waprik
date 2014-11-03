@@ -2,7 +2,7 @@
 #
 # Table name: films_genres_through
 #
-#  genreable_id   :integer
+#  genreable_id   :integer          not null
 #  genre_id       :integer
 #  created_at     :datetime
 #  updated_at     :datetime

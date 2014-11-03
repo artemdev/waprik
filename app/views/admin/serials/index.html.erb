@@ -2,7 +2,7 @@
 <div class="a">
 	<% if @serials.any? %>
 	<% @serials.each do |serial| %>
-		<%= link_to serial.name, admin_serial_path(serial) %> <%= link_to "ред", edit_admin_serial_path(serial) %> <%= link_to "x", admin_serial_path(serial), :method => :delete %> <br />
+		<%= link_to serial.title, admin_serial_path(serial) %> <%= link_to "ред", edit_admin_serial_path(serial) %> <%= link_to "x", admin_serial_path(serial), :method => :delete %> <br />
 	<% end %>
 	<%= will_paginate @serials, class: "flickr_pagination", previous_label: "<< туда", next_label: "сюда >>", style: 'font-style: none;'  %>
 	<% end %>
