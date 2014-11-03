@@ -25,7 +25,7 @@ class Public::SerialsController < ApplicationController
 
   def get_file
     file = SerialSerieFile.find(params[:id])
-    send_file file.attach.path, content_type: file.attach.content_type, filename: file.serie.serial.name.parameterize + ".#{file.attach.file.extension}"
+    send_file file.attach.path, content_type: file.attach.content_type, filename: file.serie.serial.title.parameterize + ".#{file.attach.file.extension}"
   end
 
 	def edit

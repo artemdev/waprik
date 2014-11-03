@@ -6,7 +6,7 @@
 #  description  :string(255)
 #  season       :integer
 #  updating     :boolean          default(TRUE)
-#  name         :string(255)
+#  title        :string(255)
 #  cover        :string(255)
 #  hit          :boolean
 #  years        :string(255)
@@ -22,7 +22,7 @@ class Serial < ActiveRecord::Base
   attr_accessor :category, :new_genres
 
   def to_param
-    "#{id} #{name}".parameterize
+    "#{id} #{title}".parameterize
   end
 
   before_update :set_permalink

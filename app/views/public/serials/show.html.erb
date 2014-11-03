@@ -1,4 +1,4 @@
-<% provide(:title, @serial.name) %>
+<% provide(:title, @serial.title) %>
 
 <% if @serial.season.present? %>
 	<div class="b">  <!-- season -->	
@@ -59,8 +59,9 @@
 	</div>
 <% end %> <!-- @series.any? -->
 
+<% serial = Struct.new(:title, :url) %>
 <% genre = Struct.new(:title, :url) %>
 <% @footer_links = [] %>
-<% @footer_links << genre.new(@serial.genres.last.title.mb_chars.capitalize, film_genre_path(@serial.genres.last, content: "serials")) %>
-<% @footer_links << genre.new('Все сериалы', serials_path) %>
+<% @footer_links << serial.new(@serial.title, film_url(@serial)) %>
+<% @footer_links << genre.new(@serial.genres.last.title.mb_chars.capitalize, film_genre_url(@serial.genres.last)) %>
 

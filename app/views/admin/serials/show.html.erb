@@ -1,4 +1,4 @@
-<% provide(:title, @serial.name) %>
+<% provide(:title, @serial.title) %>
 
 <div class="b">
 	Скачиваний <%= count_downloads_for @serial %> <br />
@@ -13,17 +13,31 @@
 	<%= @serial.description %>
 </div>
 
-<% @serial.series.each do |series| %>
-	<div class="title">
-		<%= series.number %> (<%= series.release_date %>)
-	</div>
-
+<% if @series.any? %> <!-- series -->	
+	<% @series.each do |serie| %>
+		<% if serie.files.any? %>
+			<div class="title">
+				<%= serie.number %> серия
+			</div>
+				<% serie.files.each do |file| %>
+					<div class="a">  <!-- files -->	
+						<!-- TODO сделать скачивание файлов серии -->
+						<%= link_to file.format.title, download_serial_path(file) %>
+						<%= number_to_human_size(file.size) %>
+						<br />
+						<span class="small-text">
+							<%= file.format.description %>
+						</span> 
+					</div>
+			<% end %><!-- # serie.files.each -->
+		<% end %> <!-- # @series.each -->
+	<% end %> <!-- # serie.files.any? -->
+<% else %>
 	<div class="a">
-			<%= link_to "3GP (среднее качество)", series.low_3gp.url unless series.low_3gp.url.nil? %>
-			<%= link_to "MP4 320 (хорошее качество)", series.mp4_320.url unless series.mp4_320.url.nil? %>
-			<%= link_to "MP4 640 (отличное качество)", series.mp4_640.url unless series.mp4_640.url.nil? %>
+		Нет доступных серий, попробуйте зайти позже
 	</div>
-<% end %>
+<% end %> <!-- @series.any? -->
+
 </div>
 
 <% serial = Struct.new(:title, :url) %>
