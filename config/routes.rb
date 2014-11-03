@@ -8,6 +8,7 @@ Waprik::Application.routes.draw do
 
     # resources
     resources :video_formats
+    resources :video_qualities
     resources :links
     resources :videos
     resources :news
