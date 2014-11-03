@@ -1,0 +1,5 @@
+<%= form_for @format, url: admin_video_format_path(@format) do |f| %>
+	<%= render partial: 'admin/shared/video_format', locals: { :f => f } %>
+
+	<%= f.submit "Обновить" %>
+<% end %>

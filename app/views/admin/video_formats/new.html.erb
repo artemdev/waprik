@@ -1,0 +1,7 @@
+<%= form_for @format, url: admin_video_formats_path do |f| %>
+	
+	<%= render partial: 'admin/shared/video_format', locals: { :f => f } %>
+
+	<%= f.submit "Добавить" %>
+
+<% end %>

@@ -1,0 +1,9 @@
+<%= link_to "Добавить формат", new_admin_video_format_path %> <br />
+
+<% if @formats.any? %>
+	<% @formats.each do |format| %>
+		<%= link_to format.title, edit_admin_video_format_path(format) %>
+		<%= link_to "x", admin_video_format_path(format), method: :delete %>
+		<%= hr_for format, @formats %>
+	<% end %>
+<% end %>

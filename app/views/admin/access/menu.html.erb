@@ -9,6 +9,7 @@
 			<li><%= link_to("Сериалы", controller: 'admin/serials', action: 'index') %>	<hr />
 			<li><%= link_to("Картинки", controller: 'admin/pictures', action: 'index') %>	<hr />
 			<li><%= link_to("Категории", controller: 'admin/categories', action: 'index') %> <hr />
+			<li><%= link_to "Форматы", admin_video_formats_path %>	<hr />				
 			<li><%= link_to "Ссылки", admin_links_path %> <hr />
 			<li><%= link_to("Админы", {:controller => 'admin_users', :action => 'list'}) %>
 		</ul>
