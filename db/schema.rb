@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(:version => 20141103063137) do
   end
 
   create_table "films_genres_through", :id => false, :force => true do |t|
-    t.integer  "genreable_id",   :null => false
+    t.integer  "genreable_id"
     t.integer  "genre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
