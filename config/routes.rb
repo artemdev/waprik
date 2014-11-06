@@ -25,7 +25,7 @@ Waprik::Application.routes.draw do
     resources :film_qualities
     resources :authentications, only: :index do
       get 'to_vk', on: :collection
-      get 'from_vk', on: :collection
+      post 'from_vk', on: :collection
     end
     resources :public_pages, only: ['index', 'new', 'create']
     resources :vk_posts, only: ['new', 'create'] do
