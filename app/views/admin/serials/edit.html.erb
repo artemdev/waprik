@@ -2,7 +2,7 @@
 
 <%= error_messages_for(@serial) %>
 
-<%= form_for(@serial, url: admin_serial_path(@serial), html: {multipart: true}) do |f| %>
+<%= form_for(@serial, url: admin_serial_path(@serial), html: { multipart: true }) do |f| %>
 	
 	<%= render(partial: 'admin/shared/serial', locals: {:f => f}) %>
 
@@ -10,7 +10,7 @@
 <% end %>
 
 <% unless @serial.series.empty? %>
-	Серий: <%= link_to @serial.series.count, {controller: 'series', action: 'edit', id: @serial.id}%> <br />
+	Серий: <%= link_to @serial.series.count, { controller: 'series', action: 'edit', id: @serial.id }%> <br />
 <% end %>
 
 <%= link_to "Добавить серию", {controller: 'series', action: 'new', id: @serial.id} %> <br />
