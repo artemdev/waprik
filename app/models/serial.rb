@@ -18,7 +18,7 @@
 #
 
 class Serial < ActiveRecord::Base
-  attr_accessible :cover, :description, :season, :updating, :name, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes, :lang
+  attr_accessible :cover, :description, :season, :updating, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes, :lang, :title
   attr_accessor :category, :new_genres
 
   def to_param
@@ -29,7 +29,7 @@ class Serial < ActiveRecord::Base
 
   mount_uploader :cover, CoverUploader
 
-  validates :name, presence: { message: '^ Нужно указать название сериала' }
+  validates :title, presence: { message: '^ Нужно указать название сериала' }
   validates :cover, presence: { message: '^ Нужно добавить ковер' }
   validates :description, presence: { message: '^ Нужно описать сериал' }
   validates :years, presence: { message: '^ Нужно указать год(ы) выхода сериала' }
@@ -66,7 +66,7 @@ class Serial < ActiveRecord::Base
   private
 
   def set_permalink
-    self.permalink = self.name.parameterize
+    self.permalink = self.title.parameterize
     true
   end
 
