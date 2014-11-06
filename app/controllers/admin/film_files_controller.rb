@@ -14,6 +14,8 @@ class Admin::FilmFilesController < ApplicationController
 	def create
 		original_path = File.expand_path(params[:film_file][:new_file])
 		FFMPEGWorker.perform_async(params[:film_id], original_path, params[:film_file][:quality], 5)
+		film = Film.find(params[:film_id])
+		film.post_to_vk_from current_user if film.hit?
 		redirect_to admin_films_path
 	end
 

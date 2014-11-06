@@ -20,6 +20,6 @@ class Admin::AuthenticationsController < ApplicationController
 			message = "получен token #{vk.token}, id #{vk.user_id}"
 		end
 		flash[:success] = message
-		redirect_to root_path
+		redirect_to admin_path
   end
 end
