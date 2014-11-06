@@ -10,7 +10,7 @@ class SerialsUploader < CarrierWave::Uploader::Base
   after :remove, :delete_empty_upstream_dirs
 
   def filename
-     "#{Russian.translit(model.serial.name[0..20]).gsub(' ', '_').delete(',')}_#{mounted_as}.#{file.extension}" if original_filename.present?
+     "#{Russian.translit(model.serial.title[0..20]).gsub(' ', '_').delete(',')}_#{mounted_as}.#{file.extension}" if original_filename.present?
   end
 
   # Choose what kind of storage to use for this uploader:
