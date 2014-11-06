@@ -14,5 +14,14 @@
 			<li><%= link_to("Админы", {:controller => 'admin_users', :action => 'list'}) %>
 		</ul>
 	</div>
+
+	<%= link_to "получить vk код", to_vk_admin_authentications_path %>
+
+	<%= form_tag from_vk_admin_authentications_path do %>
+		<%= label_tag :code, "vk код" %> <br />
+		<%= text_field_tag :code %>
+		<%= submit_tag "получить токен" %>
+	<% end %>
+
 </div>
 
