@@ -33,15 +33,15 @@ class Series < ActiveRecord::Base
   accepts_nested_attributes_for :season
 
   def post_to_vk_from user
-    vk = VkontakteApi::Client.new(user.vk_access_token)
-    # загрузить cover в vk
-    # 1 ...
-    # 2 ...
-    # 3 ...
-    # отправить в vk
-    vk.wall.post(owner_id: VK_SERIALS_PUBLIC_ID, message: self.serial.name, from_group: 1, attachments: Rails.application.routes.url_helpers.serial_url(self.serial, host: 'waprik.org'))
-    self.vk = true
-    save
+    # vk = VkontakteApi::Client.new(user.vk_access_token)
+    # # загрузить cover в vk
+    # # 1 ...
+    # # 2 ...
+    # # 3 ...
+    # # отправить в vk
+    # vk.wall.post(owner_id: VK_SERIALS_PUBLIC_ID, message: self.serial.title, from_group: 1, attachments: Rails.application.routes.url_helpers.serial_url(self.serial, host: 'waprik.org'))
+    # self.vk = true
+    # save
   end
 
 
