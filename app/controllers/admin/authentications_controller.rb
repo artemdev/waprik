@@ -2,7 +2,7 @@ class Admin::AuthenticationsController < ApplicationController
 
   def to_vk
   	session[:state] = Digest::MD5.hexdigest(rand.to_s)
-		redirect_to VkontakteApi.authorization_url(scope: [:wall], state: session[:state])
+		redirect_to VkontakteApi.authorization_url(scope: [:wall, :photos, :video], state: session[:state])
   end
 
   def from_vk

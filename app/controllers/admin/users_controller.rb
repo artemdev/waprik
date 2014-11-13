@@ -3,11 +3,7 @@ class Admin::AdminUsersController < ApplicationController
   
   layout 'admin'
 
-	def index
-		redirect_to(:action => 'list')
-	end
-
-  def list
+  def index
   	@users = User.sorted
   end
 

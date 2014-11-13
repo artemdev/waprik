@@ -1,23 +1,26 @@
 <div class="a">
-	<%= f.label(:title, "Название") %> <br>
-	<%= f.text_field(:title) %> <br>
+	<%= f.label :title, "Название" %> <br>
+	<%= f.text_field :title %> <br>
 
-	<%= f.select(:season, [[1, 1],[2, 2],[3, 3],[4, 4],[5,5]]) %> <br>
+	<%= f.select :season, [[1, 1],[2, 2],[3, 3],[4, 4],[5,5]] %> <br>
 
-	<%= f.label(:years, "Года") %> <br>
-	<%= f.text_field(:years) %> <br>
+	<%= f.label :years, "Года" %> <br>
+	<%= f.text_field :years %> <br>
 
-	<%= f.label(:updating, "Обновляется ?") %>
-	<%= f.check_box(:updating) %> <br>
+	<%= f.label :torrent, "Торрент" %> <br>
+	<%= f.file_field :torrent %> <br>
 
-	<%= f.label(:hit, "Хит?") %>
-	<%= f.check_box(:hit) %> <br>
+	<%= f.label :updating, "Обновляется ?" %>
+	<%= f.check_box :updating %> <br>
 
-	<%= f.label(:description, "Описание") %> <br>
-	<%= f.text_area(:description, rows: 5) %> <br>
+	<%= f.label :hit, "Хит?" %>
+	<%= f.check_box :hit %> <br>
 
-	<%= f.label(:cover, "Обложка") %> <br>
-	<%= f.file_field(:cover) %> <br>
+	<%= f.label :description, "Описание" %> <br>
+	<%= f.text_area :description, rows: 5 %> <br>
+
+	<%= f.label :cover, "Обложка" %> <br>
+	<%= f.file_field :cover %> <br>
 	<% if @serial.genres.any? %>
 		<% @serial.genres.each do |genre| %>
 			<%= genre.title %>

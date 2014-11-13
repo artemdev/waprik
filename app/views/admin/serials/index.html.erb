@@ -1,9 +1,17 @@
-<%= link_to "Добавить сериал", new_admin_serial_path %>
-<div class="a">
+<div class="span8 offset2">
+	<%= link_to "Добавить сериал", new_admin_serial_path %> <br />
+	
 	<% if @serials.any? %>
-	<% @serials.each do |serial| %>
-		<%= link_to serial.title, admin_serial_path(serial) %> <%= link_to "ред", edit_admin_serial_path(serial) %> <%= link_to "x", admin_serial_path(serial), :method => :delete %> <br />
-	<% end %>
-	<%= will_paginate @serials, class: "flickr_pagination", previous_label: "<< туда", next_label: "сюда >>", style: 'font-style: none;'  %>
+		<ul class="thumbnails">
+			<% @serials.each do |serial| %>
+			<li>
+				<%= link_to serial.title, admin_serial_path(serial) %> <br />
+				<%= image_tag serial.cover.preview.url, class: "img-rounded" %> <br />
+				<%= link_to "ред", edit_admin_serial_path(serial) %>
+				<%= link_to "x", admin_serial_path(serial), :method => :delete %>
+			</li>
+			<% end %> <!-- @serials -->
+		</ul>
+		<%= will_paginate @serials, class: "flickr_pagination", previous_label: "<< туда", next_label: "сюда >>", style: 'font-style: none;'  %>
 	<% end %>
 </div>

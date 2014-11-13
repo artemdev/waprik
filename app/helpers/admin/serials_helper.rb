@@ -8,10 +8,10 @@ module Admin::SerialsHelper
 	end
 
 	def count_downloads_for serial
-		@downloads = 0
+		downloads = 0
 		serial.series.each do |series|
-				@downloads += series.dl_mp4_320 + series.dl_mp4_640 + series.dl_low_3gp
+			downloads += series.downloads
 		end
-		return @downloads.to_i
+		return downloads
 	end
 end

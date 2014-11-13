@@ -15,10 +15,11 @@
 #  published_at :datetime
 #  permalink    :string(255)
 #  lang         :boolean
+#  torrent      :string(255)
 #
 
 class Serial < ActiveRecord::Base
-  attr_accessible :cover, :description, :season, :updating, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes, :lang, :title
+  attr_accessible :cover, :description, :season, :updating, :hit, :years, :series_attributes, :category, :new_genres, :seasons_attributes, :lang, :title, :torrent
   attr_accessor :category, :new_genres
 
   def to_param
@@ -28,7 +29,8 @@ class Serial < ActiveRecord::Base
   before_update :set_permalink
 
   mount_uploader :cover, CoverUploader
-
+  mount_uploader :torrent, TorrentUploader
+  
   validates :title, presence: { message: '^ Нужно указать название сериала' }
   validates :cover, presence: { message: '^ Нужно добавить ковер' }
   validates :description, presence: { message: '^ Нужно описать сериал' }
@@ -48,6 +50,7 @@ class Serial < ActiveRecord::Base
   scope :hits, where(hit: true)
   scope :latest, order("updated_at DESC")
 
+  # добавление жанров
   def add_genres(genres)
     genres = genres.split("\n") if genres.instance_of?(String)
     genres.map do |genre|
@@ -63,7 +66,7 @@ class Serial < ActiveRecord::Base
     end
   end
 
-  private
+private
 
   def set_permalink
     self.permalink = self.title.parameterize
