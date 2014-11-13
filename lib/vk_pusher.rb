@@ -30,7 +30,7 @@ class VkPusher
     vk_responce = vk.photos.getWallUploadServer(group_id: SERIALS_PUBLIC_ID)
     # загрузка и сохранение
     # vk_photo = VkontakteApi.upload(url: vk_responce.upload_url, photo: [content.cover.file.path, 'image/jpeg'])
-    vk.wall.post(owner_id: ("-" + SERIALS_PUBLIC_ID), message: content.serial.title.mb_chars.capitalize + " #{content.serial.season} сезон." + " Добавлена #{content.number} серия", from_group: 1, attachments: Rails.application.routes.url_helpers.serial_url(content, host: 't.waprik.ru'))
+    vk.wall.post(owner_id: ("-" + SERIALS_PUBLIC_ID), message: content.serial.title.mb_chars.capitalize + " #{content.serial.season} сезон." + " Добавлена #{content.number} серия", from_group: 1, attachments: Rails.application.routes.url_helpers.serial_url(content.serial, host: 't.waprik.ru'))
     # vk_photo.gid = SERIALS_PUBLIC_ID
     # vk.photos.saveWallPhoto(vk_photo)
   end
