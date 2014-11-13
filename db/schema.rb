@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141106224040) do
+ActiveRecord::Schema.define(:version => 20141113143252) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -585,6 +585,7 @@ ActiveRecord::Schema.define(:version => 20141106224040) do
     t.datetime "published_at"
     t.string   "permalink"
     t.boolean  "lang"
+    t.string   "torrent"
   end
 
   add_index "serials", ["lang"], :name => "index_serials_on_lang"

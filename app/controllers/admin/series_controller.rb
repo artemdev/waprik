@@ -23,7 +23,8 @@ class Admin::SeriesController < ApplicationController
 				# конвертация файлов
 				SerialsWorker.perform_async(@serie.id, original_path, params[:series][:files_attributes]["0"][:quality], 5)
 				# постинг в vk
-				@serie.post_to_vk_from current_user if @serial.hit?
+				push = VkPusher.new
+				push.serial @serie, current_user if @serial.hit?
 			end
 			flash[:success] = "Серия успешно добавлена!"
 			redirect_to @serial

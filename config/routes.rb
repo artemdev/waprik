@@ -8,12 +8,13 @@ Waprik::Application.routes.draw do
 
     # resources
     resources :video_formats
+    resources :settings, only: :index
     resources :video_qualities
     resources :links
     resources :videos
     resources :news
     resources :music
-    resources :admin_users
+    resources :users
     resources :feedbacks
     resources :serials
     resources :series

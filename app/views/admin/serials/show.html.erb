@@ -10,7 +10,8 @@
 </div>
 
 <div class="a">
-	<%= @serial.description %>
+	<%= @serial.description %> <br />
+	<%= link_to "скачать торрент", @serial.torrent.url %>
 </div>
 
 <% if @series.any? %> <!-- series -->	

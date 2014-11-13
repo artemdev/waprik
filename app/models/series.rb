@@ -35,11 +35,9 @@ class Series < ActiveRecord::Base
   def post_to_vk_from user
     vk = VkontakteApi::Client.new(user.vk_access_token)
     # загрузить cover в vk
-    # 1 ...
-    # 2 ...
-    # 3 ...
+    vk_photo_data = self.serial.upload_cover_to_vk_from user
     # отправить в vk
-    vk.wall.post(owner_id: VK_SERIALS_PUBLIC_ID, message: self.serial.title, from_group: 1, attachments: Rails.application.routes.url_helpers.serial_url(self.serial, host: 't.waprik.ru'))
+    vk.wall.post(owner_id: VK_SERIALS_PUBLIC_ID, message: self.serial.title + " (#{self.number} серия)", from_group: 1, attachments: [vk_photo_data.first.id, nil])
     self.vk = true
     save
   end

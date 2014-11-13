@@ -22,4 +22,4 @@ class VkPublicPageParser
 
 end
 
-puts VkPublicPageParser.new("exclusive_muzic").posts.first.attachments.first.photo.post_id
+# puts VkPublicPageParser.new("exclusive_muzic").posts.first.attachments.first.photo.post_id

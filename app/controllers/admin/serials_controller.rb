@@ -8,9 +8,8 @@ class Admin::SerialsController < ApplicationController
 	end
 
 	def new
-		n = 1
 		@serial = Serial.new
-		n.times { @serial.series.build }
+		@serial.series.build
 		@categories = Category.for_serials
 	end
 
@@ -32,11 +31,10 @@ class Admin::SerialsController < ApplicationController
 	end
 
 	def edit
-		n = 1
 		@serial = Serial.find(params[:id])
 		@categories = Category.for_serials
 		@qualities = FilmQuality.all
-		n.times { @serial.series.build }
+		@serial.series.build
 	end
 
 	def update

@@ -1,19 +1,19 @@
-<div class="row">
-	<div class="col-md-8">
-		Привет, <%= session[:username] %>
-		<ul>
-			<li><%= link_to("Музыка", admin_tracks_path) %></li>
-			<li><%= link_to("Видео", admin_videos_path) %>	<hr />
-			<li><%= link_to("Новости", controller: 'admin/news', action: 'index') %>	<hr />
-			<li><%= link_to("Фильмы", controller: 'admin/films', action: 'index') %>	<hr />
-			<li><%= link_to("Сериалы", controller: 'admin/serials', action: 'index') %>	<hr />
-			<li><%= link_to("Картинки", controller: 'admin/pictures', action: 'index') %>	<hr />
-			<li><%= link_to("Категории", controller: 'admin/categories', action: 'index') %> <hr />
-			<li><%= link_to "Форматы", admin_video_formats_path %>	<hr />				
-			<li><%= link_to "Ссылки", admin_links_path %> <hr />
-			<li><%= link_to("Админы", {:controller => 'admin_users', :action => 'list'}) %>
-		</ul>
-	</div>
+<div class="span8 offset2">
+	<ul class="nav nav-pills">
+		<li class="active"> <%= link_to "Музыка", admin_tracks_path %> </li>
+		<li class="active"> <%= link_to "Видео", admin_videos_path %> </li>
+		<li class="active"> <%= link_to "Фильмы", controller: 'admin/films', action: 'index' %> </li>
+		<li class="active"> <%= link_to "Сериалы", controller: 'admin/serials', action: 'index' %> </li>
+		<li class="active"> <%= link_to "Картинки", controller: 'admin/pictures', action: 'index' %> </li>
+	</ul>
+
+	<ul class="nav nav-pills">
+		<li class="active"> <%= link_to "Новости", admin_news_index_path %> </li>
+		<li class="active"> <%= link_to "Категории", admin_categories_path %> </li>
+		<li class="active"> <%= link_to "Форматы", admin_video_formats_path %> </li>
+		<li class="active"> <%= link_to "Ссылки", admin_links_path %> </li>
+		<li class="active"> <%= link_to "Админы", admin_users_path %> </li>
+	</ul>
 
 	<%= link_to "получить vk код", to_vk_admin_authentications_path %>
 
@@ -22,6 +22,5 @@
 		<%= text_field_tag :code %>
 		<%= submit_tag "получить токен" %>
 	<% end %>
-
 </div>
 
