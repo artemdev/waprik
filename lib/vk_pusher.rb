@@ -14,7 +14,7 @@ class VkPusher
   # end
 
   # фильм в vk
-  def film film, user, filepath=nil
+  def film film, user
     vk = VkontakteApi::Client.new(user.vk_access_token)
     # загрузить cover в vk
     # отправить в vk

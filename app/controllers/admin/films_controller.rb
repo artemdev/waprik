@@ -90,6 +90,8 @@ class Admin::FilmsController < ApplicationController
 		@film.brb_url = params[:film][:brb_url]
 		@film.create_recomendations!
 		if @film.save
+			push = VkPusher.new
+			push.film @film, current_user
 			flash[:success] = "Фильм успешно добавлен"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
 		else
