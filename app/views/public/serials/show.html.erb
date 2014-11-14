@@ -62,5 +62,5 @@
 <% genre = Struct.new(:title, :url) %>
 <% @footer_links = [] %>
 <% @footer_links << serial.new(@serial.title, serial_path(@serial)) %>
-<% @footer_links << genre.new(@serial.genres.last.title.mb_chars.capitalize, film_genre_path(@serial.genres.first, content: "serial")) %>
+<% @footer_links << genre.new(@serial.genres.last.title.mb_chars.capitalize, film_genre_path(@serial.genres.first, content: "serials")) %>
 
