@@ -3,7 +3,7 @@ class Public::SerialsController < ApplicationController
 
 	def index
 		@hits = Serial.hits.latest.paginate(page: params[:page], per_page: 5)
-		@genres = FilmGenre.with_serials.paginate(page: params[:page], per_page: 5)
+		@genres = FilmGenre.with_serials.paginate(page: params[:page], per_page: 5).uniq
 	end
 
 	def category
