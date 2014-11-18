@@ -1,14 +1,7 @@
-<% provide(:title, @serial.title) %>
+<% provide(:title, "#{@serial.title.mb_chars.capitalize} (#{@serial.season} сезон, #{status_for @serial})") %>
 
-<% if @serial.season.present? %>
-	<div class="b">  <!-- season -->	
-		<%= @serial.season %> сезон
-	</div>
-<% end %>
-
-
-<div class="b"> <!-- info -->	
-	Статус: <%= status_for @serial %>
+<div class="b">
+	Скачиваний <%= count_downloads_for @serial %>
 </div>
 
 <div class="a"> <!-- cover -->	
