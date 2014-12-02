@@ -1,105 +1,119 @@
 <% provide(:title, "#{@collection.name.mb_chars.capitalize} от #{show_date_for @date}") %>
-<div class="row">
 
-		<div class="span9 offset5">
-			<a href="" class="refresh-button btn btn-primary">обновить</a>
-		</div>
-
-		<div class="span10 offset1">
-		<!-- кавер -->
-		<% if @collection.image.present? %>
-			<div>
-				<%= image_tag @collection.image.preview.url %>
-			</div>
+<div class="span2 offset5">
+	<p>
+		<%= link_to	"обновить", nil, class: "refresh-button btn btn-primary" %>
+		<% if current_user.subscribed_to? @collection  %>
+			<%= link_to	"отписаться", subscribtion_path(@collection.id, content: 'collection'), class: "refresh-button btn btn-danger", method: :delete %>
+		<% else %>
+			<%= link_to	"подписаться", subscribtions_path(content: 'collection', id: @collection.id), class: "refresh-button btn btn-info", method: :post %>
 		<% end %>
+	</p>
+</div>
 
-		<!-- описание -->
-		<% if @collection.description.present? %>
-			<div>
-				<%= @collection.description %>
-			</div>
-		<% end %>
+<!-- ФАЙЛЫ -->
 
-		<!-- музыка -->
-		<table class="table table-bordered table-striped">
-			<th>название</th>
-			<th>скачиваний</th>
-			<th>хит?</th>
-			<% if @latest_tracks && @latest_tracks.any? %>
-					<% @latest_tracks.each do |track| %>
-						<tr class="">
-							<td>
-								<%= link_to track.name, music_path(track.permalink) %>
-							</td>
-							<td>
-								 <%= track.downloads %>
-							</td>
-							<td>
-								<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-									<%= f.check_box :hit %>
-								<% end %>
-							</td>
-						</tr>
-					<% end %>
+<!-- музыка -->
+<table class="table table-bordered table-striped">
+	<th>название</th>
+	<th>скачиваний</th>
+	<th>хит?</th>
+	<% if @latest_tracks && @latest_tracks.any? %>
+			<% @latest_tracks.each do |track| %>
+				<tr class="">
+					<td>
+						<%= link_to track.name, music_path(track.permalink) %>
+					</td>
+					<td>
+						 <%= track.downloads %>
+					</td>
+					<td>
+						<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+							<%= f.check_box :hit %>
+						<% end %>
+					</td>
+				</tr>
 			<% end %>
-		</table>
+	<% end %>
+</table>
 
-		<!-- фильмы -->
-		<% if @last_films && @last_films.any? %>
-			<div>
-				<% @last_films.each do |film| %>
-					<%= link_to film.title, film_path(film.permalink) %> <%= track.downloads %>
-						<div class="hit-field">
-							<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-								<%= f.check_box :hit %>
-								<%= f.label :hit %>
-								<%= f.submit "ok"%>
-							<% end %>
-						</div>
-					<%= hr_for film, @last_films %>
-				<% end %>
-			</div>
-		<% end %>
-
-		<!-- log новинок -->
-		<% if @tracks && @tracks.any? %>
-			<div>
-				Предыдущие новинки
-			</div>
-			<div>
-				<% @tracks.each do |track| %>
-					<%= link_to track.name, music_path(track.permalink) %> <%= track.downloads %>
-						<div class="hit-field">
-							<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-								<%= f.check_box :hit %>
-								<%= f.label :hit %>
-								<%= f.submit "ok"%>
-							<% end %>
-						</div>
-					<br />
-				<% end %>
-			</div>
-
-			<%= will_paginate @tracks, next_label: "", previous_label: "", class: 'b' %>
-		<% elsif @films && @films.any? %>
-			<div>
-				Предыдущие новинки
-			</div>
-			<div>
-				<% @films.each do |film| %>
-					<%= link_to film.name, film_path(film.permalink) %> <%= track.downloads %>
-						<div class="hit-field">
-							<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-								<%= f.check_box :hit %>
-								<%= f.label :hit %>
-								<%= f.submit "ok"%>
-							<% end %>
-						</div>
-					<br />
-				<% end %>
-			</div>
-
-			<%= will_paginate @films, next_label: "", previous_label: "", class: 'b' %>
+<!-- фильмы -->
+<% if @last_films && @last_films.any? %>
+	<div>
+		<% @last_films.each do |film| %>
+			<%= link_to film.title, film_path(film.permalink) %> <%= track.downloads %>
+				<div class="hit-field">
+					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+						<%= f.check_box :hit %>
+						<%= f.label :hit %>
+						<%= f.submit "ok"%>
+					<% end %>
+				</div>
+			<%= hr_for film, @last_films %>
 		<% end %>
 	</div>
-</div> 
+<% end %>
+
+<!-- log новинок -->
+<% if @tracks && @tracks.any? %>
+	<div>
+		Предыдущие новинки
+	</div>
+	<div>
+		<% @tracks.each do |track| %>
+			<%= link_to track.name, music_path(track.permalink) %> <%= track.downloads %>
+				<div class="hit-field">
+					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+						<%= f.check_box :hit %>
+						<%= f.label :hit %>
+						<%= f.submit "ok"%>
+					<% end %>
+				</div>
+			<br />
+		<% end %>
+	</div>
+
+	<%= will_paginate @tracks, next_label: "", previous_label: "", class: 'b' %>
+<% elsif @films && @films.any? %>
+	<div>
+		Предыдущие новинки
+	</div>
+	<div>
+		<% @films.each do |film| %>
+			<%= link_to film.name, film_path(film.permalink) %> <%= track.downloads %>
+				<div class="hit-field">
+					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
+						<%= f.check_box :hit %>
+						<%= f.label :hit %>
+						<%= f.submit "ok"%>
+					<% end %>
+				</div>
+			<br />
+		<% end %>
+	</div>
+
+	<%= will_paginate @films, next_label: "", previous_label: "", class: 'b' %>
+<% end %>
+
+<!-- ИНФО -->
+<div class="span8 offset2">
+	<!-- кавер -->
+	<% if @collection.image.present? %>
+		<div>
+			<%= image_tag @collection.image.preview.url %>
+		</div>
+	<% end %>
+
+	<!-- описание -->
+	<% if @collection.description.present? %>
+		<p>
+			<%= @collection.description %>
+		</p>
+	<% end %>
+</div>
+
+<div class="span2 offset5">
+	<p>
+		<%= link_to	"редактировать", edit_admin_collection_path(@collection.permalink), class: "refresh-button btn btn-primary" %>
+	</p>
+</div>

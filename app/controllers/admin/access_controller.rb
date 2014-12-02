@@ -1,8 +1,9 @@
 class Admin::AccessController < ApplicationController
   layout 'admin'
 	
-  before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout]
-
+  before_filter :confirm_logged_in!, :except => [:login, :attempt_login, :logout]
+  before_filter :admin?
+  
 	def index
     redirect_to action: 'menu'
 	end

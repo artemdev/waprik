@@ -86,17 +86,20 @@ Waprik::Application.routes.draw do
 
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     scope module: 'public' do
-      resources :authentications, only: 'create'
-      resources :wishes, only: ['new']
+      resources :subscribtions, only: [:index, :create, :destroy]
+      resources :authentications, only: :create
+      resources :wishes, only: :new
       resources :videos
-      resources :users, only: ['new', 'create'] do 
+      resources :users, only: [:new, :create] do 
         get :account, on: :collection
       end
       resources :serials do
         get 'download', on: :member
         get 'get_file', on: :member
       end
-
+      resources :users do
+        get 'account', on: :member
+      end
       resources :news
       resources :collections
       resources :categories
@@ -148,7 +151,7 @@ Waprik::Application.routes.draw do
   match 'logout' => 'admin/access#logout'
   match 'admin' => 'admin/access#menu'
   match 'admin/access/attempt_login' => 'admin/access#attempt_login'
-
+  match 'user/account' => 'public/users#account'
   # categories 
   match 'admin/categories/:id/:content_type' => 'admin/categories#show'
   match 'categories/:id/:content_type' => 'public/categories#show'

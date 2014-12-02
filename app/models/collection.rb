@@ -33,6 +33,8 @@ class Collection < ActiveRecord::Base
   has_many :collection_film_through
   has_many :films, through: :collection_film_through
 
+  has_many :subscribers, class_name: 'Subscribtion', as: :subscribable
+
   scope :hits, where("hit = ?", true)
   scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }
   scope :latest, order("created_at DESC")

@@ -1,6 +1,7 @@
 class Admin::FilmFilesController < ApplicationController
-  before_filter :confirm_logged_in
-
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
   layout 'admin'
 
 	FTP_PATH = "public/ftp/films/"

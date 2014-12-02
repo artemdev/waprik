@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141113143252) do
+ActiveRecord::Schema.define(:version => 20141201142127) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -46,7 +46,10 @@ ActiveRecord::Schema.define(:version => 20141113143252) do
     t.integer  "vk_user_id"
     t.string   "vk_access_token"
     t.string   "vk_code"
+    t.boolean  "admin"
   end
+
+  add_index "admin_users", ["admin"], :name => "index_admin_users_on_admin"
 
   create_table "ads_links", :force => true do |t|
     t.string   "title"
@@ -1666,6 +1669,14 @@ ActiveRecord::Schema.define(:version => 20141113143252) do
   end
 
   add_index "spree_zones", ["default_tax"], :name => "index_spree_zones_on_default_tax"
+
+  create_table "subscribtions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "subscribable_id"
+    t.string   "subscribable_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"

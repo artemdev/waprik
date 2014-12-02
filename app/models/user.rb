@@ -15,6 +15,7 @@
 #  vk_user_id      :integer
 #  vk_access_token :string(255)
 #  vk_code         :string(255)
+#  admin           :boolean
 #
 
 require 'digest/sha1'
@@ -29,10 +30,19 @@ class User < ActiveRecord::Base
   has_many :news, foreign_key: "user_id" 
   has_many :replies, class_name: 'AdminReply', foreign_key: "admin_id" 
 
+  has_many :subscribtions
+
   # only on create, so other attributes of this user can be changed
-  validates :username, presence: { message: "Имя пользователь может быть от от 6 до 30 символов" }, length: { minimum: 6,  maximum: 30 }
   validates :password, presence: { message: "Пароль должен быть от 6 до 30 символов" }, length: { minimum: 6, maximum: 30 }
-  # validates_presence_of :first_name
+  VALID_EMAIL_REGEX = /^(\S+)@([a-z0-9-]+)(\.)([a-z]{2,4})(\.?)([a-z]{0,4})+$/i
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
+            uniqueness: { case_sensitive: false }
+  VALID_USERNAME_REGEX = /^(\w){1,15}$/
+  validates :username, format: { with: VALID_USERNAME_REGEX, message: '^Ошибка. Ник может содержать только буквы латинского алфавита a-z, цифры 0-9, подчеркивания _'} unless :guest?
+  validates_length_of :username, minimum: 3, maximum: 25, :message => '^Имя слишком короткое. Минимум 3 символа'
+  validates_uniqueness_of :username, :message => '^Это имя уже занято :(', allow_blank: true
+
+              # validates_presence_of :first_name
   # validates_length_of :first_name, :maximum => 100
 
   # validates_presence_of :last_name
@@ -78,6 +88,25 @@ class User < ActiveRecord::Base
   	else
   		return "nil"
   	end
+  end
+
+  def subscribed_to? content
+    true if self.subscribtions.find_by_subscribable_id_and_subscribable_type(content.id, content.class)  
+  end
+
+  def subscribe_to content
+    subscribtion = self.subscribtions.new
+    subscribtion.subscribable = content
+
+    if subscribtion.save
+      true
+    else
+      false
+    end
+  end
+
+  def destroy_subscribtion_for content
+    true if self.subscribtions.find_by_subscribable_id_and_subscribable_type(content.id, content.class).destroy  
   end
 
   private

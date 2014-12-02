@@ -1,7 +1,9 @@
 class Admin::FtpFilesController < ApplicationController
 	layout 'admin'
 
-	before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 
 	FILMS_FOLDER = 'public/ftp/films/'
 	MUSIC_FOLDER = 'public/ftp/music/'

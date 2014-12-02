@@ -3,7 +3,7 @@
 	<div class="span10 offset1">
 		<%= error_messages_for @film %>
 
-		<%= form_for(:film, url: {action: 'create', movie_title: @movie.ru_title}, method: :post, :html => { :multipart => true }) do |f| %>
+		<%= form_for(:film, url: admin_films_path(movie_title: @movie_title), method: :post, :html => { :multipart => true }) do |f| %>
 			<div class="edit-film">
 				<%= render partial: 'admin/shared/film_form', locals: {:f => f, :film => @film, :trailer => @trailer} %>
 			</div>

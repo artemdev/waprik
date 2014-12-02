@@ -1,4 +1,6 @@
 class Admin::AuthenticationsController < ApplicationController
+  before_filter :confirm_logged_in!
+  before_filter :admin?
 
   def to_vk
   	session[:state] = Digest::MD5.hexdigest(rand.to_s)

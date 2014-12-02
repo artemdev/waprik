@@ -1,5 +1,7 @@
 class Admin::RepliesController < ApplicationController
-  before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 
   layout 'admin'
 

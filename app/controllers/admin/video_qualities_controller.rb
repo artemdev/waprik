@@ -1,5 +1,7 @@
 class Admin::VideoQualitiesController < ApplicationController
-
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 	def index
 		@qualities = FilmQuality.all
 	end

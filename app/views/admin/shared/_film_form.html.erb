@@ -1,12 +1,10 @@
 <%= f.label :ru_title, "RU Название" %> <br />
 <%= f.text_field :ru_title %> <br />
 
-<%= f.label :torrent, "Торрент" %> <br />
-<%= f.file_field :torrent %> <br />
 
 brb url <%= f.text_field :brb_url %>	<br />
 
-<% if @film.common_films.any? %>
+<% if @film.common_films && @film.common_films.any? %>
 	есть похожие фильмы
 <% end %>
 
