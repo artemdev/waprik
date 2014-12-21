@@ -24,7 +24,7 @@ gem "font-awesome-rails"
 gem 'sitemap_generator'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'annotate'
-gem "friendly_id", "~> 4.0.10"
+gem 'friendly_id', "~> 4.0.10"
 gem 'autoprefixer-rails'
 gem 'whatlanguage'
 gem 'trans-api', github: "dblommesteijn/trans-api"

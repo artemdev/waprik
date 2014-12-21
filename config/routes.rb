@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
 
+  get "collections/show"
+
   # Admin resources
   namespace :admin do
     # matches
