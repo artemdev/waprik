@@ -1,6 +1,8 @@
 class Admin::VkPostsController < ApplicationController
 	before_filter :setup
-
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 	layout 'admin'
 
 	def new

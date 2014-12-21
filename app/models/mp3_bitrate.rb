@@ -2,9 +2,9 @@
 #
 # Table name: mp3_bitrate
 #
-#  file_id      :integer          not null
-#  file_bitrate :integer          not null
-#  file_size    :string(16)       not null
+#  file_id      :integer
+#  file_bitrate :integer
+#  file_size    :string(16)
 #  file         :string(255)
 #
 

@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   
   protected
 
-  def confirm_logged_in
+  def admin?
+    true if current_user.admin?
+  end
+
+  def confirm_logged_in!
   	if signed_in?
       return true
     else

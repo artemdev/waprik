@@ -1,5 +1,7 @@
 class Admin::SeriesController < ApplicationController
-  before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 
   layout 'admin'
 
@@ -22,9 +24,9 @@ class Admin::SeriesController < ApplicationController
 				original_path = File.expand_path(params[:series][:files_attributes]["0"][:attach])
 				# конвертация файлов
 				SerialsWorker.perform_async(@serie.id, original_path, params[:series][:files_attributes]["0"][:quality], 5)
-				# постинг в vk
-				push = VkPusher.new
-				push.serial @serie, current_user if @serial.hit?
+				# # постинг в vk
+				# push = VkPusher.new
+				# push.serial @serie, current_user if @serial.hit?
 			end
 			flash[:success] = "Серия успешно добавлена!"
 			redirect_to @serial

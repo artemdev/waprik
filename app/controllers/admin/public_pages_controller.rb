@@ -1,5 +1,7 @@
 class Admin::PublicPagesController < ApplicationController
-  before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 
   def index
     @pages = PublicPage.all

@@ -2,6 +2,8 @@ class VkPusher
   SERIALS_PUBLIC_ID = "27786322"
   FILMS_PUBLIC_ID = "44657162"
 
+  # TODO автоматически обновлять access_token
+  
   # сериал в vk
   # def serial serial_id, user, filepath
   #   serial = Serial.find(serial_id)

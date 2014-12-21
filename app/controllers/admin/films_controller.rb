@@ -2,11 +2,11 @@ require 'open-uri'
 class Admin::FilmsController < ApplicationController
   layout 'admin'
 	
-	before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
 	before_filter :find_film, only: [:edit, :update, :show, :destroy]
 	before_filter :find_film_directors, only: [:edit, :update]
 	before_filter :find_film_actors, only: [:edit, :update]
-  before_filter :set_collections, only: ['new', 'edit']
 
   CAMRip = 1
 
@@ -18,6 +18,7 @@ class Admin::FilmsController < ApplicationController
 	def edit
 		# @film, @film_directors, # @film_actors
 		@genres = FilmGenre.all
+		@collections = set_collections
 	end
 
 	def update
@@ -50,49 +51,58 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def new
-		@movie = ParseBrbFilm.new params[:movie_url]
+		@movie = ParseBrbFilm.new params[:movie_url] if params[:movie_url]
 		@film = Film.new
-		# title
-		if @movie.ru_title.present? && @movie.eng_title.present?
-			@film.title = "#{@movie.ru_title} / #{@movie.eng_title}"
-		elsif @movie.ru_title.present?
-			@film.title = @movie.ru_title
+		@collections = set_collections
+		# movie title
+		if @movie
+			@movie_title = @movie.ru_title 
+		else
+			@movie_title = nil
 		end
-		@film.ru_title = @movie.ru_title if @movie.ru_title
-		@film.en_title = @movie.eng_title if @movie.eng_title
-		# info
-		@film.about = @movie.description if @movie.description 
-		@film.year = @movie.years if @movie.years
-		@film.remote_cover_url = @movie.cover if @movie.cover
-		@film.selected_genres = @movie.genres.join("\n") if @movie.genres
-		@film.new_actors = @movie.actors.join("\n") if @movie.actors && !@movie.actors.empty?
-		@film.new_directors = @movie.directors.join("\n") if @movie.directors && !@movie.directors.empty?
-		@genres = FilmGenre.all
-		@directors = @film.directors
-		@actors = @film.actors
-		@film.common_films = @movie.common_films
-		@film.brb_url = params[:movie_url]
+
+		if @movie 
+			if @movie.ru_title.present? && @movie.eng_title.present?
+				@film.title = "#{@movie.ru_title} / #{@movie.eng_title}"
+			elsif @movie.ru_title.present?
+				@film.title = @movie.ru_title
+			end
+			@film.ru_title = @movie.ru_title if @movie.ru_title
+			@film.en_title = @movie.eng_title if @movie.eng_title
+			# info
+			@film.about = @movie.description if @movie.description 
+			@film.year = @movie.years if @movie.years
+			@film.remote_cover_url = @movie.cover if @movie.cover
+			@film.selected_genres = @movie.genres.join("\n") if @movie.genres
+			@film.new_actors = @movie.actors.join("\n") if @movie.actors && !@movie.actors.empty?
+			@film.new_directors = @movie.directors.join("\n") if @movie.directors && !@movie.directors.empty?
+			@film.common_films = @movie.common_films
+			@film.brb_url = params[:movie_url]
+		end
+			@genres = FilmGenre.all
+			@directors = @film.directors
+			@actors = @film.actors
 	end
 
 	def create
 		@film = Film.new(params[:film])
-		@common_films = params[:film][:common_films]
 		@directors = @film.directors
 		@actors = @film.actors
 		@genres = FilmGenre.all
+		@collections = set_collections
 		@film.add_actors(params[:film][:new_actors])
 		@film.add_directors(params[:film][:new_directors])
 		@film.add_genres(params[:film][:selected_genres])
 		@film.ru_title = params[:film][:ru_title] if params[:film][:ru_title].present?
 		@film.en_title = params[:film][:en_title] if params[:film][:en_title].present?
-		@film.cover = File.open(params[:film][:new_cover])
+		@film.cover = params[:film][:cover]
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
 		@film.brb_url = params[:film][:brb_url]
 		@film.create_recomendations!
 		if @film.save
-			push = VkPusher.new
-			push.film @film, current_user
-			flash[:success] = "Фильм успешно добавлен"
+			# push = VkPusher.new
+			# vk_responce = push.film @film, current_user
+			flash[:success] = "Фильм успешно добавлен. Самое время добавить файлы"
 			redirect_to new_admin_film_file_path(film_id: @film.id)
 		else
 			render :new

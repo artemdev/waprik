@@ -2,10 +2,11 @@
 
 <div class="row">
 	<%= form_for @user do |f| %>
+			<%= render partial: 'public/shared/new_user', locals: { :f => f } %>
 
-		<%= render partial: 'public/shared/new_user', locals: { :f => f } %>
-
-		<%= f.submit "продолжить" %>
+			<%= f.submit "продолжить" %>
 
 	<% end %>
+
+	<%= link_to "регистрация", new_user_path %>
 </div>

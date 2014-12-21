@@ -1,6 +1,7 @@
 class Admin::CollectionsController < ApplicationController
-	before_filter :confirm_logged_in
-	
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 	layout 'admin'
 
 	def index
@@ -55,7 +56,7 @@ class Admin::CollectionsController < ApplicationController
 	end
 
 	def edit
-		@collection = Collection.find(params[:id])
+		@collection = Collection.find_by_permalink(params[:id])
 	end
 
 	def update

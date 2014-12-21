@@ -19,7 +19,7 @@
 #  downloads         :integer          default(0)
 #  file_comment_up   :text
 #  file_comment_down :text
-#  created_at        :datetime         not null
+#  created_at        :datetime
 #  new_path          :string(255)
 #  length_sec        :integer
 #  news_id           :integer

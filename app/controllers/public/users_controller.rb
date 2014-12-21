@@ -1,8 +1,8 @@
 class Public::UsersController < ApplicationController
-	layout 'admin'
+	layout 'web'
 
-  before_filter :confirm_logged_in, only: 'account'
-
+  before_filter :confirm_logged_in!, only: :account
+  
   def account
   end
 

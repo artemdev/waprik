@@ -1,24 +1,44 @@
 <% provide(:title, "Редактировать подборку") %>
 
-<%= form_for @collection, url: admin_collection_path(@collection), method: :put, multipart: true do |f| %>
-	<%= f.label :name, "Название"  %> <br />
-	<%= f.text_field :name  %> <br />
+<div class="row">
+	<div class="span8 offset2">
+		<!-- ФАЙЛЫ -->
+		<table class="table table-bordered table-striped">
+			<th>название</th>
+			<th>действие</th>
+			<% if @collection.tracks.any? %>
+				<% @collection.tracks.each do |track| %>
+				<tr>
+					<td><%= link_to track.name, edit_admin_track_path(track) %></td>
+					<td><%= link_to fa_icon("times"), remove_from_collection_admin_track_path(track, collection_id: @collection.id) %></td>
+				</tr>
+				<% end %>
+			<% end %>
+		</table>
 
-	<%= f.label :image, "Кавер"  %> <br />
-	<%= f.file_field :image  %> <br />
+		<!-- ИНФО -->
+		<%= form_for @collection, url: admin_collection_path(@collection), method: :put, multipart: true do |f| %>
+			<div class="form-group">
+				<%= f.label :name, "Название"  %>
+				<%= f.text_field :name  %>
+			</div>
 
-	<%= f.label :description, "Описание"  %> <br />
-	<%= f.text_area :description  %> <br />
+			<div class="form-group">	
+				<%= f.check_box :hit  %>
+				<%= f.label :hit, "хит ?"  %>
+			</div>
 
-	<%= f.check_box :hit  %>
-	<%= f.label :hit, "хит ?"  %> <br />
-	
-	<%= f.submit "Обновить"  %>
-<% end %>
+			<div class="form-group">
+				<%= f.label :image, "Кавер"  %>
+				<%= f.file_field :image  %>
+			</div>
 
-<% if @collection.tracks.any? %>
-	<% @collection.tracks.each do |track| %>
-		<%= link_to track.name, edit_admin_track_path(track) %>
-		<%= link_to fa_icon("times"), remove_from_collection_admin_track_path(track, collection_id: @collection.id) %> <br />
-	<% end %>
-<% end %>
+			<div class="form-group">
+				<%= f.label :description, "Описание"  %>
+				<%= f.text_area :description  %>
+			</div>
+
+			<%= f.submit "Обновить", class: 'btn btn-success'  %>
+		<% end %>
+	</div>
+</div>

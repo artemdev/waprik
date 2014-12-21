@@ -4,7 +4,7 @@ class Public::FilmsController < ApplicationController
   # мониторинг обновлени качеств фильмов
   def updating
   	@files = FilmFile.order("created_at DESC")
-  	# TODO refactoring
+  	# RF
   	@films = [].uniq.paginate(page: params[:page], per_page: 10)
   	@files.each do |file|
   		@films << file.film

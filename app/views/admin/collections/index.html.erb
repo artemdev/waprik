@@ -1,21 +1,23 @@
 <% provide(:title, "Подборки") %>
-
-<div class="new-collection">
-	<%= link_to "создать подборку", new_admin_collection_path %>
-</div>
-
-<% if @collections.any? %>
-	<% @collections.each do |collection| %>
-		<%= div_for(collection, class: 'collection') do %>
-			<%= fa_icon('star', class: 'favourite-collection') if collection.hit? %>
-			<%= link_to collection.name, admin_collection_path(collection.permalink) %>
-			<%= link_to fa_icon('pencil', class: 'remove-collection'), edit_admin_collection_path(collection) %>
-			<%= link_to fa_icon('times', class: 'remove-collection'), admin_collection_path(collection), method: :delete, remote: true %>
-			<%= collection.tracks.count %> <br />
-			с музыкой <b><%= collection.with_music ? "да" : "нет" %></b> <br />
-			с фильмами <b><%= collection.with_films ? "да" : "нет" %></b>
+	<div class="span8 offset2">
+	<p>
+	<%= link_to "создать подборку", new_admin_collection_path, class: 'btn btn-large btn-success ' %>
+	</p>
+	<% if @collections.any? %>
+		<% @collections.each do |collection| %>
+			<%= div_for(collection, class: 'collection') do %>
+				<p>
+					<%= fa_icon('star', class: 'favourite-collection') if collection.hit? %>
+					<%= link_to collection.name, admin_collection_path(collection.permalink) %>
+					<%= link_to fa_icon('pencil', class: 'remove-collection'), edit_admin_collection_path(collection.permalink) %>
+					<%= link_to fa_icon('times', class: 'remove-collection'), admin_collection_path(collection), method: :delete, remote: true %>
+					<%= collection.tracks.count %> <br />
+					с музыкой <b><%= collection.with_music ? "да" : "нет" %></b> <br />
+					с фильмами <b><%= collection.with_films ? "да" : "нет" %></b>
+				</p>
+			<% end %>
 		<% end %>
+	<% else %>
+		Подборок нет
 	<% end %>
-<% else %>
-	Подборок нет
-<% end %>
+</div>

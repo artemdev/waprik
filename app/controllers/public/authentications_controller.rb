@@ -1,4 +1,5 @@
 class Public::AuthenticationsController < ApplicationController
+	before_filter :confirmed_logged_in!
 
 	def create
 		hash = request.env["omniauth.auth"]

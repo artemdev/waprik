@@ -1,7 +1,9 @@
 class Admin::LinksController < ApplicationController
 	layout 'admin'
 
-	before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 
 	def index
 		@links = AdsLink.all.paginate(page: params[:page], per_page: 10)

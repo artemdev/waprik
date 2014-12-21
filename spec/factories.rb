@@ -1,8 +1,12 @@
 FactoryGirl.define do
-	factory :admin_user do
-		username 'admin'
+	factory :admin_user, class: 'User' do
+		username 'adminok'
 		password 'lordik37ztxq'
 	end
+
+	factory :collection do
+		name 'Europa Plus - лучшее'
+	end	
 
 	factory :film do
 		ru_title "тест"

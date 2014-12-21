@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
-	before_filter :confirm_logged_in
-
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 	layout 'admin'
 
 	def index

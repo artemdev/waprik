@@ -24,7 +24,7 @@ gem "font-awesome-rails"
 gem 'sitemap_generator'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'annotate'
-gem "friendly_id", "~> 4.0.10"
+gem 'friendly_id', "~> 4.0.10"
 gem 'autoprefixer-rails'
 gem 'whatlanguage'
 gem 'trans-api', github: "dblommesteijn/trans-api"
@@ -61,4 +61,5 @@ group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '4.1.0'
   gem 'database_cleaner', '0.7.0'
+  gem "launchy"
 end

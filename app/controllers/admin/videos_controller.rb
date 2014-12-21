@@ -1,9 +1,11 @@
 class Admin::VideosController < ApplicationController
-  before_filter :confirm_logged_in
+  before_filter :confirm_logged_in!
+  before_filter :admin?
+  
 
   layout 'admin'
 	
-	before_filter :confirm_logged_in
+	before_filter :confirm_logged_in!
 	before_filter :find_category, :only => ['new', 'create', 'delete']
 
 	FTP_PATH = "public/ftp/videos/"

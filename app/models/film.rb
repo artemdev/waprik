@@ -89,7 +89,7 @@ class Film < ActiveRecord::Base
   belongs_to :recomendation_list
 
 
-  # validates :title, :about, :year, presence: true
+  validates :cover, presence: true
 
   include Tire::Model::Search
   include Tire::Model::Callbacks

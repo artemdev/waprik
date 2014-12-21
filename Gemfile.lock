@@ -42,6 +42,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    addressable (2.3.6)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -134,6 +135,8 @@ GEM
       nokogiri
     lame (0.0.3)
       ffi
+    launchy (2.4.2)
+      addressable (~> 2.3)
     less (2.5.1)
       commonjs (~> 0.2.7)
     less-rails (2.5.0)
@@ -363,6 +366,7 @@ DEPENDENCIES
   jquery-ui-rails
   kinopoisk_parser
   lame
+  launchy
   less-rails
   mechanize
   mini_magick
