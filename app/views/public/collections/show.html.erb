@@ -2,8 +2,9 @@
 
 
 <!-- общее число скачиваний -->
-<%= downloads_size_for @collection %>
-
+<div class="a">
+	<%= count_downloads_for @collection %>
+</div>
 <% if @collection.image.present? %>
 	<div class="a">
 		<%= image_tag @collection.image.preview.url %>
