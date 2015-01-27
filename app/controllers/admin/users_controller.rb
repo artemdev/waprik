@@ -13,18 +13,21 @@ class Admin::AdminUsersController < ApplicationController
   	@user = User.find(params[:id])
   end
 
+  # closeed authentication
   def new
-  	@user = User.new
+    render text: 'registration tempelary closed'
+  	# @user = User.new
   end
 
   def create
-  	@user = User.new(params[:user])
-  	if @user.save
-  		flash[:notice] = "Теперь с нами новый админ :)"
-			redirect_to(:action => 'list')
-  	else
-  		render('new')
-  	end
+    render text: 'registration tempelary closed'
+  	# @user = User.new(params[:user])
+  	# if @user.save
+  	# 	flash[:notice] = "Теперь с нами новый админ :)"
+			# redirect_to(:action => 'list')
+  	# else
+  	# 	render('new')
+  	# end
   end
 
   def edit

@@ -2,6 +2,14 @@ require 'sidekiq/web'
 Waprik::Application.routes.draw do
 
   get "collections/show"
+  
+  # sidekiq
+  mount Sidekiq::Web, at: '/tasks'
+
+  # web
+  namespace :web do
+    resources :collections, only: :show
+  end
 
   # Admin resources
   namespace :admin do
@@ -223,9 +231,6 @@ Waprik::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  
-  # sidekiq
-  mount Sidekiq::Web, at: '/tasks'
 
   match ':controller(/:action(/:id))(.:format)'
 end

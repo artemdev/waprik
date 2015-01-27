@@ -33,7 +33,7 @@
 		<% @genres.each do |genre| %>
 			<%= link_to genre.title.mb_chars.capitalize, film_genre_path(genre) %>
 			<span class="small-text">
-				<%= genre.films.size %>
+				<%= genre.films.count %>
 			</span>
 			<br />
 		<% end %>

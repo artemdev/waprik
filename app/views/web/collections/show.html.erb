@@ -1,6 +1,20 @@
-<!-- ПРОСЛУШИВАНИЯ -->
 <!-- ИЗОБРАЖЕНИЕ -->
-<!-- ОПИСАНИЕ -->
+<div class="image">
+	<%= image_tag @collection.image %>
+</di>
+
+<!-- ПРОСЛУШИВАНИЙ -->
+<%= downloads_size_for @collection %>
+
+
 <!-- ТРЕКИ -->
+<% @collection.tracks.each do |track| %>
+	<%= link_to track.name, download_music_path(track) %> <br />
+<% end %>
+
+
+
+<!-- ОПИСАНИЕ -->
+
 <!-- ЛАЙКИ -->
 <!-- КОММЕНТЫ -->

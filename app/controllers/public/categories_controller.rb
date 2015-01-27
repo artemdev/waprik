@@ -12,5 +12,4 @@ class Public::CategoriesController < ApplicationController
 				@news = @category.news			
 		end
 	end
-
 end

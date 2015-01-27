@@ -58,4 +58,13 @@ module ApplicationHelper
     end
   end
 
+  # подсчет скачиваний в подборке
+  def downloads_size_for collection
+    downloads = 0
+    if collection.tracks.any?
+      collection.tracks.map { |track| downloads += track.downloads }
+    end
+    downloads
+  end
+
 end

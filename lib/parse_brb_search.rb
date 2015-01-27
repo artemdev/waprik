@@ -4,7 +4,7 @@ require 'open-uri'
 class ParseBrbSearch
 	# TODO преобразовать массивы в хеши
 
-	SOURCE_URL = 'http://brb.to'
+	SOURCE_URL = 'http://fs.to'
 
 	def initialize keywords=""
 		agent = Mechanize.new
@@ -16,22 +16,15 @@ class ParseBrbSearch
 
 	def results
 		results = []
-		@search_results.search('.main').each do |m|
-			m.search('tr').each_with_index do |tr, index|
-					tr.search('td').each do |td|
-						if td.at('a.title') && td.at('.section').text == "Фильмы"
-						results << [td.at('a.title').text, td.at('a.title')['href'] ]
-						end
-					end
-			end
+		@search_results.links_with(class: 'b-search-page__results-item m-video').each do |link|
+			# найти title фильма
+			# title = 
+			url = link.uri.to_s
+			results << url
 		end
-		if results.any?
-			results
-		else
-			"ничего не найдено"
-		end	
+		results
 	end
 
 end
 
-# puts ParseBrbSearch.new("Трасса 60").results.last.last
+puts ParseBrbSearch.new("back to the future").results

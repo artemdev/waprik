@@ -1,13 +1,8 @@
 <% provide(:title, "#{@collection.name.mb_chars.capitalize} от #{@date.strftime("%d.%m.%y")}") %>
 
 
-<!-- RF общее число скачиваний -->
-<% downloads = 0 %>
-<% @collection.tracks.map { |track| downloads += track.downloads } %>
-
-<div class="b">
-	<%= downloads %> скачиваний
-</div>
+<!-- общее число скачиваний -->
+<%= downloads_size_for collection %>
 
 <% if @collection.image.present? %>
 	<div class="a">
