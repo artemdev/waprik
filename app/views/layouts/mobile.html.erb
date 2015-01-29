@@ -15,7 +15,7 @@
 	<%= render partial: 'shared/flash_messages' %>
 	
 	<div class="ads">
-		<script type="text/javascript"  src="http://orangetds.info/?type=js&key=20b81f21d16fd36"></script>
+		<div class="octobird-block" data-tp="all" data-nb="1"></div>
 	</div>
 
 	<% if yield(:title).present? %>
@@ -35,7 +35,11 @@
 		<a href="http://waprik.ru">На главную</a>
 	</div>
 	<div class="ads">
-		<div class="octobird-block" data-tp="all" data-nb="1"></div>
+		<script type="text/javascript">
+		teasernet_blockid = 571610;
+		teasernet_padid = 236090;
+		</script>
+		<script type="text/javascript" src="http://transfto.com/37j3/ca/14/cf/43/4.js"></script>
 	</div>
 	<% unless params[:controller] == "public/feedbacks" %>
 		<div class="feedbacks">
