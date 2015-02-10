@@ -3,10 +3,10 @@
 # Table name: films_formats
 #
 #  id          :integer          not null, primary key
-#  title       :string(100)
-#  description :string(100)
-#  ffparams    :string(1000)
-#  ext         :string(10)
+#  title       :string(100)      not null
+#  description :string(100)      not null
+#  ffparams    :string(1000)     not null
+#  ext         :string(10)       not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

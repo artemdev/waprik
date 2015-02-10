@@ -1,3 +1,8 @@
+<% if current_user && current_user.subscribed_to? @collection  %>
+	<%= link_to	"отписаться", subscribtion_path(@collection.id, content: 'collection'), class: "refresh-button btn btn-danger", method: :delete %>
+<% else %>
+	<%= link_to	"подписаться", subscribtions_path(content: 'collection', id: @collection.id), class: "refresh-button btn btn-info", method: :post %>
+<% end %>
 <!-- ИЗОБРАЖЕНИЕ -->
 <div class="image">
 	<%= image_tag @collection.image %>

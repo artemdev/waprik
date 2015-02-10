@@ -38,21 +38,8 @@ class Admin::CollectionsController < ApplicationController
 
 	def show
 		@collection = Collection.find_by_permalink!(params[:id])
-		if @collection.with_music && @collection.tracks.latest.first
-			# дата самых новых треков
-			@date = @collection.tracks.latest.first.created_at
-			# самые новые треки
-			@latest_tracks = @collection.tracks.where(created_at: @date.at_beginning_of_day..@date.end_of_day)
-			# все треки кроме самых новых
-			@tracks = @collection.tracks.without_new(@date).paginate(page: params[:page], per_page: 20)
-		elsif @collection.with_films && @collection.films.latest.first
-			# дата самых новых фильмов
-			@date = @collection.films.latest.first.created_at
-			# самые новые фильмы
-			@latest_films = @collection.films.where(created_at: @date.at_beginning_of_day..@date.end_of_day)
-			# все фильмы кроме самых новых
-			@films = @collection.films.without_new(@date).paginate(page: params[:page], per_page: 20)
-		end
+		@tracks = @collection.tracks.paginate(page: params[:page], per_page: 10)
+		@films = @collection.films.paginate(page: params[:page], per_page: 10)
 	end
 
 	def edit
@@ -77,4 +64,70 @@ class Admin::CollectionsController < ApplicationController
 		end
 	end
 
+	def refresh
+		@collection = Collection.find(params[:id])
+		@films = Film.search(params[:query]) if params[:query]
+		@tracks = Mp3File.search(params[:query]) if params[:query]
+	end
+
+	def add_film
+		if (film = find_film) && (collection = find_collection)
+			if collection.films.include?(film)
+				notice = 'фильм уже есть в коллекции'
+			else
+				collection.films << film
+				notice = 'фильм успешно добавлен'
+			end
+		elsif !find_collection
+			notice = 'не удалось найти коллекцию'
+		elsif !find_film
+			notice = 'не удалось найти фильм'
+		end
+		redirect_to admin_collection_path(collection.permalink), notice: notice
+	end
+
+	def add_track
+		if (track = find_track) && (collection = find_collection)
+			if collection.tracks.include?(track)
+				notice = 'трек уже есть в коллекции'
+			else
+				collection.tracks << track
+				notice = 'трек успешно добавлен'
+			end
+		elsif !find_collection
+			notice = 'не удалось найти коллекцию'
+		elsif !find_track
+			notice = 'не удалось найти трек'
+		end
+		redirect_to admin_collection_path(collection.permalink), notice: notice
+	end
+
+	def remove_from
+		collection = find_collection
+		film = find_film
+		track = find_track
+		if collection && film
+			film.collections.delete(collection)
+			notice = "фильм удален из коллекции"
+		elsif collection && track
+			track.collections.delete(collection)
+			notice = "трек удален из коллекции"
+		end
+		redirect_to admin_collection_path(collection.permalink), notice: notice
+	end
+
+private
+
+	def find_collection
+		Collection.find(params[:id])
+	end
+
+	def find_film
+		Film.find(params[:film_id]) if params[:film_id]
+	end
+
+
+	def find_track
+		Mp3File.find(params[:track_id]) if params[:track_id]
+	end
 end

@@ -1,91 +1,21 @@
-
 <% provide(:title, "#{@collection.name.mb_chars.capitalize} от #{show_date_for @date}") %>
 
 <div class="span2 offset5">
 	<p>
-		<%= link_to	"обновить", nil, class: "refresh-button btn btn-primary" %>
-		<% if current_user.subscribed_to? @collection  %>
-			<%= link_to	"отписаться", subscribtion_path(@collection.id, content: 'collection'), class: "refresh-button btn btn-danger", method: :delete %>
-		<% else %>
-			<%= link_to	"подписаться", subscribtions_path(content: 'collection', id: @collection.id), class: "refresh-button btn btn-info", method: :post %>
-		<% end %>
+		<%= link_to	"обновить", refresh_admin_collection_path(@collection), class: "refresh-button btn btn-primary" %>
 	</p>
 </div>
-
-<!-- ФАЙЛЫ -->
-
 <!-- музыка -->
-<table class="table table-bordered table-striped">
+Треков <%= @tracks.count %> <br />
+ <table class="table table-bordered table-striped">
 	<th>название</th>
 	<th>скачиваний</th>
 	<th>хит?</th>
-	<% if @latest_tracks && @latest_tracks.any? %>
-			<% @latest_tracks.each do |track| %>
+	<% if @tracks.any? %>
+			<% @tracks.each do |track| %>
 				<tr class="">
 					<td>
-					<script type="text/javascript">
-					 $(document).ready(function() {
-
-    $("#jquery_jplayer_1").jPlayer({
-        ready: function(event) {
-            $(this).jPlayer("setMedia", {
-				title: "Bubble",
-				m4a: "http://jplayer.org/audio/mp3/Miaow-07-Bubble.mp3",
-				oga: "http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-            });
-        },
-        swfPath: "http://jplayer.org/latest/dist/jplayer",
-        supplied: "mp3, oga",
-		wmode: "window",
-		useStateClassSkin: true,
-		autoBlur: false,
-		smoothPlayBar: true,
-		keyEnabled: true,
-		remainingDuration: true,
-		toggleDuration: true
-    });
-});                                      
-
-					</script>
-<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
-	<div class="jp-type-single">
-		<div class="jp-gui jp-interface">
-			<div class="jp-volume-controls">
-				<button class="jp-mute" role="button" tabindex="0">mute</button>
-				<button class="jp-volume-max" role="button" tabindex="0">max volume</button>
-				<div class="jp-volume-bar">
-					<div class="jp-volume-bar-value"></div>
-				</div>
-			</div>
-			<div class="jp-controls-holder">
-				<div class="jp-controls">
-					<button class="jp-play" role="button" tabindex="0">play</button>
-					<button class="jp-stop" role="button" tabindex="0">stop</button>
-				</div>
-				<div class="jp-progress">
-					<div class="jp-seek-bar">
-						<div class="jp-play-bar"></div>
-					</div>
-				</div>
-				<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
-				<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
-				<div class="jp-toggles">
-					<button class="jp-repeat" role="button" tabindex="0">repeat</button>
-				</div>
-			</div>
-		</div>
-		<div class="jp-details">
-			<div class="jp-title" aria-label="title">&nbsp;</div>
-		</div>
-		<div class="jp-no-solution">
-			<span>Update Required</span>
-			To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-		</div>
-	</div>
-</div>
-
-						<%= link_to track.name, music_path(track.permalink) %>
+					<%= link_to track.name, music_path(track.permalink) %>
 					</td>
 					<td>
 						 <%= track.downloads %>
@@ -95,68 +25,43 @@
 							<%= f.check_box :hit %>
 						<% end %>
 					</td>
+					<td>
+						<%= link_to "x", remove_from_admin_collection_path(@collection, track_id: track.id), method: :post %>
+					</td>
 				</tr>
 			<% end %>
 	<% end %>
 </table>
 
 <!-- фильмы -->
-<% if @last_films && @last_films.any? %>
-	<div>
-		<% @last_films.each do |film| %>
-			<%= link_to film.title, film_path(film.permalink) %> <%= track.downloads %>
-				<div class="hit-field">
-					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-						<%= f.check_box :hit %>
-						<%= f.label :hit %>
-						<%= f.submit "ok"%>
-					<% end %>
-				</div>
-			<%= hr_for film, @last_films %>
-		<% end %>
-	</div>
-<% end %>
+Фильмов <%= @films.count %> <br />
+<table class="table table-bordered table-striped">
+	<th>название</th>
+	<th>скачиваний</th>
+	<th>хит?</th>
+	<% if @films.any? %>
+			<% @films.each do |film| %>
+				<tr class="">
+					<td>
+					<%= link_to film.title, edit_admin_film_path(film) %>
+					</td>
+					<td>
+						 <%= film.downloads %>
+					</td>
+					<td>
+						<%= form_for film, url: admin_film_path(film), method: :put do |f| %>
+							<%= f.check_box :is_favourite %>
 
-<!-- log новинок -->
-<% if @tracks && @tracks.any? %>
-	<div>
-		Предыдущие новинки
-	</div>
-	<div>
-		<% @tracks.each do |track| %>
-			<%= link_to track.name, music_path(track.permalink) %> <%= track.downloads %>
-				<div class="hit-field">
-					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-						<%= f.check_box :hit %>
-						<%= f.label :hit %>
-						<%= f.submit "ok"%>
-					<% end %>
-				</div>
-			<br />
-		<% end %>
-	</div>
-
-	<%= will_paginate @tracks, next_label: "", previous_label: "", class: 'b' %>
-<% elsif @films && @films.any? %>
-	<div>
-		Предыдущие новинки
-	</div>
-	<div>
-		<% @films.each do |film| %>
-			<%= link_to film.name, film_path(film.permalink) %> <%= track.downloads %>
-				<div class="hit-field">
-					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-						<%= f.check_box :hit %>
-						<%= f.label :hit %>
-						<%= f.submit "ok"%>
-					<% end %>
-				</div>
-			<br />
-		<% end %>
-	</div>
-
-	<%= will_paginate @films, next_label: "", previous_label: "", class: 'b' %>
-<% end %>
+							<%= f.submit "ok" %>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to "x", remove_from_admin_collection_path(@collection, film_id: film.id), method: :post %>
+					</td>
+				</tr>
+			<% end %>
+	<% end %>
+</table>
 
 <!-- ИНФО -->
 <div class="span8 offset2">

@@ -19,7 +19,7 @@
 #  downloads         :integer          default(0)
 #  file_comment_up   :text
 #  file_comment_down :text
-#  created_at        :datetime
+#  created_at        :datetime         not null
 #  new_path          :string(255)
 #  length_sec        :integer
 #  news_id           :integer
@@ -32,7 +32,7 @@
     
 require 'taglib'
 class Mp3File < ActiveRecord::Base
-  default_scope order("created_at DESC")
+  default_scope order("mp3_files.created_at DESC")
 
   attr_accessible :name, :path, :new_path, :artist_name, :album_name, :new_file, :hit, :new_collection
   attr_accessor :new_file, :new_collection

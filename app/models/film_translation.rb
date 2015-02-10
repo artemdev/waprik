@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string(50)
-#  position   :integer
+#  position   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
 #

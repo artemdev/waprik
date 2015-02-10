@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  film_id    :integer          not null
-#  filename   :string(50)
-#  filesize   :integer
+#  filename   :string(50)       not null
+#  filesize   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
 #

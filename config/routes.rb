@@ -8,7 +8,9 @@ Waprik::Application.routes.draw do
 
   # web
   namespace :web do
-    resources :collections, only: :show
+    resources :collections, only: :show do
+      get :films, on: :member
+    end
   end
 
   # Admin resources
@@ -29,7 +31,12 @@ Waprik::Application.routes.draw do
     resources :serials
     resources :series
     resources :categories
-    resources :collections
+    resources :collections do
+      get 'refresh', on: :member
+      put 'add_film', on: :member
+      put 'add_track', on: :member
+      post 'remove_from', on: :member
+    end
     resources :pictures
     resources :replies, only: ['new', 'create', 'destroy']
     resources :music_artists, controller: "MusicArtists"

@@ -24,9 +24,9 @@ class Admin::FilmsController < ApplicationController
 	def update
 		# @film, @film_directors
 		@genres = FilmGenre.all
-		@film.add_actors(params[:film][:new_actors])
-		@film.add_directors(params[:film][:new_directors])
-		@film.add_genres(params[:film][:selected_genres])
+		@film.add_actors(params[:film][:new_actors]) if params[:film][:new_actors]
+		@film.add_directors(params[:film][:new_directors]) if params[:film][:new_actors]
+		@film.add_genres(params[:film][:selected_genres]) if params[:film][:new_actors]
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
 		if params[:film][:trailer_filename]
 			thrailer = @film.trailers.new

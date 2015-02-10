@@ -3,10 +3,10 @@
 # Table name: mp3_alphabet
 #
 #  id             :integer          not null, primary key
-#  isset_rus      :integer          default(0)
-#  isset_eng      :integer          default(0)
-#  count_hits_rus :integer          default(0)
-#  count_hits_eng :integer          default(0)
+#  isset_rus      :integer          default(0), not null
+#  isset_eng      :integer          default(0), not null
+#  count_hits_rus :integer          default(0), not null
+#  count_hits_eng :integer          default(0), not null
 #
 
 class Mp3Alphabet < ActiveRecord::Base
