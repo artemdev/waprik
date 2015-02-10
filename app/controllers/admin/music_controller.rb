@@ -84,6 +84,7 @@ class Admin::MusicController < ApplicationController
 
 	def destroy
 		@track = Mp3File.find(params[:id]).destroy
+		@track.tire.update_index
 		flash[:success] = "Трек удален"
 		respond_to do |format|
 			format.html { redirect_to admin_tracks_path }

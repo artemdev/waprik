@@ -136,6 +136,7 @@ class Admin::FilmsController < ApplicationController
 		end
 		# удаление фильма
 		@film.destroy
+		@film.tire.update_index
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js
