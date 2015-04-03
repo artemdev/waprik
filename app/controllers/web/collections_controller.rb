@@ -1,8 +1,18 @@
 class Web::CollectionsController < ApplicationController
 	layout 'web'
 
+  def index
+    if params[:sort_by] == "latest"
+      @collections = Collection.latest
+    elsif params[:sort_by] == "popular"
+      @collections = Collection.popular
+    else
+      @collections = Collection.all
+    end
+  end
+
   def show
-  	@collection = Collection.find(params[:id])
+  	render text: 'works!'
   end
 
   def films

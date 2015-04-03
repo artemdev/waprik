@@ -1,14 +1,15 @@
 <% provide(:title, "добавить mp3") %>
 
-<%= form_for @track, url: admin_tracks_path, method: :post, html: { multipart: true, class: 'a' } do |f| %>
+<%= error_messages_for @track %>
+
+<%= form_for @track, url: admin_tracks_path(collection: @collection), method: :post, html: { multipart: true, class: 'a' } do |f| %>
 	<%= f.label :new_file, "Файл" %> <br />
 	<%= f.select :new_file, @files.map {|f| [File.join(File.dirname(f), File.basename(f)), File.absolute_path(f)] }, { include_blank: true}  %> <br />
-	
-	<%= f.label :album_name, "Альбом" %> <br />
-	<%= f.text_field :album_name %> <br />
-
-	<%= f.label :new_collection, "Подборка" %> <br />
-	<%= f.select :new_collection, @collections.map {|collection| [collection.name, collection.id] } %> <br />
-
+	<% if @collection %>
+		<b><%= @collection.name %></b> <br />
+	<% else %>
+		<%= f.label :new_collection, "Подборка" %> <br />
+		<%= f.select :new_collection, @collections.map {|collection| [collection.name, collection.id] } %> <br />
+	<% end %>
 	<%= f.submit "Добавить" %>
 <% end %>

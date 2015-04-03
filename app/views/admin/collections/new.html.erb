@@ -1,11 +1,18 @@
 <% provide(:title, "Создать подборку") %>
 
+<%= error_messages_for @collection %>
+
 <%= form_for @collection, url: admin_collections_path, method: :post do |f| %>
 	<%= f.label :name, "Название"  %> <br />
 	<%= f.text_field :name  %> <br />
 
-	<%= f.check_box :hit  %>
+	<%= f.label :source_url, "источник (http://)"  %> <br />
+	<%= f.text_field :source_url  %> <br />
+	
+	<%= f.check_box :hit  %> <br />
 	<%= f.label :hit, "хит ?"  %> <br />
+
+	<%= link_to "добавить трек", new_admin_track_path(collection: @collection.id) %>
 	
 	<%= f.submit "Создать"  %>
 <% end %>

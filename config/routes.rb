@@ -1,14 +1,16 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
 
-  get "collections/show"
+  # get "collections/show"
   
+  get 'web', to: 'web/collections#index'
+
   # sidekiq
   mount Sidekiq::Web, at: '/tasks'
 
   # web
   namespace :web do
-    resources :collections, only: :show do
+    resources :collections, only: [:show, :index] do
       get :films, on: :member
     end
   end

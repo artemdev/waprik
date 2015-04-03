@@ -1,25 +1,30 @@
-<% if current_user && current_user.subscribed_to? @collection  %>
-	<%= link_to	"отписаться", subscribtion_path(@collection.id, content: 'collection'), class: "refresh-button btn btn-danger", method: :delete %>
+<% if current_user && current_user.subscribed_to?(@collection)  %>
+	<%= link_to("отписаться", subscribtion_path(@collection.id, content: 'collection'), class: "refresh-button btn btn-danger", method: :delete) %>
 <% else %>
-	<%= link_to	"подписаться", subscribtions_path(content: 'collection', id: @collection.id), class: "refresh-button btn btn-info", method: :post %>
+	<%= link_to("подписаться", subscribtions_path(content: 'collection', id: @collection.id), class: "refresh-button btn btn-info", method: :post) %>
 <% end %>
+
+<!-- ИНФО -->
+<div class="row">
+	скачиваний <%= downloads_size_for @collection %>
+	<% if @collection.source_url %>
+		источник <%= link_to @collection.source_url, @collection.source_url %>
+	<% end %>
+	<%# likes  %>
+	<%# comments  %>
+</div>
+
 <!-- ИЗОБРАЖЕНИЕ -->
-<div class="image">
-	<%= image_tag @collection.image %>
-</di>
-
-<!-- ПРОСЛУШИВАНИЙ -->
-<%= downloads_size_for @collection %>
-
+<% if @collection.image.url.present?  %>
+	<div class="image">
+		<%= image_tag @collection.image %>
+	</di>
+<% end %>
 
 <!-- ТРЕКИ -->
-<% @collection.tracks.each do |track| %>
-	<%= link_to track.name, download_music_path(track) %> <br />
-<% end %>
-
-
-
-<!-- ОПИСАНИЕ -->
-
-<!-- ЛАЙКИ -->
-<!-- КОММЕНТЫ -->
+<div class="row">
+	<% @collection.tracks.each_with_index do |track, i| %>
+		<%= track.new_path.path %>
+	<% end %>
+	<%= link_to "скачать одним файлом", @collection.join_tracks %>
+</div>

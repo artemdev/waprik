@@ -38,7 +38,6 @@
 #  recomendation_list_id :integer
 #  torrent               :string(255)
 #  vk                    :boolean
-#  collection_id         :integer
 #
 
 require 'elasticsearch/rails/tasks/import'

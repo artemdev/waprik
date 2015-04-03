@@ -1,0 +1,5 @@
+<% provide(:title, @film.title) %>
+
+<% @films.each do |film| %>
+	<%= link_to film.title, film_path(film, collection_id: @collection.id)  %>
+<% end %>

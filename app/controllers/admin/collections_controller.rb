@@ -1,5 +1,5 @@
 class Admin::CollectionsController < ApplicationController
-  before_filter :confirm_logged_in!
+	before_filter :confirm_logged_in!
   before_filter :admin?
   
 	layout 'admin'
@@ -24,6 +24,7 @@ class Admin::CollectionsController < ApplicationController
 
 	def new
 		@collection = Collection.new
+		10.times { @collection.tracks.new }
 	end
 
 	def create
@@ -37,13 +38,14 @@ class Admin::CollectionsController < ApplicationController
 	end
 
 	def show
-		@collection = Collection.find_by_permalink!(params[:id])
+		@collection = Collection.find_by_permalink(params[:id])
 		@tracks = @collection.tracks.paginate(page: params[:page], per_page: 10)
 		@films = @collection.films.paginate(page: params[:page], per_page: 10)
 	end
 
 	def edit
 		@collection = Collection.find_by_permalink(params[:id])
+		@track = @collection.tracks.new
 	end
 
 	def update

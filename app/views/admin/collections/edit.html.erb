@@ -2,22 +2,10 @@
 
 <div class="row">
 	<div class="span8 offset2">
-		<!-- ФАЙЛЫ -->
-		<table class="table table-bordered table-striped">
-			<th>название</th>
-			<th>действие</th>
-			<% if @collection.tracks.any? %>
-				<% @collection.tracks.each do |track| %>
-				<tr>
-					<td><%= link_to track.name, edit_admin_track_path(track) %></td>
-					<td><%= link_to fa_icon("times"), remove_from_collection_admin_track_path(track, collection_id: @collection.id) %></td>
-				</tr>
-				<% end %>
-			<% end %>
-		</table>
+		
 
 		<!-- ИНФО -->
-		<%= form_for @collection, url: admin_collection_path(@collection), method: :put, multipart: true do |f| %>
+		<%= form_for :collection, url: admin_collection_path(@collection), method: :put, html: { multipart: true } do |f| %>
 			<div class="form-group">
 				<%= f.label :name, "Название"  %>
 				<%= f.text_field :name  %>
@@ -38,7 +26,19 @@
 				<%= f.text_area :description  %>
 			</div>
 
-			<%= f.submit "Обновить", class: 'btn btn-success'  %>
+			<div class="form-group">
+				<%= f.label :description, "Описание"  %>
+				<%= f.text_area :description  %>
+			</div>
+
+			<div class="form-group">
+				<%= f.fields_for :tracks do |builder| %>
+					<%= builder.label :new_path, "Файл для загрузки"  %>
+					<%= builder.text_area :new_path  %>
+				<% end %>
+			</div>
+
+			<%= f.submit "продолжить", class: 'btn btn-success'  %>
 		<% end %>
 	</div>
 </div>

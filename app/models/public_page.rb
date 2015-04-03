@@ -32,7 +32,7 @@ class PublicPage < ActiveRecord::Base
 	def parse!
 		count = 0
 		VkPublicParser.new(self.vk_url).posts.each do |vk_post|
-			# не парсим посты, которые у меня уже есть
+			# не парсим посты, которые уже есть
 		  unless PublicPost.find_by_vk_id(vk_post.pid)
 		  	PublicPost.create(vk_id: vk_post.pid, image: attachments.first.photo.src)
 		  	count += 1

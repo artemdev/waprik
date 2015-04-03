@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141201142127) do
+ActiveRecord::Schema.define(:version => 20150329140638) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -139,11 +139,15 @@ ActiveRecord::Schema.define(:version => 20141201142127) do
     t.string   "image"
     t.string   "permalink"
     t.string   "vk_title"
+    t.string   "full_sound"
+    t.string   "source_url"
   end
 
   add_index "collections", ["description"], :name => "index_collections_on_description"
+  add_index "collections", ["full_sound"], :name => "index_collections_on_full_sound"
   add_index "collections", ["image"], :name => "index_collections_on_image"
   add_index "collections", ["permalink"], :name => "index_collections_on_permalink"
+  add_index "collections", ["source_url"], :name => "index_collections_on_source_url"
 
   create_table "faces", :force => true do |t|
     t.integer  "instagram_id"

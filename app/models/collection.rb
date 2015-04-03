@@ -13,13 +13,16 @@
 #  image       :string(255)
 #  permalink   :string(255)
 #  vk_title    :string(255)
+#  full_sound  :string(255)
+#  source_url  :string(255)
 #
 
 include ApplicationHelper
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :hit, :image, :description
+  attr_accessible :name, :hit, :image, :description, :posts_attributes, :tracks_attributes, :source_url
 
   mount_uploader :image, CoverUploader
+  mount_uploader :full_sound, MusicUploader
 
   before_create :create_permalink
   before_update :create_permalink, if: :name_changed?
@@ -29,6 +32,7 @@ class Collection < ActiveRecord::Base
 
   has_many :collection_music_through
   has_many :tracks, through: :collection_music_through
+  accepts_nested_attributes_for :tracks
 
   has_many :collection_film_through
   has_many :films, through: :collection_film_through
@@ -44,6 +48,9 @@ class Collection < ActiveRecord::Base
   scope :with_videos, where(with_videos: true)
 
   validates :name, presence: true
+
+  before_create :join_tracks
+  before_update :join_tracks
 
   # Есть ли музыка в коллекции ?
   def with_music
@@ -64,6 +71,20 @@ class Collection < ActiveRecord::Base
 
   def create_permalink
     self.permalink = name.parameterize
+  end
+
+  def join_tracks
+    track_paths = []
+    output_path = Rails.root + "public" + self.full_sound.store_dir
+    self.tracks.each_with_index do |track, i|
+      unless i == 0
+        track_paths << track.new_path
+      end
+    end
+    if track_paths.any?
+      system "sox -m" + track_paths.join(" ") + output_path
+      true
+    end
   end
 
 end

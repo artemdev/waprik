@@ -17,6 +17,7 @@ class Admin::MusicController < ApplicationController
 		@track = Mp3File.new
 		@files = Dir.glob(File.join(FTP_PATH, "**", "*.mp3")).sort
 		@collections = Collection.all
+		@collection = Collection.find(params[:collection]) if params[:collection]
 	end
 
 	def show
@@ -24,12 +25,16 @@ class Admin::MusicController < ApplicationController
 	end
 
 	def create
-		@track = Mp3File.new(params[:mp3_file])
+		@files = Dir.glob(File.join(FTP_PATH, "**", "*.mp3")).sort
+		@collections = Collection.all
+		@collection = Collection.find(params[:collection]) if params[:collection]
+		@track = Mp3File.new
 		@track.new_path = File.open(params[:mp3_file][:new_file])
-		@track.set_name_from params[:mp3_file][:new_file]
-		@track.set_fname
-		@track.artist_name = @track.name.split(' - ').first
-		@track.album_name = params[:mp3_file][:album_name].present? ? params[:mp3_file][:album_name] : "песни 2014"
+		@track.set_name_fname_artist_album
+		# @track.set_name_from params[:mp3_file][:new_file]
+		# @track.set_fname
+		# @track.artist_name = @track.name.split(' - ').first
+		# @track.album_name = params[:mp3_file][:album_name].present? ? params[:mp3_file][:album_name] : "песни 2014"
 		@track.set_collection(params[:mp3_file][:new_collection]) if params[:mp3_file][:new_collection]
  		if @track.save
  			# id3v2 теги
@@ -37,18 +42,19 @@ class Admin::MusicController < ApplicationController
  			# создаются битрейды
  			LameWorker.perform_async(@track.id)
  			flash[:success] = "Mp3 успешно добавлена"
- 			redirect_to admin_tracks_path
+ 			redirect_to(@collection || admin_tracks_path)
  		else
  			render :new
  		end
 	end
 
 	def edit
-		@track = find_track params[:id]
+		@track = find_track
 		@collections = Collection.all
 	end
 
 	def update
+		@collections = Collection.all
 		@track = Mp3File.find(params[:id])
 		@track.update_attributes!(params[:mp3_file])
 		@track.set_collection(params[:mp3_file][:new_collection]) if params[:mp3_file][:new_collection]
@@ -125,8 +131,8 @@ class Admin::MusicController < ApplicationController
 
 	private
 
-	def find_track(params)
-		Mp3File.find(params)
+	def find_track
+		Mp3File.find(params[:id])
 	end
 
 

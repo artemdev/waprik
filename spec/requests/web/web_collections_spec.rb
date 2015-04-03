@@ -1,13 +1,13 @@
-require_relative '../../spec_helper'
+require 'spec_helper'
 
 describe "Web::Collections" do
-  describe "GET /web_collections" do
+  describe "Я посетитель ..." do
   	let(:collection) { FactoryGirl.create(:collection) }
 
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      visit web_collection_path(collection)
-     	page.status_code.should be(200)
+    it "На главной я вижу новые коллекции, поиск." do
+      visit web_collections_path
+     	page.should have_content(collection.name)
+     	page.should have_button("найти!")
     end
   end
 end

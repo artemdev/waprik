@@ -1,7 +1,9 @@
 FactoryGirl.define do
 	factory :admin_user, class: 'User' do
 		username 'adminok'
+		email 'example@example.com'
 		password 'lordik37ztxq'
+		admin true
 	end
 
 	factory :collection do

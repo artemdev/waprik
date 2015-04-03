@@ -1,0 +1,35 @@
+<div>
+	<%= form_tag '', method: :get do %>
+		<%= text_field_tag :query %> 
+
+		<%= submit_tag "найти" %>
+	<% end %>
+		<!-- фильм найден -->
+	<% if params[:query].present? %>
+		<% if @films.any? %>
+			найдено <%= @films.count %> фильмов
+			<% @films.each do |film| %>
+				<div>
+					<%= film.title %> <%= link_to "добавить в коллекцию", add_film_admin_collection_path(@collection, film_id: film.id), method: :put %>
+				</div>
+			<% end %>	<!-- @films.each -->
+			<br />
+		<% else %>
+			фильма еще нет на сайте <%= link_to "исправить", new_admin_film_path(collection_id: @collection.id, title: params[:query]) %>
+		<% end %> <!-- @films.any? -->
+		<br />
+		<% if @tracks.any? %>
+			найдено <%= @tracks.count %> треков
+			<% @tracks.each do |track| %>
+				<div>
+					<%= track.name %> <%= link_to "добавить в коллекцию", add_track_admin_collection_path(@collection, track_id: track.id), method: :put %>
+				</div>
+			<% end %> <!-- @tracks.each -->
+			<br />
+		<% else %>
+			трека еще нет на сайте <%= link_to "исправить", new_admin_track_path(collection_id: @collection.id, name: params[:query]) %>
+		<% end %> <!--  @tracks.any?  -->
+	<% end %>  <!-- params[:query].present? -->
+
+
+</div>

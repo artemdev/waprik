@@ -13,6 +13,8 @@
 #  image       :string(255)
 #  permalink   :string(255)
 #  vk_title    :string(255)
+#  full_sound  :string(255)
+#  source_url  :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

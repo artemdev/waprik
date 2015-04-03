@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe "Admin::PublicPages" do
   describe "GET /admin_public_pages" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get admin_public_pages_index_path
-      response.status.should be(200)
+    it "" do
     end
   end
 end

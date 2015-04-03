@@ -39,6 +39,7 @@ class Mp3File < ActiveRecord::Base
  
   ID3v2_ALBUM = "waprik.ru - новая музыка"
 
+  before_save :set_name_fname_artist_album
   before_create :save_file_length
   before_create :create_permalink
 
@@ -64,15 +65,17 @@ class Mp3File < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  def artist_name
-    artist.try(:name)
+
+  def set_name_fname_artist_album
+    self.set_name_from self.new_path.path
+    self.set_fname
+    self.set_artist_name_from self.name.split(' - ').first
+    self.set_album_name "waprik.ru - новинки музыки"
   end
 
-  def artist_name=(name)
+
+  def set_artist_name_from name
     self.artist = Mp3Artist.find_or_create_by_name(name) if name.present?
-  end
-
-  def artist_name
   end
 
   def set_name_from=(file)
@@ -87,18 +90,17 @@ class Mp3File < ActiveRecord::Base
     self.fname = Russian.translit(self.name.gsub(' ', '_').gsub('–', '-').delete('(').delete(':').delete(')').delete('/').delete('?').delete('.').delete('!'))
   end
 
-  def album_name
-    album.try(:name)
-  end
 
-  def album_name=(name)
-    album = Mp3Album.new
-    album.year = Time.now.year
-    album.name = name
-    album.artist = self.artist
-    album.save
+  def set_album_name name
+    album = Mp3Album.find_or_create_by_name(name)
+    if album.new_record?
+      album = Mp3Album.new
+      album.year = Time.now.year
+      album.name = name
+      album.artist = self.artist
+      album.save
+    end
     self.album = album
-    save
   end
 
   def save_file_length
