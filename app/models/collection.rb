@@ -73,11 +73,12 @@ class Collection < ActiveRecord::Base
     self.tracks.each do |track|
       track_paths << track.new_path
     end
-    if track_paths.any?
+    if track_paths.any? && !self.full_sound.path.present?
       system "sox -m " + track_paths.join(" ")  + output_path.to_s
       self.full_sound = File.open(output_path)
       save
     end
+    self.full_sound.path
   end
 
   protected

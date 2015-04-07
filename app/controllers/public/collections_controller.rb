@@ -26,7 +26,7 @@ class Public::CollectionsController < ApplicationController
 
 	def join_tracks
 		@collection = Collection.find(params[:id])
-		send_file @collection.full_sound.path, type: @bitrate.file.content_type
+		send_file @collection.join_tracks
 	end
 
 end
