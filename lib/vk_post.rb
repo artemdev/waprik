@@ -4,6 +4,7 @@ require 'open-uri'
 require 'mechanize'
 require 'vkontakte_api'
 class VkPost
+	
 	def initialize url=""
 		@post_id = "-" + url.split('-').last
 		vk = VkontakteApi::Client.new

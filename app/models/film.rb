@@ -12,7 +12,7 @@
 #  duration_minutes      :integer
 #  duration_seconds      :integer
 #  time                  :integer
-#  downloads             :integer          default(0)
+#  download              :integer          default(0)
 #  world_estimate        :string(10)
 #  cis_estimate          :string(10)
 #  last_download_time    :integer

@@ -18,7 +18,7 @@
 					<%= link_to track.name, music_path(track.permalink) %>
 					</td>
 					<td>
-						 <%= track.downloads %>
+						 <%= track.downloads.size %>
 					</td>
 					<td>
 						<%= form_for track, url: admin_music_path(track), method: :put do |f| %>

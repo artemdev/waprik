@@ -41,7 +41,8 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">WAPRIK.RU</a>
+          <a class="brand" href="#">WAPRIK.RU</a> <br />
+          <span class="small-text">Сегодня скачиваний <%= Download.today.count %> </span>
           <ul class="nav">
             <li><%= link_to "ПОДПИСКИ", subscribtions_path %></li>
             <li><%= link_to "МУЗЫКА", admin_music_index_path %></li>

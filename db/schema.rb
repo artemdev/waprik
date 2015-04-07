@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150329140638) do
+ActiveRecord::Schema.define(:version => 20150407114550) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -149,6 +149,13 @@ ActiveRecord::Schema.define(:version => 20150329140638) do
   add_index "collections", ["permalink"], :name => "index_collections_on_permalink"
   add_index "collections", ["source_url"], :name => "index_collections_on_source_url"
 
+  create_table "downloads", :force => true do |t|
+    t.integer  "downloadable_id"
+    t.string   "downloadable_type"
+    t.string   "user_agent"
+    t.datetime "created_at"
+  end
+
   create_table "faces", :force => true do |t|
     t.integer  "instagram_id"
     t.integer  "vk_id"
@@ -187,7 +194,7 @@ ActiveRecord::Schema.define(:version => 20150329140638) do
     t.integer  "duration_minutes",      :limit => 1
     t.integer  "duration_seconds",      :limit => 1
     t.integer  "time"
-    t.integer  "downloads",                            :default => 0
+    t.integer  "download",                             :default => 0
     t.string   "world_estimate",        :limit => 10
     t.string   "cis_estimate",          :limit => 10
     t.integer  "last_download_time"
@@ -220,7 +227,7 @@ ActiveRecord::Schema.define(:version => 20150329140638) do
   add_index "films", ["count_likes"], :name => "count_likes"
   add_index "films", ["cover"], :name => "index_films_on_cover"
   add_index "films", ["created_at"], :name => "news_time"
-  add_index "films", ["downloads"], :name => "downloads"
+  add_index "films", ["download"], :name => "downloads"
   add_index "films", ["en_title"], :name => "index_films_on_en_title"
   add_index "films", ["is_favourite"], :name => "is_favourite"
   add_index "films", ["item_id"], :name => "item_id"
@@ -439,7 +446,7 @@ ActiveRecord::Schema.define(:version => 20150329140638) do
     t.boolean  "hit",                              :default => false
     t.datetime "file_hit_date"
     t.boolean  "new",                              :default => false
-    t.integer  "downloads",                        :default => 0
+    t.integer  "download",                         :default => 0
     t.text     "file_comment_up"
     t.text     "file_comment_down"
     t.datetime "created_at",                                            :null => false
@@ -455,7 +462,7 @@ ActiveRecord::Schema.define(:version => 20150329140638) do
   add_index "mp3_files", ["album_id"], :name => "file_album_id"
   add_index "mp3_files", ["artist_id"], :name => "file_artist_id"
   add_index "mp3_files", ["created_at"], :name => "created_at"
-  add_index "mp3_files", ["downloads"], :name => "file_count_downloads"
+  add_index "mp3_files", ["download"], :name => "file_count_downloads"
   add_index "mp3_files", ["file_hit_date"], :name => "file_hit_date"
   add_index "mp3_files", ["ftp_path"], :name => "index_mp3_files_on_ftp_path", :length => {"ftp_path"=>255}
   add_index "mp3_files", ["genre_id"], :name => "file_category_id"
@@ -569,11 +576,11 @@ ActiveRecord::Schema.define(:version => 20150329140638) do
     t.integer  "size",       :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
-    t.integer  "downloads",  :default => 0
+    t.integer  "download",   :default => 0
   end
 
   add_index "serial_serie_files", ["attach"], :name => "index_serial_serie_files_on_attach"
-  add_index "serial_serie_files", ["downloads"], :name => "index_serial_serie_files_on_downloads"
+  add_index "serial_serie_files", ["download"], :name => "index_serial_serie_files_on_downloads"
   add_index "serial_serie_files", ["format_id"], :name => "index_serial_serie_files_on_format_id"
   add_index "serial_serie_files", ["quality_id"], :name => "index_serial_serie_files_on_quality_id"
   add_index "serial_serie_files", ["serie_id"], :name => "index_serial_serie_files_on_serie_id"

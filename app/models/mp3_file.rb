@@ -16,7 +16,7 @@
 #  hit               :boolean          default(FALSE)
 #  file_hit_date     :datetime
 #  new               :boolean          default(FALSE)
-#  downloads         :integer          default(0)
+#  download          :integer          default(0)
 #  file_comment_up   :text
 #  file_comment_down :text
 #  created_at        :datetime         not null
@@ -49,6 +49,8 @@ class Mp3File < ActiveRecord::Base
   has_many :collection_music_through, foreign_key: 'track_id'
   has_many :collections, through: :collection_music_through
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
+  # метод downloads выводит число скачиваний, потому здесь используем user_downloads
+  has_many :downloads, as: :downloadable
   belongs_to :artist, class_name: 'Mp3Artist'
   belongs_to :album, class_name: 'Mp3Album'
   belongs_to :news, class_name: 'News', foreign_key: 'news_id'

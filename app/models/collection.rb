@@ -49,8 +49,8 @@ class Collection < ActiveRecord::Base
 
   validates :name, presence: true
 
-  before_create :join_tracks
-  before_update :join_tracks
+  # before_create :join_tracks
+  # before_update :join_tracks
 
   # Есть ли музыка в коллекции ?
   def with_music
@@ -73,18 +73,18 @@ class Collection < ActiveRecord::Base
     self.permalink = name.parameterize
   end
 
-  def join_tracks
-    track_paths = []
-    output_path = Rails.root + "public" + self.full_sound.store_dir
-    self.tracks.each_with_index do |track, i|
-      unless i == 0
-        track_paths << track.new_path
-      end
-    end
-    if track_paths.any?
-      system "sox -m" + track_paths.join(" ") + output_path
-      true
-    end
-  end
+  # def join_tracks
+  #   track_paths = []
+  #   output_path = Rails.root + "public" + self.full_sound.store_dir
+  #   self.tracks.each_with_index do |track, i|
+  #     unless i == 0
+  #       track_paths << track.new_path
+  #     end
+  #   end
+  #   if track_paths.any?
+  #     system "sox -m" + track_paths.join(" ") + output_path
+  #     true
+  #   end
+  # end
 
 end
