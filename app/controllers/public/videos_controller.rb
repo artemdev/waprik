@@ -26,15 +26,15 @@ class Public::VideosController < ApplicationController
     version = params[:version]
     case version
       when '3gp'
-        @video.downloads += 1
+        @video.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
         @video.save
         link = @video.low_3gp.url
       when 'mp4_320'
-        @video.downloads += 1
+        @video.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
         @video.save
         link = @video.mp4_320.url
       when 'mp4_640'
-        @video.downloads += 1
+        @video.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
         @video.save
         link = @video.mp4_640.url
     end

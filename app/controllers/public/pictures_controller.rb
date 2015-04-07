@@ -7,7 +7,7 @@ class Public::PicturesController < ApplicationController
 
   def download 
     @picture = Picture.find_by_id(params[:id])
-    @picture.downloads += 1
+    @picture.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
     @picture.save
     link = @picture.image.url
     redirect_to(link)
