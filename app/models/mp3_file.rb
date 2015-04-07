@@ -49,7 +49,6 @@ class Mp3File < ActiveRecord::Base
   has_many :collection_music_through, foreign_key: 'track_id'
   has_many :collections, through: :collection_music_through
   has_many :bitrates, class_name: 'Mp3Bitrate', foreign_key: 'file_id'
-  # метод downloads выводит число скачиваний, потому здесь используем user_downloads
   has_many :downloads, as: :downloadable
   belongs_to :artist, class_name: 'Mp3Artist'
   belongs_to :album, class_name: 'Mp3Album'

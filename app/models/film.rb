@@ -63,7 +63,8 @@ class Film < ActiveRecord::Base
   has_many :genres, through: :films_genres_through
   
   has_many :trailers, class_name: "FilmTrailer"
-
+  has_many :downloads, as: :downloadable
+  
   # directors
   has_many :films_directors_through, class_name: "FilmDirectorThrough"
   has_many :directors, through: :films_directors_through
