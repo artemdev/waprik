@@ -4,6 +4,7 @@
 <!-- общее число скачиваний -->
 <div class="a">
 	<%= downloads_size_for @collection %>
+	<%= link_to "скачать одним треком", join_tracks_collection_path(@collection) %>
 </div>
 <% if @collection.image.present? %>
 	<div class="a">

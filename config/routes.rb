@@ -120,7 +120,9 @@ Waprik::Application.routes.draw do
         get 'account', on: :member
       end
       resources :news
-      resources :collections
+      resources :collections do
+        get 'join_tracks', on: :member
+      end
       resources :categories
       resources :pictures
       resources :film_genres

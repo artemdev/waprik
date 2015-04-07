@@ -67,24 +67,23 @@ class Collection < ActiveRecord::Base
     return true if self.films.any?
   end
 
+  def join_tracks
+    track_paths = []
+    output_path = Rails.root + "public" + self.full_sound.store_dir + (self.name.parameterize + ".mp3")
+    self.tracks.each do |track|
+      track_paths << track.new_path
+    end
+    if track_paths.any?
+      system "sox -m " + track_paths.join(" ")  + output_path.to_s
+      self.full_sound = File.open(output_path)
+      save
+    end
+  end
+
   protected
 
   def create_permalink
     self.permalink = name.parameterize
   end
-
-  # def join_tracks
-  #   track_paths = []
-  #   output_path = Rails.root + "public" + self.full_sound.store_dir
-  #   self.tracks.each_with_index do |track, i|
-  #     unless i == 0
-  #       track_paths << track.new_path
-  #     end
-  #   end
-  #   if track_paths.any?
-  #     system "sox -m" + track_paths.join(" ") + output_path
-  #     true
-  #   end
-  # end
 
 end
