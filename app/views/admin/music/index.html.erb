@@ -44,7 +44,7 @@
 					<%= link_to "т", edit_tags_admin_track_path(track) %>
 					<%= link_to "x", admin_track_path(track), method: :delete, remote: true, confirm: 'точно ?' %>
 					<span class="small-text">
-						<%= track.downloads %>
+						<%= track.download %>
 					</span>
 					<br />
 					<% if track.hit? %>

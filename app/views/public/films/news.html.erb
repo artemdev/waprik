@@ -6,7 +6,7 @@
 		<% @films.each do |film| %>
 			<%= link_to film.title, film_path(film.permalink) %>
 			<span class="mini-downloads">
-				<%= film.downloads %>
+				<%= film.download %>
 			</span>
 			<% unless film == @films.last %>
 			<hr >
