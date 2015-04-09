@@ -160,6 +160,12 @@ class Mp3File < ActiveRecord::Base
     end
   end
 
+  # скачивание
+  def download! user_agent
+    self.download += 1
+    self.downloads.create!(user_agent: user_agent)
+  end
+
   protected
   
   def create_permalink

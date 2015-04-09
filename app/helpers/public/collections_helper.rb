@@ -4,7 +4,7 @@ module Public::CollectionsHelper
   def downloads_size_for collection
     downloads = 0
     if collection.tracks.any?
-      collection.tracks.map { |track| downloads += track.downloads.size }
+      collection.tracks.map { |track| downloads += track.download }
     end
     downloads
   end

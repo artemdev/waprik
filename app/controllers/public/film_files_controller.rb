@@ -8,7 +8,7 @@ class Public::FilmFilesController < ApplicationController
 
 	def download
 		@file = FilmFile.find(params[:film_file_id])
-		@file.film.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
+		@file.film.download! request.env["HTTP_USER_AGENT"]
 		@file.film.save
 		redirect_to action: "get_file", film_file_id: @file.id
 	end
@@ -20,7 +20,7 @@ class Public::FilmFilesController < ApplicationController
 
 	def part
 		part = FilmPart.find(params[:film_file_id])
-		part.film.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
+		part.film.download! request.env["HTTP_USER_AGENT"]
 		part.film.save
 		redirect_to action: "get_part", film_file_id: part.id
 	end

@@ -30,8 +30,8 @@ class Public::MusicController < ApplicationController
 
 	def download
 		@track = Mp3File.find_by_permalink(params[:id])
+		@track.download! request.env["HTTP_USER_AGENT"]
 		@track.save
-		@track.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"])
 		@bitrate = @track.bitrates.find_by_file_bitrate(params[:bitrate])
 		if @track.path.path
 			case params[:bitrate]

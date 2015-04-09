@@ -14,7 +14,7 @@
 
 <div class="a">
 	Время <%= @track.length %> <hr />
-	Скачиваний <%= @track.downloads.size %>
+	Скачиваний <%= @track.download %>
 	<!-- LIKES -->
 	<!-- music like image + button -->
 	<!-- # LIKES -->
@@ -34,5 +34,5 @@
 <% album = Struct.new(:title, :url) %>
 <% artist = Struct.new(:title, :url) %>
 <% @footer_links = [] %>
-<% @footer_links << album.new(@track.album.name.mb_chars.capitalize, album_path(@track.album)) %>
+<% @footer_links << album.new(@track.album.name.mb_chars.capitalize, album_path(@track.album)) if @track.album %>
 <% @footer_links << artist.new(@track.artist.name.mb_chars.capitalize, artist_path(@track.artist)) %>
