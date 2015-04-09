@@ -8,7 +8,7 @@ class Public::FilmGenresController < ApplicationController
     if content && content == "serials"
       @serials = @genre.serials.latest.paginate(page: params[:page], per_page: 10)
     else
-      @films = @genre.films.latest.visible.paginate(page: params[:page], per_page: 10)
+      @films = @genre.films.visible.latest.paginate(page: params[:page], per_page: 10)
     end
 	end
 
