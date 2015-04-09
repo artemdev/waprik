@@ -36,4 +36,4 @@ class VkPost
 
 end
 
-# puts VkPost.new('http://vk.com/exclusive_muzic?w=wall-27895931_1107968').tracks
+puts VkPost.new('https://vk.com/exclusive_muzic?w=wall-27895931_1793253').image

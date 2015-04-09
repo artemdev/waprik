@@ -39,7 +39,7 @@ class Mp3File < ActiveRecord::Base
  
   ID3v2_ALBUM = "waprik.ru - новая музыка"
 
-  before_save :set_name_fname_artist_album
+  # before_save :set_name_fname_artist_album
   before_create :save_file_length
   before_create :create_permalink
 
@@ -71,7 +71,7 @@ class Mp3File < ActiveRecord::Base
     self.set_name_from self.new_path.path
     self.set_fname
     self.set_artist_name_from self.name.split(' - ').first
-    self.set_album_name "waprik.ru - новинки музыки"
+    self.set_album_name_from "waprik.ru - новинки музыки"
   end
 
 
@@ -79,9 +79,6 @@ class Mp3File < ActiveRecord::Base
     self.artist = Mp3Artist.find_or_create_by_name(name) if name.present?
   end
 
-  def set_name_from=(file)
-    self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&', 'and').gsub('\'', '')
-  end
 
   def set_name_from file
     self.name = File.basename(file, ".mp3").gsub('–', '-').gsub('&amp;', 'and').gsub('&', 'and').gsub('\'', '')
@@ -92,7 +89,7 @@ class Mp3File < ActiveRecord::Base
   end
 
 
-  def set_album_name name
+  def set_album_name_from name
     album = Mp3Album.find_or_create_by_name(name)
     if album.new_record?
       album = Mp3Album.new
