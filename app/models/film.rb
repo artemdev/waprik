@@ -207,7 +207,7 @@ class Film < ActiveRecord::Base
   # скачивание
   def download! user_agent
     self.download += 1
-    self.downlaods.create!(user_agent: user_agent)
+    self.downloads.create!(user_agent: user_agent)
   end
 
   private
