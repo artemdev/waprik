@@ -1,14 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   protect_from_forgery
-  
-  # def default_url_options
-  #   if Rails.env.production?
-  #     {:host => "waprik.org"}
-  #   else  
-  #     {}
-  #   end
-  # end
 
   protected
 

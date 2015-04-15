@@ -101,4 +101,4 @@
 
 	<% genre = Struct.new(:title, :url) %>
 	<% @footer_links = [] %>
-	<% @footer_links << genre.new(@film.genres.last.title.mb_chars.capitalize, film_genre_url(@film.genres.last)) %>
+	<% @footer_links << genre.new(@film.genres.last.title.mb_chars.capitalize, film_genre_path(@film.genres.last)) %>
