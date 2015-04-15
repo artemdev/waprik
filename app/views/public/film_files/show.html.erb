@@ -1,10 +1,11 @@
 <% provide(:title, @file.film.title + " скачать бесплатно") %>
 
-<% if @file.film.blocked? %>
-	<div class="b">
-		Скачивание фильма заблокировано правообладателем
-	</div>
-<% else %>
+	<% if @file.film.blocked? %>
+		<div class="b">
+			Скачивание фильма заблокировано правообладателем
+		</div>
+	<% else %>
+
 	<div class="b">
 		<%= link_to "Скачать", film_file_download_path(@file.id) %>
 		<%= number_to_human_size(@file.size) %>
@@ -20,7 +21,6 @@
 		<% end %>
 	</div>
 <% end %>
-
 
 <% film = Struct.new(:title, :url) %>
 <% genre = Struct.new(:title, :url) %>

@@ -1,22 +1,24 @@
 <%= provide(:title, @film.title) %>
-<hr />
-<%= image_tag @film.cover.preview.url %>
-<hr />
-Жанры <% @film.genres.each do |genre| %>
-	<%= genre.title %>
-<% end %>
-<hr />
-Торрент <%= link_to "торрент", @film.torrent.url %>
-<hr />
-Режисеры<% @film.directors.each do |director| %>
-	<%= director.name %>
-<% end %>
-<hr />
-Актеры <% @film.actors.each do |actor| %>
-	<%= actor.name %>
-<% end %>
-<hr />
-Файлы
-<% @film.files.each do |file| %>
-	<%= link_to file.format.title, file.real_name %>
-<% end %>
+<article>
+	<hr />
+	<%= image_tag @film.cover.preview.url %>
+	<hr />
+	Жанры <% @film.genres.each do |genre| %>
+		<%= genre.title %>
+	<% end %>
+	<hr />
+	Торрент <%= link_to "торрент", @film.torrent.url %>
+	<hr />
+	Режисеры<% @film.directors.each do |director| %>
+		<%= director.name %>
+	<% end %>
+	<hr />
+	Актеры <% @film.actors.each do |actor| %>
+		<%= actor.name %>
+	<% end %>
+	<hr />
+	Файлы
+	<% @film.files.each do |file| %>
+		<%= link_to file.format.title, file.real_name %>
+	<% end %>
+</article>
