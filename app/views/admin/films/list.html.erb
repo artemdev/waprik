@@ -3,7 +3,7 @@
 <% if @movies.any? %>
 	<% @movies.each do |movie| %>
 		<%= content_tag(:div, class: 'kinopoisk-film') do %>
-			<%= link_to movie.first, new_admin_film_path(movie_url: movie.last) %>
+			<%= link_to movie.title, new_admin_film_path(movie_url: movie.url) %>
 			<br />
 		<% end %>
 	<% end %>

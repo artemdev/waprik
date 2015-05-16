@@ -3,10 +3,7 @@ class Public::MusicController < ApplicationController
 
 	def index
 		@tracks = Mp3File.all
-		@collections = []
-		Collection.fresh.hits.each do |collection|
-			@collections << collection if collection.with_music
-		end
+		@collections = Collection.with_music.fresh.hits.limit(30)
 	end
 
 	def news
@@ -22,7 +19,7 @@ class Public::MusicController < ApplicationController
 			c.tracks.map {|t| @recomendations << t unless t == @track }
 		end
 		@recomendations = @recomendations.paginate(page: params[:page], per_page: 10)
-		if @track.nil?
+		if !@track.present?
 			flash[:error] = "трек не найден"
 			redirect_to tracks_path 
 		end

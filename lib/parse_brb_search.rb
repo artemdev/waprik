@@ -16,11 +16,13 @@ class ParseBrbSearch
 
 	def results
 		results = []
+		Struct.new("Film", :title, :url)
 		@search_results.links_with(class: 'b-search-page__results-item m-video').each do |link|
+			film = Struct::Film.new
 			# найти title фильма
-			# title = 
-			url = link.uri.to_s
-			results << url
+			film[:title] = link.attributes.text.split("\n\t\n\t\t\n\t\t\t").first.gsub("\n\t\n\t\t\n\t\n\t\n\t\t", "")
+			film[:url] = link.uri.to_s
+			results << film
 		end
 		results
 	end

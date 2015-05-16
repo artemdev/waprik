@@ -8,11 +8,10 @@ class Admin::FilmsController < ApplicationController
 	before_filter :find_film_directors, only: [:edit, :update]
 	before_filter :find_film_actors, only: [:edit, :update]
 
-  CAMRip = 1
 
 	def index
 		@films = Film.latest.paginate(page: params[:page], per_page: 30)
-		@camrip = FilmQuality.find(CAMRip)
+		@camrip = FilmQuality.find_or_create_by_title("camrip")
 	end
 
 	def edit
@@ -85,6 +84,7 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def create
+		@movie = ParseBrbFilm.new params[:movie_url] if params[:movie_url]
 		@film = Film.new(params[:film])
 		@directors = @film.directors
 		@actors = @film.actors
@@ -95,7 +95,11 @@ class Admin::FilmsController < ApplicationController
 		@film.add_genres(params[:film][:selected_genres])
 		@film.ru_title = params[:film][:ru_title] if params[:film][:ru_title].present?
 		@film.en_title = params[:film][:en_title] if params[:film][:en_title].present?
-		@film.cover = params[:film][:cover]
+		if @movie && @movie.cover
+			@film.remote_cover_url = @movie.cover
+		else
+			@film.cover = params[:film][:cover] 
+		end
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
 		@film.brb_url = params[:film][:brb_url]
 		@film.create_recomendations!
