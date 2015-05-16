@@ -85,7 +85,7 @@ class Film < ActiveRecord::Base
   has_many :visited, class_name: 'Visit', as: 'visitable' # обладатель визита
 
   # wishes
-  has_many :wishes, as: 'wishable' # инициатор визита
+  has_many :wishes, as: 'wishable'
 
   # recomendations
   belongs_to :recomendation_list

@@ -11,6 +11,6 @@
 
 class Wish < ActiveRecord::Base
 
-  belongs_to :wishable
+  belongs_to :wishable, polymorphic: true
   
 end
