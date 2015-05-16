@@ -10,7 +10,7 @@ class Admin::FilmsController < ApplicationController
 
 
 	def index
-		@films = Film.latest.paginate(page: params[:page], per_page: 30)
+		@films = Film.latest.paginate(page: params[:page], per_page: 10)
 		@camrip = FilmQuality.find_or_create_by_title("camrip")
 	end
 
