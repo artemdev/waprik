@@ -84,7 +84,7 @@ class VideoConvertation
 		film_file.format = FilmFormat.find(8) # MP4 640 (хорошее качество)
 		film_file.quality = FilmQuality.find(quality_id)
   	film_file.real_name = File.open(output_video_path)
-  	save!
+  	film_file.save!
 		# разрезать фильм на части
 		start_sec = 0.second
 		duration_sec = 1200.seconds
@@ -117,7 +117,7 @@ class VideoConvertation
 		film_file.format = FilmFormat.find(7) # MP4 320 (хорошее качество)
   	film_file.real_name = File.open(output_video_path)
 		film_file.quality = FilmQuality.find(quality_id)
-  	save!
+  	film_file.save!
   	# разрезать фильм на части
 		start_sec = 0.second
 		duration_sec = 1200.seconds
@@ -151,7 +151,7 @@ class VideoConvertation
 		film_file.format = FilmFormat.find(1) # 3GP (среднее качество)
   	film_file.real_name = File.open(output_video_path)
 		film_file.quality = FilmQuality.find(quality_id)
-  	save!
+  	film_file.save!
 		# разрезать фильм на части
 		start_sec = 0.second
 		duration_sec = 1200.seconds
