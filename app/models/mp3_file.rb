@@ -42,6 +42,7 @@ class Mp3File < ActiveRecord::Base
   # before_save :set_name_fname_artist_album
   before_create :save_file_length
   before_create :create_permalink
+  after_create :touch_collection
 
   mount_uploader :path, Mp3Uploader
   mount_uploader :new_path, MusicUploader
@@ -157,6 +158,17 @@ class Mp3File < ActiveRecord::Base
   def set_collection id
     if collection = Collection.find(id)
       self.collections << collection
+    end
+  end
+
+  def touch_collection
+    if self.collections.any?
+      self.collections.each do |collection|
+        unless collection.with_music?
+          collection.with_music = true 
+          collection.save
+        end
+      end
     end
   end
 

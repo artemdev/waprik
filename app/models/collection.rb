@@ -52,10 +52,6 @@ class Collection < ActiveRecord::Base
   # before_create :join_tracks
   # before_update :join_tracks
 
-  # Есть ли музыка в коллекции ?
-  def with_music
-    return true if self.tracks.any?
-  end
 
   # Есть ли видео в коллекции ?
   def with_videos
