@@ -39,8 +39,8 @@ class Admin::CollectionsController < ApplicationController
 
 	def show
 		@collection = Collection.find_by_permalink(params[:id])
-		@tracks = @collection.tracks.paginate(page: params[:page], per_page: 10)
-		@films = @collection.films.paginate(page: params[:page], per_page: 10)
+		@tracks = @collection.tracks.uniq.paginate(page: params[:page], per_page: 10)
+		@films = @collection.films.uniq.paginate(page: params[:page], per_page: 10)
 	end
 
 	def edit

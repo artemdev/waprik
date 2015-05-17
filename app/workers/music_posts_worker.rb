@@ -13,6 +13,9 @@ class MusicPostsWorker
 		post_tracks = post.tracks
 		count = 0
 		post_tracks.each do |track|
+			if mp3 = Mp3File.find_by_fname(track[1].parameterize)
+				mp3.touch
+			else
 				mp3 = Mp3File.new
 				mp3.set_artist_name_from track[0]
 				mp3.set_name_from track[1]
@@ -28,6 +31,7 @@ class MusicPostsWorker
 				LameWorker.perform_async(mp3.id)
 				collection.tracks << mp3
 				count += 1
+			end
 		end
 	end
 
