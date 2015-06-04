@@ -7,7 +7,7 @@ class Youtube::Search
 
 	def initialize keywords, page=1
 		keywords = keywords.parameterize.gsub(" ", "+")
-		page = "&page=3"
+		page = "&page=#{page}"
 		@url = SEARCH_DOMAIN + keywords + page
 		@page = Nokogiri::HTML(open(@url), nil, ENCODING)
 	end
