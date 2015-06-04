@@ -39,9 +39,9 @@ class YoutubeVideo < ActiveRecord::Base
   end
 
   def format_3gp
-    `youtube-dl -g -f 36 https://www.youtube.com/watch?v=1fVzWasze1Q`
+    `youtube-dl -g -f 36 #{source_url}`
   end
   def format_mp4 
-    `youtube-dl -g -f 133 https://www.youtube.com/watch?v=1fVzWasze1Q`
+    `youtube-dl -g -f 133 #{source_url}`
   end
 end
