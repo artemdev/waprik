@@ -40,7 +40,6 @@ gem 'watir-webdriver'
 gem 'headless'
 # gem 'youtube-dl'
 gem 'sqlite3' #development
-gem 'mysql2' #production
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -52,9 +51,9 @@ group :assets do
 	gem 'execjs'
 end
 
-# group :production, :staging do
-#   gem 'rails_12factor'
-# end
+group :production do
+  gem 'mysql2' #production
+end
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
