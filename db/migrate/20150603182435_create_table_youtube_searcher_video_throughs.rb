@@ -1,4 +1,4 @@
-class CreateYoutubeSearcherVideoThroughs < ActiveRecord::Migration
+class CreateTableYoutubeSearcherVideoThroughs < ActiveRecord::Migration
   def up
     create_table :youtube_searcher_video_throughs do |t|
       t.integer :video_id, index: true
