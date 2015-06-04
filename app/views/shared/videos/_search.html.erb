@@ -1,0 +1,6 @@
+<div class="a">
+	<%= form_tag videos_path, method: :get do %>
+		<%= text_field_tag :keywords, params[:keywords] %>
+		<%= submit_tag "найти" %>
+	<% end %>
+</div>
