@@ -39,7 +39,8 @@ gem 'youtube_search'
 gem 'watir-webdriver'
 gem 'headless'
 # gem 'youtube-dl'
-
+gem 'sqlite3' #development
+gem 'mysql2' #production
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -59,11 +60,6 @@ group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'childprocess', '0.3.6'
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'mysql2'
 end
 
 group :test do
