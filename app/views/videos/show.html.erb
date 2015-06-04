@@ -2,15 +2,15 @@
 	<%= image_tag @video.cover.preview.url %>
 </div>
 
-<div class="a">
-	<%= @video.description %> <br />
-	<%= @video.time %>
-</div>
-
 <div class="title">
-	Скачать
+	Просмотров <%= @video.views %>
 </div>
 <div class="b">
-	<%= link_to "скачать 3gp", @video.format_3gp  %> <br />
-	<%= link_to "скачать mp4", @video.format_mp4  %>
+	<%= link_to "Скачать 3gp", @video.format_3gp  %> <br />
+	<%= link_to "Скачать mp4", @video.format_mp4  %>
+</div>
+
+<div class="a">
+	Описание: <br />
+	<%= @video.description %> <br />
 </div>

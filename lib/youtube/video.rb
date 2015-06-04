@@ -49,6 +49,11 @@ class Youtube::Video
 		page.at_css("#eow-description").text if page && page.at_css("#eow-description")
 	end
 
+	def time
+		time = page.at_css(".video-time")
+		time.text.strip if time
+	end
+
 	def image
 		page.at_css("link[@itemprop=thumbnailUrl]")[:href] if page && page.at_css("link[@itemprop=thumbnailUrl]")
 	end

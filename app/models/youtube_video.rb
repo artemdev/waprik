@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  source_url  :string(255)
+#  time        :string(255)
 #
 
 class YoutubeVideo < ActiveRecord::Base
@@ -30,7 +31,8 @@ class YoutubeVideo < ActiveRecord::Base
 	  	video.description = youtube_video.description
 	  	video.name = youtube_video.name
 	  	video.remote_cover_url = youtube_video.image
-	  	video.views = youtube_video.views
+      video.views = youtube_video.views
+      video.time = youtube_video.time
 	  	video.save
 	  end
 	  	video

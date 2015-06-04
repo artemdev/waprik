@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  source_url  :string(255)
+#  time        :string(255)
 #
 
 require 'spec_helper'

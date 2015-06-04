@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150603182435) do
+ActiveRecord::Schema.define(:version => 20150604163837) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -690,12 +690,14 @@ ActiveRecord::Schema.define(:version => 20150603182435) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "source_url"
+    t.string   "time"
   end
 
   add_index "youtube_videos", ["cover"], :name => "index_youtube_videos_on_image"
   add_index "youtube_videos", ["description"], :name => "index_youtube_videos_on_description"
   add_index "youtube_videos", ["name"], :name => "index_youtube_videos_on_name"
   add_index "youtube_videos", ["source_url"], :name => "index_youtube_videos_on_source_url"
+  add_index "youtube_videos", ["time"], :name => "index_youtube_videos_on_time"
   add_index "youtube_videos", ["views"], :name => "index_youtube_videos_on_views"
 
 end
