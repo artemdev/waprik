@@ -1,16 +1,23 @@
+<%= render partial: 'shared/videos/search' %>
+
+<div class="b">
+	Просмотров <%= @video.views %> <br />
+</div>
+
 <div class="a">
 	<%= image_tag @video.cover.preview.url %>
 </div>
 
-<div class="title">
-	Просмотров <%= @video.views %>
-</div>
 <div class="b">
-	<%= link_to "Скачать 3gp", @video.format_3gp  %> <br />
-	<%= link_to "Скачать mp4", @video.format_mp4  %>
+	<%= @video.description.truncate(100) %> <br />
 </div>
 
-<div class="a">
-	Описание: <br />
-	<%= @video.description %> <br />
+<div class="title">
+	Скачать
 </div>
+<div class="a">
+	<%= link_to "Скачать <b>3GP</b>".html_safe, @video.format_3gp  %> <br />
+	<%= link_to "Скачать <b>MP4</b>".html_safe, @video.format_mp4  %>
+</div>
+
+
