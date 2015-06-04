@@ -2,12 +2,11 @@
 #
 # Table name: films_genres_through
 #
-#  genreable_id   :integer          not null
+#  genreable_id   :integer
 #  genre_id       :integer
 #  created_at     :datetime
 #  updated_at     :datetime
 #  genreable_type :string(255)
-#  id             :integer
 #
 
 class GenreThrough < ActiveRecord::Base

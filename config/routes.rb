@@ -104,11 +104,11 @@ Waprik::Application.routes.draw do
     match 'auth/:provider' => 'public/authentications#create'
 
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
+    resources :videos
     scope module: 'public' do
       resources :subscribtions, only: [:index, :create, :destroy]
       resources :authentications, only: :create
       resources :wishes, only: :new
-      resources :videos
       resources :users, only: [:new, :create] do 
         get :account, on: :collection
       end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'unicorn-rails'
-gem 'mysql2'
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mini_magick'
@@ -35,7 +35,11 @@ gem 'autoprefixer-rails'
 gem 'viddl-rb'
 gem 'omniauth-vkontakte'
 gem "twitter-bootstrap-rails"
-# gem 'quvi', '~> 0.1.1'
+gem 'youtube_search'
+gem 'watir-webdriver'
+gem 'headless'
+# gem 'youtube-dl'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -55,6 +59,11 @@ group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'childprocess', '0.3.6'
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 group :test do

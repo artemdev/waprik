@@ -175,7 +175,7 @@ class Initial < ActiveRecord::Migration
 		add_index "films", ["count_likes"], :name => "count_likes"
 		add_index "films", ["cover"], :name => "index_films_on_cover"
 		add_index "films", ["created_at"], :name => "news_time"
-		add_index "films", ["downloads"], :name => "downloads"
+		# add_index "films", ["downloads"], :name => "downloads"
 		add_index "films", ["en_title"], :name => "index_films_on_en_title"
 		add_index "films", ["is_favourite"], :name => "is_favourite"
 		add_index "films", ["item_id"], :name => "item_id"
@@ -217,7 +217,7 @@ class Initial < ActiveRecord::Migration
 		  t.datetime "updated_at"
 		end
 
-		add_index "films_directors_through", ["film_id", "director_id"], :name => "film_id", :unique => true
+		add_index "films_directors_through", ["film_id", "director_id"], :unique => true
 
 		create_table "films_files", :force => true do |t|
 		  t.integer  "film_id"
@@ -233,7 +233,7 @@ class Initial < ActiveRecord::Migration
 		end
 
 		add_index "films_files", ["ext"], :name => "ext"
-		add_index "films_files", ["film_id"], :name => "film_id"
+		add_index "films_files", ["film_id"]
 		add_index "films_files", ["format_id"], :name => "format_id"
 		add_index "films_files", ["position"], :name => "position"
 		add_index "films_files", ["quality_id"], :name => "index_films_files_on_quality_id"
@@ -261,7 +261,7 @@ class Initial < ActiveRecord::Migration
 		  t.datetime "updated_at"
 		end
 
-		add_index "films_genres_through", ["film_id", "genre_id"], :name => "film_id", :unique => true
+		add_index "films_genres_through", ["film_id", "genre_id"], :unique => true
 
 		create_table "films_parts", :force => true do |t|
 		  t.integer  "num"
@@ -276,10 +276,10 @@ class Initial < ActiveRecord::Migration
 		  t.datetime "updated_at"
 		end
 
-		add_index "films_parts", ["downloads"], :name => "downloads"
+		add_index "films_parts", ["downloads"]
 		add_index "films_parts", ["file_id"], :name => "file_id"
-		add_index "films_parts", ["film_id"], :name => "film_id"
-		add_index "films_parts", ["format_id"], :name => "format_id"
+		add_index "films_parts", ["film_id"]
+		add_index "films_parts", ["format_id"]
 		add_index "films_parts", ["num"], :name => "num"
 
 		create_table "films_qualities", :force => true do |t|
@@ -340,7 +340,7 @@ class Initial < ActiveRecord::Migration
 		  t.integer "a2c_category_id"
 		end
 
-		add_index "mp3_artist2category", ["a2c_artist_id"], :name => "file_id"
+		add_index "mp3_artist2category", ["a2c_artist_id"]
 		add_index "mp3_artist2category", ["a2c_category_id"], :name => "category_id"
 
 		create_table "mp3_artists", :force => true do |t|

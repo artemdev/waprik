@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dblommesteijn/trans-api.git
-  revision: 81ea2d5db0197da7ccf6774f996baf64df2ade4d
+  revision: 28df0e2abc53d941ecd1769b6c2f54b69d8ea415
   specs:
     trans-api (0.0.5)
       json (> 1.6.1)
@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/elasticsearch/elasticsearch-rails.git
-  revision: e0f726e07fa5023b3c19426873d886aa55ad6ae2
+  revision: 738c63efacc167b6e8faae3b01a1a0135cfc8bbb
   specs:
-    elasticsearch-rails (0.1.5)
+    elasticsearch-rails (0.1.7)
 
 GEM
   remote: https://rubygems.org/
@@ -42,14 +42,15 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    addressable (2.3.6)
-    annotate (2.6.5)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
-    ansi (1.4.3)
+    addressable (2.3.8)
+    annotate (2.6.10)
+      activerecord (>= 3.2, <= 4.3)
+      rake (~> 10.4)
+    ansi (1.5.0)
     arel (3.0.3)
-    autoprefixer-rails (3.1.0.20140911)
+    autoprefixer-rails (5.2.0)
       execjs
+      json
     builder (3.0.4)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -74,24 +75,24 @@ GEM
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
-    coffee-script (2.3.0)
+    coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.8.0)
+    coffee-script-source (1.9.1.1)
     commonjs (0.2.7)
-    connection_pool (2.0.0)
+    connection_pool (2.2.0)
     database_cleaner (0.7.0)
     diff-lcs (1.1.3)
-    domain_name (0.5.21)
+    domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    execjs (2.2.1)
+    execjs (2.5.2)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.1.0)
       factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
-    faraday (0.9.0)
+    faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
@@ -99,27 +100,31 @@ GEM
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.1)
       oj (~> 2.0)
-    ffi (1.9.5)
-    font-awesome-rails (4.2.0.0)
+    ffi (1.9.8)
+    font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
-    guard (2.6.1)
+    guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
       pry (>= 0.9.12)
+      shellany (~> 0.0)
       thor (>= 0.18.1)
     guard-rspec (1.2.1)
       guard (>= 1.1)
-    hashie (2.1.2)
+    hashie (3.4.2)
     hashr (0.0.22)
+    headless (2.1.0)
     hike (1.2.3)
     hitimes (1.2.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httpclient (2.4.0)
+    httpclient (2.6.0.1)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (3.1.2)
@@ -127,24 +132,24 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (4.1.2)
       railties (>= 3.1.0)
-    json (1.8.1)
-    jwt (1.0.0)
-    kgio (2.9.2)
-    kinopoisk_parser (2.0.1)
+    json (1.8.3)
+    jwt (1.5.0)
+    kgio (2.9.3)
+    kinopoisk_parser (2.1.0)
       httpclient
       nokogiri
-    lame (0.0.3)
+    lame (0.0.4)
       ffi
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
-    less (2.5.1)
+    less (2.6.0)
       commonjs (~> 0.2.7)
-    less-rails (2.5.0)
+    less-rails (2.6.0)
       actionpack (>= 3.1)
-      less (~> 2.5.0)
+      less (~> 2.6.0)
     libv8 (3.16.14.7)
-    listen (2.7.11)
-      celluloid (>= 0.15.2)
+    listen (2.10.0)
+      celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     lumberjack (1.0.9)
@@ -162,33 +167,34 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_magick (3.8.1)
-      subexec (~> 0.2.1)
-    mini_portile (0.6.0)
-    multi_json (1.10.1)
+    mini_magick (4.2.7)
+    mini_portile (0.6.2)
+    multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.16)
+    mysql2 (0.3.18)
+    nenv (0.2.0)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
-    netrc (0.7.7)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
+    netrc (0.10.3)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    notiffany (0.0.6)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
     ntlm-http (0.1.1)
-    oauth2 (0.9.4)
+    oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    oj (2.10.2)
+    oj (2.12.9)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
-    omniauth-oauth2 (1.1.2)
-      faraday (>= 0.8, < 0.10)
-      multi_json (~> 1.3)
-      oauth2 (~> 0.9.3)
+    omniauth-oauth2 (1.3.0)
+      oauth2 (~> 1.0)
       omniauth (~> 1.2)
     omniauth-vkontakte (1.3.3)
       multi_json
@@ -207,7 +213,7 @@ GEM
       rack
     rack-ssl (1.3.4)
       rack
-    rack-test (0.6.2)
+    rack-test (0.6.3)
       rack (>= 1.0)
     rails (3.2.13)
       actionmailer (= 3.2.13)
@@ -225,17 +231,18 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.13.0)
-    rake (10.3.2)
-    rb-fsevent (0.9.4)
+    rake (10.4.2)
+    rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    redis (3.1.0)
-    redis-namespace (1.5.1)
+    redis (3.2.1)
+    redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
-    rest-client (1.7.2)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     rspec (2.11.0)
@@ -251,10 +258,10 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.11.0)
-    rubyzip (1.1.6)
+    rubyzip (1.1.7)
     russian (0.6.0)
       i18n (>= 0.5.0)
-    sass (3.4.5)
+    sass (3.4.14)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -264,32 +271,33 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
-    sidekiq (3.2.4)
-      celluloid (>= 0.15.2)
-      connection_pool (>= 2.0.0)
+    shellany (0.0.1)
+    sidekiq (3.3.4)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.1.1)
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
-    sinatra (1.4.5)
+    sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+      tilt (>= 1.3, < 3)
     sitemap_generator (5.0.5)
       builder
-    slim (2.0.3)
-      temple (~> 0.6.6)
+    slim (3.0.4)
+      temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
-    sprockets (2.2.2)
+    sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.10)
     streamio-ffmpeg (1.0.0)
-    subexec (0.2.3)
     taglib-ruby (0.7.0)
-    temple (0.6.8)
-    therubyracer (0.12.1)
+    temple (0.7.5)
+    therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
@@ -312,37 +320,41 @@ GEM
       execjs
       rails (>= 3.1)
       railties (>= 3.1)
-    tzinfo (0.3.41)
-    uglifier (2.5.3)
+    tzinfo (0.3.44)
+    uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.6)
-    unicorn (4.8.3)
+    unf_ext (0.0.7.1)
+    unicorn (4.9.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
     unicorn-rails (2.2.0)
       rack
       unicorn
-    useragent (0.10.0)
-    viddl-rb (1.0.6)
-      multi_json (~> 1.10.0)
-      nokogiri (~> 1.6.0)
-      progressbar (~> 0.21)
-    vkontakte_api (1.4)
+    useragent (0.13.3)
+    viddl-rb (1.0.1)
+      mime-types
+      multi_json
+      nokogiri
+      progressbar
+    vkontakte_api (1.4.3)
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.1)
       faraday_middleware-parse_oj (~> 0.3)
-      hashie (~> 2.0)
-      oauth2 (~> 0.8)
+      hashie (>= 2.0)
+      oauth2 (>= 0.8)
+    watir-webdriver (0.6.11)
+      selenium-webdriver (>= 2.18.0)
     webrobots (0.1.1)
     websocket (1.0.7)
     whatlanguage (1.0.5)
     will_paginate (3.0.7)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    youtube_search (0.2.0)
 
 PLATFORMS
   ruby
@@ -362,6 +374,7 @@ DEPENDENCIES
   font-awesome-rails
   friendly_id (~> 4.0.10)
   guard-rspec (= 1.2.1)
+  headless
   jquery-rails
   jquery-ui-rails
   kinopoisk_parser
@@ -380,6 +393,7 @@ DEPENDENCIES
   sinatra
   sitemap_generator
   slim
+  sqlite3
   streamio-ffmpeg
   taglib-ruby
   therubyracer
@@ -391,5 +405,7 @@ DEPENDENCIES
   useragent
   viddl-rb
   vkontakte_api
+  watir-webdriver
   whatlanguage
   will_paginate
+  youtube_search
