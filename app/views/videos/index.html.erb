@@ -1,0 +1,19 @@
+<div class="a">
+	<%= form_tag videos_path, method: :get do %>
+		<%= text_field_tag :keywords %>
+		<%= submit_tag "найти" %>
+	<% end %>
+</div>
+<% if @videos.any? %>
+	<div class="b">
+		<% @videos.each do |video| %>
+			<div>
+				<%= image_tag video.image %>
+				<%= link_to video.name, video_path(video.video_id) %>
+				<span class="time">
+					<%= video.time %>
+				</span>
+			</div>
+		<% end %>
+	</div>
+<% end %>
