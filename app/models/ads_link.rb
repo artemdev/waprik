@@ -9,6 +9,7 @@
 #  expires_at :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  amount     :integer          default(0)
 #
 
 class AdsLink < ActiveRecord::Base
@@ -18,6 +19,11 @@ class AdsLink < ActiveRecord::Base
 
   def active?
   	true unless self.expires_at.nil?
+  end
+
+  def count_conversion!
+  	self.amount += 1
+  	save!
   end
 
 end

@@ -21,4 +21,5 @@
 		# serie.files.create quality_id: quality.id, format_id: serie.id, attach: File.open(File.join(Rails.root, 'public', 'testing', 'films', 'cover.jpg'))
 
 		# collections
-		Collection.create!(name: 'one republic')
+		collection = Collection.create!(name: 'one republic')
+		collection.films << film unless collection.films.include?(film)

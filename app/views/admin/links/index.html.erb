@@ -4,13 +4,8 @@
 
 <% if @links.any? %>
 	<% @links.each do |link| %>
-		<% if link.active? %>
-			<span class="active">
-				<%= link_to link.title, edit_admin_link_path(link) %>
-			</span>
-		<% else %>
-				<%= link_to link.title, edit_admin_link_path(link) %>
-		<% end %>
+			<%= link_to link.title, edit_admin_link_path(link) %> <br />
+			<span class="amount">переходов <%= link.amount %></span>
 	<% end %>
 
 	<%= will_paginate @links, next_label: "", previous_label: "" %>

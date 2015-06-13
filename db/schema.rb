@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150604163837) do
+ActiveRecord::Schema.define(:version => 20150613111407) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -56,10 +56,12 @@ ActiveRecord::Schema.define(:version => 20150604163837) do
     t.string   "to"
     t.string   "from"
     t.datetime "expires_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "amount",     :default => 0
   end
 
+  add_index "ads_links", ["amount"], :name => "index_ads_links_on_amount"
   add_index "ads_links", ["expires_at"], :name => "index_ads_links_on_expires_at"
   add_index "ads_links", ["from"], :name => "index_ads_links_on_from"
   add_index "ads_links", ["title"], :name => "index_ads_links_on_title"
@@ -257,6 +259,11 @@ ActiveRecord::Schema.define(:version => 20150604163837) do
   end
 
   add_index "films_actors_through", ["film_id", "actor_id"], :name => "film_id", :unique => true
+
+  create_table "films_collections", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "films_directors", :force => true do |t|
     t.string "name", :limit => 100

@@ -1,20 +1,20 @@
 <% provide(:title, "Музыка") %>
 
-<div class="a">
-	<%= link_to "Новинки", news_music_index_path %> (от <%= @tracks.first.created_at.strftime("%d.%m.%y") %>)
-</div>
-
+<% if @tracks.first %>
+	<div class="a">
+		<%= link_to "Новинки", news_music_index_path %> (от <%= @tracks.first.created_at.strftime("%d.%m.%y") %>)
+	</div>
+<% end %>
+<!-- Жанры подборок -->
 <div class="b">
 	<%= link_to "Зарубежная", eng_alphabets_path %> <hr />
 	<%= link_to "СНГ", rus_alphabets_path  %>
 </div>
 
 <% if @collections.any? %>
-	<div class="title">
-		Подборки
-	</div>
 	<div class="a">
 		<% @collections.each do |collection| %>
+			<%= image_tag collection.image.mini.url %>
 			<%= link_to collection.name.mb_chars.capitalize, collection_path(collection.permalink) %>
 			<span class="small-text">
 				<%= collection.tracks.count %>
@@ -23,25 +23,3 @@
 		<% end %>
 	</div>
 <% end %>
-
-<div class="title">
-	Интересное
-</div>
-<div class="b">
-- <a href="http://waprik.ru/best/music/eurovision_2014">Евровидение 2014</a> <br>
-- <a href="http://waprik.ru/best/music/gangster_nomer_1/">Григорий Лепс - Гангстер № 1 </a> <br>
-- <a href="http://waprik.ru/best/music/mega_mix_2014">MEGA MIX! 10 часов танцевальной музыки</a> <br>
-- <a href="http://waprik.ru/best/music/alarms/">Будильники на каждый день</a> <br>
-- <a href="http://waprik.ru/best/music/britney_spears_-_jean/">Хитовый альбом 2013: Britney Jean</a> <br>
-- <a href="http://waprik.ru/best/music/bad_mood/">Музыка под грустное настроение</a> <br>
-- <a href="http://waprik.ru/best/music/ost_molodezhka/">Саундтреки из сериала "Молодёжка"</a> <br>
-- <a href="http://waprik.ru/best/music/violine/">Супер хиты в исполнении скрипки</a> <br>
-- <a href="http://waprik.ru/best/music/mixes/">Свежие миксы</a> <br>
-- <a href="http://waprik.ru/best/music/club/">Клубная музычка</a> <br>
-- <a href="http://waprik.ru/best/music/vocal_trance/">Vocal Trance</a> <br>
-- <a href="http://waprik.ru/best/music/Kanye_West_-_Yeezus_%282013%29/">Kanye West - Yeezus (альбом 2013)</a><br>
-- <a href="http://waprik.ru/best/music/forsage_6/">Саундтреки к "Форсаж 6"</a><br>
-- <a href="http://music.waprik.ru/view/album/769">Armin Van Buren - Intense (альбом 2013)</a><br>
-- <a href="http://waprik.ru/best/music/eurovision_2013/">Победители Евровидения 2013</a><br>
-- <a href="http://waprik.ru/best/music/moby/">Хиты Moby</a>
-</div>

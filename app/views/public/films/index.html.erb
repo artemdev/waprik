@@ -11,6 +11,16 @@
 	</div>
 
 	<div class="title">
+		Подборки
+	</div>
+
+	<% if @collections.any? %>	
+		<% @collections.each do |collection| %>
+			<%= image_tag collection.image.mini.url %>
+		<% end %>
+	<% end %>
+
+	<div class="title">
 		Жанры
 	</div>
 

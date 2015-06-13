@@ -1,6 +1,7 @@
 class MusicPostsWorker
 	include Sidekiq::Worker
 
+	# берется пост из вк и добавляется на сайт
 	def perform(post_url, collection_id)
 		post = VkPost.new(post_url)
 		collection = Collection.find(collection_id)

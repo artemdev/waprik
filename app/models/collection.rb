@@ -44,7 +44,7 @@ class Collection < ActiveRecord::Base
   scope :latest, order("created_at DESC")
   scope :fresh, order("updated_at DESC")
   scope :with_music, lambda { where(with_music: true) }
-  scope :with_films, where(with_films: true)
+  scope :with_films, lambda { where(with_films: true) }
   scope :with_videos, where(with_videos: true)
 
   validates :name, presence: true

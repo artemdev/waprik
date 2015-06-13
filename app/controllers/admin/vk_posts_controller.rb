@@ -8,11 +8,11 @@ class Admin::VkPostsController < ApplicationController
 	def new
 	end
 
-	def get_ero
-		posts = PublicPage.parse_ero
-		flash[:success] = "Добавлено #{posts} новых постов"
-		redirect_to admin_pictures_path
-	end
+	# def get_ero
+	# 	posts = PublicPage.parse_ero
+	# 	flash[:success] = "Добавлено #{posts} новых постов"
+	# 	redirect_to admin_pictures_path
+	# end
 
 	def create
 		# TODO add to remote jobs

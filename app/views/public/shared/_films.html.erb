@@ -9,7 +9,7 @@
 					<% end %>
 				</span>
 					<%= link_to film.title, film_path(film.permalink) %> 
-					<%= film.year %>
+					<%= film.year %> <br />
 				<span class="small-text">
 					<%= truncate(film.about, length: 70, omission: '...') %>
 				</span>
