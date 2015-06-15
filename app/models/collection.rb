@@ -55,7 +55,7 @@ class Collection < ActiveRecord::Base
   def author 
     nil
   end
-  
+
   # Есть ли видео в коллекции ?
   def with_videos
     return true if self.videos.any?
@@ -80,7 +80,7 @@ class Collection < ActiveRecord::Base
     self.full_sound.path
   end
 
-  def with_music
+  def with_music!
     self.with_music = true
     save!
   end
