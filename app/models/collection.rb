@@ -52,7 +52,10 @@ class Collection < ActiveRecord::Base
   # before_create :join_tracks
   # before_update :join_tracks
 
-
+  def author 
+    nil
+  end
+  
   # Есть ли видео в коллекции ?
   def with_videos
     return true if self.videos.any?
