@@ -1,0 +1,3 @@
+task :parse_from_excluzive_music => :environment do
+	VkPublicParser.posts
+end
