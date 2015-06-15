@@ -11,7 +11,11 @@ class Public::CollectionsController < ApplicationController
 			# дата самых новых треков
 			@date = @collection.tracks.latest.first.created_at
 			# самые новые треки
-			@latest_tracks = @collection.tracks.where(created_at: @date.at_beginning_of_day..@date.end_of_day)
+			@latest_tracks = if @date
+												@collection.tracks.where(created_at: @date.at_beginning_of_day..@date.end_of_day)
+											 else
+												@collection.tracks
+											 end
 			# все треки кроме самых новых
 			@tracks = @collection.tracks.without_new(@date).paginate(page: params[:page], per_page: 20)
 		elsif @collection.with_films
