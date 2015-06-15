@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150613111407) do
+ActiveRecord::Schema.define(:version => 20150615171809) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -109,6 +109,21 @@ ActiveRecord::Schema.define(:version => 20150613111407) do
 
   add_index "collection_film_throughs", ["collection_id"], :name => "index_collection_film_throughs_on_collection_id"
   add_index "collection_film_throughs", ["film_id"], :name => "index_collection_film_throughs_on_film_id"
+
+  create_table "collection_genre_throughs", :force => true do |t|
+    t.string   "collection_id"
+    t.string   "genre_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "collection_genre_throughs", ["collection_id"], :name => "index_collection_genre_throughs_on_collection_id"
+  add_index "collection_genre_throughs", ["genre_id"], :name => "index_collection_genre_throughs_on_genre_id"
+
+  create_table "collection_genres", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "collection_music_throughs", :force => true do |t|
     t.integer  "collection_id"
@@ -665,6 +680,23 @@ ActiveRecord::Schema.define(:version => 20150613111407) do
     t.string   "fromable_type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "vk_posts", :force => true do |t|
+    t.string   "vk_description"
+    t.string   "vk_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "vk_posts", ["vk_description"], :name => "index_vk_posts_on_vk_description"
+  add_index "vk_posts", ["vk_id"], :name => "index_vk_posts_on_vk_id"
+
+  create_table "vk_publics", :force => true do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "wishes", :force => true do |t|

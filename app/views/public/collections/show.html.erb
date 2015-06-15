@@ -4,7 +4,12 @@
 <!-- общее число скачиваний -->
 <div class="a">
 	<%= downloads_size_for @collection %>
+	
+	<% if @collection.author %>
+		автор <%= @collection.author.username %>
+	<% end %>
 </div>
+
 <% if @collection.image.present? %>
 	<div class="a">
 		<%= image_tag @collection.image.preview.url %>

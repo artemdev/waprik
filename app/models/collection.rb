@@ -19,7 +19,7 @@
 
 include ApplicationHelper
 class Collection < ActiveRecord::Base
-  attr_accessible :name, :hit, :image, :description, :posts_attributes, :tracks_attributes, :source_url
+  attr_accessible :name, :hit, :image, :description, :posts_attributes, :tracks_attributes, :source_url, :with_music
 
   mount_uploader :image, CoverUploader
   mount_uploader :full_sound, MusicUploader
@@ -75,6 +75,11 @@ class Collection < ActiveRecord::Base
       save
     end
     self.full_sound.path
+  end
+
+  def with_music
+    self.with_music = true
+    save!
   end
 
   protected

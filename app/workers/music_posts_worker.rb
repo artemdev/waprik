@@ -31,6 +31,7 @@ class MusicPostsWorker
 				# конвертация
 				LameWorker.perform_async(mp3.id)
 				collection.tracks << mp3
+				collection.with_music!
 				count += 1
 			end
 		end

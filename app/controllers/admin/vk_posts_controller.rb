@@ -15,11 +15,11 @@ class Admin::VkPostsController < ApplicationController
 	# end
 
 	def create
-		# TODO add to remote jobs
+		# создается коллекцию из поста
 		collection_name = params[:collection_name].strip
 		collection = Collection.find_or_create_by_name(collection_name)
 		collection.update_attributes(hit: true) if params[:hit] == "on"
-		# взять треки из vk
+		# берутся треки из vk посты и добавляются в коллекции
 		MusicPostsWorker.perform_async(params[:post_url], collection.id)
 		redirect_to admin_collection_path(collection.permalink)
 	end

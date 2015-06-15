@@ -8,7 +8,7 @@ class VkPublicParser
 		@vk = VkontakteApi::Client.new
 		@screen_name = vk_url.split('/').last
 	end
-
+  
 	def posts
 		@posts = @vk.wall.get(domain: @screen_name, count: COUNT)
 		@posts = @posts.drop(1)

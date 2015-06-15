@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
 require 'vkontakte_api'
+# парсинг данных из страницы вк
 class VkPost
 	
 	def initialize url=""
@@ -31,9 +32,6 @@ class VkPost
 		@post_id
 	end
 
-	def title
-	end
-
 end
 
-puts VkPost.new('https://vk.com/exclusive_muzic?w=wall-27895931_1793253').image
+# puts VkPost.new('https://vk.com/exclusive_muzic?w=wall-27895931_1793253').image
