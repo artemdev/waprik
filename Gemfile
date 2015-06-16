@@ -40,6 +40,7 @@ gem 'watir-webdriver'
 gem 'headless'
 # gem 'youtube-dl'
 gem 'sqlite3' #development
+gem 'meta-tags' 
 
 # Gems used only for assets and not required
 # in production environments by default.

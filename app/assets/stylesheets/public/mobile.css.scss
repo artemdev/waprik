@@ -91,6 +91,7 @@ hr, .hr { border: 0; border-bottom: 1px dotted #80bfd9; background: none; margin
 	color: #fff;
 	font-weight: bold;
 }
+
 .title img { margin: 0 0 -2px 0; }
 /*.field_with_errors {border: 2px solid red; padding: 0px; margin: 0px;}*/
 
@@ -165,4 +166,7 @@ ul.list-films {
 }
 
 
-
+/* h1 */
+h1.title {
+	font-size: 15px;
+}
