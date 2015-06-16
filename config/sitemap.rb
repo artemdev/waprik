@@ -8,8 +8,12 @@ SitemapGenerator::Sitemap.create do
   Film.find_each do |film|
     add film_path(film.permalink), lastmod: film.updated_at
   end
+  
+  FilmGenre.find_each do |genre|
+    add film_genre_path(genre), lastmod: film.updated_at
+  end
 
-  add "music", :priority => 0.7, :changefreq => 'daily'
+  add "/music", :priority => 0.7, :changefreq => 'daily'
 
   Mp3File.find_each do |track|
     add music_path(track.permalink), lastmod: track.created_at
