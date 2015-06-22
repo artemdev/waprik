@@ -5,6 +5,7 @@
 <% if @tracks.first %>
 	<div class="a">
 		<%= link_to "Новинки", news_music_index_path %> (от <%= @tracks.first.created_at.strftime("%d.%m.%y") %>)
+		<%= link_to "Поиск музыки", "http://mp3.waprik.ru" %>
 	</div>
 <% end %>
 <!-- Жанры для подборок -->
