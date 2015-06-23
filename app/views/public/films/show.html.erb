@@ -1,6 +1,6 @@
-<% keywords("скачать " + @film.ru_title + " на телефон") %>
-<% description @film.ru_title + " скачать бесплатно без регистрации на телефон" %>
-<h1 class="title"><%= @film.title %></h1>
+<% keywords("скачать " + @film.title + " на телефон") %>
+<% description @film.ru_title + " скачать на телефон бесплатно без регистрации" %>
+<h1 class="title"><%= title @film.title %></h1>
 
 	<div class="a">
 		Скачиваний <%= @film.download %> <br />
