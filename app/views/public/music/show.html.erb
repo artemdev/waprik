@@ -20,6 +20,15 @@
 	<!-- LIKES -->
 	<!-- music like image + button -->
 	<!-- # LIKES -->
+	<!-- плейлисты -->
+	<% if @track.collections.any? %>
+		<hr />
+			Плейлисты
+			<% @track.collections.each do |collection| %>
+				<%= link_to collection.name, collection_path(collection.permalink) %>
+			<% end %>
+	<% end %>
+
 </div>
 
 <% if @recomendations.any? %>
