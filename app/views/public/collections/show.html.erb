@@ -30,9 +30,11 @@
 			<%= link_to track.name, music_path(track.permalink) %>
 			<span class="small-text">
 				<% bitrate = track.bitrates.first %>
-				<strong>
-					<%= link_to  number_to_human_size(bitrate.file_size), download_music_path(track.permalink, bitrate: bitrate.file_bitrate, id: 'download-mp3') %>
-				</strong>
+				<% if bitrate %>
+					<strong>
+						<%= link_to  number_to_human_size(bitrate.file_size), download_music_path(track.permalink, bitrate: bitrate.file_bitrate, id: 'download-mp3') %>
+					</strong>
+				<% end %>
 			</span>
 			<%= hr_for track, @latest_tracks %>
 		<% end %>
