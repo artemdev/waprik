@@ -1,0 +1,21 @@
+	<div class="a">
+		<script language="JavaScript">
+			var Images = [
+			'<img src="http://oblivochki.biz/upload/c6/571c41/c6571c41864f876c5bac-1434385222.jpg" width="50" height="50" />',
+			'<img src="http://oblivochki.biz/upload/dd/861c59/dd861c59f6cff4e349dd-1434385022.jpg" width="50" height="50" />',
+			'<img src="http://oblivochki.biz/upload/9e/d0f8ee/9ed0f8ee492cdd13f141-1434384795.jpg" width="50" height="50"/>'];  
+			var Texts = [
+			'<a href="http://s.kma1.biz/ua64NZ/">Я набрал 10 кг за 30 дней и завел себе двух девушек! </a>',
+			'<a href="http://s.kma1.biz/ua64NZ/">Набрать 20 кг за пoлгодa на самом дeлe ЛЕГKO!</a>',
+			'<a href="http://s.kma1.biz/ua64NZ/">Набрать 10 килограмм за 1.5 месяца это РЕАЛЬНО!</a>']
+			var Descs = [
+			'Как-то посмотрел я на себя в зеркало и увидел, что мне совсем не нравится мое тело ...',
+			'Однажды в тренажерку, где я занимался, пришел худощавый парень, который без особого труда набрал 10 кг мышц за 1,5 месяца ...',
+			' Оказывается, есть специальный протеиновый коктейль исключительно на натуральных компонентах ...']
+
+			var rand_image = Images[Math.floor(Math.random() * Images.length)];
+			var rand_text = Texts[Math.floor(Math.random() * Texts.length)];
+			var rand_desc = Descs[Math.floor(Math.random() * Texts.length)];
+			document.write ('<table>' + '<td>' + rand_image + '</td>'+ '<td>' + rand_text + "<br />" + '<span class="small-text">' + rand_desc + '</span>' + '</td>' + '</table>');
+		</script>
+	</div>

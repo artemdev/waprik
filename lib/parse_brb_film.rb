@@ -59,7 +59,7 @@ class ParseBrbFilm
 	end
 
 	def description
-		@movie.at('p.item-decription').text
+		@movie.at('p.item-decription').text if @movie.at('p.item-decription')
 	end
 
 	def common_films
