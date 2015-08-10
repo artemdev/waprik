@@ -6,7 +6,20 @@
 	Жанры <% @film.genres.each do |genre| %>
 		<%= genre.title %>
 	<% end %>
+
+	<% if @film.genres.any?  %>
+		Жанры <% @film.genres.each do |genre| %>
+			<%= genre.title %>
+		<% end %>
 	<hr />
+	<% end %>
+
+	<%= @film.collections.any?  %>
+		Плейлисты <% @film.collections.each do |collection| %>
+			<%= collection.title %>
+		<% end %>
+	<hr />
+	<% end %>
 	Торрент <%= link_to "торрент", @film.torrent.url %>
 	<hr />
 	Режисеры<% @film.directors.each do |director| %>

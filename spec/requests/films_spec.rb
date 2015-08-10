@@ -16,5 +16,10 @@ describe "Films" do
     	visit updating_films_path
     	page.should have_content(film.title)
     end
+
+    it "видит жанры подборок фильмов на главной" do
+      # 
+    end
+
   end
 end

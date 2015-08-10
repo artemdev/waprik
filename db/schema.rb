@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150615171809) do
+ActiveRecord::Schema.define(:version => 20150801205842) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -123,7 +123,10 @@ ActiveRecord::Schema.define(:version => 20150615171809) do
   create_table "collection_genres", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
   end
+
+  add_index "collection_genres", ["title"], :name => "index_collection_genres_on_title"
 
   create_table "collection_music_throughs", :force => true do |t|
     t.integer  "collection_id"
@@ -147,19 +150,21 @@ ActiveRecord::Schema.define(:version => 20150615171809) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
-    t.boolean  "hit",         :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "with_videos", :default => false
-    t.boolean  "with_music",  :default => false
+    t.boolean  "hit",                 :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.boolean  "with_videos",         :default => false
+    t.boolean  "with_music",          :default => false
     t.string   "description"
     t.string   "image"
     t.string   "permalink"
     t.string   "vk_title"
     t.string   "full_sound"
     t.string   "source_url"
+    t.integer  "collection_genre_id"
   end
 
+  add_index "collections", ["collection_genre_id"], :name => "index_collections_on_collection_genre_id"
   add_index "collections", ["description"], :name => "index_collections_on_description"
   add_index "collections", ["full_sound"], :name => "index_collections_on_full_sound"
   add_index "collections", ["image"], :name => "index_collections_on_image"

@@ -46,6 +46,7 @@ class Admin::CollectionsController < ApplicationController
 	def edit
 		@collection = Collection.find_by_permalink(params[:id])
 		@track = @collection.tracks.new
+		@films = Film.search(params[:film_name]).first if params[:film_name]
 	end
 
 	def update
@@ -118,6 +119,12 @@ class Admin::CollectionsController < ApplicationController
 		redirect_to admin_collection_path(collection.permalink), notice: notice
 	end
 
+	def add_content
+		@collection = Collection.find(params[:id])
+		@film = Film.find(params[:film_id])
+		@collection.films << @film unless @collection.films.include?(@film)
+		redirect_to :back, notice: "#{@film} успешно добавлен"
+	end
 private
 
 	def find_collection

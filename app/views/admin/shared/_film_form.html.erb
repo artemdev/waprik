@@ -82,3 +82,7 @@ brb url <%= f.text_field :brb_url %>	<br />
 
 <%= f.label :cis_estimate, "Оценка снг" %> <br />
 <%= f.text_field :cis_estimate %>
+
+<%= label_tag :new_collection, "Подборка" %> <br />
+<%= select_tag :new_collection, @collections.map {|collection| [collection.name, collection.id] } %> <br />
+

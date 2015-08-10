@@ -81,6 +81,7 @@ class Admin::FilmsController < ApplicationController
 			@genres = FilmGenre.all
 			@directors = @film.directors
 			@actors = @film.actors
+			@collections = Collection.all
 	end
 
 	def create

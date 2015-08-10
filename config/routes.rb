@@ -17,6 +17,10 @@ Waprik::Application.routes.draw do
 
   # Admin resources
   namespace :admin do
+    resources :collection_genres do
+      get 'fill', on: :member
+      get 'find', on: :member
+    end
     # matches
     match 'music/artists' => "MusicArtists#index"
 
@@ -34,6 +38,7 @@ Waprik::Application.routes.draw do
     resources :series
     resources :categories
     resources :collections do
+      get 'add_content', on: :member
       get 'refresh', on: :member
       put 'add_film', on: :member
       put 'add_track', on: :member
@@ -106,6 +111,7 @@ Waprik::Application.routes.draw do
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     resources :videos
     scope module: 'public' do
+      resources :collection_genres
       resources :links, only: 'show'
       resources :subscribtions, only: [:index, :create, :destroy]
       resources :authentications, only: :create

@@ -31,15 +31,26 @@
 		</div>
 	<% end %>
 
-	<div class="a">
-		<% @genres.each do |genre| %>
-			<%= link_to genre.title.mb_chars.capitalize, film_genre_path(genre) %>
-			<span class="small-text">
-				<%= genre.films.count %>
-			</span>
-			<br />
-		<% end %>
-	</div>
+		<div class="a">
+			<% @genres.each do |genre| %>
+				<%= link_to genre.title.mb_chars.capitalize, film_genre_path(genre) %>
+				<span class="small-text">
+					<%= genre.films.count %>
+				</span>
+				 <br />
+			<% end %>
+		</div>
+
+		<div class="title">
+			Плейлисты
+		</div>
+		<div class="a">
+			<% @collections_genres.each do |genre| %>
+				<% if genre.collections.any? %>
+					<%= link_to genre.title.mb_chars.capitalize, collection_genre_path(genre) %> <br />
+				<% end %>
+			<% end %>
+		</div>
 <% else %>
 	<div class="a">
 		Фильмов нет

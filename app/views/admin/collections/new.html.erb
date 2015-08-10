@@ -12,7 +12,5 @@
 	<%= f.check_box :hit  %> <br />
 	<%= f.label :hit, "хит ?"  %> <br />
 
-	<%= link_to "добавить трек", new_admin_track_path(collection: @collection.id) %>
-	
 	<%= f.submit "Создать"  %>
 <% end %>

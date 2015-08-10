@@ -2,23 +2,28 @@
 #
 # Table name: collections
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  hit         :boolean          default(FALSE)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  with_videos :boolean          default(FALSE)
-#  with_music  :boolean          default(FALSE)
-#  description :string(255)
-#  image       :string(255)
-#  permalink   :string(255)
-#  vk_title    :string(255)
-#  full_sound  :string(255)
-#  source_url  :string(255)
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  hit                 :boolean          default(FALSE)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  with_videos         :boolean          default(FALSE)
+#  with_music          :boolean          default(FALSE)
+#  description         :string(255)
+#  image               :string(255)
+#  permalink           :string(255)
+#  vk_title            :string(255)
+#  full_sound          :string(255)
+#  source_url          :string(255)
+#  collection_genre_id :integer
 #
 
 include ApplicationHelper
 class Collection < ActiveRecord::Base
+  
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :name, :hit, :image, :description, :posts_attributes, :tracks_attributes, :source_url, :with_music
 
   mount_uploader :image, CoverUploader
@@ -26,6 +31,8 @@ class Collection < ActiveRecord::Base
 
   before_create :create_permalink
   before_update :create_permalink, if: :name_changed?
+
+  belongs_to :collection_genre
 
   has_many :collection_video_through
   has_many :videos, through: :collection_video_through
@@ -38,6 +45,7 @@ class Collection < ActiveRecord::Base
   has_many :films, through: :collection_film_through
 
   has_many :subscribers, class_name: 'Subscribtion', as: :subscribable
+  has_many :genres, class_name: 'CollectionGenre'
 
   scope :hits, where("hit = ?", true)
   scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }

@@ -1,2 +1,9 @@
-<h1>Admin::FilmGenres#destroy</h1>
-<p>Find me in app/views/admin/film_genres/destroy.html.erb</p>
+<div>
+	<%= link_to "создать жанр", new_admin_collection_genre_path %>
+</div>
+
+<div>
+	<% @genres.each do |genre| %>
+		<%= link_to genre.name %> <br />
+	<% end %>
+</div>
