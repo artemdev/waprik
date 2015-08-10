@@ -1,0 +1,5 @@
+<%= form_for :genre, url: admin_collection_genres_path do |f| %>
+	<%= f.label :title, "Название" %>
+	<%= f.text_field :title %>
+	<%= button_tag "продолжить", id: 'new-collection' %>
+<% end %>

@@ -1,0 +1,9 @@
+<h1 class="title"><%= @genre.title %></h1>
+
+<div class="a">
+	<% if @genre.collections.any? %>
+		<% @genre.collections.each do |film| %>
+			<%= link_to film.name, film_path(film) %> <br />
+		<% end %>
+	<% end %>
+</div>

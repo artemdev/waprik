@@ -1,0 +1,19 @@
+<% if @genre.collections.any? %>
+	<% @genre.collections.each do |collection| %>
+		<%= collection.name %> <br />
+	<% end %>
+<% else %>
+	Плейлистов нет
+<% end %>
+
+<%= form_for :collection, url: admin_collection_genre_path(@genre), method: :get do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit "найти плейлит" %>
+<% end %>
+
+<% if @collections %>
+	<% @collections.each do |collection| %>
+		<%= collection.name %>
+		<%= link_to "добавить", fill_admin_collection_genre_path(@genre, collection_id: collection.id) %>
+	<% end %>
+<% end %>

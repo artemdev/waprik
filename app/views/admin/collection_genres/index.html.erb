@@ -1,0 +1,9 @@
+<div class="a">
+	<%= link_to "новый жанр", new_admin_collection_genre_path %>
+</div>
+
+<div class="genres">
+	<% @genres.each do |genre| %>
+		<%= link_to genre.title, admin_collection_genre_path(genre) %> <br />
+	<% end %>
+</div>
