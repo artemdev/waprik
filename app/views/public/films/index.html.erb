@@ -45,10 +45,8 @@
 			Плейлисты
 		</div>
 		<div class="a">
-			<% @collections_genres.each do |genre| %>
-				<% if genre.collections.any? %>
-					<%= link_to genre.title.mb_chars.capitalize, collection_genre_path(genre) %> <br />
-				<% end %>
+			<% @collections.each do |collection| %>
+					<%= link_to collection.name.mb_chars.capitalize, collection_path(collection) %> <br />
 			<% end %>
 		</div>
 <% else %>
