@@ -73,7 +73,7 @@
 	</div>
 	<div class="a">
 		<% @films.each do |film| %>
-			<%= link_to film.name, film_path(film.permalink) %>
+			<%= link_to film.ru_title, film_path(film.permalink) %>
 			<br />
 		<% end %>
 	</div>
