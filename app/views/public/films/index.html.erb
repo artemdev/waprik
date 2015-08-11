@@ -46,7 +46,7 @@
 		</div>
 		<div class="a">
 			<% @collections.each do |collection| %>
-					<%= link_to collection.name.mb_chars.capitalize, collection_path(collection) %> <br />
+					<%= link_to collection.name.mb_chars.capitalize, collection_path(collection.permalink) %> <br />
 			<% end %>
 		</div>
 <% else %>
