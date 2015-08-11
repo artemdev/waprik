@@ -20,7 +20,7 @@ class Public::CollectionsController < ApplicationController
 			# самые новые фильмы
 			@latest_films = @collection.films.where(created_at: @date.at_beginning_of_day..@date.end_of_day)
 			# все фильмы кроме самых новых
-			@films = @collection.films.without_new(@date).paginate(page: params[:page], per_page: 20)
+			@films = @collection.films.paginate(page: params[:page], per_page: 20)
 		end
 	end
 
