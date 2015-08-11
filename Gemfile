@@ -15,7 +15,7 @@ gem "less-rails"
 gem 'therubyracer', :platforms => :ruby
 gem 'sidekiq'
 gem 'sinatra', require: false
-gem 'slim'
+gem 'slim', '~> 3.0.4'
 gem 'kinopoisk_parser'
 gem 'tire'
 gem 'lame'

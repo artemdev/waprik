@@ -3,7 +3,8 @@ require 'spec_helper'
 describe "Collections ..." do
   describe "Admin ..." do
   	let(:admin) { FactoryGirl.create(:admin_user) }
-  	let(:collection) { FactoryGirl.create(:collection) }
+    let(:collection) { FactoryGirl.create(:collection) }
+    let(:film) { FactoryGirl.create(:film) }
 
     # it "может добавлять новые треки в подборки" do
     # 	sign_in admin
@@ -18,5 +19,11 @@ describe "Collections ..." do
 
     # it "может удалять подборки" do
     # end
+
+    it "может добавлять фильм в подборки" do
+      visit edit_admin_collection_path(collection)
+      fill_in :film_name, with: 'тест'
+      click_link "найти"
+    end
   end
 end
