@@ -46,7 +46,9 @@
 		</div>
 		<div class="a">
 			<% @collections.each do |collection| %>
-					<%= link_to collection.name.mb_chars.capitalize, collection_path(collection.permalink) %> <br />
+					<% if collection.with_films %>
+						<%= link_to collection.name.mb_chars.capitalize, collection_path(collection.permalink) %> <br />
+					<% end %>
 			<% end %>
 		</div>
 <% else %>
