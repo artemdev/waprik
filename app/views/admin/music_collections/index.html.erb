@@ -1,0 +1,16 @@
+<% provide(:title, "Подборки музыки") %>
+
+<%= link_to "новая подборка", new_admin_music_collection_path %>
+
+<% if @collections.any? %>
+	<% @collections.each do |collection| %>
+		<%= link_to collection.name, edit_admin_music_collection_path(collection) %>
+		<%= artist.lang %>
+		<%= link_to "x", admin_music_collection_path(collection), method: :delete %>
+		<br />
+	<% end %>
+
+	<%= will_paginate @collections %>
+<% else %>
+	Пусто
+<% end %>

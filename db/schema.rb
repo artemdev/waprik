@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150801205842) do
+ActiveRecord::Schema.define(:version => 20150815100346) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -281,9 +281,12 @@ ActiveRecord::Schema.define(:version => 20150801205842) do
   add_index "films_actors_through", ["film_id", "actor_id"], :name => "film_id", :unique => true
 
   create_table "films_collections", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "films_collections", ["name"], :name => "index_films_collections_on_name"
 
   create_table "films_directors", :force => true do |t|
     t.string "name", :limit => 100
@@ -506,6 +509,14 @@ ActiveRecord::Schema.define(:version => 20150801205842) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "music_collections", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "music_collections", ["name"], :name => "index_music_collections_on_name"
 
   create_table "news", :force => true do |t|
     t.string   "description",  :limit => 1000

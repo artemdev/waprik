@@ -1,0 +1,7 @@
+<% provide(:title, "Новая подборка") %>
+
+<%= form_for @collection, url: admin_music_collections_path do |f| %>
+	<%= f.text_field :name %>
+
+	<%= f.submit "продолжить" %>
+<% end %>

@@ -32,7 +32,6 @@ class Public::FilmsController < ApplicationController
 		@film.track_visit_from @source if params[:from_film].present?
 		# TODO 6.10
 		# @common_films = @film.common_films
-
 	end
 
 	def news

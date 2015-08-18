@@ -1,0 +1,28 @@
+<h1><%= @collection.name %></h1>
+
+<%= form_tag "", method: :get do %>
+	<%= label_tag :film_name %> <br />
+	<%= text_field_tag :film_name %> <br />
+
+	<%= submit_tag "найти" %>
+<% end %>
+
+<% if @films && @films.any? %>
+	Фильмы в коллекции: <br />
+	<% @films.each do |film| %>
+
+		<%= link_to film.title, film_path(film) %> <br />
+
+	<% end %>
+
+<% end %>
+
+<% if @found_films && @found_films.any? %>
+	Найденные фильмы:<br />
+	<% @found_films.each do |film| %>
+		<%= film.title %>
+
+		<%= link_to "добавить в коллекцию",  add_content_admin_music_collection_path(@collection.id, film_id: film.id) %> <br />
+	<% end %>
+
+<% end %>

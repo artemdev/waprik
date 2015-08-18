@@ -24,6 +24,11 @@ Waprik::Application.routes.draw do
     # matches
     match 'music/artists' => "MusicArtists#index"
 
+    resources :music_collections do 
+      get 'add_content', on: :member
+    end
+    resources :films_collections
+    
     # resources
     resources :video_formats
     resources :settings, only: :index
