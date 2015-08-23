@@ -39,20 +39,6 @@
 			<%= hr_for track, @latest_tracks %>
 		<% end %>
 	</div>
-<% elsif @last_films && @last_films.any? %>
-	<div class="a">
-		<% @last_films.each do |film| %>
-			<%= link_to film.title, film_path(film.permalink) %>
-				<div class="hit-field">
-					<%= form_for track, url: admin_music_path(track), method: :put do |f| %>
-						<%= f.check_box :hit %>
-						<%= f.label :hit %>
-						<%= f.submit "ok"%>
-					<% end %>
-				</div>
-			<%= hr_for film, @last_films %>
-		<% end %>
-	</div>
 <% end %>
 
 <% if @tracks && @tracks.any? %>
@@ -67,16 +53,4 @@
 	</div>
 
 	<%= will_paginate @tracks, next_label: "", previous_label: "", class: 'b' %>
-<% elsif @films && @films.any? %>
-	<div class="title">
-		Фильмы
-	</div>
-	<div class="a">
-		<% @films.each do |film| %>
-			<%= link_to film.ru_title, film_path(film.permalink) %>
-			<br />
-		<% end %>
-	</div>
-
-	<%= will_paginate @films, next_label: "", previous_label: "", class: 'b' %>
 <% end %>
