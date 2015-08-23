@@ -19,7 +19,7 @@ class Public::FilmsController < ApplicationController
 			@genres = FilmGenre.all
 			@films = []
 		end
-		@collections = Collection.limit(20)
+		@collections = FilmCollection.limit(20)
 		@latest_date = Film.latest.visible.first.created_at.strftime("%d.%m.%y") if Film.latest.visible.first
 		@collections_genres = CollectionGenre.all
 		# @favourite_date = Film.latest.favourite.first.created_at

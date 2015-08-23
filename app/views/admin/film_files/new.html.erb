@@ -1,8 +1,8 @@
 <% provide(:title, "Добавить файлы") %>
 
-<%= form_for(:film_file, url: {action: 'create', film_id: @film.id}, method: :post, multipart: true) do |f| %>
+<%= form_for(:film_file, url: { action: 'create', film_id: @film.id } , method: :post, multipart: true) do |f| %>
 	
-	<%= f.select :quality, @qualities.map {|f| [f.title, f.id]} %> <br>
+	<%= f.select :quality, @qualities.map {|f| [f.title, f.id]}, { include_blank: true }  %> <br>
 	<%= f.select :new_file, @files.map {|f| File.absolute_path(f)}, { include_blank: true } %> <br>
 
 

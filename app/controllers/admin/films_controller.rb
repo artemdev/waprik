@@ -1,5 +1,6 @@
 require 'open-uri'
 class Admin::FilmsController < ApplicationController
+
   layout 'admin'
 	
   before_filter :confirm_logged_in!
@@ -85,15 +86,16 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def create
+		@collection = FilmCollection.find(params[:collection_id])
 		@movie = ParseBrbFilm.new params[:movie_url] if params[:movie_url]
 		@film = Film.new(params[:film])
 		@directors = @film.directors
 		@actors = @film.actors
 		@genres = FilmGenre.all
 		@collections = set_collections
-		@film.add_actors(params[:film][:new_actors])
-		@film.add_directors(params[:film][:new_directors])
-		@film.add_genres(params[:film][:selected_genres])
+		@film.add_actors(params[:film][:new_actors]) if params[:film][:new_actors].present?
+		@film.add_directors(params[:film][:new_directors]) if params[:film][:new_directos].present?
+		@film.add_genres(params[:film][:selected_genres])  if params[:film][:selected_genres].present?
 		@film.ru_title = params[:film][:ru_title] if params[:film][:ru_title].present?
 		@film.en_title = params[:film][:en_title] if params[:film][:en_title].present?
 		if @movie && @movie.cover
@@ -102,9 +104,12 @@ class Admin::FilmsController < ApplicationController
 			@film.cover = params[:film][:cover] 
 		end
 		@film.set_collection(params[:film][:new_collection]) if params[:film][:new_collection]
-		@film.brb_url = params[:film][:brb_url]
-		@film.create_recomendations!
+		@film.brb_url = params[:film][:brb_url] if params[:film][:brb_url]
+		# создаются рекомендации
+		@film.create_recomendations! if @film.brb_url.present?
 		if @film.save
+			@collection.films << @film
+			# добавить фильм в паблик вк
 			# push = VkPusher.new
 			# vk_responce = push.film @film, current_user
 			flash[:success] = "Фильм успешно добавлен. Самое время добавить файлы"
@@ -133,7 +138,6 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def destroy
-		# @film
 		# удаление всех файлов к фильму
 		@film.files.each do |file|
 			file.film_parts.each {|part| part.remove_real_name! }
@@ -143,7 +147,7 @@ class Admin::FilmsController < ApplicationController
 		@film.destroy
 		@film.tire.update_index
 		respond_to do |format|
-			format.html { redirect_to :back }
+			format.html { redirect_to :back, notice: 'фильм успешно удален' }
 			format.js
 		end
 	end

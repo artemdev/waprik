@@ -11,7 +11,7 @@
 
 class CollectionFilmThrough < ActiveRecord::Base
 
-	belongs_to :film_collection, foreign_key: 'collection_id'
+	belongs_to :collection, foreign_key: 'collection_id'
 	belongs_to :film
 	
 end

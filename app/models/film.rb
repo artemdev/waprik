@@ -38,12 +38,13 @@
 #  recomendation_list_id :integer
 #  torrent               :string(255)
 #  vk                    :boolean
+#  youtube_link          :string(255)
 #
 
 require 'elasticsearch/rails/tasks/import'
 class Film < ActiveRecord::Base
   default_scope { order("films.created_at DESC") }
-  attr_accessible :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked, :new_cover, :common_films, :brb_url, :torrent, :visible
+  attr_accessible :ru_title, :en_title,  :youtube_link, :is_favourite, :cis_estimate, :world_estimate, :about, :new_actors, :new_directors, :selected_genres, :cover, :year, :duration_hours, :duration_minutes, :remove_cover, :trailer_filename, :ru_title, :en_title, :new_collection, :blocked, :new_cover, :common_films, :brb_url, :torrent, :visible
 
 	attr_accessor :new_actors, :new_directors, :selected_genres, :trailer_filename, :new_collection, :new_cover, :common_films
 
@@ -64,6 +65,8 @@ class Film < ActiveRecord::Base
   
   has_many :trailers, class_name: "FilmTrailer"
   has_many :downloads, as: :downloadable
+  has_many :collection_film_throughs
+  has_many :collections
   
   # directors
   has_many :films_directors_through, class_name: "FilmDirectorThrough"
@@ -78,7 +81,7 @@ class Film < ActiveRecord::Base
   # trailersss_name: "FilmTrailer", dependent: :destroy
 
   has_many :collection_film_through, foreign_key: 'film_id'
-  has_many :collections, through: :collection_film_through
+  has_many :collections, through: :collection_film_through, foreign_key: 'collection_id'
 
   # visits
   has_many :visits_from, class_name: 'Visit', as: 'fromable' # инициатор визита

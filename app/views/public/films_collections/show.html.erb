@@ -1,0 +1,38 @@
+<% keywords @collection.name.mb_chars.capitalize + " скачать бесплатно" %>
+<% description @collection.name.mb_chars.capitalize + " скачать бесплатно на телефон / планшет" %>
+<h1 class="title"><%= title "#{@collection.name.mb_chars.capitalize}" %></h1>
+
+<% if @collection.author %>
+	<!-- info -->
+	<div class="a">	
+
+		автор <%= @collection.author.username %>
+
+	</div>
+<% end %>
+
+<% if @collection.cover.present? %>
+	<div class="a">
+		<%= image_tag @collection.cover.preview.url %>
+	</div>
+<% end %>
+
+<% if @collection.description.present? %>
+	<div class="b">
+		<%= @collection.description %>
+	</div>
+<% end %>
+
+<% if @films.any? %>
+	<div class="title">
+		Фильмы
+	</div>
+	<div class="a">
+		<% @films.each do |film| %>
+			<%= link_to film.ru_title, film_path(film.permalink) %>
+			<br />
+		<% end %>
+	</div>
+
+	<%= will_paginate @films, next_label: "", previous_label: "", class: 'b' %>
+<% end %>

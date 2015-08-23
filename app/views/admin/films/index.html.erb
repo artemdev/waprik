@@ -11,5 +11,13 @@
 
 
 <div class="film-collections">
-	<%= link_to 'Подборки', admin_collections_path(section: "with_films") %>
+	<%= link_to 'Подборки', admin_films_collections_path %>
 </div>
+
+<section>
+	<% if @films.any? %>
+		<% @films.each do |film| %>
+			<%= link_to film.ru_title, admin_film_path(film) %> <%= link_to "ред", edit_admin_film_path(film) %> <%= link_to "x", admin_film_path(film), method: :delete %><br />
+		<% end %>
+	<% end %>
+</section>

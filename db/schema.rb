@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150815100346) do
+ActiveRecord::Schema.define(:version => 20150823123125) do
 
   create_table "add_column_recomendation_list_id_to_films", :force => true do |t|
     t.integer  "recomendation_list_id"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20150815100346) do
     t.integer  "recomendation_list_id"
     t.string   "torrent"
     t.boolean  "vk"
+    t.string   "youtube_link"
   end
 
   add_index "films", ["blocked"], :name => "index_films_on_blocked"
@@ -264,6 +265,7 @@ ActiveRecord::Schema.define(:version => 20150815100346) do
   add_index "films", ["user_id"], :name => "user_id"
   add_index "films", ["visible"], :name => "index_films_on_without_files"
   add_index "films", ["year"], :name => "year"
+  add_index "films", ["youtube_link"], :name => "index_films_on_youtube_link"
 
   create_table "films_actors", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -282,11 +284,17 @@ ActiveRecord::Schema.define(:version => 20150815100346) do
 
   create_table "films_collections", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "youtube_link"
+    t.string   "cover"
+    t.string   "description"
   end
 
+  add_index "films_collections", ["cover"], :name => "index_films_collections_on_cover"
+  add_index "films_collections", ["description"], :name => "index_films_collections_on_description"
   add_index "films_collections", ["name"], :name => "index_films_collections_on_name"
+  add_index "films_collections", ["youtube_link"], :name => "index_films_collections_on_youtube_link"
 
   create_table "films_directors", :force => true do |t|
     t.string "name", :limit => 100

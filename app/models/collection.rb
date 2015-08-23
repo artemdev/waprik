@@ -41,11 +41,9 @@ class Collection < ActiveRecord::Base
   has_many :tracks, through: :collection_music_through
   accepts_nested_attributes_for :tracks
 
-  has_many :collection_film_through
-  has_many :films, through: :collection_film_through
-
   has_many :subscribers, class_name: 'Subscribtion', as: :subscribable
   has_many :genres, class_name: 'CollectionGenre'
+
 
   scope :hits, where("hit = ?", true)
   scope :today, lambda { where(updated_at: Time.now.at_beginning_of_day..Time.now.end_of_day) }

@@ -1,0 +1,19 @@
+<% provide(:title, "Подборки музыки") %>
+
+<%= link_to "новая подборка", new_admin_films_collection_path %>
+
+<br />
+
+<% if @collections.any? %>
+	<% @collections.each do |collection| %>
+		<%= image_tag collection.cover.mini.url %>
+		<%= link_to collection.name, admin_films_collection_path(collection) %>
+		<%= link_to "ред", edit_admin_films_collection_path(collection) %>
+		<%= link_to "x", admin_films_collection_path(collection), method: :delete %>
+		<br />
+	<% end %>
+
+	<%= will_paginate @collections %>
+<% else %>
+	Пусто
+<% end %>

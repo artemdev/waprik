@@ -14,15 +14,15 @@
 	<hr />
 	<% end %>
 
-	<%= @film.collections.any?  %>
+	<% if @film.collections.any?  %>
 		Плейлисты <% @film.collections.each do |collection| %>
-			<%= collection.title %>
+			<%= collection.name %>
 		<% end %>
 	<hr />
 	<% end %>
 	Торрент <%= link_to "торрент", @film.torrent.url %>
 	<hr />
-	Режисеры<% @film.directors.each do |director| %>
+	Режисеры <% @film.directors.each do |director| %>
 		<%= director.name %>
 	<% end %>
 	<hr />
@@ -31,7 +31,9 @@
 	<% end %>
 	<hr />
 	Файлы
-	<% @film.files.each do |file| %>
-		<%= link_to file.format.title, file.real_name %>
+	<% if @film.files.any? %>
+		<% @film.files.each do |file| %>
+			<%= link_to file.format.title, file.real_name %>
+		<% end %>
 	<% end %>
 </article>

@@ -17,17 +17,22 @@ Waprik::Application.routes.draw do
 
   # Admin resources
   namespace :admin do
+    resources :films_collections do
+      get 'add_film', on: :member
+      get 'add_content', on: :member
+    end
+
     resources :collection_genres do
       get 'fill', on: :member
       get 'find', on: :member
     end
+    
     # matches
     match 'music/artists' => "MusicArtists#index"
 
     resources :music_collections do 
       get 'add_content', on: :member
     end
-    resources :films_collections
     
     # resources
     resources :video_formats
@@ -116,6 +121,7 @@ Waprik::Application.routes.draw do
     # match "uploads/films/:film_file_id/:filename.:extension", controller: "public/film_files", action: "download", conditions: { method: :get }
     resources :videos
     scope module: 'public' do
+      resources :films_collections
       resources :collection_genres
       resources :links, only: 'show'
       resources :subscribtions, only: [:index, :create, :destroy]

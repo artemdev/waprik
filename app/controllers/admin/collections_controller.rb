@@ -38,9 +38,14 @@ class Admin::CollectionsController < ApplicationController
 	end
 
 	def show
-		@collection = Collection.find_by_permalink(params[:id])
+		if params[:section] == "film"
+			@collection = FilmCollection.find_by_permalink(params[:id])
+		else 
+			@collection = Collection.find_by_permalink(params[:id])
+		end
 		@tracks = @collection.tracks.uniq.paginate(page: params[:page], per_page: 10)
 		@films = @collection.films.uniq.paginate(page: params[:page], per_page: 10)
+
 	end
 
 	def edit
@@ -53,7 +58,7 @@ class Admin::CollectionsController < ApplicationController
 		@collection = Collection.find(params[:id])
 		if @collection.update_attributes!(params[:collection])
 			flash[:success] = "Подборка обновлена"
-			redirect_to admin_collections_path
+			redirect_to admin_films_collections_path
 		else
 			render :edit
 		end

@@ -1,0 +1,16 @@
+<h1><%= @collection.name %></h1>
+
+<section>
+	<%= image_tag @collection.cover.preview.url %>
+</section>
+
+<% if @films.any? %>
+	<p>
+		<% @films.each do |film| %>
+
+			<%= link_to film.ru_title, edit_admin_film_path(film) %>
+
+		<% end %>
+	</p>
+<% end %>
+

@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :pictures, foreign_key: "author_id"
   has_many :news, foreign_key: "user_id" 
   has_many :replies, class_name: 'AdminReply', foreign_key: "admin_id" 
+  has_many :film_collections
 
   has_many :subscribtions
 

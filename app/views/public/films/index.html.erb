@@ -40,19 +40,15 @@
 				 <br />
 			<% end %>
 		</div>
-
-		<div class="title">
-			Плейлисты
-		</div>
-		<div class="a">
-			<% @collections.each do |collection| %>
-					<% if collection.with_films %>
-						<%= link_to collection.name.mb_chars.capitalize, collection_path(collection.permalink) %> <br />
-					<% end %>
-			<% end %>
-		</div>
-<% else %>
-	<div class="a">
-		Фильмов нет
-	</div>
 <% end %>
+
+<% if @collections.any? %>
+			<div class="title">
+				Плейлисты
+			</div>
+			<div class="a">
+				<% @collections.each do |collection| %>
+						<%= link_to collection.name.mb_chars.capitalize, films_collection_path(collection) %> <br />
+				<% end %>
+			</div>
+		<% end %>

@@ -1,0 +1,65 @@
+<h1><%= @collection.name %></h1>
+
+
+<%= form_for @collection, url: admin_films_collection_path(@collection), multipart: true do |f| %>
+	<%= f.label :name, "Название" %> <br />
+	<%= f.text_field :name %> <br />
+
+	<%= f.label :cover, "Обложка" %> <br />
+	<%= f.file_field :cover %> <br />
+
+	<%= f.submit "продолжить" %>
+
+<% end %>
+
+<section>
+	<% if @films.any? %>
+		<% @films.each do |film| %>
+
+			<%= film.title %> <br />
+
+			<%= film.youtube_link %>
+
+		<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+
+	<%= form_for :film, url: admin_films_path(collection_id: @collection.id), html: { multipart: true } do |f| %>
+
+		<%= f.label :ru_title, "Русское название" %> <br />
+		<%= f.text_field :ru_title %> <br />
+
+		<%= f.label :en_title, "Зарубежное название" %> <br />
+		<%= f.text_field :en_title %> <br />
+
+		<%= f.label :cover, "Обложка" %> <br />
+		<%= f.file_field :cover %> <br />
+
+		<%= f.label :youtube_link, "Ссылка на трейлер" %> <br />
+		<%= f.text_field :youtube_link %> <br />
+
+		<%= f.submit "продолжить" %>
+
+	<% end %>
+
+	<%= form_tag("#", method: :get) do %>
+
+		<%= text_field_tag :film_name %>
+
+		<%= submit_tag "продолжить" %>
+
+	<% end %>
+
+	<% if @found_films && @found_films.any? %>
+		<% @found_films.each do |film| %>
+			<% unless @found_films.find(film) %>
+				<%= film.title %> <%= link_to "добавить фильм", add_content_admin_films_collection_path(@collection, film_id: film.id) %> <br />
+				<%= link_to "x", admin_film_path(method: :delete) %>
+			<% end %>
+		<% end %>
+	<% else %>
+		Пусто
+	<% end %>
+
+</section>

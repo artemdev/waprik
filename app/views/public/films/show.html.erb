@@ -86,21 +86,28 @@
 		</div>
 	<% end %>
 
-	<div class="title">
-		Знаменитые актеры
-	</div>
-	<div class="b">
-		Знаменитые актеры: 
-		<% @film.actors.each do |actor| %>
-			<%= link_to actor.name, film_actor_path(actor) %>
+		<% if @film.actors.any? %>
+			<div class="title">
+				Знаменитые актеры
+			</div>
+			<div class="b">
+				Знаменитые актеры: 
+				<% @film.actors.each do |actor| %>
+					<%= link_to actor.name, film_actor_path(actor) %>
+				<% end %>
+				<hr />
 		<% end %>
-		<hr />
-		Режисеры 
-		<% @film.directors.each do |director| %>
-			<%= link_to director.name, film_director_path(director) %>
-		<% end %>
-	</div>
 
-	<% genre = Struct.new(:title, :url) %>
-	<% @footer_links = [] %>
-	<% @footer_links << genre.new(@film.genres.last.title.mb_chars.capitalize, film_genre_path(@film.genres.last)) %>
+		<% if @film.directors.any? %>
+			Режисеры 
+			<% @film.directors.each do |director| %>
+				<%= link_to director.name, film_director_path(director) %>
+			<% end %>
+		<% end %>
+		</div>
+
+	<% if @film.genres.last %>
+		<% genre = Struct.new(:title, :url) %>
+		<% @footer_links = [] %>
+		<% @footer_links << genre.new(@film.genres.last.title.mb_chars.capitalize, film_genre_path(@film.genres.last)) %>
+	<% end %>
