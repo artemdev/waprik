@@ -7,7 +7,7 @@ class Public::CollectionsController < ApplicationController
 
 	def show
 		@collection = Collection.find_by_permalink(params[:id])
-		@tracks = @collection.tracks
+		@tracks = @collection.tracks.page(params[:page]).per_page(10)
 	end
 
 	def join_tracks
