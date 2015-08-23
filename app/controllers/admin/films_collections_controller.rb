@@ -5,7 +5,7 @@ class Admin::FilmsCollectionsController < ApplicationController
 	end
 
 	def index
-		@collections = FilmCollection.latest.paginate(page: params[:page], per_page: 10)
+		@collections = FilmCollection.latest.page(params[:page]).per_page(10)
 	end
 
 	def edit
