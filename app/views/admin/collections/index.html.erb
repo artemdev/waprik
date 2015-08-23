@@ -12,8 +12,6 @@
 					<%= link_to "ред", edit_admin_collection_path(collection.permalink) %>
 					<%= link_to "удалить", admin_collection_path(collection.permalink), method: :delete %>
 					<%= collection.tracks.count %> <br />
-					с музыкой <b><%= collection.with_music ? "да" : "нет" %></b> <br />
-					с фильмами <b><%= collection.with_films ? "да" : "нет" %></b>
 					<%= link_to "web просмотр", web_collection_path(collection) %>
 				</p>
 			<% end %>
