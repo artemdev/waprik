@@ -42,9 +42,9 @@ class Admin::FilmsCollectionsController < ApplicationController
 	end
 
 	def add_content
-		@collection = FilmCollection.find(params[:film_id])
+		@collection = FilmCollection.find(params[:id])
 		@film = Film.find(params[:film_id])
-		@collection.films << @film
+		@collection.films << @film unless @collection.films.find(@film.id)
 		redirect_to :back, notice: 'фильм успешно добавлен'
 	end
 

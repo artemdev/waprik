@@ -86,7 +86,7 @@ class Admin::FilmsController < ApplicationController
 	end
 
 	def create
-		@collection = FilmCollection.find(params[:collection_id])
+		@collection = FilmCollection.find(params[:collection_id]) if params[:collection_id]
 		@movie = ParseBrbFilm.new params[:movie_url] if params[:movie_url]
 		@film = Film.new(params[:film])
 		@directors = @film.directors
@@ -108,7 +108,7 @@ class Admin::FilmsController < ApplicationController
 		# создаются рекомендации
 		@film.create_recomendations! if @film.brb_url.present?
 		if @film.save
-			@collection.films << @film
+			@collection.films << @film if @collection
 			# добавить фильм в паблик вк
 			# push = VkPusher.new
 			# vk_responce = push.film @film, current_user
