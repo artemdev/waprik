@@ -46,7 +46,7 @@
 		Предыдущие новинки
 	</div>
 	<div class="a">
-		<% @tracks.offset(10).each do |track| %>
+		<% @tracks.each do |track| %>
 			<%= link_to track.name, music_path(track.permalink) %>
 			<br />
 		<% end %>

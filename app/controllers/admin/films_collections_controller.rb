@@ -7,7 +7,7 @@ class Admin::FilmsCollectionsController < ApplicationController
 	def index
 		@collections = FilmCollection.latest.page(params[:page]).per_page(10)
 	end
-
+ 
 	def edit
 		@collection = FilmCollection.find(params[:id])
 		@films = @collection.films
