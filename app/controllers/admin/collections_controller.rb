@@ -40,10 +40,10 @@ class Admin::CollectionsController < ApplicationController
 	def show
 		if params[:section] == "film"
 			@collection = FilmCollection.find_by_permalink(params[:id])
-			@tracks = @collection.tracks.uniq.paginate(page: params[:page], per_page: 10)
+			@tracks = @collection.films.uniq.paginate(page: params[:page], per_page: 10)
 		else 
 			@collection = Collection.find_by_permalink(params[:id])
-			@films = @collection.films.uniq.paginate(page: params[:page], per_page: 10)
+			@films = @collection.tracks.uniq.paginate(page: params[:page], per_page: 10)
 		end		
 	end
 
