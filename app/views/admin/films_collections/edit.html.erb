@@ -53,7 +53,7 @@
 
 	<% if @found_films && @found_films.any? %>
 		<% @found_films.each do |film| %>
-			<% unless @collection.films.find(film.id) %>
+			<% unless @collection.films.include?(film.id) %>
 				<%= film.title %> <%= link_to "добавить фильм", add_content_admin_films_collection_path(@collection, film_id: film.id) %> <br />
 				<%= link_to "x", admin_film_path(method: :delete) %>
 			<% end %>
