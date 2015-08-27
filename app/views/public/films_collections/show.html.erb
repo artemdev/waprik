@@ -31,6 +31,7 @@
 		<% @films.each do |film| %>
 			<%= link_to film.ru_title, film_path(film.permalink) %>
 			<br />
+			<%= trancate(film.about, 40) %>
 		<% end %>
 	</div>
 
