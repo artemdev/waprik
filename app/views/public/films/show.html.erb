@@ -35,6 +35,10 @@
 
 		Качество <%= quality_for @film %> 
 		<br />
+		Плейлист <%= @film.each do |collection| %> 
+						 	 <%= collection.name %>
+						 <% end %>
+		<br />
 		Жанр
 		<% @film.genres.each do |genre| %>
 			<%= link_to genre.title, film_genre_path(genre) %>
@@ -73,7 +77,7 @@
 		<% end %>
 	</div>
 
-	<% if @film.recomendation_list && @film.recomendation_list.films.any? %>
+	<% if @film.recomendation_list && @film.recomendation_list.films > 1 %>
 		<div class="title">
 			Похожие фильмы
 		</div>
