@@ -35,7 +35,7 @@
 
 		Качество <%= quality_for @film %> 
 		<br />
-		Плейлист <%= @film.each do |collection| %> 
+		Плейлист <%= @film.collections.each do |collection| %> 
 						 	 <%= collection.name %>
 						 <% end %>
 		<br />
