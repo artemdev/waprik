@@ -77,7 +77,7 @@
 		<% end %>
 	</div>
 
-	<% if @film.recomendation_list && @film.recomendation_list.films.count > 1 %>
+	<% if @film.recomendation_list && (@film.recomendation_list.films.count > 1) %>
 		<div class="title">
 			Похожие фильмы
 		</div>
