@@ -38,6 +38,8 @@ class Admin::CollectionsController < ApplicationController
 	end
 
 	def show
+		@tracks = []
+		@films = []
 		if params[:section] == "film"
 			@collection = FilmCollection.find_by_permalink(params[:id])
 			@tracks = @collection.films.uniq.paginate(page: params[:page], per_page: 10)
