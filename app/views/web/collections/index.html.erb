@@ -1,9 +1,17 @@
-<%= render partial: 'web/shared/search' %>
+<% render partial: 'web/shared/search' %>
 
 <div class="row">
 	<div class="sixteen columns">
 		<% @collections.each do |collection| %>
-			<%= link_to collection.name, web_collection_path(collection.permalink) %> <br />
+			<div class="eight column">
+				<!-- name -->
+				<%= link_to collection.name, web_collection_path(collection) %> <br />
+				
+				<!-- films -->
+				<% collection.films.each do |film| %>
+					<%= link_to film.ru_title, film_path(film) %> <br />
+				<% end %>
+			</div>
 		<% end %>
 	</div>
 </div>

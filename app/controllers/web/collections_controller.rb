@@ -3,11 +3,11 @@ class Web::CollectionsController < ApplicationController
 
   def index
     if params[:sort_by] == "latest"
-      @collections = Collection.latest
+      @collections = FilmCollection.latest
     elsif params[:sort_by] == "popular"
-      @collections = Collection.popular
+      @collections = FilmCollection.popular
     else
-      @collections = Collection.all
+      @collections = FilmCollection.all
     end
   end
 
