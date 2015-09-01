@@ -35,9 +35,11 @@
 
 		Качество <%= quality_for @film %> 
 		<br />
+		<% if @film.collections.any? %>
 		Плейлист <% @film.collections.each do |collection| %> 
 						 	 <%= link_to collection.name, films_collection_path(collection) %>
 						 <% end %>
+		<% end %>
 		<br />
 		Жанр
 		<% @film.genres.each do |genre| %>

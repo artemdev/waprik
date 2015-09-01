@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 Waprik::Application.routes.draw do
 
+  get "static_pages/index"
+
   # get "collections/show"
   
   get 'web', to: 'web/collections#index'

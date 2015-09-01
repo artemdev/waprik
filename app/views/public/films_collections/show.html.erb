@@ -2,11 +2,19 @@
 <% description @collection.name.mb_chars.capitalize + " скачать бесплатно на телефон / планшет" %>
 <h1 class="title"><%= title "#{@collection.name.mb_chars.capitalize}" %></h1>
 
-<% if @collection.author %>
-	<!-- info -->
+	<% if @collection.author %>
+		<!-- info -->
+		<div class="a">	
+
+			автор <%= @collection.author.username %>
+
+		</div>
+	<% end %>
+
+	<!-- downloads -->
 	<div class="a">	
 
-		автор <%= @collection.author.username %>
+		скачиваний <%= @downloads %>
 
 	</div>
 <% end %>
