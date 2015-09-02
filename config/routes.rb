@@ -7,11 +7,18 @@ Waprik::Application.routes.draw do
   
   get 'web', to: 'web/collections#index'
 
+  get 'about_us', to: "static_pages#about_us", as: :about_us
+  get 'feedbacks', to: "static_pages#feedbacks", as: :feedbacks
+  get 'contacts', to: "static_pages#feedbacks", as: :contacts
+
   # sidekiq
   mount Sidekiq::Web, at: '/tasks'
 
   # web
   namespace :web do
+    # resources :music
+    # resources :films
+    resources :collections
     resources :collections, only: [:show, :index] do
       get :films, on: :member
     end

@@ -3,11 +3,11 @@ class Web::CollectionsController < ApplicationController
 
   def index
     if params[:sort_by] == "latest"
-      @collections = FilmCollection.latest
+      @collections = FilmCollection.latest.paginate(params[:page]).per_page(10)
     elsif params[:sort_by] == "popular"
-      @collections = FilmCollection.popular
+      @collections = FilmCollection.popular.paginate(page: params[:page], per_page: (10))
     else
-      @collections = FilmCollection.all
+      @collections = FilmCollection.all.paginate(page: params[:page], per_page: 10)
     end
   end
 

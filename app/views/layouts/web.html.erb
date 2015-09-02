@@ -43,8 +43,15 @@
         <div class="container">
           <ul class="header">
             <li><a class="brand" href="#">WAPRIK.RU</a></li>
-            <li><a href="#">музыка</a></li>
-            <li><a href="#">фильмы</a></li>
+            <%= link_to "музыка" %>
+            <%= link_to "фильмы" %>
+            <li class="user-info">
+              <% if current_user %>
+                <%= link_to "выйти", logout_path %>
+              <% else %>
+                <%= link_to "регистрация", logout_path %>
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>
@@ -56,7 +63,11 @@
     </div> <!-- /container -->
 
     <footer class="footer">
-      <p>FOOTER</p>
+      <ul>
+        <li><%= link_to "о нас", about_us_path %></li>
+        <li><%= link_to "отзывы", feedbacks_path %></li>
+        <li><%= link_to "контакты", contacts_path %></li>
+      </ul>
     </footer>
   </body>
 </html>
