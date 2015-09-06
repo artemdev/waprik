@@ -39,8 +39,14 @@
 			<%= link_to film.ru_title, film_path(film.permalink) %>
 			<br />
 
-			<%= truncate(film.about, length: 40) %>
-			<hr />
+			<% if film.torrent.present? %>
+				<%= link_to "т", "#" %> <br />
+			<% end %>
+			
+			<% if film.about.present? %>
+				<%= truncate(film.about, length: 40) %>
+				<hr />
+			<% end %>
 		<% end %>
 	</div>
 

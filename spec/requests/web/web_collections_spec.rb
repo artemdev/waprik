@@ -10,7 +10,6 @@ describe "Web::Collections" do
      	page.should have_button("найти!")
     end
 
-
     it "может посещать страницу коллекции" do
       visit web_collections_path
      	page.should have_content(collection.name)

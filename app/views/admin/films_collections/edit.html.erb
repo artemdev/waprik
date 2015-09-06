@@ -18,11 +18,13 @@
 
 			<%= film.title %> <br />
 
-			<%= film.youtube_link %>
+			<%= film.youtube_link %> <br />
+			
+			<%= link_to "р", edit_admin_film_path(film) %>
 
 		<% end %>
 	<% else %>
-		Пусто
+		фильмов нет
 	<% end %>
 
 	<%= form_for :film, url: admin_films_path(collection_id: @collection.id), html: { multipart: true } do |f| %>

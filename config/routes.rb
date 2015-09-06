@@ -44,6 +44,7 @@ Waprik::Application.routes.draw do
     end
     
     # resources
+    resources :web_collections
     resources :video_formats
     resources :settings, only: :index
     resources :video_qualities

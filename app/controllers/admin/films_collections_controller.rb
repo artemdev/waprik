@@ -1,13 +1,13 @@
 class Admin::FilmsCollectionsController < ApplicationController
 	layout 'admin'
+	
+	def index
+		@collections = FilmCollection.latest.page(params[:page]).per_page(10)
+	end
 
 	def new
 	end
 
-	def index
-		@collections = FilmCollection.latest.page(params[:page]).per_page(10)
-	end
- 
 	def edit
 		@collection = FilmCollection.find(params[:id])
 		@films = @collection.films
