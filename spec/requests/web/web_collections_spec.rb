@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Web::Collections" do
-  describe "Посетитель" do
+  describe "Web Посетитель" do
   	let(:collection) { FactoryGirl.create(:collection) }
 
     it "Видит новые коллекции, поиск." do

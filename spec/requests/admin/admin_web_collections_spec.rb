@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "WebCollections" do
   describe "Админ / модератор" do
   	let(:admin) { FactoryGirl.create(:admin_user) }
-
+ 
     it "создает коллекцию" do
     	sign_in admin
     	visit admin_films_collections_path
