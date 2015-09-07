@@ -3,7 +3,6 @@ class Public::NewsController < ApplicationController
 
 	def index
 		@news = News.latest
-		@title = "Новинки видео, клипов, приколов мобильного"
 	end
 
   def show

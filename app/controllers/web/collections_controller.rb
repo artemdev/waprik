@@ -12,7 +12,7 @@ class Web::CollectionsController < ApplicationController
   end
 
   def show
-  	render text: 'works!'
+  	render text: 'show collection'
   end
 
   def films

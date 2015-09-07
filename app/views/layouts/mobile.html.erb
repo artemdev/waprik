@@ -7,8 +7,6 @@
   <meta http-equiv="Content-Type" content="application/vnd.wap.xhtml+xml; charset=UTF-8">
   <%= stylesheet_link_tag "public/mobile", :media => "all" %>
   <%= csrf_meta_tags %>
-
-  <!-- wapstate -->
 </head>
 <body>
 	
@@ -33,6 +31,21 @@
 		<% end %>
 		<a href="http://waprik.ru">На главную</a>
 	</footer>
+	
+	<!-- MarketGidComposite Start -->
+	<div id="MarketGidScriptRootC589684">
+	    <div id="MarketGidPreloadC589684">
+	        <a id="mg_add589684" href="http://usr.marketgid.com/demo/celevie-posetiteli/" target="_blank"><img src="//cdn.marketgid.com/images/marketgid_add_link.png" style="border:0px"></a><br>        <a href="http://marketgid.com/" target="_blank">Загрузка...</a>    
+	    </div>
+	    <script>
+	                        (function(){
+	            var D=new Date(),d=document,b='body',ce='createElement',ac='appendChild',st='style',ds='display',n='none',gi='getElementById';
+	            var i=d[ce]('iframe');i[st][ds]=n;d[gi]("MarketGidScriptRootC589684")[ac](i);try{var iw=i.contentWindow.document;iw.open();iw.writeln("<ht"+"ml><bo"+"dy></bo"+"dy></ht"+"ml>");iw.close();var c=iw[b];}
+	            catch(e){var iw=d;var c=d[gi]("MarketGidScriptRootC589684");}var dv=iw[ce]('div');dv.id="MG_ID";dv[st][ds]=n;dv.innerHTML=589684;c[ac](dv);
+	            var s=iw[ce]('script');s.async='async';s.defer='defer';s.charset='utf-8';s.src="//jsc.marketgid.com/w/a/waprik.ru.589684.js?t="+D.getYear()+D.getMonth()+D.getDate()+D.getHours();c[ac](s);})();
+	    </script>
+	</div>
+	<!-- MarketGidComposite End -->
 
 	<% unless params[:controller] == "public/feedbacks" %>
 		<div class="feedbacks">
@@ -73,6 +86,7 @@
 
 	<!-- mobtop -->
 	<script type="text/javascript" src="http://mobtop.ru/c/104752.js"></script><noscript><a href="http://mobtop.ru/in/104752"><img src="http://mobtop.ru/104752.gif" alt="MobTop.Ru - Рейтинг и статистика мобильных сайтов"/></a></noscript>
+
 
 </body>
 
