@@ -17,8 +17,7 @@ class Public::SerialsController < ApplicationController
 
   def download
     @file = SerialSerieFile.find(params[:id])
-    @file.downloads = 0 if @file.downloads.nil?
-    @file.downloads.create!(user_agent: request.env["HTTP_USER_AGENT"]) 
+    @file.download += 1
     @file.save
     redirect_to({action: "get_file", id: @file.id})
   end
