@@ -18,7 +18,7 @@
 		<% else %>
 			<%= f.fields_for :files do |builder| %>
 				<%= builder.select :quality, @qualities.map {|n| [n.title, n.id]} %> <br>
-				<%= builder.select :attach, @files.map {|n| File.absolute_path(n)}, { include_blank: true } %> <br>
+				<%= builder.select :attach, @files.map {|n| n}, { include_blank: true } %> <br>
 			<% end %>
 		<% end %>
 
