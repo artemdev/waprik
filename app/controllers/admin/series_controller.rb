@@ -5,7 +5,7 @@ class Admin::SeriesController < ApplicationController
 
   layout 'admin'
 
-	FTP_PATH = "/public/ftp/films"
+	FTP_PATH = "/home/waprik/mwaprik/public/ftp/films"
 
 	def new 
 		@serial = Serial.find(params[:id])
