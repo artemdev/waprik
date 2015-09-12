@@ -12,7 +12,7 @@ module Public::SerialsHelper
 		downloads = 0
 		serial.series.each do |serie|
 			serie.files.each do |file|
-				downloads += file.downloads
+				downloads += file.download
 			end
 		end
 		downloads
