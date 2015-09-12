@@ -40,7 +40,7 @@ gem 'watir-webdriver'
 gem 'headless'
 # gem 'youtube-dl'
 gem 'meta-tags'
-gem 'zeus'
+# gem 'zeus'
 
 # Gems used only for assets and not required
 # in production environments by default.
