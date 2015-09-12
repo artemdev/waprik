@@ -12,7 +12,7 @@ class Admin::SeriesController < ApplicationController
 		@serie = @serial.series.build
 		1.times { @serie.files.build }
 		@serie.build_season
-  	@files = Dir.entries(FTP_PATH)
+  	@files = Dir.glob(FTP_PATH + "**/*").sort
   	@qualities = FilmQuality.all
 	end
 
