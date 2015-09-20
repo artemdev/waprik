@@ -15,12 +15,12 @@
 		<li class="active"> <%= link_to "Админы", admin_users_path %> </li>
 	</ul>
 
-	<%= link_to "получить vk код", to_vk_admin_authentications_path %>
+	<%#link_to "получить vk код", to_vk_admin_authentications_path %>
 
-	<%= form_tag from_vk_admin_authentications_path do %>
-		<%= label_tag :code, "vk код" %> <br />
-		<%= text_field_tag :code %>
-		<%= submit_tag "получить токен" %>
-	<% end %>
+	<%# form_tag from_vk_admin_authentications_path do %>
+		<%# label_tag :code, "vk код" %> <br />
+		<%# text_field_tag :code %>
+		<%# submit_tag "получить токен" %>
+	<%# end %>
 </div>
 
