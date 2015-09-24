@@ -3,7 +3,7 @@ class Public::MusicController < ApplicationController
 
 	def index
 		@tracks = Mp3File.all
-		@collections = Collection.with_music.fresh.hits.limit(30)
+		@collections = Collection.with_music.fresh.limit(10)
 	end
 
 	def news
